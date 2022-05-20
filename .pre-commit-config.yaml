@@ -38,7 +38,6 @@ repos:
           '--regex=naive=\bna(i|\\"i)ve',
           '--regex=optimisation=\boptimi(s|z)ation',
         ]
-  # - id: csquotes
   - id: ensure-labels-for-sections
   - id: no-space-in-cite
   - id: tilde-cite
