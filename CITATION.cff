@@ -1,0 +1,14 @@
+cff-version: 1.1.0
+message: ""
+title: "Benefits of Energy Imports into Europe"
+repository: https://github.com/fneum/import-benefits
+version: 0.0.1
+license: MIT
+authors:
+  - family-names: Hampp
+    given-names: Johannes
+    orcid: https://orcid.org/0000-0002-1776-116X
+  - family-names: Neumann
+    given-names: Fabian
+    orcid: https://orcid.org/0000-0001-8551-1480
+    
