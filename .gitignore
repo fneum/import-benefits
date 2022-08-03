@@ -1,6 +1,4 @@
 ## project specific
-*__pycache__
-.snakemake
 .vscode
 dconf
 *.ipynb_checkpoints
@@ -10,10 +8,9 @@ dconf
 *.png
 
 ## folders
-results
-resources
-summary
-data
+results/
+resources/
+data/
 
 ## Core latex/pdflatex auxiliary files:
 *.aux
