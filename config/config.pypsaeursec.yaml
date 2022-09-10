@@ -7,7 +7,7 @@ retrieve_sector_databundle: true
 results_dir: results/
 summary_dir: results
 costs_dir: ../technology-data/outputs/
-run: v4  # use this to keep track of runs with different settings
+run: v6  # use this to keep track of runs with different settings
 foresight: overnight # options are overnight, myopic, perfect (perfect is not yet implemented)
 # if you use myopic or perfect foresight, set the investment years in "planning_horizons" below
 
@@ -26,7 +26,11 @@ scenario:
     - Co2L0-97H-T-H-B-I-A-solar+p3-linemaxext15-imp+AC
     - Co2L0-97H-T-H-B-I-A-solar+p3-linemaxext15-imp+H2
     - Co2L0-97H-T-H-B-I-A-solar+p3-linemaxext15-imp+CH4
+    - Co2L0-97H-T-H-B-I-A-solar+p3-linemaxext15-imp+NH3
     - Co2L0-97H-T-H-B-I-A-solar+p3-linemaxext15-imp+FT
+    - Co2L0-97H-T-H-B-I-A-solar+p3-linemaxext15-imp5000
+    - Co2L0-97H-T-H-B-I-A-solar+p3-linemaxext15-imp4000
+    - Co2L0-97H-T-H-B-I-A-solar+p3-linemaxext15-imp3000
     - Co2L0-97H-T-H-B-I-A-solar+p3-linemaxext15-imp2000
     - Co2L0-97H-T-H-B-I-A-solar+p3-linemaxext15-imp1000
     - Co2L0-97H-T-H-B-I-A-solar+p3-linemaxext15-imp500
@@ -251,6 +255,7 @@ sector:
     # - onshore  # more than 50 km from sea
     - nearshore  # within 50 km of sea
     # - offshore
+  ammonia: true # can be false (no NH3 carrier), true (copperplated NH3), "regional" (regionalised NH3 without network)
   use_fischer_tropsch_waste_heat: true
   use_fuel_cell_waste_heat: true
   electricity_distribution_grid: true
@@ -270,14 +275,31 @@ sector:
   conventional_generation: # generator : carrier
     OCGT: gas
   import:
-    capacity_boost: 3
+    capacity_boost: 2
+    limit: false # bool or number in TWh
     options:
       - pipeline-h2
       - shipping-lh2
       - shipping-lch4
+      - shipping-lnh3
       - shipping-ftfuel
       - hvdc-to-elec
-    # limit: 100 # TWh
+    endogenous_hvdc_import:
+      enable: true
+      exporters:
+        - CN-West
+        - DZ
+        - EG
+        - KZ
+        - LY
+        - MA
+        - SA
+        - TN
+        - TR
+        - UA
+      hvdc_losses: 3.e-5 # p.u./km
+      length_factor: 1.25
+      distance_threshold: 0.05 # quantile
 
 
 industry:
@@ -307,10 +329,12 @@ industry:
     # 2040: 0.3
     # 2045: 0.25
     # 2050: 0.2
+  MWh_NH3_per_tNH3: 5.166 # LHV
   MWh_CH4_per_tNH3_SMR: 10.8 # 2012's demand from https://ec.europa.eu/docsroom/documents/4165/attachments/1/translations/en/renditions/pdf
   MWh_elec_per_tNH3_SMR: 0.7 # same source, assuming 94-6% split methane-elec of total energy demand 11.5 MWh/tNH3
   MWh_H2_per_tNH3_electrolysis: 6.5 # from https://doi.org/10.1016/j.joule.2018.04.017, around 0.197 tH2/tHN3 (>3/17 since some H2 lost and used for energy)
   MWh_elec_per_tNH3_electrolysis: 1.17 # from https://doi.org/10.1016/j.joule.2018.04.017 Table 13 (air separation and HB)
+  MWh_NH3_per_MWh_H2_cracker: 1.46 # https://github.com/euronion/trace/blob/44a5ff8401762edbef80eff9cfe5a47c8d3c8be4/data/efficiencies.csv
   NH3_process_emissions: 24.5 # in MtCO2/a from SMR for H2 production for NH3 from UNFCCC for 2015 for EU28
   petrochemical_process_emissions: 25.5 # in MtCO2/a for petrochemical and other from UNFCCC for 2015 for EU28
   HVC_primary_fraction: 0.45 # fraction of today's HVC produced via primary route
@@ -587,6 +611,12 @@ plotting:
     H2 pipeline retrofitted: '#ba99b5'
     H2 Fuel Cell: '#c251ae'
     H2 Electrolysis: '#ff29d9'
+    # ammonia
+    NH3: '#46caf0'
+    ammonia: '#46caf0'
+    ammonia store: '#00ace0'
+    ammonia cracker: '#87d0e6'
+    Haber-Bosch: '#076987'
     # syngas
     Sabatier: '#9850ad'
     methanation: '#c44ce6'
@@ -627,5 +657,11 @@ plotting:
     import pipeline-h2: '#fff6e0'
     import shipping-lh2: '#ebe1ca'
     import shipping-lch4: '#d6cbb2'
+    import shipping-lnh3: '#c6c093'
     import shipping-ftfuel: '#bdb093'
     import hvdc-to-elec: '#91856a'
+    external H2: '#f7cdf0'
+    external battery: '#dff7cb'
+    external offwind: '#d0e8f5'
+    external onwind: '#accbfc'
+    external solar: '#fcf1c7'
