@@ -1,7 +1,22 @@
+from snakemake.io import load_configfile
+import re
+
 configfile: "../config/config.yaml"
 
-# must be in sync with config.pypsaeursec.yaml
-RDIR = config['results_dir'] + config['run']
+# Hacked "sophisticated" run labels:
+# Run labels are provided as list; first-most element is always used
+run_label = config["run"][0]
+RDIR = config['results_dir'] + run_label
+
+## Sync "run_label" with PyPSA-EUR-Sec config using steamroller tactics:
+# Overwrite the relevant line in the config-file prior to loading it
+fp_config_pypsaeursec = "../config/config.pypsaeursec.yaml"
+with open(fp_config_pypsaeursec, "r") as f:
+    lines = f.readlines()
+with open(fp_config_pypsaeursec, "w") as f:
+    new_lines = [re.sub("^run:.*", f"run: {run_label} # (automatically overwritten by parent workflow)", l) for l in lines]
+    f.writelines(new_lines)
+
 
 localrules: all, report, clean
 
@@ -13,7 +28,7 @@ subworkflow pypsaeur:
 subworkflow pypsaeursec:
     workdir: "subworkflows/pypsa-eur-sec"
     snakefile: "subworkflows/pypsa-eur-sec/Snakefile"
-    configfile: "../config/config.pypsaeursec.yaml"
+    configfile: fp_config_pypsaeursec
 
 rule all:
     message: "Run entire analysis and compile report."

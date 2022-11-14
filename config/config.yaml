@@ -1,2 +1,9 @@
 results_dir: results/
-run: v6  # use this to keep track of runs with different settings
+run: # use this to keep track of runs with different settings; top-most run is always used; opt.: add a description as comment
+  - v7 # Next run to be executed
+  - v6
+  - v5
+  - v4
+  - v3
+  - v2
+  - v1
