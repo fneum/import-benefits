@@ -37,6 +37,7 @@ rule all:
 
 rule sector:
     input: pypsaeursec(RDIR + "/graphs/costs.pdf")
+    default_target: True
 
 rule report:
     message: "Compile report."
