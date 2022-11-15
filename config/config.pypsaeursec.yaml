@@ -7,7 +7,7 @@ retrieve_sector_databundle: true
 results_dir: results/
 summary_dir: results
 costs_dir: ../technology-data/outputs/
-run: v6  # use this to keep track of runs with different settings
+run: v9  # use this to keep track of runs with different settings
 foresight: overnight # options are overnight, myopic, perfect (perfect is not yet implemented)
 # if you use myopic or perfect foresight, set the investment years in "planning_horizons" below
 
@@ -15,25 +15,64 @@ scenario:
   simpl: # only relevant for PyPSA-Eur
     - ''
   lv:
-    - opt
+    - 1.5
   clusters:
     - 128
   opts:
     - ""
   sector_opts: 
-    - Co2L0-97H-T-H-B-I-A-solar+p3-linemaxext15
-    - Co2L0-97H-T-H-B-I-A-solar+p3-linemaxext15-imp
-    - Co2L0-97H-T-H-B-I-A-solar+p3-linemaxext15-imp+AC
-    - Co2L0-97H-T-H-B-I-A-solar+p3-linemaxext15-imp+H2
-    - Co2L0-97H-T-H-B-I-A-solar+p3-linemaxext15-imp+CH4
-    - Co2L0-97H-T-H-B-I-A-solar+p3-linemaxext15-imp+NH3
-    - Co2L0-97H-T-H-B-I-A-solar+p3-linemaxext15-imp+FT
-    - Co2L0-97H-T-H-B-I-A-solar+p3-linemaxext15-imp5000
-    - Co2L0-97H-T-H-B-I-A-solar+p3-linemaxext15-imp4000
-    - Co2L0-97H-T-H-B-I-A-solar+p3-linemaxext15-imp3000
-    - Co2L0-97H-T-H-B-I-A-solar+p3-linemaxext15-imp2000
-    - Co2L0-97H-T-H-B-I-A-solar+p3-linemaxext15-imp1000
-    - Co2L0-97H-T-H-B-I-A-solar+p3-linemaxext15-imp500
+    - Co2L0-3H-T-H-B-I-A-solar+p3-linemaxext15
+    - Co2L0-3H-T-H-B-I-A-solar+p3-linemaxext15-imp
+    - Co2L0-3H-T-H-B-I-A-solar+p3-linemaxext15-imp+AC
+    - Co2L0-3H-T-H-B-I-A-solar+p3-linemaxext15-imp+H2
+    - Co2L0-3H-T-H-B-I-A-solar+p3-linemaxext15-imp+CH4
+    - Co2L0-3H-T-H-B-I-A-solar+p3-linemaxext15-imp+NH3
+    - Co2L0-3H-T-H-B-I-A-solar+p3-linemaxext15-imp+FT
+    - Co2L0-3H-T-H-B-I-A-solar+p3-linemaxext15-imp+H2+CH4+NH3+FT
+    - Co2L0-3H-T-H-B-I-A-solar+p3-linemaxext15-imp+CH4+NH3+FT
+    - Co2L0-3H-T-H-B-I-A-solar+p3-linemaxext15-imp500+AC
+    - Co2L0-3H-T-H-B-I-A-solar+p3-linemaxext15-imp500+H2
+    - Co2L0-3H-T-H-B-I-A-solar+p3-linemaxext15-imp500+CH4
+    - Co2L0-3H-T-H-B-I-A-solar+p3-linemaxext15-imp500+NH3
+    - Co2L0-3H-T-H-B-I-A-solar+p3-linemaxext15-imp500+FT
+    - Co2L0-3H-T-H-B-I-A-solar+p3-linemaxext15-imp1000+AC
+    - Co2L0-3H-T-H-B-I-A-solar+p3-linemaxext15-imp1000+H2
+    - Co2L0-3H-T-H-B-I-A-solar+p3-linemaxext15-imp1000+CH4
+    - Co2L0-3H-T-H-B-I-A-solar+p3-linemaxext15-imp1000+NH3
+    - Co2L0-3H-T-H-B-I-A-solar+p3-linemaxext15-imp1000+FT
+    - Co2L0-3H-T-H-B-I-A-solar+p3-linemaxext15-imp1500+CH4
+    - Co2L0-3H-T-H-B-I-A-solar+p3-linemaxext15-imp1500+NH3
+    # - Co2L0-3H-T-H-B-I-A-solar+p3-linemaxext15-imp1500+FT
+    - Co2L0-3H-T-H-B-I-A-solar+p3-linemaxext15-imp1000+H2+CH4+NH3+FT
+    - Co2L0-3H-T-H-B-I-A-solar+p3-linemaxext15-imp2000+AC
+    # - Co2L0-3H-T-H-B-I-A-solar+p3-linemaxext15-imp2000+FT
+    - Co2L0-3H-T-H-B-I-A-solar+p3-linemaxext15-imp2000+H2
+    - Co2L0-3H-T-H-B-I-A-solar+p3-linemaxext15-imp2000+CH4
+    - Co2L0-3H-T-H-B-I-A-solar+p3-linemaxext15-imp2000+NH3
+    - Co2L0-3H-T-H-B-I-A-solar+p3-linemaxext15-imp2000+H2+CH4+NH3+FT
+    - Co2L0-3H-T-H-B-I-A-solar+p3-linemaxext15-imp3000+AC
+    - Co2L0-3H-T-H-B-I-A-solar+p3-linemaxext15-imp3000+H2
+    - Co2L0-3H-T-H-B-I-A-solar+p3-linemaxext15-imp3000+H2+CH4+NH3+FT
+    - Co2L0-3H-T-H-B-I-A-solar+p3-linemaxext15-imp4000+AC
+    - Co2L0-3H-T-H-B-I-A-solar+p3-linemaxext15-imp4000+H2
+    - Co2L0-3H-T-H-B-I-A-solar+p3-linemaxext15-imp4000+H2+CH4+NH3+FT
+    - Co2L0-3H-T-H-B-I-A-solar+p3-linemaxext15-imp5000+AC
+    - Co2L0-3H-T-H-B-I-A-solar+p3-linemaxext15-imp5000+H2
+    - Co2L0-3H-T-H-B-I-A-solar+p3-linemaxext15-imp5000+H2+CH4+NH3+FT
+    - Co2L0-3H-T-H-B-I-A-solar+p3-linemaxext15-imp6000+H2
+    - Co2L0-3H-T-H-B-I-A-solar+p3-linemaxext15-imp6000+AC
+    - Co2L0-3H-T-H-B-I-A-solar+p3-linemaxext15-imp7000+H2
+    - Co2L0-3H-T-H-B-I-A-solar+p3-linemaxext15-imp10000
+    - Co2L0-3H-T-H-B-I-A-solar+p3-linemaxext15-imp9000
+    - Co2L0-3H-T-H-B-I-A-solar+p3-linemaxext15-imp8000
+    - Co2L0-3H-T-H-B-I-A-solar+p3-linemaxext15-imp7000
+    - Co2L0-3H-T-H-B-I-A-solar+p3-linemaxext15-imp6000
+    - Co2L0-3H-T-H-B-I-A-solar+p3-linemaxext15-imp5000
+    - Co2L0-3H-T-H-B-I-A-solar+p3-linemaxext15-imp4000
+    - Co2L0-3H-T-H-B-I-A-solar+p3-linemaxext15-imp3000
+    - Co2L0-3H-T-H-B-I-A-solar+p3-linemaxext15-imp2000
+    - Co2L0-3H-T-H-B-I-A-solar+p3-linemaxext15-imp1000
+    - Co2L0-3H-T-H-B-I-A-solar+p3-linemaxext15-imp500
   # to really understand the options here, look in scripts/prepare_sector_network.py
   # Co2Lx specifies the CO2 target in x% of the 1990 values; default will give default (5%);
   # Co2L0p25 will give 25% CO2 emissions; Co2Lm0p05 will give 5% negative emissions
@@ -277,6 +316,7 @@ sector:
   import:
     capacity_boost: 2
     limit: false # bool or number in TWh
+    limit_sense: "=="
     options:
       - pipeline-h2
       - shipping-lh2
@@ -381,7 +421,7 @@ costs:
 
 
 solving:
-  #tmpdir: "path/to/tmp"
+  tmpdir: "tmp"
   options:
     formulation: kirchhoff
     clip_p_max_pu: 1.e-2
@@ -406,7 +446,7 @@ solving:
     threads: 4
     method: 2 # barrier
     crossover: 0
-    BarConvTol: 1.e-6
+    BarConvTol: 1.e-4
     Seed: 123
     AggFill: 0
     PreDual: 0
@@ -419,7 +459,7 @@ solving:
     #solutiontype: 2 # non basic solution, ie no crossover
     #barrier_convergetol: 1.e-5
     #feasopt_tolerance: 1.e-6
-  mem: 20000 #memory in MB; 20 GB enough for 50+B+I+H2; 100 GB for 181+B+I+H2
+  mem: 125000 #memory in MB; 20 GB enough for 50+B+I+H2; 100 GB for 181+B+I+H2
 
 
 plotting:
@@ -654,14 +694,15 @@ plotting:
     gas-to-power/heat: '#ee8340'
     waste: '#e3d37d'
     other: '#000000'
-    import pipeline-h2: '#fff6e0'
-    import shipping-lh2: '#ebe1ca'
-    import shipping-lch4: '#d6cbb2'
-    import shipping-lnh3: '#c6c093'
-    import shipping-ftfuel: '#bdb093'
+    import pipeline-h2: '#db8ccd'
+    import shipping-lh2: '#d9b8d3'
+    import shipping-lch4: '#f7a572'
+    import shipping-lnh3: '#87d0e6'
+    import shipping-ftfuel: '#95decb'
     import hvdc-to-elec: '#91856a'
     external H2: '#f7cdf0'
-    external battery: '#dff7cb'
-    external offwind: '#d0e8f5'
-    external onwind: '#accbfc'
-    external solar: '#fcf1c7'
+    external battery: '#ceedb4'
+    external offwind: '#bfd6e3'
+    external onwind: '#9dbbeb'
+    external solar: '#ffea80'
+    external solar-utility: '#ffea80'
