@@ -1,5 +1,7 @@
 results_dir: results/
 run: # use this to keep track of runs with different settings; top-most run is always used; opt.: add a description as comment
+  - v9
+  - v8
   - v7 # Next run to be executed
   - v6
   - v5
