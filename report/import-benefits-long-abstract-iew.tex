@@ -7,10 +7,7 @@
 
 \usepackage{libertine}
 \usepackage{libertinust1math}
-% \usepackage{geometry}
-% \geometry{
-%     top=30mm,
-%     bottom=35mm,
+% \usepackage{geometry} \geometry{ top=30mm, bottom=35mm,
 % }
 
 \renewcommand{\ttdefault}{\sfdefault}
@@ -25,22 +22,15 @@
 \usepackage[nameinlink,sort&compress,capitalise,noabbrev]{cleveref}
 % \usepackage[parfill]{parskip}
 
-\graphicspath{
-    {static/graphics/},
-    {../results/},
-    {../workflow/results/v8/},
-    {../workflow/subworkflows/pypsa-eur-sec/results/v8/maps/}
-}
+\graphicspath{ {static/graphics/}, {../results/}, {../workflow/results/v8/},
+    {../workflow/subworkflows/pypsa-eur-sec/results/v8/maps/} }
 
 \makeatletter
 \long\def\MaketitleBox{%
-  \resetTitleCounters
-  \def\baselinestretch{1}%
+  \resetTitleCounters \def\baselinestretch{1}%
    \def\baselinestretch{1}%
-    \Large\@title\par\vskip18pt
-    \normalsize\elsauthors\par\vskip10pt
-    \footnotesize\itshape\elsaddress\par\vskip36pt
-  }
+    \Large\@title\par\vskip18pt \normalsize\elsauthors\par\vskip10pt
+    \footnotesize\itshape\elsaddress\par\vskip36pt }
 \makeatother
 
 
@@ -75,27 +65,27 @@ However, even if they are economically attractive, a strong dependence on energy
 imports can be detrimental to energy security, as Europe is currently
 experiencing owing to its reliance on Russian fossil
 energy.\cite{pedersenLongtermImplications2022} Energy imports might tie European
-energy supply to few exporters or markets outside the control of European
-actors. These risks must be weighed against the potential benefits of decreasing
+energy supply to a small number of exporters or markets who then have market
+power. These risks must be weighed against the potential benefits of decreasing
 energy supply costs, reducing land usage and increasing energy security by
-offering a way to mitigate energy droughts for systems with high shares
-wheather-dependent energy supply.
+supplying storable fuels that can mitigate energy droughts for systems with high
+shares weather-dependent energy supply.
 
-In this contribution, we explore the dipole between full self-sufficiency and
-wide-ranging energy imports into Europe in scenarios with high shares of wind
-and solar electricity and net-zero carbon emissions. We investigate how the
-infrastructure requirements of a self-sufficent European energy system that
-exclusively leverages local resources from the continent may differ from a
-system that relies on energy imports from outside of Europe. For our analysis,
-we integrate a model of global energy carrier trade by Hampp et
+In this contribution, we explore the full range between the two poles of full
+self-sufficiency and wide-ranging energy imports into Europe in scenarios with
+high shares of wind and solar electricity and net-zero carbon emissions. We
+investigate how the infrastructure requirements of a self-sufficent European
+energy system that exclusively leverages local resources from the continent may
+differ from a system that relies on energy imports from outside of Europe. For
+our analysis, we integrate a model of global energy carrier trade by Hampp et
 al.\cite{hamppImportOptions2021} with a spatially and temporally resolved
 sector-coupled energy system model,
 PyPSA-Eur-Sec,\cite{PyPSAEurSecSectorCoupled} to investigate the impact of
 imports on European energy infrastructure needs. We evaluate potential import
 locations and carriers, the economic impetus for such imports, and how their
-inclusion affects deployed infrastructure. For this purpose, we perform
-sensitivity analyses interpolating between very high levels of imports and no
-imports at all.
+inclusion affects deployed transport networks and storage. For this purpose, we
+perform sensitivity analyses interpolating between very high levels of imports
+and no imports at all.
 
 \section*{How do import choices affect infrastructure needs?}
 
@@ -104,29 +94,29 @@ clean energy imported. This relates to the geographic distribution of energy
 resources tapped as well as directions and magnitudes of energy flows which have
 to be supported.
 
-Today, European energy infrastructure is built around the heavy imports of
-fossil oil and gas. The transition to a system that exploits the best wind and
-solar sites across the continent would offer many ways to develop a
-self-sufficient system without
-imports.\cite{pickeringDiversityOptions2022,brownSynergiesSector2018} Developing
-transmission infrastructure, like reinforcing the power grid and building a
-hydrogen network that partially repurposes an increasingly unused gas network is
-consistently beneficial in such autarkic
-scenarios.\cite{neumannBenefitsHydrogen2022a,wetzelGreenEnergy2022,victoriaSpeedTechnological2022} This aligns
-with visions of a \textit{European Hydrogen Backbone} of the European gas
-industry.
+Today, European energy infrastructure is built around the imports of fossil oil
+and gas. The transition to a system that exploits the best wind and solar sites
+across the continent would offer many ways to develop a self-sufficient system
+without imports.\cite{pickeringDiversityOptions2022,brownSynergiesSector2018}
+Developing transmission infrastructure, like reinforcing the power grid and
+building a hydrogen network that partially repurposes an increasingly unused gas
+network is consistently beneficial in such autarkic
+scenarios.\cite{neumannBenefitsHydrogen2022a,wetzelGreenEnergy2022,victoriaSpeedTechnological2022}
+This aligns with the vision of a \textit{European Hydrogen Backbone} of the
+European gas industry.
 \cite{gasforclimateEuropeanHydrogen2020,gasforclimateEuropeanHydrogen2022}
 
-However, scaling up Europe's energy transmission infrastructure may not always
-be needed if imports of renewable energy carriers are considered. Since most
+However, scaling up Europe's energy transmission infrastructure may not be
+necessary if imports of renewable energy carriers are considered. Since most
 hydrogen would be used to produce synthetic fuels and
-ammonia,\cite{neumannBenefitsHydrogen2022a} if these were imported at scale, much
-of the hydrogen demand would fall away. This would reduce the need for hydrogen
-transport infrastructure. Even if there is high demand for direct hydrogen
-imports, the optimised topology of a hydrogen network might differ significantly
-as new import locations need to be connected rather than domestic production.
-The network's role could change from distributing energy from North Sea hydrogen
-production hubs to incorporating inbound hydrogen pipelines from North Africa.
+ammonia,\cite{neumannBenefitsHydrogen2022a} if these hydrogen derivatives were
+imported at scale, much of the hydrogen demand would fall away. This would
+reduce the need for hydrogen transport infrastructure. Even if there is high
+demand for direct hydrogen imports, the optimised topology of a hydrogen network
+might differ significantly as new import locations need to be connected rather
+than domestic production. The network's role could change from distributing
+energy from North Sea hydrogen production hubs to incorporating inbound hydrogen
+pipelines from North Africa.
 
 \begin{figure*}[ht]
     \centering
@@ -139,36 +129,40 @@ production hubs to incorporating inbound hydrogen pipelines from North Africa.
 
 As possible import options we consider imports of electricity, hydrogen,
 methane, ammonia and Fischer-Tropsch fuels. Thereby, each carrier has different
-characteristics which leads to trade-offs regarding how, where and under which
-circumstances they may be imported.
+characteristics which leads to trade-offs regarding how and where they may be
+imported.
 
 Electricity, the most versatile carrier, is challenging to store and requires
 variability management if directly sourced from renewable sources. Hydrogen is
 easier to store and transport in large quantities than electricity but at the
-expense of being less versatile. Hydrogen has also attracted considerable
-interest with plans of the European Commission under
+expense of conversion losses and less versatile usage. Hydrogen has also
+attracted considerable interest with plans of the European Commission under
 \mbox{REPowerEU}\cite{europeancommissionRepowerEUPlan} to import 10~Mt (333~TWh)
-hydrogen and derivatives by 2030. Furthermore, green hydrogen could offer a
-replacement for hydrogen from fossil sources as a chemical feedstock in the
-future. Synthetic, carbon-neutral methane could benefit from existing
-infrastructure but requires a sustainable carbon source and leakage prevention.
-Ammonia does not require a carbon source and is simple and cheap to store and
-transport over long distances. However, it suffers from acceptance problems due
-to its toxicity and lower energy density. Finally, Fischer-Tropsch fuels and
-other liquid hydrocarbons are easy to store, transport and reuse existing
-infrastructure, but the synthesis is energy-intensive due to high conversion
-losses. Like methane, a sustainable carbon source is required.
+hydrogen and derivatives by 2030, alongside equal amounts of domestic hydrogen
+production. Furthermore, green hydrogen could offer a replacement for hydrogen
+from fossil sources as a chemical feedstock in the future. Synthetic,
+carbon-neutral methane could benefit from existing infrastructure but requires a
+sustainable carbon source and leakage prevention. Ammonia does not require a
+carbon source and is simple and cheap to store and transport over long
+distances. However, it suffers from acceptance problems due to its toxicity and
+lower energy density. Finally, Fischer-Tropsch fuels and other liquid
+hydrocarbons are easy to store, transport and reuse existing infrastructure, but
+the synthesis is energy-intensive due to high conversion losses. Like methane, a
+sustainable carbon source is required.
 
 For each energy carrier we identify locations with existing or planned import
 infrastructure where the respective carrier may enter the European energy
 system. We consider import options for electricity by transmission line,
-hydrogen as gas by pipeline and as liquid by ship, methane as gas by
-pipeline and as liquid by ship, ammonia as liquid by ship, and Fischer-Tropsch
-fuels by ship. Moreover, we compute scenarios where only a subset of carriers
-can be imported to probe the flatness of the near-optimal solution space and
-assess how the carrier choice affects intra-European import infrastructure.
+hydrogen as gas by pipeline and as liquid by ship, methane as gas by pipeline
+and as liquid by ship, ammonia as liquid by ship, and Fischer-Tropsch fuels by
+ship. Further conversion of imported fuels is also possible once fuels have
+arrived in Europe, e.g.~hydrogen can be used for the synthesis of carbon-based
+fuels and methane can be converted to hydrogen. Moreover, we compute scenarios
+where only a subset of carriers can be imported to probe the flatness of the
+near-optimal solution space and assess how the carrier choice affects
+intra-European import infrastructure.
 
-\section*{Sector-coupled energy system with PyPSA-Eur-Sec}
+\section*{Sector-coupled energy system at high spatial\\and temporal resolution with PyPSA-Eur-Sec}
 
 To model the European energy system, we use the open-source energy system
 optimisation model PyPSA-Eur-Sec,\cite{PyPSAEurSecSectorCoupled} that combines a
@@ -186,15 +180,15 @@ model covers transmission infrastructure for electricity, gas and hydrogen as
 well as candidate entry points for energy imports like existing and prospective
 LNG terminals and cross-continental pipelines. 
 
-In the scenarios shown below we enforce net-zero emissions, allow a doubling of
-today's power grid infrastructure, take technology and assumptions for the year
-2030\cite{dea2019}, and limit the carbon sequestration potential to 200~Mt/a.
-This is sufficient to sequester unabated fossil process emissions in industry,
-but limits the system's reliance on carbon-dioxide removal technologies.
-Detailed carbon management is central to the model, as it tracks the carbon
-cycles between industrial process emissions, the combustion of biomass and gas,
-carbon capture, direct air capture, synfuel production, sequestration, recycling
-and decay. 
+In the scenarios shown below we enforce net-zero emissions for carbon dioxide,
+allow a doubling of today's power grid infrastructure, take technology and
+assumptions for the year 2030\cite{dea2019}, and limit the carbon sequestration
+potential to 200~Mt/a. This is sufficient to sequester unabated fossil process
+emissions in industry, but limits the system's reliance on carbon-dioxide
+removal technologies. Detailed carbon management is central to the model, as it
+tracks the carbon cycles between industrial process emissions, the combustion of
+biomass and gas, carbon capture, direct air capture, synfuel production,
+sequestration, recycling and waste-to-energy conversion. 
 
 \section*{Import options and costs modelled at each entry-point}
 
@@ -227,21 +221,25 @@ liquid hydrocarbons are not spatially resolved, assuming they can be transported
 within Europe at low cost.
 
 \begin{table}
-    \caption{Fuel import costs depending on their import location.}
-    \label{tab:costs}
     \centering\small
     \begin{tabular}[pos]{lrr}
         \toprule
         Carrier & Import Costs [\euro/MWh] \\
         \midrule
-        Electricity & endogenous supply chain \\
-        Hydrogen & location-dependent (\cref{fig:import-option}) \\
-        Ammonia & 85 \\
+        Electricity & 32-57 \\
+        Hydrogen & 55-88 \\
+        Ammonia & 85 \\ 
         Methane (LNG) & 89 \\
         Methane (pipeline) & 100 \\
         Fischer-Tropsch fuel & 115 \\
         \bottomrule
     \end{tabular}
+    \caption{Fuel import costs depending on their import location. Import costs
+    of hydrogen are location-dependent as shown in \cref{fig:import-option}
+    contingent on pipeline or ship-based import possibilities. The supply chain
+    for electricity imports is endogenous optimised; range shows time-averaged
+    market prices.}
+    \label{tab:costs}
 \end{table}
 
 \section*{Preliminary results indicate flat near-optimal solution\\space between autarky and high e-fuel imports}
@@ -251,8 +249,9 @@ system costs by up to 7\%. In this case, around 30\% of the system cost would be
 spent on energy imports. But as \cref{fig:sensitivity-bars} outlines, the level
 of cost reductions depends on the available import options. For now, our
 preliminary results indicate a preference for hydrogen and electricity imports.
-Half of the cost reductions can be achieved with exclusive hydrogen imports, and
-a cost reduction by 5\% can be achieved with exclusive electricity imports.
+Half of the cost reductions can be achieved with exclusive hydrogen imports,
+whereas 70\% of the reduction (for a total reduction of 5\%) can be achieved
+with exclusive electricity imports.
 
 If the carrier mix for energy imports can be flexibly chosen, we find a
 cost-optimal import volume of 3750~TWh, which is more than a third of the
@@ -263,7 +262,7 @@ are marginal. A large share of power-to-hydrogen production is outsourced from
 from Europe. As we explore the effect of increasing import volumes on system
 costs, we find that half of the 7\% cost benefit can be achieved with imports
 below 1000~TWh. This corresponds to only a quarter of cost-optimal import
-volumes, highlighting the diminishing edge of energy imports over domestic
+volumes, highlighting the diminishing return of energy imports over domestic
 production in Europe. From this sensitivity analysis we further learn that the
 solution space is relatively flat in a wide range between imports of 0 and
 8000~TWh. Importing around 7500~TWh (twice as much as cost-optimal) is just as
@@ -319,12 +318,14 @@ the North Sea area.
     \centering\small
     \begin{tabular}{cc}
         (a) without imports & (b) with imports \\
-        \includegraphics[width=.8\columnwidth]{elec_s_128_lv2.0__Co2L0-3H-T-H-B-I-A-solar+p3-linemaxext15_2030/h2-flow-map-backbone} &
+        \includegraphics[width=.8\columnwidth]{elec_s_128_lv2.0__Co2L0-3H-T-H-B-I-A-solar+p3-linemaxext15_2030/h2-flow-map-backbone}
+        &
         \includegraphics[width=.8\columnwidth]{elec_s_128_lv2.0__Co2L0-3H-T-H-B-I-A-solar+p3-linemaxext15-imp_2030/h2-flow-map-backbone}
     \end{tabular}
     \caption{Net energy flows in hydrogen network with and without energy imports. Width proportional to energy flow.}
     \label{fig:hydrogen-flows}
-    % TODO merge with import export balance graph like in hydrogen network paper?
+    % TODO merge with import export balance graph like in hydrogen network
+    % paper?
 \end{figure*}
 
 
@@ -335,18 +336,18 @@ Our analysis offers insights into how energy imports might interact with
 European energy infrastructures and what economic benefit they can bring. Our
 preliminary results show that imports of green energy reduce costs of a
 climate-neutral European energy system by 7\%, and that European infrastructure
-requirements strongly depend on the strategy taken on energy imports. All
-results depend strongly on the assumptions and we have planned more work on
-running import cost sensitivities, including losses in European energy networks,
-and considering industry relocation as well as material imports. With our
-research, we seek to stimulate further discussions about trade-offs between
-public acceptance, system cost, and energy security pertaining to the import of
-low-carbon fuels and sensitise to what extent infrastructure policy decisions
-depend on the path taken on energy imports. This is particularly relevant as
-other factors than pure costs might rather drive import strategy, such as
-geopolitical considerations, preferences for easy-to-implement systems, reuse of
-existing infrastructure, resilience of supply chains, technology risk, and land
-usage.
+requirements strongly depend on the strategy taken on energy imports. To
+understand the dependency of the results on the assumptions, we have planned
+more work on running import cost sensitivities, including losses in European
+energy networks, and considering industry relocation as well as secondary
+material imports like green steel. With our research, we seek to stimulate
+further discussions about trade-offs between public acceptance, system cost, and
+energy security pertaining to the import of low-carbon fuels and sensitise
+policymakers to the extent to which infrastructure policy decisions depend on
+the path taken on energy imports. This is particularly relevant as other factors
+than pure costs might rather drive import strategy, such as geopolitical
+considerations, preferences for easy-to-implement systems, reuse of existing
+infrastructure, resilience of supply chains, technology risk, and land usage.
 
 \addcontentsline{toc}{section}{References}
 \renewcommand{\ttdefault}{\sfdefault}
