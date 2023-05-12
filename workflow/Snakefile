@@ -1,76 +1,20 @@
-from snakemake.io import load_configfile
-import re
+# run from root directory of repository
 
-configfile: "../config/config.yaml"
+configfile: "config/config.yaml"
 
-# Hacked "sophisticated" run labels:
-# Run labels are provided as list; first-most element is always used
-run_label = config["run"][0]
-RDIR = config['results_dir'] + run_label
+module pypsa_eur:
+    snakefile:
+        "modules/pypsa-eur/Snakefile"
+    prefix: 
+        "workflow/modules/pypsa-eur"
+    config: config
 
-## Sync "run_label" with PyPSA-EUR-Sec config using steamroller tactics:
-# Overwrite the relevant line in the config-file prior to loading it
-fp_config_pypsaeursec = "../config/config.pypsaeursec.yaml"
-with open(fp_config_pypsaeursec, "r") as f:
-    lines = f.readlines()
-with open(fp_config_pypsaeursec, "w") as f:
-    new_lines = [re.sub("^run:.*", f"run: {run_label} # (automatically overwritten by parent workflow)", l) for l in lines]
-    f.writelines(new_lines)
+use rule * from pypsa_eur
 
+run = config.get("run", {})
+RDIR = run["name"] + "/" if run.get("name") else ""
+RESULTS = "workflow/modules/pypsa-eur/results/" + RDIR
 
-localrules: all, report, clean
-
-subworkflow pypsaeur:
-    workdir: "subworkflows/pypsa-eur"
-    snakefile: "subworkflows/pypsa-eur/Snakefile"
-    configfile: "../config/config.pypsaeur.yaml"
-
-subworkflow pypsaeursec:
-    workdir: "subworkflows/pypsa-eur-sec"
-    snakefile: "subworkflows/pypsa-eur-sec/Snakefile"
-    configfile: fp_config_pypsaeursec
-
-rule all:
-    message: "Run entire analysis and compile report."
-    input:
-        "../report/report.pdf",
-
-rule sector:
-    input: pypsaeursec(RDIR + "/graphs/costs.pdf")
+rule run_models:
+    input: RESULTS + "graphs/costs.pdf"
     default_target: True
-
-rule report:
-    message: "Compile report."
-    input:
-        tex="../report/report.tex",
-        bib="../report/references.bib"
-    output: "../report/report.pdf"
-    shell:
-        """
-        pdflatex {input.tex}
-        bibtex {input.bib})
-        pdflatex {input.tex}
-        pdflatex {input.tex}
-        """
-
-
-rule dag:
-     message: "Plot dependency graph of the workflow."
-     output:
-         dot="../resources/dag.dot",
-         pdf="../resources/dag.pdf"
-     shell:
-         """
-         snakemake --rulegraph > {output.dot}
-         dot -Tpdf -o {output.pdf} {output.dot}
-         """
-
-
-rule clean:
-    message: "Remove all build results but keep downloaded data."
-    run:
-         import shutil
-
-         shutil.rmtree("../resources")
-         shutil.rmtree("../results")
-         print("Data downloaded to data/ has not been cleaned.")
