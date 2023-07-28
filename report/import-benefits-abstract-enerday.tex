@@ -1,0 +1,125 @@
+\documentclass[10pt,5p,reversenotenum,lefttitle]{elsarticle}
+
+\journal{ENERDAY 2023}
+
+\usepackage{libertine}
+\usepackage{libertinust1math}
+\renewcommand{\ttdefault}{\sfdefault}
+\usepackage{amsmath}
+\usepackage{eurosym}
+
+\makeatletter
+\long\def\MaketitleBox{%
+  \resetTitleCounters \def\baselinestretch{1}%
+   \def\baselinestretch{1}%
+    \Large\@title\par\vskip18pt \normalsize\elsauthors\par\vskip10pt
+    \footnotesize\itshape\elsaddress\par\vskip36pt }
+\makeatother
+
+
+\begin{document}
+
+\begin{frontmatter}
+
+	\title{Energy Imports and Infrastructure in a Climate-Neutral European Energy System}
+    
+	\author[jlu]{Johannes Hampp}
+    \author[tub]{Tom Brown}
+	\author[tub]{Fabian Neumann}
+	\ead{f.neumann@tu-berlin.de}
+	\address[jlu]{Center for International Development and Environmental Research, Justus-Liebig-University Gießen, Gießen, Germany}
+	\address[tub]{Department of Digital Transformation in Energy Systems, Institute of Energy Technology, Technische Universität Berlin, Fakultät III, Einsteinufer 25 (TA 8), 10587 Berlin, Germany}
+
+\end{frontmatter}
+
+\section*{Motivation}
+
+The transformation of the European energy system towards climate-neutrality
+demands unrivalled technological change. Whereas the development of renewables
+energy sources in Europe and supporting measures like reinforcing the
+electricity grid do not always meet the level of acceptance required for a swift
+transition, other parts of the world have cheap and abundant renewable energy
+supply potentials to offer to global energy markets. However, even if
+economically attractive, a strong dependence on energy imports can be
+detrimental to energy security. Risks must be weighed against the potential
+benefits of decreasing energy supply costs, reducing land usage and increasing
+energy security by supplying storable fuels that can mitigate energy droughts
+for systems with high shares weather-dependent energy supply.
+
+Here, we explore the full range between the two poles of full self-sufficiency
+and wide-ranging energy imports into Europe in scenarios with high shares of
+wind and solar electricity and net-zero carbon emissions. We investigate how the
+infrastructure requirements of a self-sufficent European energy system that
+exclusively leverages local resources from the continent may differ from a
+system that relies on energy imports from outside of Europe. We integrate a
+model of global energy supply chains by Hampp et al. (2023) with a
+sector-coupled energy system model, PyPSA-Eur-Sec, to investigate the impact of
+imports on European energy infrastructure needs. We evaluate potential import
+locations and carriers, the economic impetus for such imports, and how their
+inclusion affects deployed transport networks and storage. As possible import
+options we consider imports of electricity, hydrogen, methane, ammonia,
+methanol, steel/iron sponge and Fischer-Tropsch fuels. Moreover, we compute
+scenarios where only a subset of carriers can be imported to assess how the
+different import scenarios affect the energy infrastructure inside Europe.
+
+\section*{Methods}
+
+We use the open European energy system model PyPSA-Eur-Sec, that combines a
+fully sector-coupled approach with high spatial and temporal resolution and
+detailed transmission infrastructure representation. The model co-optimises the
+investment and operation of generation, storage, conversion and transmission
+infrastructures in a single linear optimisation problem. It covers 128
+individual regions and uses a 3-hourly time resolution for a year. Thereby, the
+model is detailed enough to capture existing grid bottlenecks, the
+variability of renewables and seasonal storage. It
+includes regional demands from the electricity, industry, buildings, agriculture
+and transport sectors, including shipping and aviation as well as non-energy
+feedstock demands in the chemicals industry. Furthermore, it covers
+transmission infrastructure for electricity, gas and hydrogen as well as
+candidate entry points for energy imports like existing and prospective LNG
+terminals and cross-continental pipelines. 
+
+We enforce net-zero emissions for CO2, allow a
+doubling of today's power grid infrastructure, take technology and assumptions
+for the year 2030, and limit the carbon sequestration potential to 200Mt CO2
+per year. Fuel import costs are based on Hampp et al., who assessed the cost importing various energy carriers across
+different global green energy supply chains from various regions of the world. 
+We use these supply curves to determine for each energy carrier and model entry
+point the region-specific lowest import cost, thus, incoporating the potential
+trade-off between import cost and import location.
+Our selection of exporting countries comprises Australia, Argentina, Chile,
+Kazakhstan, Turkey, Ukraine, the United States and Canada, China, and the MENA region. The hydrogen import costs are lower where they can be imported via pipeline
+rather than by ship. The imports of ammonia and liquid hydrocarbons are not
+spatially resolved. Electricity imports are endogenously optimised.
+
+\section*{Results}
+
+We find that allowing energy imports from outside of Europe reduces total energy
+system costs by up to 7\%. In this case, around 30\% of the system cost would be
+spent on energy imports. But the cost reductions depend on the available import
+options. Our preliminary results indicate that half of the cost reductions can
+be achieved with exclusive hydrogen imports, whereas 70\% of the reduction (for
+a total reduction of 5\%) can be achieved with exclusive electricity imports.
+
+If the carrier mix for energy imports can be flexibly chosen, we find a
+cost-optimal import volume of 3750~TWh (a third total final energy demand).
+Roughly 59\% is imported in the form of electricity. Another 39\% are imported
+as hydrogen. A large share of power-to-hydrogen production is outsourced from
+Europe. We find that half of the 7\% cost benefit can be achieved with imports
+below 1000~TWh (a quarter of cost-optimal import volumes). Results also show
+that the solution space is flat in a wide range between imports of 0 and
+8000~TWh. Importing around 7500~TWh is just as expensive as the scenario without
+any imports.
+
+Allowing imports of electricity, green e-fuels alters the infrastructure
+buildout in Europe. With fully self-sufficient European energy supply, we see
+large PtX production within the European periphery to cover the demand for
+hydrogen derivatives in steelmaking, high-value chemicals, as well as shipping
+and aviation fuels. Electricity grid reinforcements are mostly focused in
+Northwestern Europe. However, the import of electricity and hydrogen displaces
+much of the European PtX production capacities and diverts some of the
+electricity grid reinforcements to Southern Europe. Increased energy imports
+change the hydrogen network's role to transporting imports from North
+Africa rather than distributing hydrogen from the North Sea area.
+
+\end{document}
