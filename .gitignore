@@ -257,3 +257,7 @@ TSWLatexianTemp*
 
 *.snakemake
 slides
+
+cidportal.jrc.ec.europa.eu
+globalenergymonitor.org
+gurobi.log
