@@ -257,6 +257,7 @@ TSWLatexianTemp*
 
 *.snakemake
 slides
+archive
 
 cidportal.jrc.ec.europa.eu
 globalenergymonitor.org
