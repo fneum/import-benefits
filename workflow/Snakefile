@@ -4,16 +4,16 @@ configfile: "config/config.yaml"
 
 module pypsa_eur:
     snakefile:
-        "modules/pypsa-eur/Snakefile"
+        "pypsa-eur/Snakefile"
     prefix: 
-        "workflow/modules/pypsa-eur"
+        "workflow/pypsa-eur"
     config: config
 
 use rule * from pypsa_eur
 
 run = config.get("run", {})
 RDIR = run["name"] + "/" if run.get("name") else ""
-RESULTS = "workflow/modules/pypsa-eur/results/" + RDIR
+RESULTS = "workflow/pypsa-eur/results/" + RDIR
 
 rule run_models:
     input: RESULTS + "graphs/costs.pdf"
