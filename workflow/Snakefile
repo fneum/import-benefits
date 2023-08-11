@@ -18,3 +18,16 @@ RESULTS = "workflow/pypsa-eur/results/" + RDIR
 rule run_models:
     input: RESULTS + "graphs/costs.pdf"
     default_target: True
+
+rule sync_project:
+    params:
+        cluster=f"{config['remote']['ssh']}:{config['remote']['path']}",
+    shell:
+        """
+        rsync -uvarh --ignore-missing-args --info=progress2 --files-from=.sync-send . {params.cluster}
+        rsync -uvarh --no-g --info=progress2 --exclude='*.nc' {params.cluster}/workflow/pypsa-eur/resources . || echo "No resources directory, skipping rsync"
+        rsync -uvarh --no-g --info=progress2 --exclude='*.nc' {params.cluster}/workflow/pypsa-eur/results . || echo "No results directory, skipping rsync"
+        rsync -uvarh --no-g {params.cluster}/workflow/pypsa-eur/benchmarks . || echo "No benchmarks directory, skipping rsync"
+        rsync -uvarh --no-g {params.cluster}/workflow/pypsa-eur/logs . || echo "No logs directory, skipping rsync"
+        rsync -uvarh --no-g {params.cluster}/logs . || echo "No logs directory, skipping rsync"
+        """
