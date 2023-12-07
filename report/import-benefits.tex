@@ -1,18 +1,31 @@
-\documentclass[5p]{elsarticle}
+\documentclass[5p,9pt]{elsarticle}
 
-\journal{TBA}
+\journal{Nature Energy}
 
+% Length – up to 3,000 words, excluding abstract, Methods, references and figure legends.
+% Abstract – up to 150 words, unreferenced. 
+% Display items – up to 8 items (figures and/or tables). 
+% Article should be divided as follows: 
+%     Introduction (without heading) 
+%     Main text
+%     Discussion/Conclusions
+%     Methods. ​
+% Main text and Methods should be divided by topical subheadings; the Discussion/Conclusions does not contain subheadings.
+
+% \usepackage{natbib}
 \bibliographystyle{elsarticle-num}
-\biboptions{numbers,sort&compress}
+\biboptions{numbers,sort&compress,super}
 
 % format hacks
 \usepackage{libertine}
 \usepackage{libertinust1math}
-% \usepackage{geometry}
-% \geometry{
-%     top=30mm,
-%     bottom=35mm,
-% }
+\usepackage{geometry}
+\geometry{
+    top=10mm,
+    bottom=15mm,
+	left=10mm,
+	right=10mm,
+}
 
 \usepackage{amsmath}
 \usepackage{bbold}
@@ -26,39 +39,30 @@
 \usepackage{tabularx}
 \usepackage{bm}
 \usepackage{subcaption}
-\usepackage{blindtext}
 \usepackage{longtable}
 \usepackage{multirow}
 \usepackage{threeparttable}
-\usepackage{pdflscape}
 \usepackage[export]{adjustbox}
 \usepackage[version=4]{mhchem}
 \usepackage[colorlinks]{hyperref}
-\usepackage[parfill]{parskip}
-\usepackage[nameinlink,sort&compress,capitalise,noabbrev]{cleveref}
+% \usepackage[parfill]{parskip}
+\usepackage[nameinlink,sort&compress,capitalise]{cleveref}
 \usepackage[leftcaption,raggedright]{sidecap}
 \usepackage[prependcaption,textsize=footnotesize]{todonotes}
+\usepackage{blindtext}
+% \usepackage{pdflscape}
 
-\usepackage{siunitx}
-\sisetup{
-	range-units = single,
-	per-mode = symbol
-}
-\DeclareSIUnit\year{a}
-\DeclareSIUnit{\tco}{t_{\ce{CO2}}}
-\DeclareSIUnit{\sieuro}{\mbox{\euro}}
-\DeclareSIUnit{\twh}{{\tera\watt\hour}}
-\DeclareSIUnit{\mwh}{{\mega\watt\hour}}
-\DeclareSIUnit{\kwh}{{\kilo\watt\hour}}
+\usepackage{xr}
+\externaldocument{import-benefits-si}
+
+\urlstyle{sf}
 
 \usepackage{lipsum}
 
-\usepackage[resetlabels,labeled]{multibib}
-\newcites{S}{Supplementary References}
-\bibliographystyleS{elsarticle-num}
-
 \graphicspath{
-    {../results/graphics/},
+    {../workflow/notebooks/},
+    {../workflow/pypsa-eur/resources/},
+    {../workflow/pypsa-eur/results/},
 }
 
 % \usepackage[
@@ -67,48 +71,83 @@
 % 	version={4.0},
 % ]{doclicense}
 
-\newcommand{\abs}[1]{\left|#1\right|}
-\newcommand{\norm}[1]{\left\lVert#1\right\rVert}
-\newcommand{\set}[1]{\left\{#1\right\}}
-\DeclareMathOperator*{\argmin}{\arg\!\min}
-\newcommand{\R}{\mathbb{R}}
-\newcommand{\B}{\mathbb{B}}
-\newcommand{\N}{\mathbb{N}}
+\usepackage{siunitx}
+\sisetup{range-units=single, per-mode=symbol}
+\DeclareSIUnit\year{a}
+\DeclareSIUnit{\tco}{t_{\ce{CO2}}}
+\DeclareSIUnit{\sieuro}{\mbox{\euro}}
+\DeclareSIUnit{\twh}{{\tera\watt\hour}}
+\DeclareSIUnit{\mwh}{{\mega\watt\hour}}
+\DeclareSIUnit{\kwh}{{\kilo\watt\hour}}
 \newcommand{\co}{\ce{CO2}~}
 \def\el{${}_{\textrm{el}}$}
 \def\th{${}_{\textrm{th}}$}
-\def\deg{${}^\circ$}
+
+\newcommand{\bneuro}[1]{#1\,B\euro{}/a}
+
+\renewcommand{\ttdefault}{\sfdefault}
+
+\newcommand{\sfigref}[1]{
+    \begingroup
+    \crefname{figure}{Supplementary Fig.}{Supplementary Figs.}
+    \cref{#1}
+    \endgroup
+}
+
+\newcommand{\Sfigref}[1]{
+    \begingroup
+    \Crefname{figure}{Supplementary Fig.}{Supplementary Figs.}
+    \Cref{#1}
+    \endgroup
+}
+
+\newcommand{\stabref}[1]{
+    \begingroup
+    \crefname{table}{Supplementary Table}{Supplementary Tables}
+    \cref{#1}
+    \endgroup
+}
+
+\newcommand{\Stabref}[1]{
+    \begingroup
+    \Crefname{table}{Supplementary Table}{Supplementary Tables}
+    \Cref{#1}
+    \endgroup
+}
+
 
 
 \begin{document}
 
+
 \begin{frontmatter}
 
-	\title{Benefit of Energy Imports into Europe}
+	\title{Energy Imports and Infrastructure in a Climate-Neutral European Energy System}
     
-	\author[jlu]{Johannes Hampp\corref{correspondingauthor}}
-	\ead{johannes.hampp@zeu.uni-giessen.de}
-	\author[tub]{Fabian Neumann}
+	\author[tub]{Fabian Neumann\corref{correspondingauthor}}
+	\ead{f.neumann@tu-berlin.de}
+	\author[pik]{Johannes Hampp}
+	\author[tub]{Tom Brown}
 	
-	\address[jlu]{Center for International Development and Environmental Research, Justus-Liebig-University Gießen, Gießen, Germany}
 	\address[tub]{Department of Digital Transformation in Energy Systems, Institute of Energy Technology, Technische Universität Berlin, Fakultät III, Einsteinufer 25 (TA 8), 10587 Berlin, Germany}
+	\address[pik]{Potsdam Institute for Climate Impact Research (PIK), Member of the Leibniz Association, P.O.~Box 60 12 03, 14412 Potsdam, Germany}
 
 	\begin{abstract}
 		\input{sections/abstract.tex}
 	\end{abstract}
 
-	\begin{keyword}
-		TODO
-	\end{keyword}
+	% \begin{keyword}
+	% 	TODO
+	% \end{keyword}
 
 	% \begin{graphicalabstract}
 	% \end{graphicalabstract}
 
-	\begin{highlights}
-		\item A
-		\item B
-		\item C
-	\end{highlights}
+	% \begin{highlights}
+	% 	\item A
+	% 	\item B
+	% 	\item C
+	% \end{highlights}
 
 \end{frontmatter}
 
@@ -116,44 +155,70 @@
 
 % \tableofcontents
 
-\section{Introduction}
-\label{sec:intro}
+% \section*{Introduction}
+% \label{sec:intro}
 
 \input{sections/introduction.tex}
 
-\section{Methods}
-\label{sec:methods}
-
-\input{sections/methods.tex}
-
-\section{Results}
-\label{sec:results}
+% \section*{Results}
+% \label{sec:results}
 
 \input{sections/results.tex}
 
-\section{Discussion}
+\section*{Discussion and conclusions}
 \label{sec:discussion}
 
 \input{sections/discussion.tex}
 
-\section{Conclusion}
-\label{sec:conclusion}
+\section*{Methods}
 
-\input{sections/conclusion.tex}
+\label{sec:methods}
+
+\input{sections/methods.tex}
 
 \section*{Acknowledgements}
 
 % XY gratefully acknowledge funding from XY under grant no. 00000.
 
-\section*{License}
+% \section*{License}
 % \doclicenseLongText
 % \doclicenseIcon
 
-\section*{Author Contributions}
+\section*{Author contributions}
 
 % following https://casrai.org/credit/
 
-\textbf{Author XY}:
+\textbf{F.N.}:
+Conceptualization --
+Data curation --
+Formal Analysis --
+Funding acquisition --
+Investigation --
+Methodology --
+Project administration --
+Resources --
+Software --
+Supervision --
+Validation --
+Visualization --
+Writing - original draft --
+Writing - review \& editing
+\textbf{J.H.}:
+Conceptualization --
+Data curation --
+Formal Analysis --
+Funding acquisition --
+Investigation --
+Methodology --
+Project administration --
+Resources --
+Software --
+Supervision --
+Validation --
+Visualization --
+Writing - original draft --
+Writing - review \& editing
+\textbf{T.B.}:
 Conceptualization --
 Data curation --
 Formal Analysis --
@@ -169,40 +234,20 @@ Visualization --
 Writing - original draft --
 Writing - review \& editing
 
+\section*{Declaration of interests}
 
-\section*{Data and Code Availability}
+The authors declare no competing interests.
 
-A dataset of the model results is available at \href{zenodoTBA}{doi:zenodoTBA}.
-The code to reproduce the experiments is available at \href{https://github.com/fneum/import-benefits}{github.com/fneum/import-benefits}.
+\section*{Data and code availability} 
 
-% tidy with https://flamingtempura.github.io/bibtex-tidy/
-\addcontentsline{toc}{section}{References}
+A dataset of the model results is available at \url{zenodo}.
+The code to reproduce the experiments is available at \url{https://github.com/fneum/import-benefits}.
+
 \renewcommand{\ttdefault}{\sfdefault}
-\bibliography{import-benefits}
+% \bibliography{import-benefits}
+\bibliography{/home/fneum/zotero-bibtex.bib}
 
-% supplementary information
-
-\newpage
-
-\makeatletter
-\renewcommand \thesection{S\@arabic\c@section}
-\renewcommand\thetable{S\@arabic\c@table}
-\renewcommand \thefigure{S\@arabic\c@figure}
-\makeatother
-\renewcommand{\citenumfont}[1]{S#1}
-\setcounter{equation}{0}
-\setcounter{figure}{0}
-\setcounter{table}{0}
-\setcounter{section}{0}
-
-
-\section{Supplementary Information}
-\label{sec:si}
- 
-\input{sections/supplementary.tex}
-
-\addcontentsline{toc}{section}{Supplementary References}
-\renewcommand{\ttdefault}{\sfdefault}
-\bibliographyS{import-benefits}
+\newcounter{LastMainFigure}
+\setcounter{LastMainFigure}{\value{figure}}
 
 \end{document}

@@ -1,1 +1,154 @@
-\lipsum[1]
+
+\section{Limitations}
+
+Test \cite{neumannPotentialRole2023}
+
+potential water scarcity to produce large amounts of hydrogen in arid regions
+
+no pathways (e.g. when imports will be available, how quickly supporting infrastructure can scale up )
+
+ignoring interactions in the industry sector between steel production, chemicals industry and heat integration
+
+potential repurcusssions and local transition burden of moving industry not captured
+
+only some industries are allowed to relocate (those where we allow imports)
+- yes: steel, ammonia, chemicals (indirectly)
+- no: concrete, alumina
+
+import costs are not time-dependent and assumed to be available on demand (may underestimate some intermediate storage requirement of imports)
+
+optimistic on district heating and therefore use of PtX waste heat almost anywhere
+
+\section{Supplementary Figures}
+\begin{figure}
+    \footnotesize
+    (a) 10\% higher import costs \\
+    \includegraphics[width=\textwidth]{20231025-zecm/sensitivity-bars-p10pc.pdf} \\
+    (b) 10\% lower import costs \\
+    \includegraphics[width=\textwidth]{20231025-zecm/sensitivity-bars-m10pc.pdf} \\
+    (c) 20\% lower import costs \\
+    \includegraphics[width=\textwidth]{20231025-zecm/sensitivity-bars-m20pc.pdf} \\
+    \caption{\textbf{Potential for cost reductions with reduced sets of import options for varying import costs.}}
+    \label{fig:si:subsets}
+\end{figure}
+
+\begin{figure*}
+    \includegraphics[width=\textwidth]{20231025-zecm/sensitivity-import-volume-AC+H21.2+CH41.2+NH31.2+FT1.2+MeOH1.2+St1.2.pdf}
+    \includegraphics[width=0.49\textwidth, trim=0cm 0cm 12.8cm 0cm, clip]{20231025-zecm/sensitivity-import-volume-AC+H21.1+CH41.1+NH31.1+FT1.1+MeOH1.1+St1.1.pdf}
+    \includegraphics[width=0.49\textwidth, trim=0cm 0cm 12.8cm 0cm, clip]{20231025-zecm/sensitivity-import-volume-AC+H20.9+CH40.9+NH30.9+FT0.9+MeOH0.9+St0.9.pdf} \\
+    \includegraphics[width=0.49\textwidth, trim=0cm 0cm 12.8cm 0cm, clip]{20231025-zecm/sensitivity-import-volume-AC+H20.8+CH40.8+NH30.8+FT0.8+MeOH0.8+St0.8.pdf}
+    \includegraphics[width=0.49\textwidth, trim=0cm 0cm 12.8cm 0cm, clip]{20231025-zecm/sensitivity-import-volume-AC+H20.7+CH40.7+NH30.7+FT0.7+MeOH0.7+St0.7.pdf}
+    \caption{\textbf{Sensitivity of import volume on total system cost and composition for varying import costs.}}
+    \label{fig:si:volume}
+\end{figure*}
+
+
+\begin{figure*}
+    \includegraphics[width=\textwidth]{20231025-zecm/sensitivity-lines.pdf}
+    \caption{\textbf{Sensitivity of import volume on total system cost with subsets of import vectors allowed.}}
+    \label{fig:si:volume-subsets}
+\end{figure*}
+
+
+\begin{figure*}
+    \footnotesize
+    \begin{tabular}{cc}
+        (a) only electricity imports & (b) only hydrogen imports \\
+        \includegraphics[width=0.49\textwidth]{20231025-zecm/graphics/import_shares/s_110_lvopt__Co2L0-2190SEG-T-H-B-I-S-A-onwind+p0.5-imp+AC_2050.pdf} & 
+        \includegraphics[width=0.49\textwidth]{20231025-zecm/graphics/import_shares/s_110_lvopt__Co2L0-2190SEG-T-H-B-I-S-A-onwind+p0.5-imp+H2_2050.pdf} \\
+        (c) -10\% import costs (all carriers but electricity) & (d) -10\% import cost (only carbonaceous fuels) \\
+        \includegraphics[width=0.49\textwidth]{20231025-zecm/graphics/import_shares/s_110_lvopt__Co2L0-2190SEG-T-H-B-I-S-A-onwind+p0.5-imp+AC+H20.9+CH40.9+NH30.9+FT0.9+MeOH0.9+St0.9_2050.pdf} & 
+        \includegraphics[width=0.49\textwidth]{20231025-zecm/graphics/import_shares/s_110_lvopt__Co2L0-2190SEG-T-H-B-I-S-A-onwind+p0.5-imp+AC+H2+CH40.9+NH3+FT0.9+MeOH0.9+St_2050.pdf} \\
+    \end{tabular}
+    \caption{\textbf{Import shares and mix for different scenarios.}}
+    \label{fig:si:import-shares}
+\end{figure*}
+
+\begin{figure*}
+    \includegraphics[width=\textwidth]{20231025-zecm/infrastructure-map-2x3-B.pdf}
+    \caption{\textbf{Import infrastructure.} TODO.}
+    \label{fig:si:infra-b}
+\end{figure*}
+
+\begin{figure*}
+    \includegraphics[width=\textwidth]{20231025-zecm/infrastructure-map-2x3-C.pdf}
+    \caption{\textbf{Import infrastructure.} TODO.}
+    \label{fig:si:infra-c}
+\end{figure*}
+
+\begin{figure*}
+    \includegraphics[width=\textwidth]{20231025-zecm/infrastructure-map-2x3-D.pdf}
+    \caption{\textbf{Import infrastructure.} TODO.}
+    \label{fig:si:infra-d}
+\end{figure*}
+
+
+
+\begin{figure*}
+    \centering
+    \footnotesize
+    (a) average utilisation rate of import HVDC links \\
+    \includegraphics[width=\textwidth]{20231025-zecm/graphics/heatmap_timeseries/s_110_lvopt__Co2L0-2190SEG-T-H-B-I-S-A-onwind+p0.5-imp_2050/ts-heatmap-utilisation_rate-import_hvdc-to-elec.pdf} \\
+    (b) average utilisation rate of import hydrogen pipelines \\
+    \includegraphics[width=\textwidth]{20231025-zecm/graphics/heatmap_timeseries/s_110_lvopt__Co2L0-2190SEG-T-H-B-I-S-A-onwind+p0.5-imp_2050/ts-heatmap-utilisation_rate-import_pipeline-h2.pdf}
+    \caption{\textbf{Temporal usage pattern of electricity and hydrogen storage.}
+    The average utilisation rate is XX\% for import HVDC links and XX\% for
+    hydrogen pipelines. For hydrogen import pipelines, a clear seasonal pattern
+    with higher utilisation in winter is visible, demonstrated by an average utilisation rate of XX\% from November to April and XX\% from May to October.
+    For other energy or material
+    imports than hydrogen and electricity, the timing of imports is not
+    informatively captured due to problem degeneracy caused by negligible
+    storage costs of carbonaceous fuels and steel.}
+    \label{fig:si:import-operation}
+\end{figure*}
+
+\begin{figure*}
+    \centering
+    \footnotesize
+    (a) without imports \\
+    \includegraphics[width=\textwidth]{20231025-zecm/graphics/balance_timeseries/s_110_lvopt__Co2L0-2190SEG-T-H-B-I-S-A-onwind+p0.5_2050/ts-balance-electricity-D.pdf} \\
+    (b) with imports \\
+    \includegraphics[width=\textwidth]{20231025-zecm/graphics/balance_timeseries/s_110_lvopt__Co2L0-2190SEG-T-H-B-I-S-A-onwind+p0.5-imp_2050/ts-balance-electricity-D.pdf}
+    \caption{\textbf{Energy balance time series for electricity with and without imports.} Resampled to daily averages. Positive numbers indicate supply, negative numbers indicate consumption.}
+    \label{fig:si:balance-elec}
+\end{figure*}
+
+\begin{figure*}
+    \centering
+    \footnotesize
+    (a) without imports \\
+    \includegraphics[width=\textwidth]{20231025-zecm/graphics/balance_timeseries/s_110_lvopt__Co2L0-2190SEG-T-H-B-I-S-A-onwind+p0.5_2050/ts-balance-heat-D.pdf} \\
+    (b) with imports \\
+    \includegraphics[width=\textwidth]{20231025-zecm/graphics/balance_timeseries/s_110_lvopt__Co2L0-2190SEG-T-H-B-I-S-A-onwind+p0.5-imp_2050/ts-balance-heat-D.pdf}
+    \caption{\textbf{Energy balance time series for heat with and without imports.} Resampled to daily averages. Positive numbers indicate supply, negative numbers indicate consumption.}
+    \label{fig:si:balance-heat}
+\end{figure*}
+
+\begin{figure*}
+    \centering
+    \footnotesize
+    (a) without imports \\
+    \includegraphics[width=\textwidth]{20231025-zecm/graphics/balance_timeseries/s_110_lvopt__Co2L0-2190SEG-T-H-B-I-S-A-onwind+p0.5_2050/ts-balance-hydrogen-D.pdf} \\
+    (b) with imports \\
+    \includegraphics[width=\textwidth]{20231025-zecm/graphics/balance_timeseries/s_110_lvopt__Co2L0-2190SEG-T-H-B-I-S-A-onwind+p0.5-imp_2050/ts-balance-hydrogen-D.pdf}
+    \caption{\textbf{Energy balance time series for hydrogen with and without imports.} Resampled to daily averages. Positive numbers indicate supply, negative numbers indicate consumption.}
+    \label{fig:si:balance-h2}
+\end{figure*}
+
+\begin{figure*}
+    \centering
+    \footnotesize
+    (a) gas transmission network \\
+    \includegraphics[width=.95\textwidth]{20231025-zecm/graphics/gas-network-unclustered.pdf} \\
+    (b) electricity transmission network \\
+    \includegraphics[width=.95\textwidth]{20231025-zecm/graphics/power-network-unclustered.pdf}
+    \caption{\textbf{Gas and electricity transmission network data.} For gas
+    transmission, the map shows pipelines sized and colored by rated capacity,
+    fossil gas extraction sites, storage locations, pipeline entrypoints, and
+    LNG terminals. The data comes from SciGRID\_gas and is supplemented with
+    data from Global Energy Monitor. For power transmission, the map shows
+    existing transmission lines at and above 220~kV taken from the ENTSO-E
+    Transmission System Map (\url{https://www.entsoe.eu/data/map/}),
+    supplemented with planned TYNDP projects (\url{https://tyndp.entsoe.eu/}).}
+    \label{fig:si:networks-raw}
+\end{figure*}

@@ -1,0 +1,130 @@
+\documentclass[3p]{elsarticle}
+
+\makeatletter
+\def\ps@pprintTitle{%
+ \let\@oddhead\@empty
+ \let\@evenhead\@empty
+ \def\@oddfoot{\centerline{\thepage}}%
+ \let\@evenfoot\@oddfoot}
+\makeatother
+
+\journal{Nature Energy}
+
+\usepackage{libertine}
+\usepackage{libertinust1math}
+
+% \bibliographystyle{elsarticle-num}
+\bibliographystyle{elsarticl-num}
+\biboptions{numbers,sort&compress,super}
+
+% \usepackage[scaled]{helvet}
+% \usepackage[T1]{fontenc}
+% \renewcommand{\familydefault}{\sfdefault}
+% \usepackage[helvet]{sfmath}
+% \renewcommand{\ttdefault}{\sfdefault}
+
+\usepackage{geometry}
+\geometry{
+    top=10mm,
+    bottom=15mm,
+	% left=10mm,
+	% right=10mm,
+}
+
+\usepackage{amsmath}
+\usepackage{graphicx}
+\usepackage{eurosym}
+\usepackage{mathtools}
+\usepackage{url}
+\usepackage{booktabs}
+\usepackage{epstopdf}
+\usepackage{tabularx}
+\usepackage[version=4]{mhchem}
+\usepackage[colorlinks,pdfa]{hyperref}
+\usepackage[nameinlink,sort&compress,capitalise]{cleveref}
+\usepackage[leftcaption,raggedright]{sidecap}
+\usepackage{subcaption}
+\usepackage[parfill]{parskip}
+\usepackage{blindtext}
+% \usepackage{bbold}
+% \usepackage{xfrac}
+% \usepackage{bm}
+
+\usepackage{siunitx}
+\sisetup{range-units=single, per-mode=symbol}
+\DeclareSIUnit\year{a}
+\DeclareSIUnit\tco{t_{\ce{CO2}}}
+\DeclareSIUnit\sieuro{\mbox{\euro}}
+\DeclareSIUnit\twh{TWh}
+\DeclareSIUnit\mwh{MWh}
+\DeclareSIUnit\kwh{kWh}
+
+\newcommand{\co}{\ce{CO2}~}
+
+\usepackage{longtable}
+\usepackage{multirow}
+\usepackage{threeparttable}
+% \usepackage{pdflscape}
+
+\usepackage[export]{adjustbox}
+
+\usepackage[resetlabels,labeled]{multibib}
+\newcites{S}{Supplementary References}
+\bibliographystyleS{nature}
+
+\graphicspath{
+    {../workflow/notebooks/},
+    {../workflow/pypsa-eur/resources/},
+    {../workflow/pypsa-eur/results/},
+}
+
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\B}{\mathbb{B}}
+\newcommand{\N}{\mathbb{N}}
+%\def\co{CO${}_2$}
+\def\el{${}_{\textrm{el}}$}
+\def\th{${}_{\textrm{th}}$}
+\def\hy{${}_{\textrm{H}_2}$}
+\def\deg{${}^\circ$}
+
+% \usepackage{xcolor}
+% \usepackage{framed}
+% \definecolor{shadecolor}{rgb}{.95,.95,.95}
+
+% \renewcommand{\contentsname}{Supplemental Information -- Contents}
+% \usepackage{tocloft}
+% \cftsetindents{section}{1em}{3em}
+% \cftsetindents{subsection}{1em}{3em}
+
+\urlstyle{sf}
+
+\usepackage{xr}
+\externaldocument{import-benefits}
+
+\begin{document}
+
+{\Large Supplementary Information}
+
+\renewcommand{\figurename}{Supplementary Figure}
+\crefname{figure}{Supplementary Fig.}{Supplementary Figs.}
+\Crefname{figure}{Supplementary Fig.}{Supplementary Figs.}
+
+\renewcommand{\tablename}{Supplementary Table}
+\crefname{table}{Supplementary Table}{Supplementary Tables}
+\Crefname{table}{Supplementary Table}{Supplementary Tables}
+% \renewcommand{\citenumfont}[1]{S#1}
+
+\setcounter{equation}{0}
+\setcounter{figure}{0}
+\setcounter{table}{0}
+\setcounter{section}{0}
+
+\input{sections/supplementary.tex}
+
+{\raggedright
+\renewcommand{\ttdefault}{\sfdefault}
+% \bibliographyS{supplementary_library}
+\bibliographyS{/home/fneum/zotero}
+}
+
+\end{document}

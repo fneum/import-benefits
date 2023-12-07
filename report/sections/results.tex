@@ -1,1 +1,316 @@
-\lipsum[1]
+
+\begin{figure*}
+    \includegraphics[width=\textwidth]{20231025-zecm/sensitivity-bars.pdf}
+    \caption{\textbf{Potential for cost reductions with reduced sets of import options.}
+        Subsets of available import options are sorted by ascending cost reduction potential. 
+        Top panel shows profile of total cost savings.
+        Bottom panel shows composition and extent of imports in relation to total energy system costs.
+        Percentage numbers in bar plot indicate the share of total system costs spent on domestic energy infrastructure.
+        Alternative versions of this figure with higher and lower import cost assumptions are included in the supplementary material.
+    }
+    \label{fig:sensitivity-bars}
+\end{figure*}
+
+\section*{Which fuel and material imports to achieve highest cost savings?}
+
+In \cref{fig:sensitivity-bars}, we explore the cost reduction potential of
+various energy and material import options. Starting from total energy system
+costs of \bneuro{768} in the absence of energy imports, we find that enabling
+imports from outside of Europe and considering all import vectors can reduce
+total energy system costs by up to \bneuro{37}, which corresponds to a reduction
+by 4.9\%. In this case, around 71\% of these costs are used to develop domestic
+energy infrastructure, while the remaining 29\% are spent on importing a volume
+of 52~Mt of green steel and around 2700 TWh of green energy, which is almost a
+quarter of the system's total energy supply.
+
+A more granular inspection of the results indicates varied cost savings when
+only subsets of import options are available. The maximum savings are reduced to
+\bneuro{22} (3\%) if hydrogen is excluded from the available import options,
+which is similar to the savings of \bneuro{21} (2.8\%) achieved when only
+hydrogen can be imported. Focusing an import strategy exclusivley in liquid
+carbonaceous hydrogen derivatives like methanol or Fischer-Tropsch fuels
+consistently achieves cost savings of \bneuro{13-19} (1.7-2.5\%). On the
+contrary, restricting options to only ammonia or methane imports yields
+negligible cost savings, and small savings below \bneuro{4} (0.6\%) if only
+electricity or steel can be imported.
+% TODO explain why! - limited usage options, conversion losses to lower-grade
+% carriers, best to import "in line of value chain"
+Generally, our results indicate a preference for chemicals, like methanol and
+hydrogen, and materials over electricity imports, with a strategic mix of
+imports emerging as the most cost-effective approach.
+For insights into how varying import costs affect these findings, refer to
+\sfigref{fig:si:subsets}. 
+
+\begin{figure}
+    \includegraphics[width=\columnwidth]{20231025-zecm/graphics/import_shares/s_110_lvopt__Co2L0-2190SEG-T-H-B-I-S-A-onwind+p0.5-imp_2050.pdf}
+    \caption{\textbf{Shares of imports and domestic production by carrier and optimised import carrier mix for import scenario with flexible carrier choice.} 
+        Figure also shows total supply for each carrier.
+        Import shares for further import scenarios are included in the supplementary material.
+        Steel is included in energy terms applying 2.1 kWh/kg as released by oxidation of iron.
+    }
+    \label{fig:import-shares}
+\end{figure}
+
+\section*{What share of each carrier to import?}
+
+\cref{fig:import-shares} outlines which carriers are imported in which
+quantities in relation to their total supply when the vector and volume can be
+flexibly chosen. Significantly, all methanol, which is used in shipping and
+industry, as well as all crude steel is imported. Also the majority of hydrogen
+supply, around three quarters of it, is imported mostly to subsequently be
+processed into derivative products domestically rathern than direct
+applications. Smaller import shares are observed for electricity,
+Fischer-Tropsch fuels and ammonia, which are mostly produced domestically. For
+the example of ammonia, this can be explained by lower levelised cost for
+domestic production of 69 \euro{}/MWh compared to 83 \euro{}/MWh for imported
+ammonia, which can be attributed to the additional revenue from waste heat
+streams in the domestic supply chain. In energy terms, cost-optimal imports
+comprise 50\% hydrogen, more than 20\% electricity and an equal amount of
+carbonaceous fuels. It should be noted however, that have undergone different
+conversion steps abroad with energy losses and that the cost-optimal import mix
+also depends on the assumed import costs.
+% explanations
+% could note that carbonaceous fuels have already undergone lossy conversion
+
+
+\begin{figure}
+    \begin{subfigure}[t]{\columnwidth}
+        \caption{cost reductions applied to all carriers but electricity}
+        \label{fig:sensitivity-costs:A}
+        \includegraphics[width=\columnwidth]{20231025-zecm/sensitivity-bars-all.pdf}
+    \end{subfigure}
+    \begin{subfigure}[t]{\columnwidth}
+        \caption{cost reductions only applied to carbonaceous fuels}
+        \label{fig:sensitivity-costs:B}
+        \includegraphics[trim=0cm 0cm 0cm 3.4cm, clip, width=\columnwidth]{20231025-zecm/sensitivity-bars-all-C.pdf}
+    \end{subfigure}
+    \caption{\textbf{Effect of import cost variations on cost savings and import shares.}
+    In panel (a), indicated relative cost changes are applied uniformly to all vectors but electricity imports.
+    In panel (b), cost changes are only applied to carbonaceous fuels (methane, methanol and Fischer-Tropsch).
+    Top subpanels show potential cost savings compared to the scenario with full self-sufficiency.
+    Bottom subpanels show the share and composition of different import vectors in relation to total energy system costs.
+    }
+    \label{fig:sensitivity-costs}
+\end{figure}
+
+\section*{How sensitive are cost savings to import costs?}
+
+This uncertainty of estimates for import costs is addressed in
+\cref{fig:sensitivity-costs}. It highlights the large change in possible cost
+reductions with different import costs as well as the variance in the
+cost-optimal import mix. Within $\pm 20\%$ of the default import costs
+previously presented applied to green fuels and materials, total cost savings
+vary between \bneuro{12} (1.6\%) and \bneuro{78} (10.2\%) with import volumes
+ranging between 1700 and 3800~TWh. There is a relatively stable role for
+methanol, steel, electricity and hydrogen imports in most scenarios, and
+Fischer-Tropsch fuel imports become competitive from cost reductions of 10\%.
+
+Some potential causes for such cost variations are presented in
+\cref{tab:cost-uncertainty} and discussed later. Some of these, like the
+availability of biogenic CO$_2$ in the exporting country or the capital cost of
+direct air capture only affect the cost of carbonaceous fuels. When the relative
+cost variation of $\pm 20\%$ is only applied to carbon-based fuels, hydrogen
+imports are increasingly displaced by green methane and Fischer-Tropsch imports
+with lower costs, but it takes a cost increase of more than 10\% for domestic
+methanol production to become more cost-effective than imports. 
+
+- CO2: Since the domestic electrofuels can mostly use captured carbon dioxide from point-sources, whereas imported fuels rely on direct air capture as a carbon source, the higher costs for direct air capture partially cancel out the savings from utilising better renewable resources abroad. (Some of this benefit would disappear if we could export CO2.)
+- St could also be primary crude steel or hot briquetted iron as benefit of outsourcing just about energy-intensive part of value chaing that needs to relocate until good that is transportable at low cost)
+
+% import volumes in cost optimum
+% +20%: 1705 TWh
+% +10%: 2391 TWh
+% +-0%: 2800 TWh
+% -10%: 3121 TWh
+% -20%: 3412 TWh
+% -30%: 3766 TWh
+
+\begin{figure*}
+    \includegraphics[width=\textwidth]{20231025-zecm/sensitivity-import-volume-any.pdf}
+    \caption{\textbf{Sensitivity of import volume on total system cost and composition.} 
+        Dashed line splits total system cost into domestic and foreign cost.
+        Dotted lines indicate the profile of lowest total system cost attainable for given import volumes and different levels of import costs.
+        Markers denote the maximum cost reductions and cost-optimal import volume for a given import cost level (extreme points of the profiles).
+        Steel is included in energy terms applying 2.1 kWh/kg as released by oxidation of iron.
+        Cost alterations are uniformly applied to all carriers but electricity.
+    }
+    \label{fig:sensitivity-volume}
+\end{figure*}
+
+\section*{What are cost savings for different import volumes?}
+
+\cref{fig:sensitivity-volume}
+- shows cost reductions as function of import volumes
+- as import costs decrease, cost optimal import volume increases (these correspond to bars from \cref{fig:sensitivity-costs:A})
+- graphic underlines how first few units of imports give highest benefit: importing 1000 TWh achieves already 70\% of maximum benefit
+- primary crude steel and methanol prioritized (within the first 1000 TWh) followed by hydrogen and then electricity after 2000 TWh
+- As we explore the effect of increasing import volumes on system
+costs, we find that 43\% (36-61\% within $\pm$20\% import costs) of the 4.9\% (1.6-10.2\% within $\pm$20\% import costs) total cost benefit (\bneuro{16}) can be achieved with the first 500 TWh imports (steel and methanol)
+- This corresponds to only 18\% (15-29\% within $\pm$20\% import costs) of cost-optimal import volumes, highlighting the diminishing return of large amounts of energy imports over domestic production in Europe.
+- in extreme import scenarios beyond 6000 TWh, only electricity imports increase, more batteries to manage imported power
+- with more than 5000 TWh imported, less then 50\% spent on domestic infrastructure
+- generally flat solution space, unless import costs are very low
+- From this sensitivity analysis we further learn that the solution space is relatively flat in a wide range between imports of 0 and
+6000~TWh (for default assumptions).
+- Importing around 5600~TWh (twice as much as cost-optimal) is just as expensive as the scenario without any imports.
+
+- \sfigref{fig:si:volume-subsets} cost reduction as a function of volume for subsets of carriers (window for cost savings is much smaller with subsets; up to 2000 TWh imports excluding electricity imports does not diminish cost saving potential)
+- \sfigref{fig:si:volume} system composition with different import costs  (main difference is larger role of FT imports with lower import costs and green methane for high import volumes, otherwise similar trends)
+
+- as more energy is imported, less requirement for domestic PtX production and renewable capacities (of course)
+- and a large share of power-to-hydrogen production is outsourced from from Europe.
+- domestic wind and solar capacities reduce in equal measure with increasing imports
+- biogas use displaced by hydrogen imports at 2000 TWh
+- imports of hydrogen coincide with increasing use of hydrogen fuel cell CHPs for electricity and central heat supply (partially displacing gas CHPs)
+- no liquid hydrogen shipping imports across almost all scenarios
+- also outlines that considerable proportion of electricity import costs is attributed to long-distance HVDC links
+
+
+\begin{figure*}
+    \includegraphics[width=\textwidth]{20231025-zecm/infrastructure-map-2x3-A.pdf}
+    \caption{\textbf{Layout of European energy infrastructure for different import scenarios.}
+        Left column shows the regional electricity supply mix (pies), added HVDC and HVAC transmission capacity (lines), and the siting of battery storage (choropleth).
+        Right column shows the hydrogen supply (top half of pies) and consumption (bottom half of pies), net flow and direction of hydrogen in newly built pipelines (lines), and the siting of hydrogen storage subject to geological potentials (choropleth).
+        Total volumes of transmission expansion are given in TWkm, which is the sum product of the capacity and length of individual connections.
+    }
+    \label{fig:import-infrastructure}
+\end{figure*}
+
+\section*{Effect of import strategy on infrastructure layouts?}
+
+\cref{fig:import-infrastructure}
+- infrastructure layout of networks, generation, storage, hydrogen supply and consumption
+- different infrastructure needs with different import strategies
+- PtX facilities where waste heat can be used which drives part of the hydrogen network (e.g. Paris, Hamburg; link to map without waste heat where PtX relocates when disregarding waste heat usage)
+- most pipelines used unidirectional, bidirectional where pipelines link hydrogen production and geological storage sites (e.g. between Greece and Italy; Southern Spain)
+- steel and ammonia (if not imported) relocate to periphery of Europe in Spain and Scotland
+- steel relocation does not have large cost savings \euro{3} (0.4\%); and this does not factor in relocation costs!
+- imports half the amount of hydrogen network built (but not if import costs are low!)
+- with imports, hydrogen CHP drives hydrogen network (mostly Eastern Europe and Germany, Why?)
+- benefit of hydrogen network shrinks from \euro{10} (1.3\%) to \euro{3} (0.4\%) with imports
+- hydrogen imports overproportionately displace PV-backed electrolysis in Southern Europe, whereas British Isles still produce domestic hydrogen
+- mix of wind and solar electricity imports to smooth feed-in similar to domestic generation
+- electricity imports from Algeria, Libya, Tunisia; some from Ukraine
+- power grid reinforcements focus on HVDC connections
+- grid reinforcements not significantly affected by electricity imports (since electricity mostly processed at entry point?; also multiple export routes, e.g. Algeria to Spain, France and Italy injecting into different parts of the network)
+- re-electrification of hydrogen in Eastern Europe
+- \sfigref{fig:si:infra-b}, \sfigref{fig:si:infra-c} and \sfigref{fig:si:infra-d}
+- reference to operational patterns of import HVDC and pipelines in \sfigref{fig:si:import-operation}, mentino average utilisation rates
+Allowing imports of electricity, green hydrogen and electrofuels alters the
+infrastructure buildout in Europe. In the scenario with fully
+self-sufficient European energy supply, we see large \mbox{power-to-X}
+production within Europe to cover the demand for hydrogen derivatives in
+steelmaking, high-value chemicals, as well as shipping and aviation fuels.
+Production sites are concentrated in Southern Europe for solar-based
+electrolysis as well as in the broader North Sea region for wind-based
+electrolysis. Electricity grid reinforcements are mostly focused in Northwestern
+Europe. However, the import of electricity and hydrogen displaces much of the
+European power-to-X production capacities and diverts some of the electricity
+grid reinforcements to Southern Europe in order to absorb the inbound power. The
+electricity imports distribute evenly between the nearby exporting countries to
+facilitate their grid integration and best exploit the limited grid expansion
+volume. We see both wind and solar generation for better seasonal balancing but
+no storage in the exporting countries, such that power is directly transfered to
+the European continent.
+- How increased energy imports change the role of network
+infrastructure is also shown for hydrogen transport. With imports, the hydrogen
+network is built for transporting imports from North Africa rather than
+distributing hydrogen from the North Sea area.
+- New hydrogen
+import hubs require different bulk transmission routes. The import of large
+amounts of carbon-based fuels and ammonia would, furthermore, diminish the
+demand for hydrogen overall and hence the need to transport it.
+- if most carbonaceous fuel demands imported and steel/chemicals industry can
+relocate, hydrogen network built to meet CHP demand from fuel cells (to bring
+energy to renewables-poor and grid-poor regions)
+
+the benefits of PtX production for system integration are quite high
+- use waste heat in district heating adds cost savings of \euro{20} (2.6\%, without imports) and \euro{10} (1.3\%, with imports); reduced because of higher imports
+- flexible operation of electrolysis to integrate variable wind and solar feed-in
+- use available domestic industrial and biogenic carbon sources whereas all C for PtX abroad must use DAC
+
+\section*{Arguments for import cost uncertainty}
+
+In \cref{tab:cost-uncertainty}, we vary a few of the techno-economic assumptions
+for green fuel supply chains in the exporting countries in order to justify the
+range of import cost deviations from the defaults.
+
+First, higher weighted average cost of capital (WACC) in developing or
+economically unstable countries than the uniformly applied 7\%, e.g.~due to
+higher project risks, and lower WACC, e.g.~due to the government-backing of a
+project, have a substantial effect on the import cost calculations; an increase
+or decrease by just one percentage point already alters the costs by more than
+7\%.\cite{egliBiasEnergy2019,bogdanovReplyBias2019,lonerganImprovingRepresentation2023a,schyskaHowRegional2020,steffenDeterminantsCost2022}
+
+A failure to achieve the anticipated cost reductions for electrolysers and DAC
+systems would also result in far-reaching cost increases for green energy
+imports, especially if the fuel contains carbon. The availability of biogenic
+CO$_2$ (or CO$_2$ from industrial processes that is largely cycled between use
+and synthesis and, hence, not emitted to the atmosphere) can reduce the green
+fuel cost by 20\% if it can be provided for 60 \euro{}/t and by 10\% if
+available for 100 \euro{}/t.
+
+The default assumptions for export supply chains assume islanded fuel synthesis
+sites that are not connected to the local electricity system. The isolation in
+consideration of the investment costs of the various components drives the
+system into relatively high curtailment rates of 8\%. If surplus electricity
+production could be sold and absorbed by the local power grid, considerable cost
+reductions could be achieved depending on the average selling price (refer to
+\cref{tab:cost-uncertainty}). 
+
+Besides integration with the local energy syste, process integration by using
+waste heat streams from power-to-X plants for direct air capture as well as
+flexible Fischer-Tropsch synthesis similar to methanolisation can also reduce fuel
+cost; by 3-5\% each. Conditions that would allow for geological storage
+of hydrogen reduce the need for flexible synthesis plant operation and could
+reduce import costs by more than 7\%. While many of the considered exporting
+countries have geological hydrogen storage potential in principle, they are not
+always co-located with the countries' best renewable potentials
+\cite{hevinUndergroundStorage2019}.
+
+Argentina and Chile have a margin of 9.5 \euro{}/MWh over the next cheapest
+exporting country (Australia, Algeria and Libya with 113 \euro{}/MWh). If these
+countries were unavailable for import, costs would rise by almost 10\%.
+
+Finally, it should be noted, that the calculated cost sensitivities may not be
+additive, as some of the factors may be correlated.
+
+\begin{table*}
+    \small
+    \centering
+    \begin{tabular}{lrrrr}
+        \toprule
+        Factor & Change & Unit & Change & Unit\\
+        \midrule
+        higher WACC of 12\% (e.g.~high project risk) & +40.6 & \euro{}/MWh  & +39.3 & \% \\
+        higher WACC of 10\% (e.g.~high project risk) & +23.8 & \euro{}/MWh  & +23.0 & \% \\
+        higher WACC of 8\% (e.g.~high project risk) & +7.7 & \euro{}/MWh  & +7.4 & \% \\
+        higher direct air capture cost (+200\%) & +52.6 & \euro{}/MWh  & +50.8 & \% \\
+        higher direct air capture cost (+100\%) & +26.5 & \euro{}/MWh  & +25.6 & \% \\
+        higher direct air capture cost (+50\%) & +13.3 & \euro{}/MWh  & +12.9 & \% \\
+        higher direct air capture cost (+25\%) & +6.7 & \euro{}/MWh  & +6.5 & \% \\
+        higher electrolysis cost (+200\%) & +27.5 & \euro{}/MWh  & +26.6 & \% \\
+        higher electrolysis cost (+100\%) & +15.7 & \euro{}/MWh  & +15.2 & \% \\
+        higher electrolysis cost (+50\%) & +8.5 & \euro{}/MWh  & +8.2 & \% \\
+        higher electrolysis cost (+25\%) & +4.4 & \euro{}/MWh  & +4.3 & \% \\
+        Argentina and Chile not available for export & +9.5 & \euro{}/MWh  & +9.2 & \% \\
+        % pay border adjustment tax of X \euro{}/t for methane leakage$^\star$ & +? & \euro{}/MWh  & +? & \% \\
+        \midrule
+        lower WACC of 3\% (e.g.~government guarantees) & -27.8 & \euro{}/MWh  & -26.8 & \% \\
+        lower WACC of 5\% (e.g.~government guarantees) & -14.6 & \euro{}/MWh  & -14.1 & \% \\
+        lower WACC of 6\% (e.g.~government guarantees) & -7.5 & \euro{}/MWh  & -7.2 & \% \\
+        sell excess curtailed electricity at 40€/MWh & -23.3 & \euro{}/MWh  & -22.6 & \% \\
+        sell excess curtailed electricity at 30€/MWh & -14.7 & \euro{}/MWh  & -14.2 & \% \\
+        sell excess curtailed electricity at 20€/MWh & -7.5 & \euro{}/MWh  & -7.2 & \% \\
+        option to use available biogenic or cycled emission-free \ce{CO2} for 50€/t & -22.9 & \euro{}/MWh  & -22.2 & \% \\
+        option to use available biogenic or cycled emission-free \ce{CO2} for 60€/t & -20.4 & \euro{}/MWh  & -19.7 & \% \\
+        option to use available biogenic or cycled emission-free \ce{CO2} for 80€/t & -15.2 & \euro{}/MWh  & -14.7 & \% \\
+        option to use available biogenic or cycled emission-free \ce{CO2} for 100€/t & -10.0 & \euro{}/MWh  & -9.7 & \% \\
+        option to build geological hydrogen storage at 2.25 \euro{}/kWh (reduction by 95\%) & -7.7 & \euro{}/MWh  & -7.4 & \% \\
+        option to use power-to-X waste heat streams for direct air capture & -3.6 & \euro{}/MWh  & -3.4 & \% \\
+        highly flexible operation of fuel synthesis plant (20\% minimum part-load instead of 70\%) & -5.1 & \euro{}/MWh  & -4.9 & \% \\
+        \bottomrule
+    \end{tabular}
+    \caption{\textbf{Examples for potential cost increases or decreases.} Fischer-Tropsch in Argentina is 103.5 \euro{}/MWh. Reactions not necessarily additive.}
+    \label{tab:cost-uncertainty}
+\end{table*}
