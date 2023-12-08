@@ -139,32 +139,54 @@ methanol production to become more cost-effective than imports.
 
 \section*{What are cost savings for different import volumes?}
 
-\cref{fig:sensitivity-volume}
-- shows cost reductions as function of import volumes
-- as import costs decrease, cost optimal import volume increases (these correspond to bars from \cref{fig:sensitivity-costs:A})
-- graphic underlines how first few units of imports give highest benefit: importing 1000 TWh achieves already 70\% of maximum benefit
-- primary crude steel and methanol prioritized (within the first 1000 TWh) followed by hydrogen and then electricity after 2000 TWh
-- As we explore the effect of increasing import volumes on system
-costs, we find that 43\% (36-61\% within $\pm$20\% import costs) of the 4.9\% (1.6-10.2\% within $\pm$20\% import costs) total cost benefit (\bneuro{16}) can be achieved with the first 500 TWh imports (steel and methanol)
-- This corresponds to only 18\% (15-29\% within $\pm$20\% import costs) of cost-optimal import volumes, highlighting the diminishing return of large amounts of energy imports over domestic production in Europe.
-- in extreme import scenarios beyond 6000 TWh, only electricity imports increase, more batteries to manage imported power
-- with more than 5000 TWh imported, less then 50\% spent on domestic infrastructure
-- generally flat solution space, unless import costs are very low
-- From this sensitivity analysis we further learn that the solution space is relatively flat in a wide range between imports of 0 and
-6000~TWh (for default assumptions).
-- Importing around 5600~TWh (twice as much as cost-optimal) is just as expensive as the scenario without any imports.
+What is consistent across all import cost variations is the flat solution space
+around the respective cost-optimal import volumes. Increasing or decreasing the
+total amount of imports barely affects system costs within $\pm 1000$ TWh. This
+is is illustrated in \cref{fig:sensitivity-volume} which shows the possible cost
+reductions as a function of import volumes. We further learn that a wide range
+of import volumes below 5600~TWh (4000-7500~TWh within $\pm$20\% import costs)
+have lower cost than the scenario without any imports. These values are
+equivalent to just more than twice the cost-optimal import volumes, which are
+indicated by the black markers and correspond to the bars previously shown in
+\cref{fig:sensitivity-costs:A}. Naturally, the cost-optimal volume of imports
+increases as their costs decrease, but the response weakens with lower import
+costs.
 
-- \sfigref{fig:si:volume-subsets} cost reduction as a function of volume for subsets of carriers (window for cost savings is much smaller with subsets; up to 2000 TWh imports excluding electricity imports does not diminish cost saving potential)
-- \sfigref{fig:si:volume} system composition with different import costs  (main difference is larger role of FT imports with lower import costs and green methane for high import volumes, otherwise similar trends)
+As we explore the effect of increasing import volumes on system costs, we find
+that already 43\% (36-61\% within $\pm$20\% import costs) of the 4.9\%
+(1.6-10.2\%) total cost benefit (\bneuro{16}) can be achieved with the first 500
+TWh of imports. This corresponds to only 18\% (15-29\%) of the cost-optimal
+import volumes, highlighting the diminishing return of large amounts of energy
+imports over domestic production in Europe. While importing 1000 TWh already
+realises 70\% of the maximum cost savings with our default assumptions, this
+maximum is only obtained for 2800~TWh of imports. For these initial 1000~TWh,
+primary crude steel and methanol are prioritized, followed by hydrogen and then
+electricity above 2000 TWh. Once more than 5000~TWh are imported, less than half
+of the total system cost would be spent on domestic energy infrastructure.
 
-- as more energy is imported, less requirement for domestic PtX production and renewable capacities (of course)
-- and a large share of power-to-hydrogen production is outsourced from from Europe.
-- domestic wind and solar capacities reduce in equal measure with increasing imports
-- biogas use displaced by hydrogen imports at 2000 TWh
-- imports of hydrogen coincide with increasing use of hydrogen fuel cell CHPs for electricity and central heat supply (partially displacing gas CHPs)
-- no liquid hydrogen shipping imports across almost all scenarios
-- also outlines that considerable proportion of electricity import costs is attributed to long-distance HVDC links
+As imports increase, there is a corresponding decrease in the need for domestic
+power-to-X (PtX) production and renewable capacities. A large share of the
+hydrogen, methanol and raw steel production is outsourced from Europe, inducing
+a reduction in domestic wind and solar capacities. This trend is further
+characterised by the displacement of biogas usage in favour of hydrogen imports
+around the 2000~TWh mark. An increase in the amount of hydrogen imported
+coincides with increasing use of hydrogen fuel cells for electricity and central
+heat supply in district heating networks, partially displacing the use of
+methane for this purpose. In terms of electricity imports,
+\cref{fig:sensitivity-volume} reveals a predominant reliance on wind-generated
+electricity over solar for the import vector via HVDC links, where a
+considerable share of the costs can be attributed to realising long-distance
+power transmission. Furthermore, large amounts of electricity imports are
+supported by an increase in battery deployment to manage the imported power more
+effectively.
 
+For deviating levels of import costs, the composition of the domestic system and
+import mix is mostly similar (\sfigref{fig:si:volume}). The main differences are
+a larger role for Fischer-Tropsch fuel imports with lower import costs and for
+green methane for high import volumes. It should also be noted that the windows
+for cost savings are much smaller if only subsets of import options are
+considered (\sfigref{fig:si:volume-subsets}). However, up to an import volume of 2000~TWh,
+excluding electricity imports does not diminish the cost saving potential.
 
 \begin{figure*}
     \includegraphics[width=\textwidth]{20231025-zecm/infrastructure-map-2x3-A.pdf}
