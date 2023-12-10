@@ -10,7 +10,7 @@ covering the energy demands of all sectors including electricity, heat,
 transport, industry, agriculture, as well as international shipping and
 aviation.
 
-The model simultaneously optimizes spatially-explicit investments as well as the
+The model simultaneously optimises spatially explicit investments and the
 operation of generation, storage, conversion and transmission assets to minimise
 total system costs in a linear optimisation problem, which is solved with
 \textit{Gurobi}.\cite{gurobi} The capacity expansion is based on technology cost
@@ -18,13 +18,13 @@ and efficiency projections for the year 2030, most of which are taken from the
 technology catalogue of the Danish Energy Agency.\cite{DEA} Spatially, the model
 resolves 110 regions in Europe,\cite{frysztackiStrongEffect2021} covering the
 European Union, the United Kingdom, Norway, Switzerland and the Balkan countries
-without Malta and Cyprus. Temporally, the model is solved with uninterrupted
+without Malta and Cyprus. Temporally, the model is solved with an uninterrupted
 4-hourly equivalent resolution for the weather year 2013, using a segmentation
 clustering approach implemented in the \textit{tsam}
 toolbox.\cite{hoffmannParetooptimalTemporal2022} In terms of investment periods,
-no pathway optimisation is conducted, but a greenfield approach is pursued with
-the exception of existing hydro-electricity and transmission infrastructure
-targeting net-zero CO$_2$ emissions.
+no pathway optimisation is conducted, but a greenfield approach is pursued
+except for existing hydro-electricity and transmission infrastructure targeting
+net-zero CO$_2$ emissions.
 
 Networks are considered for electricity, methane and hydrogen
 transport.\cite{ENTSOE,plutaSciGRIDGas2022a} However, other than in Neumann et
@@ -38,52 +38,53 @@ Moreover, no option for a carbon dioxide network is included since as CO$_2$ is
 not spatially resolved in this model version.\cite{hofmannDesigningCO22023}
 
 The overall annual sequestration of CO$_2$ is limited to 200
-Mt$_{\text{CO}_2}$/a. This number allows sequestering the industry's unabated
-fossil emissions (e.g. in cement industry) while minimising reliance on carbon
-removal technologies. The carbon management features of the model trace the
-carbon cycles through various conversion stages: industrial emissions, biomass
-and gas combustion, carbon capture, storage or long-term sequestration, direct
-air capture, electrofuels, recycling, and waste-to-energy plants.
+Mt$_{\text{CO}_2}$/a. This number allows for sequestering the industry's
+unabated fossil emissions (e.g. in the cement industry) while minimising
+reliance on carbon removal technologies. The carbon management features of the
+model trace the carbon cycles through various conversion stages: industrial
+emissions, biomass and gas combustion, carbon capture, storage or long-term
+sequestration, direct air capture, electrofuels, recycling, and waste-to-energy
+plants.
 
 Renewable potentials and time series for wind and solar electricity generation
 are calculated with \textit{atlite},\cite{hofmannAtliteLightweight2021}
 considering land eligibility constraints like nature reserves or distance
 criteria to settlements. Given low onshore wind expansion in many European
 countries in recent years,\cite{ourworldindataInstalledWind2023} restrictive
-onshore wind expansion potentials are applied, using a factor of 1.5 MW/km$^2$
-for the eligible land area. Geological potentials for hydrogen storage are taken
+onshore wind expansion potentials are applied, using a 1.5 MW/km$^2$ factor for
+the eligible land area. Geological potentials for hydrogen storage are taken
 from Caglayan et al.\cite{caglayanTechnicalPotential2020} Biomass potentials are
 restricted to residues from agriculture and forestry, as well as waste and
 manure, based on the medium potentials specified for 2030 in the JRC-ENSPRESO
 database.\cite{ruizENSPRESOOpen2019} The finite biomass resource can be employed
 for low-temperature heat provision in industrial applications, biomass boilers
-and CHPs, as well as biofuels production for use in aviation, shipping and the
-chemicals industry. Additionally, we allow biogas upgrading, including the
-capture of the CO$_2$ contained in biogas.
+and CHPs, and biofuel production for use in aviation, shipping and the chemicals
+industry. Additionally, we allow biogas upgrading, including the capture of the
+CO$_2$ contained in biogas.
 
 Heating supply technologies like heat pumps, electric boilers, gas boilers, and
-combined heat and power (CHP) plants are endogenously optimised, separately for
+combined heat and power (CHP) plants are endogenously optimised separately for
 decentral use and central district heating. District heating networks can
 further be supplemented with waste heat from various power-to-X processes
 (electrolysis, methanation, methanolisation, ammonia synthesis, Fischer-Tropsch
 fuel synthesis).
 
 While the shipping sector is assumed to use methanol as fuel, land-based
-transport is assumed to be fully electrified in the scenarios we present,
-including heavy-duty vehicles. Aviation can decide to use green kerosene derived
-from Fischer-Tropsch fuels or methanol. Besides methanol-to-kerosene, which was
-not chosen over steam cracking of Fischer-Tropsch fuels in our results, further
+transport, including heavy-duty vehicles, is deemed fully electrified in the
+presented scenarios. Aviation can decide to use green kerosene derived from
+Fischer-Tropsch fuels or methanol. Besides methanol-to-kerosene, which was not
+chosen over steam cracking of Fischer-Tropsch fuels in our results, further
 usage options for methanol have been added. These include
 methanol-to-olefins/aromatics for the production of green plastics,
 methanol-to-power\cite{brownUltralongdurationEnergy2023} in open-cycle gas
 turbines or Allam cycle turbines, and steam reforming of methanol with or
-without carbon capture. For the synthesis of electrofuels we also account for
+without carbon capture. For the synthesis of electrofuels, we also account for
 potential operational restrictions by considering a minimum part load of 30\%
 for methanolisation and methanation compared to 70\% for Fischer-Tropsch
 synthesis, both within Europe and abroad.
 
 A further core improvement of the model regards the physical representation of
-energy transport over long distances. For gas and hydrogen pipelines we
+energy transport over long distances. For gas and hydrogen pipelines, we
 incorporate electricity demands for compression in the order of 1-2\% per 1000km
 of the transported energy.\cite{gasforclimateEuropeanHydrogen2021} For HVDC
 transmission lines, we assume 2\% static losses at the substations and
@@ -91,14 +92,14 @@ additional losses of 3\% per 1000km. The losses of high-voltage AC transmission
 lines are estimated using a piecewise linear approximation as proposed in
 Neumann et al.,\cite{neumannAssessmentsLinear2022} in addition to the linearised
 power flow equations.\cite{horschLinearOptimal2018} Up to a maximum capacity
-increase by 30\%, we also consider dynamic line rating (DLR), leveraging the
-cooling effect of wind and low ambient temperatures to fully exploit existing
-transmission assets.\cite{glaumLeveragingExisting2023} To approximate N-1
-resilience, transmission lines may only be used up to 70\% of their rated
-dynamic capacity. In order to prevent excessive expansion of single connections,
-the expansion of power transmission lines between two regions is limited to 15
-GW for HVAC and 25 GW for HVDC lines, while a similar constraint of 50.7 GW is
-placed on hydrogen pipelines, which corresponds to three parallel 48 inch
+increase of 30\%, we consider dynamic line rating (DLR), leveraging the cooling
+effect of wind and low ambient temperatures to exploit existing transmission
+assets fully.\cite{glaumLeveragingExisting2023} To approximate N-1 resilience,
+transmission lines may only be used up to 70\% of their rated dynamic capacity.
+To prevent excessive expansion of single connections, the expansion of power
+transmission lines between two regions is limited to 15 GW for HVAC and 25 GW
+for HVDC lines, while a similar constraint of 50.7 GW is placed on hydrogen
+pipelines, which corresponds to three parallel 48-inch
 pipelines.\cite{gasforclimateEuropeanHydrogen2021}
 
 Finally, we also developed the possibility for the model to relocate the steel
@@ -106,8 +107,8 @@ and ammonia industry within Europe, mainly to level the playing field between
 non-European green steel imports and domestic production. This is achieved by
 explicitly modelling the cost, efficiency and operation of hydrogen direct iron
 reduction (H2-DRI) and electric arc furnaces (EAF), which can be sited all over
-Europe, as well as the cost to procure iron ore. We further allow the oversizing
-of steelmaking plants to allow flexible production in response to the renewables
+Europe, and the cost to procure iron ore. We further allow the oversizing of
+steelmaking plants to allow flexible production in response to the renewables
 supply conditions.
 
 \subsection*{Modelling of import supply chains and costs}
@@ -134,11 +135,10 @@ adjustments were made to the original TRACE model. Namely, land availability and
 wind and solar time-series are determined using
 \textit{atlite}\cite{hofmannAtliteLightweight2021} instead of
 \textit{GEGIS},\cite{mattssonAutopilotEnergy2021}. Techno-economic assumptions
-were aligned with those used in the European model and steel was included as an
-energy-intensive material import vector. The exporting countries considered
-comprise Australia, Argentina, Chile, Kazakhstan, Namibia, Turkey, Ukraine, the
-Eastern United States and Canada, mainland China, and counties in the MENA
-region.
+were aligned with those used in the European model, and steel was included as an
+energy-intensive material import vector. The exporting countries comprise
+Australia, Argentina, Chile, Kazakhstan, Namibia, Turkey, Ukraine, the Eastern
+United States and Canada, mainland China, and counties in the MENA region.
 
 To determine the levelised cost of energy for exports, the methodology first
 assesses the regional potentials for wind and solar energy. A regional
@@ -146,16 +146,16 @@ electricity cost supply curve is determined, from which projected future energy
 demand is subtracted. Thereby, domestic consumption is prioritised and supplied
 by the countries' best renewable resources. The remaining wind and solar
 electricity supply can then be used to produce the specific energy or material
-vector by means of water electrolysis for \ce{H2}, direct air capture (DAC) for
+vector using water electrolysis for \ce{H2}, direct air capture (DAC) for
 \ce{CO2}, air separation units (ASU) for \ce{N2}, synthesis of methane,
 methanol, ammonia or Fischer-Tropsch fuels from \ce{H2} with \ce{CO2} or
 \ce{N2}, and \ce{H2} direct iron reduction (DRI) with subsequent processing in
 electric arc furnaces (EAF) for the processing of iron ore (97.73 \euro{}/t)
 into green steel. Other CO$_2$ sources than DAC are not considered in the
-exporting countries, a notable difference compared to the European model. Liquid
-organic hydrogen carriers (LOHC) are not considered as an export vector. Further
-details on the energy and feedstock flows as well as key process efficiencies
-are outlined in \cref{fig:import-esc-scheme}.
+exporting countries, a notable difference from the European model. Liquid
+organic hydrogen carriers (LOHC) are not considered an export vector. Further
+details on the energy and feedstock flow and process efficiencies are outlined
+in \cref{fig:import-esc-scheme}.
 
 For each vector, an annual reference import demand of 500~TWh (lower heating
 value, LHV) or 100~Mt of steel is assumed, mirroring large-scale energy and
@@ -174,20 +174,19 @@ carrier either through pipelines (\ce{H2_{(g)}}, \ce{CH4_{(g)}}) or by ship
 (\ce{H2_{(l)}}, \ce{CH4_{(l)}}, \ce{NH3_{(l)}}, \ce{MeOH}, Fischer-Tropsch fuel,
 and steel). Exports from each of the regions shown in \cref{fig:options:global}
 are modelled to each of twelve European import locations based on large port
-locations, determining the levelised costs of energy or steel the European
-entrypoint will see for each supply chain. For the transport to Europe, all
-energy supply chains are assumed to consume their own energy vector as fuel,
-with the exception of steel which uses externally bought methanol as shipping
-fuel.
+locations, determining the levelised costs of energy or steel the European entry
+point will see for each supply chain. All energy supply chains are assumed to
+consume their energy vector as fuel for transport to Europe, except for steel,
+which uses externally bought methanol as shipping fuel.
 
 % import constraints in European model
 
-For all chemical energy carriers and steel, the resulting levelised cost of
-exported energy specific to the respective importing regions are added as a
-constant marginal fuel import cost. For the import of hydrogen and methane,
-candidate entry-points are identified based on where existing and prospective
+The resulting levelised cost of exported energy specific to the respective
+importing regions is added as a constant marginal fuel import cost for all
+chemical energy carriers and steel. For the import of hydrogen and methane,
+candidate entry points are identified based on where existing and prospective
 LNG terminals and cross-continental pipelines are located. This includes new LNG
-import terminals in Europe in response to ambitions to phase-out Russian gas
+import terminals in Europe in response to ambitions to phase out Russian gas
 supply in 2022.
 \cite{instituteforenergyeconomicsandfinancialanalysisEuropeanLNG2023} To achieve
 regional diversity in potential gas and hydrogen imports and avoid vulnerable
@@ -195,25 +194,25 @@ singular import locations, we allow the expansion beyond the reported capacities
 only up to a factor of 2.5, taking the median value of reported investment costs
 for LNG terminals.\cite{GlobalGas2022} A surcharge of 20\% is added for hydrogen
 import terminals due to the lack of practical experience. Carbonaceous fuels,
-ammonia and steel imports are not spatially resolved due to their low transport
-costs and, therefore, not constrained by the availability of suitable entry
+ammonia, and steel imports are not spatially resolved due to their low transport
+costs and, therefore, are not constrained by the availability of suitable entry
 points. To present energy and material imports in a common unit, the embodied
 energy in steel is approximated with the 2.1 kWh/kg released in iron oxide
-reduction, i.e.~the energy released by combustion.\cite{kuhnIronRecyclable2022}
+reduction, i.e.~energy released by combustion.\cite{kuhnIronRecyclable2022}
 
 % special handling of electricity imports
 
 Owing to the variability of wind and solar electricity, the supply chain of
-electricity imports is endogenously optimised together with the rest of the
-European system rather than using a constant levelised cost of exported
-electricity. This comprises the optimisation of wind and solar capacities,
-batteries and hydrogen storage in steel tanks, as well as the size and operation
-of HVDC link connection into Europe based on the availability time series in
-neighbouring countries as presented in \cref{fig:options:europe}. Underground
-hydrogen storage options are not considered due to a limited availability of
-salt caverns in many of the best renewable resource regions in the considered
-exporting countries.\cite{hevinUndergroundStorage2019} We also assume the energy
-supply chains dedicated to exports to be islanded from the rest of the local
+electricity imports is endogenously optimised with the rest of the European
+system rather than using a constant levelised cost of exported electricity. This
+comprises the optimisation of wind and solar capacities, batteries and hydrogen
+storage in steel tanks, and the size and operation of HVDC link connection into
+Europe based on the availability time series in neighbouring countries as
+presented in \cref{fig:options:europe}. Underground hydrogen storage options are
+not considered due to the limited availability of salt caverns in many of the
+best renewable resource regions in the countries that are considered
+exporting.\cite{hevinUndergroundStorage2019} We also assume that the energy
+supply chains dedicated to exports will be islanded from the rest of the local
 energy system. Europe's connection options with exporting countries are confined
 to the 5\% nearest regions, with additional ultra-long distance connection
 options to Ireland, Cornwall and Brittany following the vision of the Xlinks
@@ -227,20 +226,21 @@ applied.
 
 As illustrated in \cref{fig:options}, for imports of hydrogen by pipeline,
 nearby countries like Algeria and Egypt emerged as lowest cost exporters (ca.~54
-\euro{}/MWh). Import of hydrogen by ship is substantially more expensive due to
+\euro{}/MWh). Importing hydrogen by ship is substantially more expensive due to
 liquefaction and evaporation losses. Algeria could offer supply through this
 vector at 79 \euro{}/MWh. For all other hydrogen derivatives, Argentina and
-Chile at between 83 and 104~\euro{}/MWh or 472~\euro{}/t for steel. Methanol is
-found to be cheaper than the Fischer-Tropsch route because it is assumed to be
-more flexible (30\% minimum part load compared to 70\% for
+Chile offer the lowest cost imports between 83 and 104~\euro{}/MWh or
+472~\euro{}/t for steel. Methanol is found to be cheaper than the
+Fischer-Tropsch route because it is assumed to be more flexible (30\% minimum
+part load compared to 70\% for
 Fischer-Tropsch).\cite{brownUltralongdurationEnergy2023} The lower process
-flexibility shifts the energy mix more towards solar electricity and causes
-higher levels of curtailment, increasing costs. The transport costs of
-\ce{CH4_{(l)}} are lower than for \ce{H2_{(l)}} since the liquefaction consumes
-less energy and individual ships can carry more energy with \ce{CH4_{(l)}}.
-Pipeline imports of \ce{CH4_{(g)}} were also considered but costs were higher
-than for \ce{CH4_{(l)}} shipping under the assumption that new pipelines would
-have to be built.
+flexibility shifts the energy mix towards solar electricity and causes higher
+levels of curtailment, increasing costs. The transport costs of \ce{CH4_{(l)}}
+are lower than for \ce{H2_{(l)}} since the liquefaction consumes less energy and
+individual ships can carry more energy with \ce{CH4_{(l)}}. Pipeline imports of
+\ce{CH4_{(g)}} were also considered, but costs were higher than for
+\ce{CH4_{(l)}} shipping under the assumption that new pipelines would have to be
+built.
 
 % potential reviewer questions:
 % - Why do we not consider LOHC imports?

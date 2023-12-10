@@ -12,6 +12,8 @@
 %     Methods. ​
 % Main text and Methods should be divided by topical subheadings; the Discussion/Conclusions does not contain subheadings.
 
+% https://twitter.com/mwclimatesci/status/1111773593656918016?s=46&t=p6Kals2l9yy3e5W8zExYbQ
+
 % \usepackage{natbib}
 \bibliographystyle{elsarticle-num}
 \biboptions{numbers,sort&compress,super}
@@ -27,6 +29,7 @@
 	right=10mm,
 }
 
+% \usepackage[final]{microtype}
 \usepackage{amsmath}
 \usepackage{bbold}
 \usepackage{graphicx}
@@ -57,6 +60,12 @@
 
 \urlstyle{sf}
 
+% Adjust the hyphenation penalty
+\hyphenpenalty=1000
+
+% Adjust the line breaking tolerance
+\tolerance=5000
+
 \usepackage{lipsum}
 
 \graphicspath{
@@ -83,36 +92,36 @@
 \def\el{${}_{\textrm{el}}$}
 \def\th{${}_{\textrm{th}}$}
 
-\newcommand{\bneuro}[1]{#1\,B\euro{}/a}
+\newcommand{\bneuro}[1]{#1\,bn\euro{}/a}
 
 \renewcommand{\ttdefault}{\sfdefault}
 
-\newcommand{\sfigref}[1]{
-    \begingroup
-    \crefname{figure}{Supplementary Fig.}{Supplementary Figs.}
-    \cref{#1}
-    \endgroup
+\newcommand{\sfigref}[1]{%
+    \begingroup%
+    \crefname{figure}{Supplementary Fig.}{Supplementary Figs.}%
+    \cref{#1}%
+    \endgroup%
 }
 
-\newcommand{\Sfigref}[1]{
-    \begingroup
-    \Crefname{figure}{Supplementary Fig.}{Supplementary Figs.}
-    \Cref{#1}
-    \endgroup
+\newcommand{\Sfigref}[1]{%
+    \begingroup%
+    \Crefname{figure}{Supplementary Fig.}{Supplementary Figs.}%
+    \Cref{#1}%
+    \endgroup%
 }
 
-\newcommand{\stabref}[1]{
-    \begingroup
-    \crefname{table}{Supplementary Table}{Supplementary Tables}
-    \cref{#1}
-    \endgroup
+\newcommand{\stabref}[1]{%
+    \begingroup%
+    \crefname{table}{Supplementary Table}{Supplementary Tables}%
+    \cref{#1}%
+    \endgroup%
 }
 
-\newcommand{\Stabref}[1]{
-    \begingroup
-    \Crefname{table}{Supplementary Table}{Supplementary Tables}
-    \Cref{#1}
-    \endgroup
+\newcommand{\Stabref}[1]{%
+    \begingroup%
+    \Crefname{table}{Supplementary Table}{Supplementary Tables}%
+    \Cref{#1}%
+    \endgroup%
 }
 
 
@@ -122,14 +131,14 @@
 
 \begin{frontmatter}
 
-	\title{Energy Imports and Infrastructure in a Climate-Neutral European Energy System}
+	\title{Energy Imports and Infrastructure in a Carbon-Neutral European Energy System}
     
 	\author[tub]{Fabian Neumann\corref{correspondingauthor}}
 	\ead{f.neumann@tu-berlin.de}
 	\author[pik]{Johannes Hampp}
 	\author[tub]{Tom Brown}
 	
-	\address[tub]{Department of Digital Transformation in Energy Systems, Institute of Energy Technology, Technische Universität Berlin, Fakultät III, Einsteinufer 25 (TA 8), 10587 Berlin, Germany}
+	\address[tub]{Department of Digital Transformation in Energy Systems, Institute of Energy Technology,\\Technische Universität Berlin, Fakultät III, Einsteinufer 25 (TA 8), 10587 Berlin, Germany}
 	\address[pik]{Potsdam Institute for Climate Impact Research (PIK), Member of the Leibniz Association, P.O.~Box 60 12 03, 14412 Potsdam, Germany}
 
 	\begin{abstract}
@@ -192,46 +201,46 @@
 Conceptualization --
 Data curation --
 Formal Analysis --
-Funding acquisition --
+% Funding acquisition --
 Investigation --
 Methodology --
-Project administration --
-Resources --
+% Project administration --
+% Resources --
 Software --
-Supervision --
+% Supervision --
 Validation --
 Visualization --
 Writing - original draft --
-Writing - review \& editing
+% Writing - review \& editing
 \textbf{J.H.}:
 Conceptualization --
 Data curation --
 Formal Analysis --
-Funding acquisition --
+% Funding acquisition --
 Investigation --
 Methodology --
-Project administration --
-Resources --
+% Project administration --
+% Resources --
 Software --
-Supervision --
+% Supervision --
 Validation --
 Visualization --
-Writing - original draft --
+% Writing - original draft --
 Writing - review \& editing
 \textbf{T.B.}:
 Conceptualization --
-Data curation --
+% Data curation --
 Formal Analysis --
 Funding acquisition --
 Investigation --
 Methodology --
 Project administration --
-Resources --
+% Resources --
 Software --
 Supervision --
 Validation --
-Visualization --
-Writing - original draft --
+% Visualization --
+% Writing - original draft --
 Writing - review \& editing
 
 \section*{Declaration of interests}
