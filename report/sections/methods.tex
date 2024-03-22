@@ -74,7 +74,10 @@ transport, including heavy-duty vehicles, is deemed fully electrified in the
 presented scenarios. Aviation can decide to use green kerosene derived from
 Fischer-Tropsch fuels or methanol. Besides methanol-to-kerosene, which was not
 chosen over steam cracking of Fischer-Tropsch fuels in our results, further
-usage options for methanol have been added. These include
+usage options for methanol have been added.
+% JH does this mean it was available to the model and the model did not choose
+% it? Or that we didn't choose it as a selection of available technologies?
+These include
 methanol-to-olefins/aromatics for the production of green plastics,
 methanol-to-power\cite{brownUltralongdurationEnergy2023} in open-cycle gas
 turbines or Allam cycle turbines, and steam reforming of methanol with or
@@ -115,12 +118,11 @@ supply conditions.
 
 \begin{figure*}
     \centering
-    \includegraphics[width=.82\textwidth]{static/graphics/sketch2.drawio-1.pdf}
+    \includegraphics[width=.82\textwidth]{static/graphics/sketch2.drawio-2.pdf}
     \caption{\textbf{Schematic overview of the import supply chains.} The
     illustration includes key input-output ratios of the different conversion
     processes and the transport efficiencies for the different import vectors.}
     \label{fig:import-esc-scheme}
-    % TODO not all colors for right-hand side are correct
 \end{figure*}
 
 The European energy system model is extended with data from the TRACE model
@@ -170,8 +172,8 @@ production.\cite{eurofer-theeuropeansteelassociationEuropeanSteel2023}
 Based on these supply chain definitions, a capacity expansion optimisation is
 performed to determine the cost-optimal combination of infrastructure and
 process capacities for all intermediary products and delivering the final
-carrier either through pipelines (\ce{H2_{(g)}}, \ce{CH4_{(g)}}) or by ship
-(\ce{H2_{(l)}}, \ce{CH4_{(l)}}, \ce{NH3_{(l)}}, \ce{MeOH}, Fischer-Tropsch fuel,
+carrier either through pipelines (\ce{H2(g)}, \ce{CH4(g)}) or by ship
+(\ce{H2(l)}, \ce{CH4(l)}, \ce{NH3(l)}, \ce{MeOH}, Fischer-Tropsch fuel,
 and steel). Exports from each of the regions shown in \cref{fig:options:global}
 are modelled to each of twelve European import locations based on large port
 locations, determining the levelised costs of energy or steel the European entry
@@ -208,7 +210,7 @@ system rather than using a constant levelised cost of exported electricity. This
 comprises the optimisation of wind and solar capacities, batteries and hydrogen
 storage in steel tanks, and the size and operation of HVDC link connection into
 Europe based on the availability time series in neighbouring countries as
-presented in \cref{fig:options:europe}. Underground hydrogen storage options are
+illustrated in \cref{fig:options:europe}. Underground hydrogen storage options are
 not considered due to the limited availability of salt caverns in many of the
 best renewable resource regions in the countries that are considered
 exporting.\cite{hevinUndergroundStorage2019} We also assume that the energy
@@ -218,8 +220,8 @@ to the 5\% nearest regions, with additional ultra-long distance connection
 options to Ireland, Cornwall and Brittany following the vision of the Xlinks
 project between Morocco and the United Kingdom.\cite{xlinksMoroccoUKPower2023}
 Connections through Russia or Belarus are excluded, and thus, some connections
-are affected by additional detours beyond the regularly applied distance factor
-of 125\% of the crow-fly distance. Transmission losses of 3\% per 1000km are
+are affected by additional detours beyond the regularly applied detour factor
+of 125\% of the as-the-crow-flies distance. Transmission losses of 3\% per 1000km are
 applied.
 
 % more detailed results
@@ -235,12 +237,13 @@ Fischer-Tropsch route because it is assumed to be more flexible (30\% minimum
 part load compared to 70\% for
 Fischer-Tropsch).\cite{brownUltralongdurationEnergy2023} The lower process
 flexibility shifts the energy mix towards solar electricity and causes higher
-levels of curtailment, increasing costs. The transport costs of \ce{CH4_{(l)}}
-are lower than for \ce{H2_{(l)}} since the liquefaction consumes less energy and
-individual ships can carry more energy with \ce{CH4_{(l)}}. Pipeline imports of
-\ce{CH4_{(g)}} were also considered, but costs were higher than for
-\ce{CH4_{(l)}} shipping under the assumption that new pipelines would have to be
+levels of curtailment, increasing costs. The transport costs of \ce{CH4(l)}
+are lower than for \ce{H2(l)} since the liquefaction consumes less energy and
+individual ships can carry more energy with \ce{CH4(l)}. Pipeline imports of
+\ce{CH4(g)} were also considered, but costs were higher than for
+\ce{CH4(l)} shipping under the assumption that new pipelines would have to be
 built.
+% JH ... , leading them to be not considered in the PyPSA-Eur model.
 
 % potential reviewer questions:
 % - Why do we not consider LOHC imports?
