@@ -6,6 +6,9 @@ dconf
 *.log
 *.pdf
 *.png
+config/config.*.yaml
+workflow/trace
+*.gpkg
 
 ## folders
 results/
@@ -262,3 +265,5 @@ archive
 cidportal.jrc.ec.europa.eu
 globalenergymonitor.org
 gurobi.log
+
+*__pycache__

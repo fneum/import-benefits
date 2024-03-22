@@ -33,6 +33,7 @@ scenario:
   - Co2L0-2190SEG-T-H-B-I-S-A-onwind+p0.5-imp+H2+CH4+NH3+FT+MeOH  # molecules
   - Co2L0-2190SEG-T-H-B-I-S-A-onwind+p0.5-imp+H2+CH4+NH3+FT+MeOH+St  # molecules + products
   - Co2L0-2190SEG-T-H-B-I-S-A-onwind+p0.5-imp+CH4+NH3+FT+MeOH  # hydrogen derivatives
+  - Co2L0-2190SEG-T-H-B-I-S-A-onwind+p0.5-imp+CH4+NH3+FT+MeOH+St  # hydrogen derivatives + products
   - Co2L0-2190SEG-T-H-B-I-S-A-onwind+p0.5-imp+MeOH+FT # liquid carbonaceous fuels
   - Co2L0-2190SEG-T-H-B-I-S-A-onwind+p0.5-imp+CH4+FT+MeOH  # carbonaceous fuels
   # subsets of carriers (+10%)
@@ -46,6 +47,7 @@ scenario:
   - Co2L0-2190SEG-T-H-B-I-S-A-onwind+p0.5-imp+H21.1+CH41.1+NH31.1+FT1.1+MeOH1.1  # molecules
   - Co2L0-2190SEG-T-H-B-I-S-A-onwind+p0.5-imp+H21.1+CH41.1+NH31.1+FT1.1+MeOH1.1+St1.1  # molecules + products
   - Co2L0-2190SEG-T-H-B-I-S-A-onwind+p0.5-imp+CH41.1+NH31.1+FT1.1+MeOH1.1  # hydrogen derivatives
+  - Co2L0-2190SEG-T-H-B-I-S-A-onwind+p0.5-imp+CH41.1+NH31.1+FT1.1+MeOH1.1+St1.1  # hydrogen derivatives + products
   - Co2L0-2190SEG-T-H-B-I-S-A-onwind+p0.5-imp+MeOH1.1+FT1.1 # liquid carbonaceous fuels
   - Co2L0-2190SEG-T-H-B-I-S-A-onwind+p0.5-imp+CH41.1+FT1.1+MeOH1.1  # carbonaceous fuels
   # subsets of carriers (-10%)
@@ -59,6 +61,7 @@ scenario:
   - Co2L0-2190SEG-T-H-B-I-S-A-onwind+p0.5-imp+H20.9+CH40.9+NH30.9+FT0.9+MeOH0.9  # molecules
   - Co2L0-2190SEG-T-H-B-I-S-A-onwind+p0.5-imp+H20.9+CH40.9+NH30.9+FT0.9+MeOH0.9+St0.9  # molecules + products
   - Co2L0-2190SEG-T-H-B-I-S-A-onwind+p0.5-imp+CH40.9+NH30.9+FT0.9+MeOH0.9  # hydrogen derivatives
+  - Co2L0-2190SEG-T-H-B-I-S-A-onwind+p0.5-imp+CH40.9+NH30.9+FT0.9+MeOH0.9+St0.9  # hydrogen derivatives + products
   - Co2L0-2190SEG-T-H-B-I-S-A-onwind+p0.5-imp+MeOH0.9+FT0.9 # liquid carbonaceous fuels
   - Co2L0-2190SEG-T-H-B-I-S-A-onwind+p0.5-imp+CH40.9+FT0.9+MeOH0.9  # carbonaceous fuels
   # subsets of carriers (-20%)
@@ -72,6 +75,7 @@ scenario:
   - Co2L0-2190SEG-T-H-B-I-S-A-onwind+p0.5-imp+H20.8+CH40.8+NH30.8+FT0.8+MeOH0.8  # molecules
   - Co2L0-2190SEG-T-H-B-I-S-A-onwind+p0.5-imp+H20.8+CH40.8+NH30.8+FT0.8+MeOH0.8+St0.8  # molecules + products
   - Co2L0-2190SEG-T-H-B-I-S-A-onwind+p0.5-imp+CH40.8+NH30.8+FT0.8+MeOH0.8  # hydrogen derivatives
+  - Co2L0-2190SEG-T-H-B-I-S-A-onwind+p0.5-imp+CH40.8+NH30.8+FT0.8+MeOH0.8+St0.8  # hydrogen derivatives + products
   - Co2L0-2190SEG-T-H-B-I-S-A-onwind+p0.5-imp+MeOH0.8+FT0.8 # liquid carbonaceous fuels
   - Co2L0-2190SEG-T-H-B-I-S-A-onwind+p0.5-imp+CH40.8+FT0.8+MeOH0.8  # carbonaceous fuels
   # lower/higher import costs of molecules
@@ -130,8 +134,8 @@ scenario:
   - Co2L0-2190SEG-T-H-B-I-S-A-onwind+p0.5-imp1000+CH4
   - Co2L0-2190SEG-T-H-B-I-S-A-onwind+p0.5-imp500+CH4
   # import volume sensitivity (FT+MeOH)
-  - Co2L0-2190SEG-T-H-B-I-S-A-onwind+p0.5-imp3000+FT+MeOH
-  - Co2L0-2190SEG-T-H-B-I-S-A-onwind+p0.5-imp2000+FT+MeOH
+  # - Co2L0-2190SEG-T-H-B-I-S-A-onwind+p0.5-imp3000+FT+MeOH # had a fault
+  #- Co2L0-2190SEG-T-H-B-I-S-A-onwind+p0.5-imp2000+FT+MeOH # had a fault
   - Co2L0-2190SEG-T-H-B-I-S-A-onwind+p0.5-imp1000+FT+MeOH
   - Co2L0-2190SEG-T-H-B-I-S-A-onwind+p0.5-imp500+FT+MeOH
   # import volume sensitivity (NH3)
@@ -215,9 +219,13 @@ scenario:
   # additional scenario: no hydrogen network
   - Co2L0-2190SEG-T-H-B-I-S-A-onwind+p0.5-noH2network
   - Co2L0-2190SEG-T-H-B-I-S-A-onwind+p0.5-noH2network-imp
+  - Co2L0-2190SEG-T-H-B-I-S-A-onwind+p0.5-noH2network-imp+AC+CH4+NH3+FT+MeOH+St # no hydrogen imports
   # additional scenario: no wasteheat
   - Co2L0-2190SEG-T-H-B-I-S-A-onwind+p0.5-nowasteheat
   - Co2L0-2190SEG-T-H-B-I-S-A-onwind+p0.5-nowasteheat-imp
+  # no steel industry relocation
+  - Co2L0-2190SEG-T-H-B-I-S-A-onwind+p0.5-nosteelrelocation
+  - Co2L0-2190SEG-T-H-B-I-S-A-onwind+p0.5-nosteelrelocation-imp
   planning_horizons:
   - 2050
 

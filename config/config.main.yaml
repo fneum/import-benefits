@@ -7,8 +7,10 @@ run:
   shared_resources: false
 
 remote:
-  ssh: "zecm"
-  path: "scratch/projects/import-benefits"
+  # ssh: "zecm"
+  # path: "scratch/projects/import-benefits"
+  ssh: "z1"
+  path: "SCRATCH/projects/import-benefits"
 
 scenario:
   simpl:
@@ -22,89 +24,6 @@ scenario:
   sector_opts:
   - Co2L0-25H-T-H-B-I-S-A
   - Co2L0-25H-T-H-B-I-S-A-imp
-  - Co2L0-25H-T-H-B-I-S-A-imp+AC
-  - Co2L0-25H-T-H-B-I-S-A-imp+H2
-  - Co2L0-25H-T-H-B-I-S-A-imp+CH4
-  - Co2L0-25H-T-H-B-I-S-A-imp+NH3
-  - Co2L0-25H-T-H-B-I-S-A-imp+FT
-  - Co2L0-25H-T-H-B-I-S-A-imp+MeOH
-  - Co2L0-25H-T-H-B-I-S-A-imp+St # products
-  - Co2L0-25H-T-H-B-I-S-A-imp+H2+CH4+NH3+FT+MeOH  # molecules
-  - Co2L0-25H-T-H-B-I-S-A-imp+CH4+NH3-FT+MeOH  # hydrogen derivatives
-  - Co2L0-25H-T-H-B-I-S-A-imp+MeOH+FT # liquid carbonaceous fuels
-  - Co2L0-25H-T-H-B-I-S-A-imp+CH4+FT+MeOH  # carbonaceous fuels
-  # - Co2L0-2190H-T-H-B-I-S-A-imp500+AC
-  # - Co2L0-2190H-T-H-B-I-S-A-imp500+H2
-  # - Co2L0-2190H-T-H-B-I-S-A-imp500+CH4
-  # - Co2L0-2190H-T-H-B-I-S-A-imp500+NH3
-  # - Co2L0-2190H-T-H-B-I-S-A-imp500+FT
-  # - Co2L0-2190H-T-H-B-I-S-A-imp500+MeOH
-  # - Co2L0-2190H-T-H-B-I-S-A-imp500+MeOH+FT
-  # - Co2L0-2190H-T-H-B-I-S-A-imp1000+AC
-  # - Co2L0-2190H-T-H-B-I-S-A-imp1000+H2
-  # - Co2L0-2190H-T-H-B-I-S-A-imp1000+CH4
-  # - Co2L0-2190H-T-H-B-I-S-A-imp1000+NH3
-  # - Co2L0-2190H-T-H-B-I-S-A-imp1000+FT
-  # - Co2L0-2190H-T-H-B-I-S-A-imp1000+MeOH
-  # - Co2L0-2190H-T-H-B-I-S-A-imp1000+MeOH+FT
-  # - Co2L0-2190H-T-H-B-I-S-A-imp1500+CH4
-  # - Co2L0-2190H-T-H-B-I-S-A-imp1500+NH3
-  # - Co2L0-2190H-T-H-B-I-S-A-imp1500+FT
-  # - Co2L0-2190H-T-H-B-I-S-A-imp1500+MeOH
-  # - Co2L0-2190H-T-H-B-I-S-A-imp1500+MeOH+FT
-  # - Co2L0-2190H-T-H-B-I-S-A-imp1000+H2+CH4+NH3+FT+MeOH
-  # - Co2L0-2190H-T-H-B-I-S-A-imp2000+AC
-  # - Co2L0-2190H-T-H-B-I-S-A-imp2000+H2
-  # - Co2L0-2190H-T-H-B-I-S-A-imp2000+CH4
-  # - Co2L0-2190H-T-H-B-I-S-A-imp2000+NH3
-  # - Co2L0-2190H-T-H-B-I-S-A-imp2000+H2+CH4+NH3+FT+MeOH
-  # - Co2L0-2190H-T-H-B-I-S-A-imp2000+FT
-  # - Co2L0-2190H-T-H-B-I-S-A-imp2000+MeOH
-  # - Co2L0-2190H-T-H-B-I-S-A-imp2000+MeOH+FT
-  # - Co2L0-2190H-T-H-B-I-S-A-imp3000+AC
-  # - Co2L0-2190H-T-H-B-I-S-A-imp3000+H2
-  # - Co2L0-2190H-T-H-B-I-S-A-imp3000+H2+CH4+NH3+FT+MeOH
-  # - Co2L0-2190H-T-H-B-I-S-A-imp3000+MeOH+FT
-  # - Co2L0-2190H-T-H-B-I-S-A-imp4000+AC
-  # - Co2L0-2190H-T-H-B-I-S-A-imp4000+H2
-  # - Co2L0-2190H-T-H-B-I-S-A-imp4000+H2+CH4+NH3+FT+MeOH
-  # - Co2L0-2190H-T-H-B-I-S-A-imp5000+AC
-  # - Co2L0-2190H-T-H-B-I-S-A-imp5000+H2
-  # - Co2L0-2190H-T-H-B-I-S-A-imp5000+H2+CH4+NH3+FT+MeOH
-  # - Co2L0-2190H-T-H-B-I-S-A-imp6000+H2
-  # - Co2L0-2190H-T-H-B-I-S-A-imp6000+AC
-  # - Co2L0-2190H-T-H-B-I-S-A-imp7000+H2
-  # - Co2L0-2190H-T-H-B-I-S-A-imp10000
-  # - Co2L0-2190H-T-H-B-I-S-A-imp9000
-  # - Co2L0-2190H-T-H-B-I-S-A-imp8000
-  # - Co2L0-2190H-T-H-B-I-S-A-imp7000
-  # - Co2L0-2190H-T-H-B-I-S-A-imp6000
-  - Co2L0-25H-T-H-B-I-S-A-imp5000
-  - Co2L0-25H-T-H-B-I-S-A-imp4000
-  - Co2L0-25H-T-H-B-I-S-A-imp3000
-  - Co2L0-25H-T-H-B-I-S-A-imp2000
-  - Co2L0-25H-T-H-B-I-S-A-imp1000
-  - Co2L0-25H-T-H-B-I-S-A-imp500
-  # - Co2L0-2190H-T-H-B-I-S-A-imp10000+H20.9+CH40.9+NH30.9+FT0.9+MeOH0.9+St0.9
-  # - Co2L0-2190H-T-H-B-I-S-A-imp8000+H20.9+CH40.9+NH30.9+FT0.9+MeOH0.9+St0.9
-  # - Co2L0-2190H-T-H-B-I-S-A-imp6000+H20.9+CH40.9+NH30.9+FT0.9+MeOH0.9+St0.9
-  # - Co2L0-2190H-T-H-B-I-S-A-imp4000+H20.9+CH40.9+NH30.9+FT0.9+MeOH0.9+St0.9
-  # - Co2L0-2190H-T-H-B-I-S-A-imp2000+H20.9+CH40.9+NH30.9+FT0.9+MeOH0.9+St0.9
-  # - Co2L0-2190H-T-H-B-I-S-A-imp1000+H20.9+CH40.9+NH30.9+FT0.9+MeOH0.9+St0.9
-  # - Co2L0-2190H-T-H-B-I-S-A-imp500+H20.9+CH40.9+NH30.9+FT0.9+MeOH0.9+St0.9
-  # - Co2L0-2190H-T-H-B-I-S-A-imp10000+H20.8+CH40.8+NH30.8+FT0.8+MeOH0.8+St0.8
-  # - Co2L0-2190H-T-H-B-I-S-A-imp8000+H20.8+CH40.8+NH30.8+FT0.8+MeOH0.8+St0.8
-  # - Co2L0-2190H-T-H-B-I-S-A-imp6000+H20.8+CH40.8+NH30.8+FT0.8+MeOH0.8+St0.8
-  # - Co2L0-2190H-T-H-B-I-S-A-imp4000+H20.8+CH40.8+NH30.8+FT0.8+MeOH0.8+St0.8
-  # - Co2L0-2190H-T-H-B-I-S-A-imp2000+H20.8+CH40.8+NH30.8+FT0.8+MeOH0.8+St0.8
-  # - Co2L0-2190H-T-H-B-I-S-A-imp1000+H20.8+CH40.8+NH30.8+FT0.8+MeOH0.8+St0.8
-  # - Co2L0-2190H-T-H-B-I-S-A-imp500+H20.8+CH40.8+NH30.8+FT0.8+MeOH0.8+St0.8
-  # - Co2L0-2190H-T-H-B-I-S-A-imp+AC0.9+H20.9+CH40.9+NH30.9+FT0.9+MeOH0.9+St0.9
-  # - Co2L0-2190H-T-H-B-I-S-A-imp+AC0.8+H20.8+CH40.8+NH30.8+FT0.8+MeOH0.8+St0.8
-  # - Co2L0-2190H-T-H-B-I-S-A-imp+AC1.1+H21.1+CH41.1+NH31.1+FT1.1+MeOH1.1+St1.1
-  # - Co2L0-2190H-T-H-B-I-S-A-imp+AC1.2+H21.2+CH41.2+NH31.2+FT1.2+MeOH1.2+St1.2
-  - Co2L0-2190H-T-H-B-I-S-A-imp+H20.9+CH40.9+NH30.9+FT0.9+MeOH0.9+St0.9
-  - Co2L0-2190H-T-H-B-I-S-A-imp+H20.8+CH40.8+NH30.8+FT0.8+MeOH0.8+St0.8
   planning_horizons:
   - 2050
 
@@ -263,7 +182,8 @@ sector:
         - x: 12.39
           y: 45.56
           length: 2500
-      hvdc_losses: 3.e-5 # p.u./km
+      efficiency_static: 0.98
+      efficiency_per_1000km: 0.977 # p.u./km
       length_factor: 1.25
       distance_threshold: 0.05 # quantile
 
@@ -281,4 +201,4 @@ solving:
       BarConvTol: 1.e-5
 
   mem: 125000
-  walltime: "18:00:00"
+  walltime: "36:00:00"

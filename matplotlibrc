@@ -1,5 +1,5 @@
 font.family: sans-serif
-font.sans-serif: Roboto
+font.sans-serif: Arial, Roboto
 image.cmap: viridis
 axes.grid : false
 legend.frameon : false
