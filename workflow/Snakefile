@@ -1,15 +1,20 @@
 # run from root directory of repository
 
+
 configfile: "config/config.yaml"
+
 
 module pypsa_eur:
     snakefile:
         "pypsa-eur/Snakefile"
-    prefix: 
+    prefix:
         "workflow/pypsa-eur"
-    config: config
+    config:
+        config
+
 
 use rule * from pypsa_eur
+
 
 run = config.get("run", {})
 RDIR = run["name"] + "/" if run.get("name") else ""
@@ -18,7 +23,8 @@ RESOURCES = "workflow/pypsa-eur/resources/" + RDIR
 
 
 rule run_models:
-    input: RESULTS + "graphs/costs.pdf"
+    input:
+        RESULTS + "graphs/costs.pdf",
     default_target: True
 
 
