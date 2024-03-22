@@ -14,10 +14,13 @@ use rule * from pypsa_eur
 run = config.get("run", {})
 RDIR = run["name"] + "/" if run.get("name") else ""
 RESULTS = "workflow/pypsa-eur/results/" + RDIR
+RESOURCES = "workflow/pypsa-eur/resources/" + RDIR
+
 
 rule run_models:
     input: RESULTS + "graphs/costs.pdf"
     default_target: True
+
 
 rule sync_project:
     params:
@@ -25,9 +28,9 @@ rule sync_project:
     shell:
         """
         rsync -uvarh --ignore-missing-args --info=progress2 --files-from=.sync-send . {params.cluster}
-        rsync -uvarh --no-g --info=progress2 --exclude='*.nc' {params.cluster}/workflow/pypsa-eur/resources . || echo "No resources directory, skipping rsync"
-        rsync -uvarh --no-g --info=progress2 --exclude='*.nc' {params.cluster}/workflow/pypsa-eur/results . || echo "No results directory, skipping rsync"
-        rsync -uvarh --no-g {params.cluster}/workflow/pypsa-eur/benchmarks . || echo "No benchmarks directory, skipping rsync"
-        rsync -uvarh --no-g {params.cluster}/workflow/pypsa-eur/logs . || echo "No logs directory, skipping rsync"
+        rsync -uvarh --no-g --info=progress2 --exclude='*.nc' --exclude='*.tif' {params.cluster}/workflow/pypsa-eur/resources workflow/pypsa-eur || echo "No resources directory, skipping rsync"
+        rsync -uvarh --no-g --info=progress2 --exclude='*.nc' --exclude='*.tif' {params.cluster}/workflow/pypsa-eur/results workflow/pypsa-eur || echo "No results directory, skipping rsync"
+        rsync -uvarh --no-g {params.cluster}/workflow/pypsa-eur/benchmarks workflow/pypsa-eur || echo "No benchmarks directory, skipping rsync"
+        rsync -uvarh --no-g {params.cluster}/workflow/pypsa-eur/logs workflow/pypsa-eur || echo "No logs directory, skipping rsync"
         rsync -uvarh --no-g {params.cluster}/logs . || echo "No logs directory, skipping rsync"
         """
