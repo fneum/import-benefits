@@ -428,10 +428,10 @@ solving:
   options:
     transmission_losses: 2
     linearized_unit_commitment: false
-  
+
   solver:
     threads: 4
-  
+
   solver_options:
     gurobi-default:
       BarConvTol: 1.e-5
