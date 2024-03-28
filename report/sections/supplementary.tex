@@ -31,6 +31,124 @@ that central heating will become available in regions which have not based their
 heating supply on district heating so far.
 
 \newpage
+
+\section*{Causes and severity of import cost uncertainty}
+
+In \cref{tab:cost-uncertainty}, we vary some of the techno-economic assumptions
+for evaluating green fuel supply chains in the exporting countries to justify
+the range of import cost deviations from the defaults. These relate to
+technology costs, financing costs, excess power and heat handling, fuel
+synthesis flexibility, and the availability of geological hydrogen storage and
+alternative sources of CO$_2$. For all the following sensitivities, it should be
+noted that they are not additive.
+
+A higher weighted average cost of capital (WACC) than the uniformly applied 7\%,
+e.g.~due to higher project risks, and lower WACC, e.g.~due to the
+government-backing of a project, have a substantial effect on the import cost
+calculations; an increase or decrease by just one percentage point already
+alters the costs per unit of energy by more than
+7\%.\cite{egliBiasEnergy2019,bogdanovReplyBias2019,lonerganImprovingRepresentation2023a,schyskaHowRegional2020,steffenDeterminantsCost2022}
+
+Likewise, a failure to achieve the anticipated cost reductions for electrolysers
+and DAC systems would also result in far-reaching cost increases for green
+energy imports, especially if the fuel contains carbon. The availability of
+biogenic CO$_2$ (or fossil CO$_2$ from industrial processes that is largely
+cycled between use and synthesis and, hence, not emitted to the atmosphere) can
+reduce the green fuel cost by 20\% if it can be provided for 60 \euro{}/t and by
+10\% if made available for 100 \euro{}/t.
+
+The default assumptions for export supply chains assume islanded fuel synthesis
+sites that are not connected to the local electricity system. The isolation
+drives the system into high curtailment rates of 8\%. If surplus electricity
+production could be sold and absorbed by the local power grid, considerable cost
+reductions could be achieved (refer to \cref{tab:cost-uncertainty}).
+
+Besides integration with the local energy system, process integration using
+waste heat streams from power-to-X plants for direct air capture and flexible
+Fischer-Tropsch synthesis similar to methanolisation can also reduce fuel cost
+by 3-5\% each. Conditions that would allow for geological hydrogen storage
+reduce the need for flexible synthesis plant operation and could reduce import
+costs by more than 7\%. However, even though many potential export countries
+possess geological hydrogen storage potential, suitable storage sites are not
+always co-located with the countries' best renewable potentials.
+\cite{hevinUndergroundStorage2019}
+
+Finally, cost rises can also be expected if the most competitive exporting
+countries are not offering to export green energy. Argentina and Chile have a
+margin of 10 \euro{}/MWh over the next cheapest exporting country
+(i.e.~Australia, Algeria and Libya with 120 \euro{}/MWh). If these countries
+were unavailable for import, costs would rise by almost 10\%.
+
+\begin{table*}
+    \footnotesize
+    \centering
+    \begin{tabular}{lrrrr}
+        \toprule
+        Factor & Change & Unit & Change & Unit\\
+        \midrule
+        higher WACC of 12\% (e.g.~high project risk) & +43.1 & \euro{}/MWh  &
+        +39.3 & \% \\
+        higher WACC of 10\% (e.g.~high project risk) & +25.3 & \euro{}/MWh  &
+        +23.0 & \% \\
+        higher WACC of 8\% (e.g.~high project risk) & +8.2 & \euro{}/MWh  & +7.4
+        & \% \\
+        higher direct air capture investment cost (+200\%) & +55.8 & \euro{}/MWh
+        & +50.8 & \% \\
+        higher direct air capture investment cost (+100\%) & +28.1 & \euro{}/MWh
+        & +25.6 & \% \\
+        higher direct air capture investment cost (+50\%) & +14.1 & \euro{}/MWh
+        & +12.9 & \% \\
+        higher direct air capture investment cost (+25\%) & +7.1 & \euro{}/MWh &
+        +6.5 & \% \\
+        higher electrolysis investment cost (+200\%) & +29.2 & \euro{}/MWh  &
+        +26.6 & \% \\
+        higher electrolysis investment cost (+100\%) & +16.7 & \euro{}/MWh  &
+        +15.2 & \% \\
+        higher electrolysis investment cost (+50\%) & +9.0 & \euro{}/MWh  & +8.2
+        & \% \\
+        higher electrolysis investment cost (+25\%) & +4.7 & \euro{}/MWh  & +4.3
+        & \% \\
+        Argentina and Chile not available for export & +10.1 & \euro{}/MWh  &
+        +9.2 & \% \\
+        \midrule
+        lower WACC of 3\% (e.g.~government guarantees) & -29.5 & \euro{}/MWh  &
+        -26.8 & \% \\
+        lower WACC of 5\% (e.g.~government guarantees) & -15.5 & \euro{}/MWh  &
+        -14.1 & \% \\
+        lower WACC of 6\% (e.g.~government guarantees) & -8.0 & \euro{}/MWh  &
+        -7.2 & \% \\
+        sell excess curtailed electricity at 40 \euro{}/MWh & -24.7 & \euro{}/MWh  &
+        -22.6 & \% \\
+        sell excess curtailed electricity at 30 \euro{}/MWh & -15.6 & \euro{}/MWh  &
+        -14.2 & \% \\
+        sell excess curtailed electricity at 20 \euro{}/MWh & -8.0 & \euro{}/MWh  &
+        -7.2 & \% \\
+        option to use available biogenic or cycled \ce{CO2} for 60 \euro{}/t & -21.7 &
+        \euro{}/MWh  & -19.7 & \% \\
+        option to use available biogenic or cycled \ce{CO2} for 80 \euro{}/t & -16.1 &
+        \euro{}/MWh  & -14.7 & \% \\
+        option to use available biogenic or cycled \ce{CO2} for 100 \euro{}/t & -10.6 &
+        \euro{}/MWh  & -9.7 & \% \\
+        option to build geological hydrogen storage at 2.4 \euro{}/kWh
+        (reduction by 95\%) & -8.2 & \euro{}/MWh  & -7.4 & \% \\
+        option to use power-to-X waste heat streams for direct air capture &
+        -3.8 & \euro{}/MWh  & -3.4 & \% \\
+        highly flexible operation of fuel synthesis plant (20\% minimum
+        part-load instead of 70\%) & -5.4 & \euro{}/MWh  & -4.9 & \% \\
+        \bottomrule
+    \end{tabular}
+    \caption{\textbf{Examples for potential import cost increases or decreases.}
+    The table presents cost sensitivities in absolute and relative terms based
+    on the supply chain for producing Fischer-Tropsch fuels in Argentina for
+    export to Europe. The reference fuel import cost for this case is 109.8
+    \euro{}/MWh. Responses to changes in the input assumptions are not
+    additive.}
+    \label{tab:cost-uncertainty}
+\end{table*}
+
+\newpage
+
+
 \section*{Supplementary Figures}
 \begin{figure}[!htb]
     \footnotesize
