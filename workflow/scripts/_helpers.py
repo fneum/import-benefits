@@ -1,5 +1,6 @@
 from pathlib import Path
 
+
 def mock_snakemake(rulename, configfiles=[], **wildcards):
     """
     This function is expected to be executed from the 'scripts'-directory of '
