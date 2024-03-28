@@ -1,27 +1,35 @@
 
 \section*{Limitations}
 
-potential water scarcity to produce large amounts of hydrogen in arid regions
+Several limitations of the study should be noted. The model is a simplified
+representation of the energy system and does not capture all aspects of the
+real-world transition. First of all, the optimization results represent a
+long-term equilibrium that does not account for the transition process from the
+mostly fossil-based energy system to a carbon-neutral one. This means that the
+model does not capture constraints regards neither the mid-term ramp-up of green
+energy export capacities nor the speed at which supporting infrastructure could
+scale up. Furthermore, global competition betweeen potential exporting
+countries, as well as between importing countries, make import volumes and
+prices more difficult to predict than our purely cost-based analysis can
+provide. Besides unclear market developments, local issues in exporting regions
+such as potential water scarcity to produce large amounts of hydrogen in
+renewable-rich but arid countries is not addressed. Moreover, the fact that we
+assume that import costs are not time-dependent and available on demand may
+underestimate some intermediate storage requirements for imports at
+entry-points, especially for hydrogen.
 
-no pathways (e.g. when imports will be available, how quickly supporting infrastructure can scale up )
+In terms of industry relocation within Europe, our modelling is constrained to
+the migration of steel, ammonia and chemicals. Other sectors like concrete and
+alumina production is not considered for relocation. We make this choice so that
+relocation within Europe can compete with imports from abroad, which equates a
+migration of the industry branch out of the European value chain. Potential
+repurcussions on local jobs and relocatoin costs are not captured by the model.
+Finally, it should be acknowledged that our assumptions about the broad
+availability of district heating networks across Europe to absorb
+\mbox{power-to-X} waste heat are relatively progressive as it is not certain
+that central heating will become available in regions which have not based their
+heating supply on district heating so far.
 
-ignoring interactions in the industry sector between steel production, chemicals industry and heat integration
-
-potential repurcusssions and local transition burden of moving industry not captured
-
-only some industries are allowed to relocate (those where we allow imports)
-- yes: steel, ammonia, chemicals (indirectly)
-- no: concrete, alumina
-
-and this does not factor in relocation costs
-
-import costs are not time-dependent and assumed to be available on demand (may underestimate some intermediate storage requirement of imports)
-
-optimistic on district heating and therefore use of PtX waste heat almost anywhere
-
-global competition make prices and volumes difficult to predict
-
-hydrogen network \& comparison to Joule paper
 \newpage
 \section*{Supplementary Figures}
 \begin{figure}[!htb]
@@ -37,17 +45,20 @@ hydrogen network \& comparison to Joule paper
 \end{figure}
 
 \begin{figure*}
+    \small
+    (a) import costs +20\% \\
     \includegraphics[width=\textwidth]{20231025-zecm/sensitivity-import-volume-AC+H21.2+CH41.2+NH31.2+FT1.2+MeOH1.2+St1.2.pdf}
-    \includegraphics[width=0.49\textwidth, trim=0cm 0cm 12.8cm 0cm, clip]{20231025-zecm/sensitivity-import-volume-AC+H21.1+CH41.1+NH31.1+FT1.1+MeOH1.1+St1.1.pdf}
-    \includegraphics[width=0.49\textwidth, trim=0cm 0cm 12.8cm 0cm, clip]{20231025-zecm/sensitivity-import-volume-AC+H20.9+CH40.9+NH30.9+FT0.9+MeOH0.9+St0.9.pdf} \\
-    \includegraphics[width=0.49\textwidth, trim=0cm 0cm 12.8cm 0cm, clip]{20231025-zecm/sensitivity-import-volume-AC+H20.8+CH40.8+NH30.8+FT0.8+MeOH0.8+St0.8.pdf}
-    \includegraphics[width=0.49\textwidth, trim=0cm 0cm 12.8cm 0cm, clip]{20231025-zecm/sensitivity-import-volume-AC+H20.7+CH40.7+NH30.7+FT0.7+MeOH0.7+St0.7.pdf}
+    \begin{tabular}{ll}
+        (b) import costs +10\% & (c) import costs -10\% \\
+        \includegraphics[width=0.495\textwidth, trim=0cm 0cm 12.8cm 0cm, clip]{20231025-zecm/sensitivity-import-volume-AC+H21.1+CH41.1+NH31.1+FT1.1+MeOH1.1+St1.1.pdf} &
+        \includegraphics[width=0.495\textwidth, trim=0cm 0cm 12.8cm 0cm, clip]{20231025-zecm/sensitivity-import-volume-AC+H20.9+CH40.9+NH30.9+FT0.9+MeOH0.9+St0.9.pdf} \\
+        (d) import costs -20\% & (e) import costs -30\% \\
+        \includegraphics[width=0.495\textwidth, trim=0cm 0cm 12.8cm 0cm, clip]{20231025-zecm/sensitivity-import-volume-AC+H20.8+CH40.8+NH30.8+FT0.8+MeOH0.8+St0.8.pdf} &
+        \includegraphics[width=0.495\textwidth, trim=0cm 0cm 12.8cm 0cm, clip]{20231025-zecm/sensitivity-import-volume-AC+H20.7+CH40.7+NH30.7+FT0.7+MeOH0.7+St0.7.pdf}
+    \end{tabular}
     \caption{\textbf{Sensitivity of import volume on total system cost and composition for varying import costs.}}
     \label{fig:si:volume}
 \end{figure*}
-
-% JH need labels which is which scenario
-% JH why is one figure wider than the others?
 
 
 \begin{figure*}
@@ -55,10 +66,6 @@ hydrogen network \& comparison to Joule paper
     \caption{\textbf{Sensitivity of import volume on total system cost with subsets of import vectors available.}}
     \label{fig:si:volume-subsets}
 \end{figure*}
-
-% JH label "all but power" to "all but electricity"
-% these are system costs for cost optimal systems, any% of import volume allowed, right?
-
 
 \begin{figure*}
     \footnotesize
@@ -73,6 +80,61 @@ hydrogen network \& comparison to Joule paper
     \caption{\textbf{Import shares and mix for different import scenarios.}}
     \label{fig:si:import-shares}
 \end{figure*}
+
+\begin{figure*}
+    \footnotesize
+    \begin{tabular}{ccc}
+        (a) H$_2$ / no imports allowed & (b) H$_2$ / only hydrogen imports & (c) H$_2$ / all imports allowed \\
+        \includegraphics[width=0.325\textwidth]{20231025-zecm/csc-h2-noimp} &
+        \includegraphics[width=0.325\textwidth]{20231025-zecm/csc-h2-imp+H2} &
+        \includegraphics[width=0.325\textwidth]{20231025-zecm/csc-h2-imp} \\
+        (d) MeOH / no imports allowed & (e) MeOH / only hydrogen imports & (f) MeOH / all imports allowed \\
+        \includegraphics[width=0.325\textwidth]{20231025-zecm/csc-meoh-noimp} &
+        \includegraphics[width=0.325\textwidth]{20231025-zecm/csc-meoh-imp+H2} &
+        \includegraphics[width=0.325\textwidth]{20231025-zecm/csc-meoh-imp} \\
+        (g) Fischer-Tropsch / no imports allowed & (h) Fischer-Tropsch / only hydrogen imports & (i) Fischer-Tropsch / all imports allowed \\
+        \includegraphics[width=0.325\textwidth]{20231025-zecm/csc-ftf-noimp} &
+        \includegraphics[width=0.325\textwidth]{20231025-zecm/csc-ftf-imp+H2} &
+        \includegraphics[width=0.325\textwidth]{20231025-zecm/csc-ftf-imp} \\
+        (j) CH$_4$ / no imports allowed & (k) CH$_4$ / only hydrogen imports & (l) CH$_4$ / all imports allowed \\
+        \includegraphics[width=0.325\textwidth]{20231025-zecm/csc-sab-noimp} &
+        \includegraphics[width=0.325\textwidth]{20231025-zecm/csc-sab-imp+H2} &
+        \includegraphics[width=0.325\textwidth]{20231025-zecm/csc-sab-imp} \\
+    \end{tabular}
+    \caption{\textbf{Domestic cost supply curves for different import scenarios and carriers.}
+        The cost supply curves are built using sorted spatio-temporal market
+        values with corresponding production volumes per region and snapshot. If
+        the domestic supply curve is missing, no domestic production occured in
+        the scenario. Shaded areas or dotted lines show import cost ranges of
+        the respective carriers as reference.}
+    \label{fig:si:cost-supply-curves}
+\end{figure*}
+
+
+\begin{figure*}
+    \includegraphics[width=0.8\textwidth]{20231025-zecm/balances-electricity.pdf}
+    \includegraphics[width=0.8\textwidth]{20231025-zecm/balances-heat.pdf}
+    \includegraphics[width=0.8\textwidth]{20231025-zecm/balances-H2.pdf}
+    \includegraphics[width=0.8\textwidth]{20231025-zecm/balances-gas.pdf}
+    \caption{\textbf{Energy balances for three import scenarios for the carriers electricity, heat, hydrogen and gas.}
+    }
+    \label{fig:si:balances-a}
+\end{figure*}
+
+\begin{figure*}
+    \includegraphics[width=0.8\textwidth]{20231025-zecm/balances-NH3.pdf}
+    \includegraphics[width=0.8\textwidth]{20231025-zecm/balances-methanol.pdf}
+    \includegraphics[width=0.8\textwidth]{20231025-zecm/balances-oil.pdf}
+    \includegraphics[width=0.8\textwidth]{20231025-zecm/balances-co2.pdf}
+    \includegraphics[width=0.8\textwidth]{20231025-zecm/balances-co2 stored.pdf}
+    \caption{\textbf{
+        Energy balances for three import scenarios for the carriers
+        ammonia, methanol, and oil, as well as stored and atmospheric carbon dioxide.
+    }
+    }
+    \label{fig:si:balances-b}
+\end{figure*}
+
 
 \begin{figure*}
     \includegraphics[width=\textwidth]{20231025-zecm/infrastructure-map-2x3-B.pdf}
@@ -114,9 +176,9 @@ hydrogen network \& comparison to Joule paper
     (b) average utilisation rate of import hydrogen pipelines \\
     \includegraphics[width=\textwidth]{20231025-zecm/graphics/heatmap_timeseries/s_110_lvopt__Co2L0-2190SEG-T-H-B-I-S-A-onwind+p0.5-imp_2050/ts-heatmap-utilisation_rate-import_pipeline-h2.pdf}
     \caption{\textbf{Temporal usage pattern of electricity and hydrogen storage.}
-    The average utilisation rate is XX\% for import HVDC links and XX\% for
+    The capacity-weighted average utilisation rate is 72\% for import HVDC links and 45\% for
     hydrogen pipelines. For hydrogen import pipelines, a clear seasonal pattern
-    with higher utilisation in winter is visible, demonstrated by an average utilisation rate of XX\% from November to April and XX\% from May to October.
+    with higher utilisation in winter is visible, demonstrated by an average utilisation rate of 56\% from November to April and 35\% from May to October.
     For other energy or material
     imports than hydrogen and electricity, the timing of imports is not
     informatively captured due to problem degeneracy caused by negligible

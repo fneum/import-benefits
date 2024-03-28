@@ -66,6 +66,8 @@
 % Adjust the line breaking tolerance
 \tolerance=5000
 
+\renewcommand{\thefootnote}{\Alph{footnote}}
+
 \usepackage{lipsum}
 
 \graphicspath{
@@ -185,7 +187,7 @@
 
 \input{sections/methods.tex}
 
-\section*{Acknowledgements}
+% \section*{Acknowledgements}
 
 % XY gratefully acknowledge funding from XY under grant no. 00000.
 
@@ -249,7 +251,7 @@ The authors declare no competing interests.
 
 \section*{Data and code availability}
 
-A dataset of the model results is available at \url{zenodo}.
+A dataset of the model results will be made available on \url{zenodo} after peer-review.
 The code to reproduce the experiments is available at \url{https://github.com/fneum/import-benefits}.
 
 \renewcommand{\ttdefault}{\sfdefault}
