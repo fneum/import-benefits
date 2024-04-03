@@ -1,84 +1,8 @@
 
-\section*{Limitations}
-
-Several limitations of the study should be noted. The model is a simplified
-representation of the energy system and does not capture all aspects of the
-real-world transition. First of all, the optimization results represent a
-long-term equilibrium that does not account for the transition process from the
-mostly fossil-based energy system to a carbon-neutral one. This means that the
-model does not capture constraints regards neither the mid-term ramp-up of green
-energy export capacities nor the speed at which supporting infrastructure could
-scale up. Furthermore, global competition betweeen potential exporting
-countries, as well as between importing countries, make import volumes and
-prices more difficult to predict than our purely cost-based analysis can
-provide. Besides unclear market developments, local issues in exporting regions
-such as potential water scarcity to produce large amounts of hydrogen in
-renewable-rich but arid countries is not addressed. Moreover, the fact that we
-assume that import costs are not time-dependent and available on demand may
-underestimate some intermediate storage requirements for imports at
-entry-points, especially for hydrogen.
-
-In terms of industry relocation within Europe, our modelling is constrained to
-the migration of steel, ammonia and chemicals. Other sectors like concrete and
-alumina production is not considered for relocation. We make this choice so that
-relocation within Europe can compete with imports from abroad, which equates a
-migration of the industry branch out of the European value chain. Potential
-repurcussions on local jobs and relocatoin costs are not captured by the model.
-Finally, it should be acknowledged that our assumptions about the broad
-availability of district heating networks across Europe to absorb
-\mbox{power-to-X} waste heat are relatively progressive as it is not certain
-that central heating will become available in regions which have not based their
-heating supply on district heating so far.
-
-\newpage
-
 \section*{Causes and severity of import cost uncertainty}
 
-In \cref{tab:cost-uncertainty}, we vary some of the techno-economic assumptions
-for evaluating green fuel supply chains in the exporting countries to justify
-the range of import cost deviations from the defaults. These relate to
-technology costs, financing costs, excess power and heat handling, fuel
-synthesis flexibility, and the availability of geological hydrogen storage and
-alternative sources of CO$_2$. For all the following sensitivities, it should be
-noted that they are not additive.
 
-A higher weighted average cost of capital (WACC) than the uniformly applied 7\%,
-e.g.~due to higher project risks, and lower WACC, e.g.~due to the
-government-backing of a project, have a substantial effect on the import cost
-calculations; an increase or decrease by just one percentage point already
-alters the costs per unit of energy by more than
-7\%.
- 
-Likewise, a failure to achieve the anticipated cost reductions for electrolysers
-and DAC systems would also result in far-reaching cost increases for green
-energy imports, especially if the fuel contains carbon. The availability of
-biogenic CO$_2$ (or fossil CO$_2$ from industrial processes that is largely
-cycled between use and synthesis and, hence, not emitted to the atmosphere) can
-reduce the green fuel cost by 20\% if it can be provided for 60 \euro{}/t and by
-10\% if made available for 100 \euro{}/t.
-
-The default assumptions for export supply chains assume islanded fuel synthesis
-sites that are not connected to the local electricity system. The isolation
-drives the system into high curtailment rates of 8\%. If surplus electricity
-production could be sold and absorbed by the local power grid, considerable cost
-reductions could be achieved (refer to \cref{tab:cost-uncertainty}).
-
-Besides integration with the local energy system, process integration using
-waste heat streams from power-to-X plants for direct air capture and flexible
-Fischer-Tropsch synthesis similar to methanolisation can also reduce fuel cost
-by 3-5\% each. Conditions that would allow for geological hydrogen storage
-reduce the need for flexible synthesis plant operation and could reduce import
-costs by more than 7\%. However, even though many potential export countries
-possess geological hydrogen storage potential, suitable storage sites are not
-always co-located with the countries' best renewable potentials.
-
-Finally, cost rises can also be expected if the most competitive exporting
-countries are not offering to export green energy. Argentina and Chile have a
-margin of 10 \euro{}/MWh over the next cheapest exporting country
-(i.e.~Australia, Algeria and Libya with 120 \euro{}/MWh). If these countries
-were unavailable for import, costs would rise by almost 10\%.
-
-\begin{table*}
+\begin{table*}[!htb]
     \footnotesize
     \centering
     \begin{tabular}{lrrrr}
@@ -144,6 +68,85 @@ were unavailable for import, costs would rise by almost 10\%.
     additive.}
     \label{tab:cost-uncertainty}
 \end{table*}
+
+
+In \cref{tab:cost-uncertainty}, we vary some of the techno-economic assumptions
+for evaluating green fuel supply chains in the exporting countries to justify
+the range of import cost deviations from the defaults. These relate to
+technology costs, financing costs, excess power and heat handling, fuel
+synthesis flexibility, and the availability of geological hydrogen storage and
+alternative sources of CO$_2$. For all the following sensitivities, it should be
+noted that they are not additive.
+
+A higher weighted average cost of capital (WACC) than the uniformly applied 7\%,
+e.g.~due to higher project risks, and lower WACC, e.g.~due to the
+government-backing of a project, have a substantial effect on the import cost
+calculations; an increase or decrease by just one percentage point already
+alters the costs per unit of energy by more than
+7\%.
+ 
+Likewise, a failure to achieve the anticipated cost reductions for electrolysers
+and DAC systems would also result in far-reaching cost increases for green
+energy imports, especially if the fuel contains carbon. The availability of
+biogenic CO$_2$ (or fossil CO$_2$ from industrial processes that is largely
+cycled between use and synthesis and, hence, not emitted to the atmosphere) can
+reduce the green fuel cost by 20\% if it can be provided for 60 \euro{}/t and by
+10\% if made available for 100 \euro{}/t.
+
+The default assumptions for export supply chains assume islanded fuel synthesis
+sites that are not connected to the local electricity system. The isolation
+drives the system into high curtailment rates of 8\%. If surplus electricity
+production could be sold and absorbed by the local power grid, considerable cost
+reductions could be achieved (refer to \cref{tab:cost-uncertainty}).
+
+Besides integration with the local energy system, process integration using
+waste heat streams from power-to-X plants for direct air capture and flexible
+Fischer-Tropsch synthesis similar to methanolisation can also reduce fuel cost
+by 3-5\% each. Conditions that would allow for geological hydrogen storage
+reduce the need for flexible synthesis plant operation and could reduce import
+costs by more than 7\%. However, even though many potential export countries
+possess geological hydrogen storage potential, suitable storage sites are not
+always co-located with the countries' best renewable potentials.
+
+Finally, cost rises can also be expected if the most competitive exporting
+countries are not offering to export green energy. Argentina and Chile have a
+margin of 10 \euro{}/MWh over the next cheapest exporting country
+(i.e.~Australia, Algeria and Libya with 120 \euro{}/MWh). If these countries
+were unavailable for import, costs would rise by almost 10\%.
+
+\newpage
+
+\section*{Limitations}
+
+Several limitations of the study should be noted. The model is a simplified
+representation of the energy system and does not capture all aspects of the
+real-world transition. First of all, the optimization results represent a
+long-term equilibrium that does not account for the transition process from the
+mostly fossil-based energy system to a carbon-neutral one. This means that the
+model does not capture constraints regards neither the mid-term ramp-up of green
+energy export capacities nor the speed at which supporting infrastructure could
+scale up. Furthermore, global competition betweeen potential exporting
+countries, as well as between importing countries, make import volumes and
+prices more difficult to predict than our purely cost-based analysis can
+provide. Besides unclear market developments, local issues in exporting regions
+such as potential water scarcity to produce large amounts of hydrogen in
+renewable-rich but arid countries is not addressed. Moreover, the fact that we
+assume that import costs are not time-dependent and available on demand may
+underestimate some intermediate storage requirements for imports at
+entry-points, especially for hydrogen.
+
+In terms of industry relocation within Europe, our modelling is constrained to
+the migration of steel, ammonia and chemicals. Other sectors like concrete and
+alumina production is not considered for relocation. We make this choice so that
+relocation within Europe can compete with imports from abroad, which equates a
+migration of the industry branch out of the European value chain. Potential
+repurcussions on local jobs and relocatoin costs are not captured by the model.
+Finally, it should be acknowledged that our assumptions about the broad
+availability of district heating networks across Europe to absorb
+\mbox{power-to-X} waste heat are relatively progressive as it is not certain
+that central heating will become available in regions which have not based their
+heating supply on district heating so far.
+
 
 \newpage
 

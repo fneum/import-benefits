@@ -30,15 +30,16 @@ except for existing hydro-electricity and transmission infrastructure targeting
 net-zero CO$_2$ emissions.
 
 Networks are considered for electricity, methane and hydrogen
-transport.\cite{ENTSOE,plutaSciGRIDGas2022a} However, other than in Neumann et
+transport.\cite{ENTSOE,plutaSciGRIDGas2022a} However, different to Neumann et
 al.,\cite{neumannPotentialRole2023} pipeline retrofitting to hydrogen is
-disabled for computational reasons. Data on the gas transmission system is
-further supplemented by the locations of fossil gas extraction sites and gas
-storage facilities based on SciGRID\_gas,\cite{plutaSciGRIDGas2022a} as well as
-investment costs and capacities of existing and planned LNG
+disabled for computational reasons such that all hydrogen pipelines are assumed
+to be newly built. Data on the gas transmission system is further supplemented
+by the locations of fossil gas extraction sites and gas storage facilities based
+on SciGRID\_gas,\cite{plutaSciGRIDGas2022a} as well as investment costs and
+capacities of existing and planned LNG
 terminals\cite{instituteforenergyeconomicsandfinancialanalysisEuropeanLNG2023}
-Moreover, a carbon dioxide network is not explicitly co-optimised since as CO$_2$ is
-not spatially resolved in this model version.\cite{hofmannDesigningCO22023}
+Moreover, a carbon dioxide network is not explicitly co-optimised since CO$_2$
+is not spatially resolved in this model version.\cite{hofmannDesigningCO22023}
 
 The overall annual sequestration of CO$_2$ is limited to 200
 Mt$_{\text{CO}_2}$/a. This number allows for sequestering the industry's
@@ -64,7 +65,9 @@ for low-temperature heat provision in industrial applications, biomass boilers
 and CHPs, and biofuel production for use in aviation, shipping and the chemicals
 industry. Additionally, we allow biogas upgrading, including the capture of the
 CO$_2$ contained in biogas. The total assumed bioenergy potentials are 1569~TWh
-with a carbon content corresponding to 546~Mt$_{\text{CO}_2}$/a.
+with a carbon content corresponding to 546~Mt$_{\text{CO}_2}$/a, which is not
+fully available as a feedstock for fuel synthesis due to imperfect capture
+rates of up to 90\%.
 
 Heating supply technologies like heat pumps, electric boilers, gas boilers, and
 combined heat and power (CHP) plants are endogenously optimised separately for
@@ -137,7 +140,7 @@ Starting from the methodology by Hampp et al.\cite{hamppImportOptions2023}, some
 adjustments were made to the original TRACE model. Namely, land availability and
 wind and solar time-series are determined using
 \textit{atlite}\cite{hofmannAtliteLightweight2021} instead of
-\textit{GEGIS},\cite{mattssonAutopilotEnergy2021}. Techno-economic assumptions
+\textit{GEGIS}.\cite{mattssonAutopilotEnergy2021} Techno-economic assumptions
 were aligned with those used in the European model, and steel was included as an
 energy-intensive material import vector. The exporting countries comprise
 Australia, Argentina, Chile, Kazakhstan, Namibia, Turkey, Ukraine, the Eastern
@@ -145,13 +148,13 @@ United States and Canada, mainland China, and counties in the MENA region.
 
 To determine the levelised cost of energy for exports, the methodology first
 assesses the regional potentials for wind and solar energy. A regional
-electricity cost supply curve is determined, from which projected future energy
-demand is subtracted. Thereby, domestic consumption is prioritised and supplied
-by the countries' best renewable resources even though we do not model the
-energy transition in exporting countries in detail. The remaining wind and solar
-electricity supply can then be used to produce the specific energy or material
-vector using water electrolysis for \ce{H2}, direct air capture (DAC) for
-\ce{CO2}, air separation units (ASU) for \ce{N2}, synthesis of methane,
+electricity cost supply curve is determined, from which projected future local
+energy demand is subtracted. Thereby, domestic consumption is prioritised and
+supplied by the countries' best renewable resources even though we do not model
+the energy transition in exporting countries in detail. The remaining wind and
+solar electricity supply can then be used to produce the specific energy or
+material vector using water electrolysis for \ce{H2}, direct air capture (DAC)
+for \ce{CO2}, air separation units (ASU) for \ce{N2}, synthesis of methane,
 methanol, ammonia or Fischer-Tropsch fuels from \ce{H2} with \ce{CO2} or
 \ce{N2}, and \ce{H2} direct iron reduction (DRI) with subsequent processing in
 electric arc furnaces (EAF) for the processing of iron ore (103.7 \euro{}/t)
@@ -163,7 +166,7 @@ vectors.\cite{irenaGlobalHydrogen2022} Further details on the energy and
 feedstock flow and process efficiencies are outlined in
 \cref{fig:import-esc-scheme}.
 
-For each vector, an annual reference import demand of 500~TWh (lower heating
+For each vector, an annual reference export demand of 500~TWh (lower heating
 value, LHV) or 100~Mt of steel is assumed, mirroring large-scale energy and
 material infrastructures and export volumes, corresponding to approximately 40\%
 of current LNG
