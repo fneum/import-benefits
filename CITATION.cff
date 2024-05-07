@@ -1,13 +1,16 @@
-cff-version: 1.1.0
+cff-version: 1.2.0
 message: ""
-title: "Benefits of Energy Imports into Europe"
+title: "Energy Imports and Infrastructure in a Carbon-Neutral European Energy System"
 repository: https://github.com/fneum/import-benefits
-version: 0.0.1
+version: 0.0.3
 license: MIT
 authors:
-  - family-names: Hampp
-    given-names: Johannes
-    orcid: https://orcid.org/0000-0002-1776-116X
   - family-names: Neumann
     given-names: Fabian
     orcid: https://orcid.org/0000-0001-8551-1480
+  - family-names: Hampp
+    given-names: Johannes
+    orcid: https://orcid.org/0000-0002-1776-116X
+  - family-names: Brown
+    given-names: Tom
+    orcid: https://orcid.org/0000-0001-5898-1911

@@ -1,34 +1,95 @@
-# Infrastructure Planning and Energy Imports into Europe
-
-[![pre-commit.ci status](https://results.pre-commit.ci/badge/github/fneum/import-benefits/main.svg?badge_token=mAxzRKyvSDiYmZYY0ZnVLg)](https://results.pre-commit.ci/latest/github/fneum/import-benefits/main?badge_token=mAxzRKyvSDiYmZYY0ZnVLg)
+# Energy Imports and Infrastructure in a Carbon-Neutral European Energy System
 
 ## Installation
 
+Clone the `git` repository from Github and enter the directory:
+
 ```sh
 git clone --recurse-submodules git@github.com:fneum/import-benefits
+cd import-benefits
 ```
 
-Using `micromamba` or similar alternative, install with command:
+Use `conda` or a similar alternative to install the necessary **Python environment**:
 
 ```sh
-micromamba create -f workflow/pypsa-eur/envs/environment.yaml -n pypsa-eur-20230811
+conda env create -f workflow/pypsa-eur/envs/environment.yaml -n pypsa-eur-imports
 ```
 
-cf. https://mamba.readthedocs.io/en/latest/user_guide/micromamba.html#conda-yaml-spec-files
-
-If you use Gurobi:
+The installation process should take only a few minutes; if it takes longer, consider updating your `conda` installation before retrying to create the environment:
 
 ```sh
-mm activate pypsa-eur-20230811
-mm install -c gurobi gurobi
+conda deactivate
+conda update conda
 ```
+
+Additionally, install a **solver** of your choice, e.g. Gurobi:
+
+```sh
+conda activate pypsa-eur-imports
+conda install -c gurobi gurobi
+```
+
+For an environment specification with fixed versions, use `workflow/pypsa-eur/envs/environment.yaml`:
+
+```sh
+conda env create -f workflow/pypsa-eur/envs/environment.fixed.yaml -n pypsa-eur-imports-fixed
+```
+
+Finally, there is a data requirement that is not included in the repository and not downloaded automatically.
+
+Download the following `zip` folder and unpack it into the `data` directory.
+
+```sh
+wget https://tubcloud.tu-berlin.de/s/Sfbd38DZTpTYpkb/download/import-benefits-data.zip
+unzip import-benefits-data.zip -d workflow/pypsa-eur/data
+```
+
+The workflow can be executed on Linux, Mac or Windows. There are no futher specific non-standard hardware requirements.
 
 ## Usage
 
-From `root` of project:
+This repository uses the [`snakemake` workflow management tool](https://snakemake.readthedocs.io/en/stable/).
+
+Apart from solving the optimisation problem of a high-resolution model configuration, the workflow can be executed on a local machine. The preprocessing can take 1-2 hours and may require 16-24 GB of RAM.
+
+To run a test workflow resulting in a model with reduced temporal resolution with a runtime limited to around 2 hours so that it is suitable for local execution, execute the following commands from the `root` directory of the project:
 
 ```sh
-snakemake --profile slurm plot_summary --configfile=config/config.main.yaml
+conda activate pypsa-eur-imports
+snakemake -call --configfile=config/config.small.yaml
+```
+
+To reproduce the model runs presented in the paper, execute the following commands from the `root` directory of the project:
+
+```sh
+conda activate pypsa-eur-imports
+snakemake -call --configfile=config/config.20231025-zecm.yaml
+```
+
+These larger runs with higher temporal resolution require a high-performance computing setup with at least 128 GB RAM available and access to multiple cores is beneficial for runtime improvements but not strictly necessary. However, the runtime for a single scenario can exceed 48 hours. As there are around 200 scenarios, it is recommended to use the [`snakemake` cluster integration](https://snakemake.readthedocs.io/en/v7.19.1/executing/cluster.html) to parallelize scenarios. 
+
+The `yaml` files referenced above can be used to edit and configure the scenarios, e.g. by adding additional cases or changing some assumptions.
+
+More detailed usage instructions for the underlying PyPSA-Eur model can be found
+at https://pypsa-eur.readthedocs.io/.
+
+## Outputs and Inspection
+
+Running the workflow will create various intermediate resources and results files, including `.csv` files with summary data, `.pdf` files with summary plots and `.nc` files, most of which are PyPSA network files before or after solving.
+
+These files are placed in the `workflow/pypsa-eur/resources` and `workflow/pypsa-eur/results` directories.
+
+PyPSA networks can be read and inspected with Python in the following way:
+
+```py
+import pypsa
+fn = "workflow/pypsa-eur/results/small/postnetworks/elec_s_110_lvopt__Co2L0-365H-T-H-B-I-S-A-imp_2050.nc"
+n = pypsa.Network(fn)
+n.statistics()
+n.statistics.energy_balance()
+n.buses_t.marginal_price
 ```
 
 ## License
+
+[MIT](LICENSE)
