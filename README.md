@@ -1,5 +1,11 @@
 # Energy Imports and Infrastructure in a Carbon-Neutral European Energy System
 
+Code for preprint article [2404.03927](https://arxiv.org/abs/2404.03927) currently under review.
+
+**Abstract:**
+
+> Importing renewable energy to Europe offers many potential benefits, including reduced energy costs, lower pressure on infrastructure development, and less land-use within Europe. However, there remain many open questions: on the achievable cost reductions, how much should be imported, whether the energy vector should be electricity, hydrogen or hydrogen derivatives like ammonia or steel, and their impact on Europe's domestic energy infrastructure needs. This study integrates the TRACE global energy supply chain model with the sector-coupled energy system model for Europe PyPSA-Eur to explore scenarios with varying import volumes, costs, and vectors. We find system cost reductions of 1-14%, depending on assumed import costs, with diminishing returns for larger import volumes and a preference for methanol, steel and hydrogen imports. Keeping some domestic power-to-X production is beneficial for integrating variable renewables, utilising waste heat from fuel synthesis and leveraging local sustainable carbon sources. Our findings highlight the need for coordinating import strategies with infrastructure policy and reveal maneuvering space for incorporating non-cost decision factors. 
+
 ## Installation
 
 Clone the `git` repository from Github and enter the directory:
