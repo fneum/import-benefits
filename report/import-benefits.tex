@@ -1,6 +1,6 @@
 \documentclass[5p,9pt]{elsarticle}
 
-\journal{Nature Energy}
+\journal{Nature Communications}
 
 % Length – up to 3,000 words, excluding abstract, Methods, references and figure legends.
 % Abstract – up to 150 words, unreferenced.
@@ -54,6 +54,9 @@
 \usepackage[prependcaption,textsize=footnotesize]{todonotes}
 \usepackage{blindtext}
 % \usepackage{pdflscape}
+
+\usepackage[pagewise]{lineno}
+\linenumbers
 
 \usepackage{xr}
 \externaldocument{import-benefits-si}
@@ -187,9 +190,11 @@
 
 \input{sections/methods.tex}
 
-% \section*{Acknowledgements}
+\section*{Acknowledgements}
 
-% XY gratefully acknowledge funding from XY under grant no. 00000.
+J.H. gratefully acknowledges funding from the Kopernikus-Ariadne project (FKZ
+03SFK5A and 03SFK5A0-2) by the German Federal Ministry of Education and
+Research (\textit{Bundesministerium für Bildung und Forschung, BMBF}).
 
 % \section*{License}
 % \doclicenseLongText
