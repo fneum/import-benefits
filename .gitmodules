@@ -1,3 +1,6 @@
 [submodule "workflow/pypsa-eur"]
 	path = workflow/pypsa-eur
 	url = https://github.com/pypsa/pypsa-eur
+[submodule "workflow/trace"]
+	path = workflow/trace
+	url = git@github.com:fneum/trace.git
