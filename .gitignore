@@ -7,7 +7,7 @@ dconf
 *.pdf
 *.png
 config/config.*.yaml
-workflow/trace
+# workflow/trace
 *.gpkg
 
 ## folders
