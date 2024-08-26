@@ -4,3 +4,6 @@
 [submodule "workflow/trace"]
 	path = workflow/trace
 	url = git@github.com:fneum/trace.git
+[submodule "workflow/synde"]
+	path = workflow/synde
+	url = git@github.com:euronion/synde.git
