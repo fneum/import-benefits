@@ -1,18 +1,6 @@
-\documentclass[5p,9pt]{elsarticle}
+\documentclass[1p,11pt]{elsarticle}
 
 \journal{Nature Communications}
-
-% Length – up to 3,000 words, excluding abstract, Methods, references and figure legends.
-% Abstract – up to 150 words, unreferenced.
-% Display items – up to 8 items (figures and/or tables).
-% Article should be divided as follows:
-%     Introduction (without heading)
-%     Main text
-%     Discussion/Conclusions
-%     Methods. ​
-% Main text and Methods should be divided by topical subheadings; the Discussion/Conclusions does not contain subheadings.
-
-% https://twitter.com/mwclimatesci/status/1111773593656918016?s=46&t=p6Kals2l9yy3e5W8zExYbQ
 
 % \usepackage{natbib}
 \bibliographystyle{elsarticle-num}
@@ -23,10 +11,20 @@
 \usepackage{libertinust1math}
 \usepackage{geometry}
 \geometry{
-    top=10mm,
+    top=12mm,
     bottom=15mm,
-	left=10mm,
-	right=10mm,
+	% left=10mm,
+	% right=10mm,
+}
+
+\usepackage{afterpage}
+\usepackage{changepage}
+
+% Command for full width figures
+\newcommand{\fullwidthfigure}[1]{%
+  \begin{adjustwidth}{-\dimexpr\marginparwidth+\marginparsep\relax}{-\dimexpr\marginparwidth+\marginparsep\relax}
+    #1
+  \end{adjustwidth}
 }
 
 % \usepackage[final]{microtype}
@@ -55,7 +53,8 @@
 \usepackage{blindtext}
 % \usepackage{pdflscape}
 
-\usepackage[pagewise]{lineno}
+% \usepackage[pagewise]{lineno}
+\usepackage{lineno}
 \linenumbers
 
 \usepackage{xr}
@@ -73,11 +72,11 @@
 
 \usepackage{lipsum}
 
-\graphicspath{
-    {../workflow/notebooks/},
-    {../workflow/pypsa-eur/resources/},
-    {../workflow/pypsa-eur/results/},
-}
+% \graphicspath{
+%     {../workflow/notebooks/},
+%     {../workflow/pypsa-eur/resources/},
+%     {../workflow/pypsa-eur/results/},
+% }
 
 % \usepackage[
 % 	type={CC},
@@ -97,7 +96,7 @@
 \def\el{${}_{\textrm{el}}$}
 \def\th{${}_{\textrm{th}}$}
 
-\newcommand{\bneuro}[1]{#1\,bn\euro{}/a}
+\newcommand{\bneuro}[1]{#1\,bn\euro{}$_\text{'20}$~a$^{-1}$}
 
 \renewcommand{\ttdefault}{\sfdefault}
 
@@ -136,7 +135,7 @@
 
 \begin{frontmatter}
 
-	\title{Energy Imports and Infrastructure in a Carbon-Neutral European Energy System}
+	\title{Energy Imports and Infrastructure in a\\Carbon-Neutral European Energy System}
 
 	\author[tub]{Fabian Neumann\corref{correspondingauthor}}
 	\ead{f.neumann@tu-berlin.de}
@@ -179,7 +178,7 @@
 
 \input{sections/results.tex}
 
-\section*{Discussion and conclusions}
+\section*{Discussion}
 \label{sec:discussion}
 
 \input{sections/discussion.tex}
@@ -254,10 +253,19 @@ Writing - review \& editing
 
 The authors declare no competing interests.
 
-\section*{Data and code availability}
+\section*{Data availability}
 
-A dataset of the model results will be made available on \url{zenodo} after peer-review.
-The code to reproduce the experiments is available at \url{https://github.com/fneum/import-benefits}.
+A dataset of the model results is available on Zenodo under
+\url{https://doi.org/10.5281/zenodo.14041768}. Data on techno-economic
+assumptions can be found at
+\url{https://github.com/PyPSA/technology-data/tree/import-benefits}.
+
+\section*{Code availability}
+
+The code to reproduce the experiments is available at
+\url{https://github.com/fneum/import-benefits} (version vX). We also refer to
+the documentation of PyPSA-Eur at \url{https://pypsa-eur.readthedocs.io} for
+more details.
 
 \renewcommand{\ttdefault}{\sfdefault}
 % \bibliography{import-benefits}

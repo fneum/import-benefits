@@ -1,4 +1,4 @@
-\documentclass[3p]{elsarticle}
+\documentclass[3p,11pt]{elsarticle}
 
 \makeatletter
 \def\ps@pprintTitle{%
@@ -27,8 +27,8 @@
 \geometry{
     top=10mm,
     bottom=15mm,
-	% left=10mm,
-	% right=10mm,
+	left=13mm,
+	right=13mm,
 }
 
 \usepackage{amsmath}
@@ -96,8 +96,8 @@
 % \cftsetindents{section}{1em}{3em}
 % \cftsetindents{subsection}{1em}{3em}
 
-\usepackage[pagewise]{lineno}
-\linenumbers
+% \usepackage[pagewise]{lineno}
+% \linenumbers
 
 \urlstyle{sf}
 
@@ -106,7 +106,20 @@
 
 \begin{document}
 
-{\Large Supplementary Information}
+\begin{frontmatter}
+
+	\title{Supplementary Information:\\Energy Imports and Infrastructure in a Carbon-Neutral European Energy System}
+
+	\author[tub]{Fabian Neumann\corref{correspondingauthor}}
+	\ead{f.neumann@tu-berlin.de}
+	\author[pik]{Johannes Hampp}
+	\author[tub]{Tom Brown}
+
+	\address[tub]{Department of Digital Transformation in Energy Systems, Institute of Energy Technology,\\Technische Universität Berlin, Fakultät III, Einsteinufer 25 (TA 8), 10587 Berlin, Germany}
+	\address[pik]{Potsdam Institute for Climate Impact Research (PIK), Member of the Leibniz Association, P.O.~Box 60 12 03, 14412 Potsdam, Germany}
+
+\end{frontmatter}
+
 
 \renewcommand{\figurename}{Supplementary Figure}
 \crefname{figure}{Supplementary Fig.}{Supplementary Figs.}

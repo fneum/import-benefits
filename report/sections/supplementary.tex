@@ -1,252 +1,318 @@
 
-\section*{Causes and severity of import cost uncertainty}
+\newpage
+
+\begin{figure*}[!htb]
+    \centering
+    \includegraphics[width=1.0\textwidth]{static/graphics/sketch2-1.pdf}
+    \caption{\textbf{Schematic overview of the import supply chains.} The
+    illustration includes key input-output ratios of the different conversion
+    processes and the transport efficiencies for the different import vectors.}
+    \label{fig:si:import-esc-scheme}
+\end{figure*}
+
+\begin{figure}[!htb]
+    \includegraphics[page=1,width=\textwidth, trim=0cm 1.5cm 3cm 0cm, clip]{../workflow/notebooks/flowchart.pdf} \\
+    \includegraphics[page=2,width=\textwidth, trim=0cm 5cm 3cm 0cm, clip]{../workflow/notebooks/flowchart.pdf}
+    \caption{\textbf{Overview of supply and consumption options per carrier.}
+    Each technology inherits the resolution of the highest resolved carrier it
+    connects to (i.e.~any technology that consumes electricity exists as
+    investment option for each of the 115 regions).}
+    \label{fig:si:supply-consumption-options}
+\end{figure}
+
+\begin{figure}[!htb]
+    \includegraphics[width=\textwidth]{../workflow/pypsa-eur/resources/20240826-z1/graphics/import_world_map_hydrogen.pdf} \\
+    \caption{\textbf{Overview of lowest direct hydrogen import costs into Europe
+    per exporting country.} Supplement to Figure 1. Dotted areas indicate that
+    hydrogen export from the respective region is cheaper by pipeline than by
+    ship.}
+    \label{fig:si:worlmap-h2}
+\end{figure}
 
 
-\begin{table*}[!htb]
+\begin{figure}[!htb]
+    \includegraphics[width=\textwidth]{../workflow/notebooks/20240826-z1/fixed-demand.pdf} \\
+    \caption{\textbf{Overview of spatially fixed demands, when steel and ammonia
+    industry can relocate.} In this scenario, there is virtually no spatially
+    fixed hydrogen demand.}
+    \label{fig:si:demands}
+\end{figure}
+
+\begin{figure}[!htb]
+    \includegraphics[width=\textwidth]{../workflow/pypsa-eur/results/20240826-z1/graphics/fixed_demand/s_115_lvopt___2050.png.pdf} \\
+    \caption{\textbf{Overview of exogenous final energy and non-energy demand totals.}
+    The energy content of steel is given as 2.1 MWh per tonne.
+    }
+    \label{fig:si:demand_totals}
+\end{figure}
+
+
+\begin{figure}[!htb]
+    \includegraphics[width=\textwidth]{../workflow/notebooks/20240826-z1/industry-relocation.pdf} \\
+    \caption{\textbf{Relocation patterns of steel and ammonia production in
+    scenario without imports.} All values are given relative to the total
+    production volume. The left column shows the original regional distribution
+    of steel and ammonia production volumes. The centre column shows the
+    endogenously optimized allocation of steel and ammonia production. The right
+    column shows the absolute change in the regions' total production share.
+    Much of the steel production moves to Spain, Scotland and Ireland. A
+    substantial share of ammonia production relocates to Finland.}
+    \label{fig:si:relocation}
+\end{figure}
+
+\begin{figure}[!htb]
+    \footnotesize
+    \begin{tabular}{cc}
+        (a) hydrogen by pipeline & (b) hydrogen by ship \\
+        \includegraphics[width=0.49\textwidth]{../workflow/pypsa-eur/resources/20240826-z1/graphics/import_supply_curve_pipeline-h2} &
+        \includegraphics[width=0.49\textwidth]{../workflow/pypsa-eur/resources/20240826-z1/graphics/import_supply_curve_shipping-lh2.pdf} \\
+    \end{tabular}
+    \caption{\textbf{Calculated import cost supply curve for hydrogen by pipeline and by
+    ship.} The levelised cost for each region have been calculated for an annual
+    export volume of 500~TWh. Some landlocked regions in Central Asia have been
+    excluded from ship-based exports. Some countries have been excluded from
+    pipeline-based exports due to unrealistic distances to bridge.}
+    \label{fig:si:isc-h2}
+\end{figure}
+
+\begin{figure}[!htb]
+    \footnotesize
+    \begin{tabular}{cc}
+        (a) methane by ship & (b) ammonia by ship \\
+        \includegraphics[width=0.49\textwidth]{../workflow/pypsa-eur/resources/20240826-z1/graphics/import_supply_curve_shipping-lch4.pdf} &
+        \includegraphics[width=0.49\textwidth]{../workflow/pypsa-eur/resources/20240826-z1/graphics/import_supply_curve_shipping-lnh3.pdf} \\
+    \end{tabular}
+    \caption{\textbf{Calculated import cost supply curve for methane and ammonia
+    by ship.} The levelised cost for each region have been calculated for an
+    annual export volume of 500~TWh. Some landlocked regions in Central Asia
+    have been excluded from ship-based exports.}
+    \label{fig:si:isc-ch4-nh3}
+\end{figure}
+
+\begin{figure}[!htb]
+    \footnotesize
+    \begin{tabular}{cc}
+        (a) methanol by ship & (b) Fischer-Tropsch fuel by ship \\
+        \includegraphics[width=0.49\textwidth]{../workflow/pypsa-eur/resources/20240826-z1/graphics/import_supply_curve_shipping-meoh.pdf} &
+        \includegraphics[width=0.49\textwidth]{../workflow/pypsa-eur/resources/20240826-z1/graphics/import_supply_curve_shipping-ftfuel.pdf} \\
+    \end{tabular}
+    \caption{\textbf{Calculated import cost supply curve for methanol and Fischer-Tropsch by ship.} The levelised cost for each region have been calculated for an
+    annual export volume of 500~TWh. Some landlocked regions in Central Asia
+    have been excluded from ship-based exports.}
+    \label{fig:si:isc-meoh-ft}
+\end{figure}
+
+\begin{figure}[!htb]
+    \footnotesize
+    \begin{tabular}{cc}
+        (a) HBI by ship & (b) steel by ship \\
+        \includegraphics[width=0.49\textwidth]{../workflow/pypsa-eur/resources/20240826-z1/graphics/import_supply_curve_shipping-hbi.pdf} &
+        \includegraphics[width=0.49\textwidth]{../workflow/pypsa-eur/resources/20240826-z1/graphics/import_supply_curve_shipping-steel.pdf} \\
+    \end{tabular}
+    \caption{\textbf{Calculated import cost supply curve for HBI and steel by
+    ship.} The levelised cost for each region have been calculated for an annual
+    export volume of 100~Mt. Some landlocked regions in Central Asia have been
+    excluded from ship-based exports.}
+    \label{fig:si:isc-hbi-St}
+\end{figure}
+
+\begin{figure}[!htb]
     \footnotesize
     \centering
-    \begin{tabular}{lrrrr}
-        \toprule
-        Factor & Change & Unit & Change & Unit\\
-        \midrule
-        higher WACC of 12\% (e.g.~high project risk) & +43.1 & \euro{}/MWh  &
-        +39.3 & \% \\
-        higher WACC of 10\% (e.g.~high project risk) & +25.3 & \euro{}/MWh  &
-        +23.0 & \% \\
-        higher WACC of 8\% (e.g.~high project risk) & +8.2 & \euro{}/MWh  & +7.4
-        & \% \\
-        higher direct air capture investment cost (+200\%) & +55.8 & \euro{}/MWh
-        & +50.8 & \% \\
-        higher direct air capture investment cost (+100\%) & +28.1 & \euro{}/MWh
-        & +25.6 & \% \\
-        higher direct air capture investment cost (+50\%) & +14.1 & \euro{}/MWh
-        & +12.9 & \% \\
-        higher direct air capture investment cost (+25\%) & +7.1 & \euro{}/MWh &
-        +6.5 & \% \\
-        higher electrolysis investment cost (+200\%) & +29.2 & \euro{}/MWh  &
-        +26.6 & \% \\
-        higher electrolysis investment cost (+100\%) & +16.7 & \euro{}/MWh  &
-        +15.2 & \% \\
-        higher electrolysis investment cost (+50\%) & +9.0 & \euro{}/MWh  & +8.2
-        & \% \\
-        higher electrolysis investment cost (+25\%) & +4.7 & \euro{}/MWh  & +4.3
-        & \% \\
-        Argentina and Chile not available for export & +10.1 & \euro{}/MWh  &
-        +9.2 & \% \\
-        \midrule
-        lower WACC of 3\% (e.g.~government guarantees) & -29.5 & \euro{}/MWh  &
-        -26.8 & \% \\
-        lower WACC of 5\% (e.g.~government guarantees) & -15.5 & \euro{}/MWh  &
-        -14.1 & \% \\
-        lower WACC of 6\% (e.g.~government guarantees) & -8.0 & \euro{}/MWh  &
-        -7.2 & \% \\
-        sell excess curtailed electricity at 40 \euro{}/MWh & -24.7 & \euro{}/MWh  &
-        -22.6 & \% \\
-        sell excess curtailed electricity at 30 \euro{}/MWh & -15.6 & \euro{}/MWh  &
-        -14.2 & \% \\
-        sell excess curtailed electricity at 20 \euro{}/MWh & -8.0 & \euro{}/MWh  &
-        -7.2 & \% \\
-        option to use available biogenic or cycled \ce{CO2} for 60 \euro{}/t & -21.7 &
-        \euro{}/MWh  & -19.7 & \% \\
-        option to use available biogenic or cycled \ce{CO2} for 80 \euro{}/t & -16.1 &
-        \euro{}/MWh  & -14.7 & \% \\
-        option to use available biogenic or cycled \ce{CO2} for 100 \euro{}/t & -10.6 &
-        \euro{}/MWh  & -9.7 & \% \\
-        option to build geological hydrogen storage at 2.4 \euro{}/kWh
-        (reduction by 95\%) & -8.2 & \euro{}/MWh  & -7.4 & \% \\
-        option to use power-to-X waste heat streams for direct air capture &
-        -3.8 & \euro{}/MWh  & -3.4 & \% \\
-        highly flexible operation of fuel synthesis plant (20\% minimum
-        part-load instead of 70\%) & -5.4 & \euro{}/MWh  & -4.9 & \% \\
-        \bottomrule
-    \end{tabular}
-    \caption{\textbf{Examples for potential import cost increases or decreases.}
-    The table presents cost sensitivities in absolute and relative terms based
-    on the supply chain for producing Fischer-Tropsch fuels in Argentina for
-    export to Europe. The reference fuel import cost for this case is 109.8
-    \euro{}/MWh. Responses to changes in the input assumptions are not
-    additive.}
-    \label{tab:cost-uncertainty}
-\end{table*}
+    \includegraphics[width=0.49\textwidth]{../workflow/trace/results/figures/default_2040_shipping-lh2_AR-South_T0500_supply-curves.pdf}
+    \includegraphics[width=0.49\textwidth]{../workflow/trace/results/figures/default_2040_shipping-lh2_AU-West_T0500_supply-curves.pdf} \\
+    \includegraphics[width=0.49\textwidth]{../workflow/trace/results/figures/default_2040_shipping-lh2_CA-East_T0500_supply-curves.pdf}
+    \includegraphics[width=0.49\textwidth]{../workflow/trace/results/figures/default_2040_shipping-lh2_TN_T0500_supply-curves.pdf} \\
+    \includegraphics[width=0.49\textwidth]{../workflow/trace/results/figures/default_2040_shipping-lh2_EG_T0500_supply-curves.pdf}
+    \includegraphics[width=0.49\textwidth]{../workflow/trace/results/figures/default_2040_shipping-lh2_MA_T0500_supply-curves.pdf} \\
+    \includegraphics[width=0.49\textwidth]{../workflow/trace/results/figures/default_2040_shipping-lh2_MR_T0500_supply-curves.pdf}
+    \includegraphics[width=0.49\textwidth]{../workflow/trace/results/figures/default_2040_shipping-lh2_US-South_T0500_supply-curves.pdf} \\
+    \includegraphics[width=0.49\textwidth]{../workflow/trace/results/figures/default_2040_shipping-lh2_EH_T0500_supply-curves.pdf}
+    \includegraphics[width=0.49\textwidth]{../workflow/trace/results/figures/default_2040_shipping-lh2_NA_T0500_supply-curves.pdf} \\
 
+    \caption{\textbf{Levelised cost supply curve of electricity in selected
+    exporting regions.} Shows potential and levelised cost of electricity for
+    each resource class of onshore wind (blue), offshore wind (light blue), and solar (yellow) in ascending order.}
+    \label{fig:si:lcoe-curve}
+\end{figure}
 
-In \cref{tab:cost-uncertainty}, we vary some of the techno-economic assumptions
-for evaluating green fuel supply chains in the exporting countries to justify
-the range of import cost deviations from the defaults. These relate to
-technology costs, financing costs, excess power and heat handling, fuel
-synthesis flexibility, and the availability of geological hydrogen storage and
-alternative sources of CO$_2$. For all the following sensitivities, it should be
-noted that they are not additive.
-
-A higher weighted average cost of capital (WACC) than the uniformly applied 7\%,
-e.g.~due to higher project risks, and lower WACC, e.g.~due to the
-government-backing of a project, have a substantial effect on the import cost
-calculations; an increase or decrease by just one percentage point already
-alters the costs per unit of energy by more than
-7\%.
-
-Likewise, a failure to achieve the anticipated cost reductions for electrolysers
-and DAC systems would also result in far-reaching cost increases for green
-energy imports, especially if the fuel contains carbon. The availability of
-biogenic CO$_2$ (or fossil CO$_2$ from industrial processes that is largely
-cycled between use and synthesis and, hence, not emitted to the atmosphere) can
-reduce the green fuel cost by 20\% if it can be provided for 60 \euro{}/t and by
-10\% if made available for 100 \euro{}/t.
-
-The default assumptions for export supply chains assume islanded fuel synthesis
-sites that are not connected to the local electricity system. The isolation
-drives the system into high curtailment rates of 8\%. If surplus electricity
-production could be sold and absorbed by the local power grid, considerable cost
-reductions could be achieved (refer to \cref{tab:cost-uncertainty}).
-
-Besides integration with the local energy system, process integration using
-waste heat streams from power-to-X plants for direct air capture and flexible
-Fischer-Tropsch synthesis similar to methanolisation can also reduce fuel cost
-by 3-5\% each. Conditions that would allow for geological hydrogen storage
-reduce the need for flexible synthesis plant operation and could reduce import
-costs by more than 7\%. However, even though many potential export countries
-possess geological hydrogen storage potential, suitable storage sites are not
-always co-located with the countries' best renewable potentials.
-
-Finally, cost rises can also be expected if the most competitive exporting
-countries are not offering to export green energy. Argentina and Chile have a
-margin of 10 \euro{}/MWh over the next cheapest exporting country
-(i.e.~Australia, Algeria and Libya with 120 \euro{}/MWh). If these countries
-were unavailable for import, costs would rise by almost 10\%.
-
-\newpage
-
-\section*{Limitations}
-
-Several limitations of the study should be noted. The model is a simplified
-representation of the energy system and does not capture all aspects of the
-real-world transition. First of all, the optimization results represent a
-long-term equilibrium that does not account for the transition process from the
-mostly fossil-based energy system to a carbon-neutral one. This means that the
-model does not capture constraints regards neither the mid-term ramp-up of green
-energy export capacities nor the speed at which supporting infrastructure could
-scale up. Furthermore, global competition betweeen potential exporting
-countries, as well as between importing countries, make import volumes and
-prices more difficult to predict than our purely cost-based analysis can
-provide. Besides unclear market developments, local issues in exporting regions
-such as potential water scarcity to produce large amounts of hydrogen in
-renewable-rich but arid countries is not addressed. Moreover, the fact that we
-assume that import costs are not time-dependent and available on demand may
-underestimate some intermediate storage requirements for imports at
-entry-points, especially for hydrogen.
-
-In terms of industry relocation within Europe, our modelling is constrained to
-the migration of steel, ammonia and chemicals. Other sectors like concrete and
-alumina production is not considered for relocation. We make this choice so that
-relocation within Europe can compete with imports from abroad, which equates a
-migration of the industry branch out of the European value chain. Potential
-repurcussions on local jobs and relocatoin costs are not captured by the model.
-Finally, it should be acknowledged that our assumptions about the broad
-availability of district heating networks across Europe to absorb
-\mbox{power-to-X} waste heat are relatively progressive as it is not certain
-that central heating will become available in regions which have not based their
-heating supply on district heating so far.
-
-
-\newpage
-
-
-\section*{Supplementary Figures}
 \begin{figure}[!htb]
     \footnotesize
     (a) 10\% higher import costs \\
-    \includegraphics[width=\textwidth]{20231025-zecm/sensitivity-bars-p10pc.pdf} \\
-    (b) 10\% lower import costs \\
-    \includegraphics[width=\textwidth]{20231025-zecm/sensitivity-bars-m10pc.pdf} \\
-    (c) 20\% lower import costs \\
-    \includegraphics[width=\textwidth]{20231025-zecm/sensitivity-bars-m20pc.pdf} \\
-    \caption{\textbf{Potential for cost reductions with reduced sets of import options for varying import costs.}}
-    \label{fig:si:subsets}
+    \includegraphics[width=\textwidth]{../workflow/notebooks/20240826-z1/sensitivity-bars-p10pc.pdf} \\
+    (b) 20\% higher import costs \\
+    \includegraphics[width=\textwidth]{../workflow/notebooks/20240826-z1/sensitivity-bars-p20pc.pdf} \\
+    \caption{\textbf{Potential for cost reductions with reduced sets of import
+    options for higher import costs.} This figure includes the sensitivity with
+    10\% and 20\% higher import costs for all fuels but electricity.}
+    \label{fig:si:subsets-higher}
+\end{figure}
+
+
+
+
+\begin{figure}[!htb]
+    \footnotesize
+    (a) 10\% lower import costs \\
+    \includegraphics[width=\textwidth]{../workflow/notebooks/20240826-z1/sensitivity-bars-m10pc.pdf} \\
+    (b) 20\% lower import costs \\
+    \includegraphics[width=\textwidth]{../workflow/notebooks/20240826-z1/sensitivity-bars-m20pc.pdf} \\
+    \caption{\textbf{Potential for cost reductions with reduced sets of import options for lower import costs.} This figure includes the sensitivity with
+    10\% and 20\% lower import costs for all fuels but electricity.}
+    \label{fig:si:subsets-lower}
 \end{figure}
 
 \begin{figure*}
     \small
-    (a) import costs +20\% \\
-    \includegraphics[width=\textwidth]{20231025-zecm/sensitivity-import-volume-AC+H21.2+CH41.2+NH31.2+FT1.2+MeOH1.2+St1.2.pdf}
-    \begin{tabular}{ll}
-        (b) import costs +10\% & (c) import costs -10\% \\
-        \includegraphics[width=0.495\textwidth, trim=0cm 0cm 12.8cm 0cm, clip]{20231025-zecm/sensitivity-import-volume-AC+H21.1+CH41.1+NH31.1+FT1.1+MeOH1.1+St1.1.pdf} &
-        \includegraphics[width=0.495\textwidth, trim=0cm 0cm 12.8cm 0cm, clip]{20231025-zecm/sensitivity-import-volume-AC+H20.9+CH40.9+NH30.9+FT0.9+MeOH0.9+St0.9.pdf} \\
-        (d) import costs -20\% & (e) import costs -30\% \\
-        \includegraphics[width=0.495\textwidth, trim=0cm 0cm 12.8cm 0cm, clip]{20231025-zecm/sensitivity-import-volume-AC+H20.8+CH40.8+NH30.8+FT0.8+MeOH0.8+St0.8.pdf} &
-        \includegraphics[width=0.495\textwidth, trim=0cm 0cm 12.8cm 0cm, clip]{20231025-zecm/sensitivity-import-volume-AC+H20.7+CH40.7+NH30.7+FT0.7+MeOH0.7+St0.7.pdf}
-    \end{tabular}
-    \caption{\textbf{Sensitivity of import volume on total system cost and composition for varying import costs.}}
-    \label{fig:si:volume}
+    (a) 50\% higher import costs \\
+    \includegraphics[width=\textwidth]{../workflow/notebooks/20240826-z1/sensitivity-import-volume-AC+H21.5+CH41.5+NH31.5+FT1.5+MeOH1.5+HBI1.5+St1.5.pdf} \\
+    (b) 30\% higher import costs \\
+    \includegraphics[width=\textwidth]{../workflow/notebooks/20240826-z1/sensitivity-import-volume-AC+H21.3+CH41.3+NH31.3+FT1.3+MeOH1.3+HBI1.3+St1.3.pdf} \\
+    \caption{\textbf{Sensitivity of import volume on total system cost and composition for varying import costs.} This figure includes the sensitivity with
+    50\% and 30\% higher import costs for all fuels but electricity.}
+    \label{fig:si:volume-higher-2}
+\end{figure*}
+
+\begin{figure*}
+    \small
+    (a) 20\% higher import costs \\
+    \includegraphics[width=\textwidth]{../workflow/notebooks/20240826-z1/sensitivity-import-volume-AC+H21.2+CH41.2+NH31.2+FT1.2+MeOH1.2+HBI1.2+St1.2.pdf} \\
+    (b) 10\% higher import costs \\
+    \includegraphics[width=\textwidth]{../workflow/notebooks/20240826-z1/sensitivity-import-volume-AC+H21.1+CH41.1+NH31.1+FT1.1+MeOH1.1+HBI1.1+St1.1.pdf} \\
+    \caption{\textbf{Sensitivity of import volume on total system cost and composition for varying import costs.} This figure includes the sensitivity with
+    10\% and 20\% higher import costs for all fuels but electricity.}
+    \label{fig:si:volume-higher-1}
+\end{figure*}
+
+\begin{figure*}
+    \small
+    (a) 10\% lower import costs \\
+    \includegraphics[width=\textwidth]{../workflow/notebooks/20240826-z1/sensitivity-import-volume-AC+H20.9+CH40.9+NH30.9+FT0.9+MeOH0.9+HBI0.9+St0.9.pdf} \\
+    (b) 20\% lower import costs \\
+    \includegraphics[width=\textwidth]{../workflow/notebooks/20240826-z1/sensitivity-import-volume-AC+H20.8+CH40.8+NH30.8+FT0.8+MeOH0.8+HBI0.8+St0.8.pdf} \\
+    \caption{\textbf{Sensitivity of import volume on total system cost and composition for varying import costs.} This figure includes the sensitivity with
+    10\% and 20\% lower import costs for all fuels but electricity.}
+    \label{fig:si:volume-lower-1}
+\end{figure*}
+
+\begin{figure*}
+    \small
+    (a) 30\% lower import costs \\
+    \includegraphics[width=\textwidth]{../workflow/notebooks/20240826-z1/sensitivity-import-volume-AC+H20.7+CH40.7+NH30.7+FT0.7+MeOH0.7+HBI0.7+St0.7.pdf} \\
+    (b) 50\% lower import costs \\
+    \includegraphics[width=\textwidth]{../workflow/notebooks/20240826-z1/sensitivity-import-volume-AC+H20.5+CH40.5+NH30.5+FT0.5+MeOH0.5+HBI0.5+St0.5.pdf} \\
+    \caption{\textbf{Sensitivity of import volume on total system cost and composition for varying import costs.} This figure includes the sensitivity with
+    30\% and 50\% higher import costs for all fuels but electricity.}
+    \label{fig:si:volume-lower-2}
 \end{figure*}
 
 
 \begin{figure*}
-    \includegraphics[width=\textwidth]{20231025-zecm/sensitivity-lines.pdf}
-    \caption{\textbf{Sensitivity of import volume on total system cost with subsets of import vectors available.}}
+    \includegraphics[width=\textwidth]{../workflow/notebooks/20240826-z1/sensitivity-lines.pdf}
+    \caption{\textbf{Sensitivity of import volume on total system cost with
+    subsets of import vectors available.} Supplement to Figure 6. The volume of imports is exogenously
+    forced for these runs and coloured lines represent certain restrictions in available import vectors.}
     \label{fig:si:volume-subsets}
 \end{figure*}
 
+% \begin{figure*}
+%     \centering
+%     \includegraphics[width=0.75\textwidth]{../workflow/notebooks/20240826-z1/sensitivity-bars-all-wAC.pdf}
+%     \caption{\textbf{Effect of import cost variations of all vectors (including
+%     electricity) on cost savings and import shares with all vectors allowed.}
+%     Supplement to Figure 5.}
+%     \label{fig:si:sensitivity-wac}
+% \end{figure*}
+
 \begin{figure*}
-    \footnotesize
-    \begin{tabular}{cc}
-        (a) only electricity imports & (b) only hydrogen imports \\
-        \includegraphics[width=0.49\textwidth]{20231025-zecm/graphics/import_shares/s_110_lvopt__Co2L0-2190SEG-T-H-B-I-S-A-onwind+p0.5-imp+AC_2050.pdf} &
-        \includegraphics[width=0.49\textwidth]{20231025-zecm/graphics/import_shares/s_110_lvopt__Co2L0-2190SEG-T-H-B-I-S-A-onwind+p0.5-imp+H2_2050.pdf} \\
-        (c) -10\% import costs (all carriers but electricity) & (d) -10\% import cost (only carbonaceous fuels) \\
-        \includegraphics[width=0.49\textwidth]{20231025-zecm/graphics/import_shares/s_110_lvopt__Co2L0-2190SEG-T-H-B-I-S-A-onwind+p0.5-imp+AC+H20.9+CH40.9+NH30.9+FT0.9+MeOH0.9+St0.9_2050.pdf} &
-        \includegraphics[width=0.49\textwidth]{20231025-zecm/graphics/import_shares/s_110_lvopt__Co2L0-2190SEG-T-H-B-I-S-A-onwind+p0.5-imp+AC+H2+CH40.9+NH3+FT0.9+MeOH0.9+St_2050.pdf} \\
-    \end{tabular}
-    \caption{\textbf{Import shares and mix for different import scenarios.}}
-    \label{fig:si:import-shares}
+    \centering
+    (a) only electricity imports \\
+    \includegraphics[width=0.57\textwidth]{../workflow/pypsa-eur/results/20240826-z1/graphics/import_shares/s_115_lvopt__imp+AC_2050.pdf}
+    \includegraphics[width=0.41\textwidth]{../workflow/pypsa-eur/results/20240826-z1/graphics/import_sankey/s_115_lvopt__imp+AC_2050.pdf} \\
+
+    (b) only hydrogen imports \\
+    \includegraphics[width=0.57\textwidth]{../workflow/pypsa-eur/results/20240826-z1/graphics/import_shares/s_115_lvopt__imp+H2_2050.pdf}
+    \includegraphics[width=0.41\textwidth]{../workflow/pypsa-eur/results/20240826-z1/graphics/import_sankey/s_115_lvopt__imp+H2_2050.pdf} \\
+    \caption{\textbf{Import shares and mix for import scenarios with restricted
+    import vectors.} For only electricity imports (a) and only hydrogen imports
+    (b). Supplement to Figure 3.}
+    \label{fig:si:import-shares-a}
+\end{figure*}
+
+\begin{figure*}
+    \centering
+    (a) 10\% lower import costs (all carriers but electricity) \\
+    \includegraphics[width=0.57\textwidth]{../workflow/pypsa-eur/results/20240826-z1/graphics/import_shares/s_115_lvopt__imp+AC+H20.9+CH40.9+NH30.9+FT0.9+MeOH0.9+HBI0.9+St0.9_2050.pdf}
+    \includegraphics[width=0.41\textwidth]{../workflow/pypsa-eur/results/20240826-z1/graphics/import_sankey/s_115_lvopt__imp+AC+H20.9+CH40.9+NH30.9+FT0.9+MeOH0.9+HBI0.9+St0.9_2050.pdf} \\
+
+    (b) 10\% lower import cost (only carbonaceous fuels) \\
+    \includegraphics[width=0.57\textwidth]{../workflow/pypsa-eur/results/20240826-z1/graphics//import_shares/s_115_lvopt__imp+AC+H2+CH40.9+NH3+FT0.9+MeOH0.9+HBI+St_2050.pdf}
+    \includegraphics[width=0.41\textwidth]{../workflow/pypsa-eur/results/20240826-z1/graphics//import_sankey/s_115_lvopt__imp+AC+H2+CH40.9+NH3+FT0.9+MeOH0.9+HBI+St_2050.pdf} \\
+    \caption{\textbf{Import shares and mix for import scenarios with 10\% lower
+    costs.} For all carries but electricity (a) and only carbonaceous fuels (b).
+    Supplement to Figure 3.}
+    \label{fig:si:import-shares-b}
 \end{figure*}
 
 \begin{figure*}
     \footnotesize
     \begin{tabular}{ccc}
         (a) H$_2$ / no imports allowed & (b) H$_2$ / only hydrogen imports & (c) H$_2$ / all imports allowed \\
-        \includegraphics[width=0.325\textwidth]{20231025-zecm/csc-h2-noimp} &
-        \includegraphics[width=0.325\textwidth]{20231025-zecm/csc-h2-imp+H2} &
-        \includegraphics[width=0.325\textwidth]{20231025-zecm/csc-h2-imp} \\
+        \includegraphics[width=0.325\textwidth]{../workflow/notebooks/20240826-z1/csc-h2-noimp} &
+        \includegraphics[width=0.325\textwidth]{../workflow/notebooks/20240826-z1/csc-h2-imp+H2} &
+        \includegraphics[width=0.325\textwidth]{../workflow/notebooks/20240826-z1/csc-h2-imp} \\
         (d) MeOH / no imports allowed & (e) MeOH / only hydrogen imports & (f) MeOH / all imports allowed \\
-        \includegraphics[width=0.325\textwidth]{20231025-zecm/csc-meoh-noimp} &
-        \includegraphics[width=0.325\textwidth]{20231025-zecm/csc-meoh-imp+H2} &
-        \includegraphics[width=0.325\textwidth]{20231025-zecm/csc-meoh-imp} \\
+        \includegraphics[width=0.325\textwidth]{../workflow/notebooks/20240826-z1/csc-meoh-noimp} &
+        \includegraphics[width=0.325\textwidth]{../workflow/notebooks/20240826-z1/csc-meoh-imp+H2} &
+        \includegraphics[width=0.325\textwidth]{../workflow/notebooks/20240826-z1/csc-meoh-imp} \\
         (g) Fischer-Tropsch / no imports allowed & (h) Fischer-Tropsch / only hydrogen imports & (i) Fischer-Tropsch / all imports allowed \\
-        \includegraphics[width=0.325\textwidth]{20231025-zecm/csc-ftf-noimp} &
-        \includegraphics[width=0.325\textwidth]{20231025-zecm/csc-ftf-imp+H2} &
-        \includegraphics[width=0.325\textwidth]{20231025-zecm/csc-ftf-imp} \\
-        (j) CH$_4$ / no imports allowed & (k) CH$_4$ / only hydrogen imports & (l) CH$_4$ / all imports allowed \\
-        \includegraphics[width=0.325\textwidth]{20231025-zecm/csc-sab-noimp} &
-        \includegraphics[width=0.325\textwidth]{20231025-zecm/csc-sab-imp+H2} &
-        \includegraphics[width=0.325\textwidth]{20231025-zecm/csc-sab-imp} \\
+        \includegraphics[width=0.325\textwidth]{../workflow/notebooks/20240826-z1/csc-ftf-noimp} &
+        \includegraphics[width=0.325\textwidth]{../workflow/notebooks/20240826-z1/csc-ftf-imp+H2} &
+        \includegraphics[width=0.325\textwidth]{../workflow/notebooks/20240826-z1/csc-ftf-imp} \\
     \end{tabular}
     \caption{\textbf{Domestic cost supply curves for different import scenarios and carriers.}
         The cost supply curves are built using sorted spatio-temporal market
-        values with corresponding production volumes per region and snapshot. If
-        the domestic supply curve is missing, no domestic production occured in
-        the scenario. Shaded areas or dotted lines show import cost ranges of
+        values with corresponding production volumes per region and snapshot.
+        Dotted lines show the import cost supply curves (in steps of 500~TWh) of
         the respective carriers as reference.}
     \label{fig:si:cost-supply-curves}
 \end{figure*}
 
+\begin{figure*}
+    \footnotesize
+    (a) no imports allowed \\
+    \includegraphics[width=\textwidth]{../workflow/notebooks/20240826-z1/market-value-ts-noimp.pdf} \\
+    (b) only hydrogen imports allowed \\
+    \includegraphics[width=\textwidth]{../workflow/notebooks/20240826-z1/market-value-ts-imp+H2.pdf} \\
+    (c) all imports allowed \\
+    \includegraphics[width=\textwidth]{../workflow/notebooks/20240826-z1/market-value-ts-imp.pdf}
+    \caption{\textbf{Temporal variations of domestic hydrogen and
+    Fischer-Tropsch production costs for different import scenarios.} Supplement to Figure 4. Dotted lines show
+    the minimum import costs as a reference. The solid lines show the
+    production-weighted average costs across all regions. The shaded areas show
+    the regional range between lowest and highest production cost in any of the
+    115 model regions.}
+    \label{fig:si:market-value-ts}
+\end{figure*}
+
+
 
 \begin{figure*}
-    \includegraphics[width=0.8\textwidth]{20231025-zecm/balances-electricity.pdf}
-    \includegraphics[width=0.8\textwidth]{20231025-zecm/balances-heat.pdf}
-    \includegraphics[width=0.8\textwidth]{20231025-zecm/balances-H2.pdf}
-    \includegraphics[width=0.8\textwidth]{20231025-zecm/balances-gas.pdf}
+    \includegraphics[width=0.8\textwidth]{../workflow/notebooks/20240826-z1/balances-electricity.pdf}
+    \includegraphics[width=0.8\textwidth]{../workflow/notebooks/20240826-z1/balances-heat.pdf}
+    \includegraphics[width=0.8\textwidth]{../workflow/notebooks/20240826-z1/balances-H2.pdf}
+    \includegraphics[width=0.8\textwidth]{../workflow/notebooks/20240826-z1/balances-gas.pdf}
     \caption{\textbf{Energy balances for three import scenarios for the carriers electricity, heat, hydrogen and gas.}
     }
     \label{fig:si:balances-a}
 \end{figure*}
 
 \begin{figure*}
-    \includegraphics[width=0.8\textwidth]{20231025-zecm/balances-NH3.pdf}
-    \includegraphics[width=0.8\textwidth]{20231025-zecm/balances-methanol.pdf}
-    \includegraphics[width=0.8\textwidth]{20231025-zecm/balances-oil.pdf}
-    \includegraphics[width=0.8\textwidth]{20231025-zecm/balances-co2.pdf}
-    \includegraphics[width=0.8\textwidth]{20231025-zecm/balances-co2 stored.pdf}
+    \includegraphics[width=0.8\textwidth]{../workflow/notebooks/20240826-z1/balances-NH3.pdf}
+    \includegraphics[width=0.8\textwidth]{../workflow/notebooks/20240826-z1/balances-methanol.pdf}
+    \includegraphics[width=0.8\textwidth]{../workflow/notebooks/20240826-z1/balances-oil.pdf}
+    \includegraphics[width=0.8\textwidth]{../workflow/notebooks/20240826-z1/balances-co2.pdf}
+    \includegraphics[width=0.8\textwidth]{../workflow/notebooks/20240826-z1/balances-co2 stored.pdf}
     \caption{\textbf{
         Energy balances for three import scenarios for the carriers
         ammonia, methanol, and oil, as well as stored and atmospheric carbon dioxide.
@@ -257,62 +323,142 @@ heating supply on district heating so far.
 
 
 \begin{figure*}
-    \includegraphics[width=\textwidth]{20231025-zecm/infrastructure-map-2x3-B.pdf}
-    \caption{\textbf{Layout of European energy infrastructure for different import scenarios.} Role of PtX waste heat, hydrogen network, and electricity imports.
-    Left column shows the regional electricity supply mix (pies), added HVDC and HVAC transmission capacity (lines), and the siting of battery storage (choropleth).
-        Right column shows the hydrogen supply (top half of pies) and consumption (bottom half of pies), net flow and direction of hydrogen in newly built pipelines (lines), and the siting of hydrogen storage subject to geological potentials (choropleth).
-        Total volumes of transmission expansion are given in TWkm, which is the sum product of the capacity and length of individual connections.
-    }
+    \includegraphics[width=\textwidth]{../workflow/notebooks/20240826-z1/infrastructure-map-2x3-B.pdf}
+    \caption{\textbf{Layout of European energy infrastructure for different
+    import scenarios.} Infrastructure build-out with full power-to-X waste heat
+    availability in domestic scenario (first row), without steel and ammonia
+    industry relocation (second row), and only electricity imports (third row).
+    Left column shows the regional electricity supply mix (pies), added HVDC and
+    HVAC transmission capacity (lines), and the siting of battery storage
+    (choropleth). Right column shows the hydrogen supply (top half of pies) and
+    consumption (bottom half of pies), net flow and direction of hydrogen in
+    newly built and retrofitted pipelines (lines), and the siting of hydrogen
+    storage subject to geological potentials (choropleth). Total volumes of
+    transmission expansion are given in TWkm, which is the sum product of the
+    capacity and length of individual connections. }
     \label{fig:si:infra-b}
 \end{figure*}
 
 \begin{figure*}
-    \includegraphics[width=\textwidth]{20231025-zecm/infrastructure-map-2x3-C.pdf}
-    \caption{\textbf{Layout of European energy infrastructure for different import scenarios.} Sensitivities of infrastructure to import costs.
+    \includegraphics[width=\textwidth]{../workflow/notebooks/20240826-z1/infrastructure-map-2x3-C.pdf}
+    \caption{\textbf{Layout of European energy infrastructure for different import scenarios.} Sensitivities of infrastructure build-out to import costs.
     Left column shows the regional electricity supply mix (pies), added HVDC and HVAC transmission capacity (lines), and the siting of battery storage (choropleth).
-        Right column shows the hydrogen supply (top half of pies) and consumption (bottom half of pies), net flow and direction of hydrogen in newly built pipelines (lines), and the siting of hydrogen storage subject to geological potentials (choropleth).
+        Right column shows the hydrogen supply (top half of pies) and consumption (bottom half of pies), net flow and direction of hydrogen in newly built and retrofitted pipelines (lines), and the siting of hydrogen storage subject to geological potentials (choropleth).
         Total volumes of transmission expansion are given in TWkm, which is the sum product of the capacity and length of individual connections.
     }
     \label{fig:si:infra-c}
 \end{figure*}
 
 \begin{figure*}
-    \includegraphics[width=\textwidth]{20231025-zecm/infrastructure-map-2x3-D.pdf}
-    \caption{\textbf{Layout of European energy infrastructure for different import scenarios.} Role of industry relocation and focus on carbonaceous fuel imports.
-    Left column shows the regional electricity supply mix (pies), added HVDC and HVAC transmission capacity (lines), and the siting of battery storage (choropleth).
-        Right column shows the hydrogen supply (top half of pies) and consumption (bottom half of pies), net flow and direction of hydrogen in newly built pipelines (lines), and the siting of hydrogen storage subject to geological potentials (choropleth).
-        Total volumes of transmission expansion are given in TWkm, which is the sum product of the capacity and length of individual connections.
-    }
+    \includegraphics[width=\textwidth]{../workflow/notebooks/20240826-z1/infrastructure-map-2x3-D.pdf}
+    \caption{\textbf{Layout of European energy infrastructure for different
+    import scenarios.}  Infrastructure build-out with no power-to-X flexibility
+    (first row), without hydrogen imports or pipeline network (second row), only
+    hydrogen derivative imports (third row). Left column shows the regional
+    electricity supply mix (pies), added HVDC and HVAC transmission capacity
+    (lines), and the siting of battery storage (choropleth). Right column shows
+    the hydrogen supply (top half of pies) and consumption (bottom half of
+    pies), net flow and direction of hydrogen in newly built and retrofitted
+    pipelines (lines), and the siting of hydrogen storage subject to geological
+    potentials (choropleth). Total volumes of transmission expansion are given
+    in TWkm, which is the sum product of the capacity and length of individual
+    connections. }
     \label{fig:si:infra-d}
 \end{figure*}
-
-
 
 \begin{figure*}
     \centering
     \footnotesize
     (a) average utilisation rate of import HVDC links \\
-    \includegraphics[width=\textwidth]{20231025-zecm/graphics/heatmap_timeseries/s_110_lvopt__Co2L0-2190SEG-T-H-B-I-S-A-onwind+p0.5-imp_2050/ts-heatmap-utilisation_rate-import_hvdc-to-elec.pdf} \\
+    \includegraphics[width=\textwidth]{../workflow/pypsa-eur/results/20240826-z1/graphics/heatmap_timeseries/s_115_lvopt__imp_2050/ts-heatmap-utilisation_rate-import_hvdc-to-elec.pdf} \\
     (b) average utilisation rate of import hydrogen pipelines \\
-    \includegraphics[width=\textwidth]{20231025-zecm/graphics/heatmap_timeseries/s_110_lvopt__Co2L0-2190SEG-T-H-B-I-S-A-onwind+p0.5-imp_2050/ts-heatmap-utilisation_rate-import_pipeline-h2.pdf}
+    \includegraphics[width=\textwidth]{../workflow/pypsa-eur/results/20240826-z1/graphics/heatmap_timeseries/s_115_lvopt__imp_2050/ts-heatmap-utilisation_rate-import_infrastructure_pipeline-h2.pdf}
     \caption{\textbf{Temporal usage pattern of electricity and hydrogen storage.}
-    The capacity-weighted average utilisation rate is 72\% for import HVDC links and 45\% for
-    hydrogen pipelines. For hydrogen import pipelines, a clear seasonal pattern
-    with higher utilisation in winter is visible, demonstrated by an average utilisation rate of 56\% from November to April and 35\% from May to October.
-    For other energy or material
-    imports than hydrogen and electricity, the timing of imports is not
-    informatively captured due to problem degeneracy caused by negligible
-    storage costs of carbonaceous fuels and steel.}
+    The capacity-weighted average utilisation rate is 75+\% for import HVDC links
+    and 90+\% for hydrogen pipelines. For hydrogen import pipelines, a clear
+    seasonal pattern with higher utilisation in winter is visible. For other
+    energy or material imports than hydrogen and electricity, the timing of
+    imports is not informatively captured due to problem degeneracy caused by
+    negligible storage costs of carbonaceous fuels and steel.}
     \label{fig:si:import-operation}
 \end{figure*}
 
 \begin{figure*}
     \centering
     \footnotesize
+    (a) state of charge of hydrogen storage \\
+    \includegraphics[width=\textwidth]{../workflow/pypsa-eur/results/20240826-z1/graphics/heatmap_timeseries/s_115_lvopt___2050/ts-heatmap-soc-h2_store.pdf} \\
+    (b) state of charge profile of thermal storage in district heating \\
+    \includegraphics[width=\textwidth]{../workflow/pypsa-eur/results/20240826-z1/graphics/heatmap_timeseries/s_115_lvopt___2050/ts-heatmap-soc-urban_central_water_tanks.pdf}
+    \caption{\textbf{State-of-charge profile of long-duration energy storage in
+    the domestic scenario without imports.} Hydrogen storage is used
+    synoptically, whereas district heating storage is used seasonally.}
+    \label{fig:si:storage-operation}
+\end{figure*}
+
+\begin{figure*}
+    \centering
+    \footnotesize
+    (a) operation of district heating gas CHPs without imports  \\
+    \includegraphics[width=0.95\textwidth]{../workflow/pypsa-eur/results/20240826-z1/graphics/heatmap_timeseries/s_115_lvopt___2050/ts-heatmap-utilisation_rate-urban_central_gas_chp.pdf} \\
+    (b) operation of district heating gas CHPs with imports \\
+    \includegraphics[width=0.95\textwidth]{../workflow/pypsa-eur/results/20240826-z1/graphics/heatmap_timeseries/s_115_lvopt__imp_2050/ts-heatmap-utilisation_rate-urban_central_gas_chp.pdf}
+    (c) load-weighted average electricity price with imports \\
+    \includegraphics[width=0.95\textwidth]{../workflow/pypsa-eur/results/20240826-z1/graphics/heatmap_timeseries/s_115_lvopt__imp_2050/ts-heatmap-marginal_price-ac.pdf}
+    \caption{\textbf{Temporal usage pattern of backup power/heat in relation to
+    import scenario.} In both cases, gas CHPs were the main backup option,
+    running for few days during winter when prices are higher. Backup power
+    plant operation is higher when imports displace power-to-X flexibilities.}
+    \label{fig:si:backup-power}
+\end{figure*}
+
+\begin{figure*}
+    \centering
+    \footnotesize
+    (a) no imports allowed  \\
+    \includegraphics[height=0.45\textheight]{../workflow/pypsa-eur/results/20240826-z1/graphics/backup_map/s_115_lvopt___2050.pdf} \\
+    (b) all imports allowed \\
+    \includegraphics[height=0.45\textheight]{../workflow/pypsa-eur/results/20240826-z1/graphics/backup_map/s_115_lvopt__imp_2050.pdf}
+    \caption{\textbf{Spatial distribution of backup power for scenarios with all
+    imports allowed and no imports.} Batteries are concentrated in Southern
+    Europe. Gas-fired combined heat and power plants are distributed across
+    Central Europe where electricity prices are higher, with lower build-out
+    when no imports are allowed as domestic power-to-X flexibility reduces the
+    need for backup capacities. Instead of firing up reserve power plants, the
+    production of power-to-X plants is curtailed. Power transmission
+    infrastructure distributes backup capacities across Europe where there are none.
+    Blue lines represent HVAC lines, rosa lines represent HVDC links.}
+    \label{fig:si:backup-power-map}
+\end{figure*}
+
+
+\begin{figure*}
+    \centering
+    \footnotesize
+    % (a) electrolysis  \\
+    \includegraphics[width=\textwidth]{../workflow/pypsa-eur/results/20240826-z1/graphics/heatmap_timeseries/s_115_lvopt___2050/ts-heatmap-utilisation_rate-h2_electrolysis.pdf} \\
+    % (b) Fischer-Tropsch synthesis \\
+    \includegraphics[width=\textwidth]{../workflow/pypsa-eur/results/20240826-z1/graphics/heatmap_timeseries/s_115_lvopt__imp_2050/ts-heatmap-utilisation_rate-fischer-tropsch.pdf}
+    % (c) methanol synthesis \\
+    \includegraphics[width=\textwidth]{../workflow/pypsa-eur/results/20240826-z1/graphics/heatmap_timeseries/s_115_lvopt__imp_2050/ts-heatmap-utilisation_rate-methanolisation.pdf}
+    \caption{\textbf{Temporal usage patterns of selected power-to-X technologies
+    in scenario without imports.} Electrolysis clearly reacts to the
+    availability of wind and solar electricity, despite high unit investment
+    costs of 950\euro/kW$_e$. Fischer-Tropsch runs more steadily, reducing
+    production over much of the challenging winter months to its minimum
+    part-load of 50\%. The methanolisation process can be used more flexibly
+    with a minimum part load of 20\%.}
+    \label{fig:si:power-to-x}
+\end{figure*}
+
+
+\begin{figure*}
+    \centering
+    \footnotesize
     (a) without imports \\
-    \includegraphics[width=\textwidth]{20231025-zecm/graphics/balance_timeseries/s_110_lvopt__Co2L0-2190SEG-T-H-B-I-S-A-onwind+p0.5_2050/ts-balance-electricity-D.pdf} \\
+    \includegraphics[width=\textwidth]{../workflow/pypsa-eur/results/20240826-z1/graphics/balance_timeseries/s_115_lvopt___2050/ts-balance-electricity-D.pdf} \\
     (b) with imports \\
-    \includegraphics[width=\textwidth]{20231025-zecm/graphics/balance_timeseries/s_110_lvopt__Co2L0-2190SEG-T-H-B-I-S-A-onwind+p0.5-imp_2050/ts-balance-electricity-D.pdf}
+    \includegraphics[width=\textwidth]{../workflow/pypsa-eur/results/20240826-z1/graphics/balance_timeseries/s_115_lvopt__imp_2050/ts-balance-electricity-D.pdf}
     \caption{\textbf{Energy balance time series for electricity with and without imports.} Resampled to daily averages. Positive numbers indicate supply, negative numbers indicate consumption.}
     \label{fig:si:balance-elec}
 \end{figure*}
@@ -321,9 +467,9 @@ heating supply on district heating so far.
     \centering
     \footnotesize
     (a) without imports \\
-    \includegraphics[width=\textwidth]{20231025-zecm/graphics/balance_timeseries/s_110_lvopt__Co2L0-2190SEG-T-H-B-I-S-A-onwind+p0.5_2050/ts-balance-heat-D.pdf} \\
+    \includegraphics[width=\textwidth]{../workflow/pypsa-eur/results/20240826-z1/graphics/balance_timeseries/s_115_lvopt___2050/ts-balance-heat-D.pdf} \\
     (b) with imports \\
-    \includegraphics[width=\textwidth]{20231025-zecm/graphics/balance_timeseries/s_110_lvopt__Co2L0-2190SEG-T-H-B-I-S-A-onwind+p0.5-imp_2050/ts-balance-heat-D.pdf}
+    \includegraphics[width=\textwidth]{../workflow/pypsa-eur/results/20240826-z1/graphics/balance_timeseries/s_115_lvopt__imp_2050/ts-balance-heat-D.pdf}
     \caption{\textbf{Energy balance time series for heat with and without imports.} Resampled to daily averages. Positive numbers indicate supply, negative numbers indicate consumption.}
     \label{fig:si:balance-heat}
 \end{figure*}
@@ -332,9 +478,9 @@ heating supply on district heating so far.
     \centering
     \footnotesize
     (a) without imports \\
-    \includegraphics[width=\textwidth]{20231025-zecm/graphics/balance_timeseries/s_110_lvopt__Co2L0-2190SEG-T-H-B-I-S-A-onwind+p0.5_2050/ts-balance-hydrogen-D.pdf} \\
+    \includegraphics[width=\textwidth]{../workflow/pypsa-eur/results/20240826-z1/graphics/balance_timeseries/s_115_lvopt___2050/ts-balance-hydrogen-D.pdf} \\
     (b) with imports \\
-    \includegraphics[width=\textwidth]{20231025-zecm/graphics/balance_timeseries/s_110_lvopt__Co2L0-2190SEG-T-H-B-I-S-A-onwind+p0.5-imp_2050/ts-balance-hydrogen-D.pdf}
+    \includegraphics[width=\textwidth]{../workflow/pypsa-eur/results/20240826-z1/graphics/balance_timeseries/s_115_lvopt__imp_2050/ts-balance-hydrogen-D.pdf}
     \caption{\textbf{Energy balance time series for hydrogen with and without imports.} Resampled to daily averages. Positive numbers indicate supply, negative numbers indicate consumption.}
     \label{fig:si:balance-h2}
 \end{figure*}
@@ -343,16 +489,42 @@ heating supply on district heating so far.
     \centering
     \footnotesize
     (a) gas transmission network \\
-    \includegraphics[width=.95\textwidth]{20231025-zecm/graphics/gas-network-unclustered.pdf} \\
+    \includegraphics[width=.87\textwidth, trim=1cm 5cm 1.5cm 5cm, clip]{../workflow/pypsa-eur/resources/20240826-z1/graphics/gas-network-unclustered.pdf} \\
     (b) electricity transmission network \\
-    \includegraphics[width=.95\textwidth]{20231025-zecm/graphics/power-network-unclustered.pdf}
+    \includegraphics[width=.82\textwidth]{../workflow/pypsa-eur/resources/20240826-z1/graphics/power-network-unclustered.pdf}
     \caption{\textbf{Gas and electricity transmission network data.} For gas
     transmission, the map shows pipelines sized and colored by rated capacity,
     fossil gas extraction sites, storage locations, pipeline entrypoints, and
     LNG terminals. The data comes from SciGRID\_gas and is supplemented with
     data from Global Energy Monitor. For power transmission, the map shows
-    existing transmission lines at and above 220~kV taken from the ENTSO-E
-    Transmission System Map (\url{https://www.entsoe.eu/data/map/}),
+    existing transmission lines at and above 220~kV taken from OpenStreetMap (\url{https://www.openstreetmap.org/}),
     supplemented with planned TYNDP projects (\url{https://tyndp.entsoe.eu/}).}
     \label{fig:si:networks-raw}
+\end{figure*}
+
+\begin{figure*}
+    \footnotesize
+    (a) unclustered raw data from Caglayan et al. (2020) \\
+    \begin{center}
+        \includegraphics[width=0.65\textwidth]{../workflow/pypsa-eur/resources/20240826-z1/graphics/salt-caverns}\\
+    \end{center}
+    (b) clustered near-shore cavern storage potential \\
+    \begin{center}
+        \includegraphics[width=0.75\textwidth, trim=0cm 2cm 0cm 3cm, clip]{../workflow/pypsa-eur/resources/20240826-z1/graphics/salt-caverns-s-115-nearshore}
+    \end{center}
+    \caption{\textbf{Locations considered for geologica hydrogen storage in salt
+    caverns.} Only near-shore caverns are considered to minimize environmental
+    impact of brine disposal.}
+    \label{fig:si:hydrogen-caverns}
+\end{figure*}
+
+
+\begin{figure*}
+    \centering
+    \includegraphics[width=\textwidth]{../workflow/pypsa-eur/resources/20240826-z1/graphics/industrial-sites.pdf}
+    \caption{\textbf{Considered locations of industrial production sites by
+    sector.} Marker size scales proportionally to the emissions of the
+    respective site. This data is used for the spatial distribution of
+    industrial energy and feedstock demands.}
+    \label{fig:si:industrial-sites}
 \end{figure*}

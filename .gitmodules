@@ -7,3 +7,9 @@
 [submodule "workflow/synde"]
 	path = workflow/synde
 	url = git@github.com:euronion/synde.git
+[submodule "workflow/--force"]
+	path = workflow/--force
+	url = git@github.com:pypsa/technology-data.git
+[submodule "workflow/technology-data"]
+	path = workflow/technology-data
+	url = git@github.com:pypsa/technology-data.git
