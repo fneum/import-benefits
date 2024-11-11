@@ -11,10 +11,10 @@ international shipping and aviation. An overview of considered supply,
 consumption and balancing technologies per carrier is shown in
 \sfigref{fig:si:supply-consumption-options}.
 
-The model simultaneously optimises spatially explicit investments and the
+The model simultaneously optimises spatially explicit investments and the 
 operation of generation, storage, conversion and transmission assets to minimise
 total system costs in a single linear optimisation problem, which assumes
-perfect operational foresight and is solved with \textit{Gurobi
+perfect operational foresight and is solved with \textit{Gurobi 
 v11}.\cite{gurobi} To manage computational complexity, no pathways with multiple
 investment periods are calculated but overnights scenarios targeting net-zero
 CO$_2$ emissions. The capacity expansion is based on technology cost and
@@ -192,7 +192,7 @@ systems. In sensitivity analyses, we explore the effect of no or full waste heat
 utilisation.
 
 
-\subsection*{Industry relocation modelling}
+\subsection*{Industry relocation modelling for steel and ammonia production}
 
 In some scenarios, we also allow the model to endogenously relocate the steel
 and ammonia industry within Europe. This is to allow the best sites within
@@ -200,7 +200,7 @@ Europe to compete with outsourced production abroad. While this captures some of
 the most energy-intensive industry sectors, other sectors like concrete and
 alumina production is not considered for relocation.
 
-Without industry relocation allowed, the production volumes of primary steel, by
+Without relocation of steel and ammonia production allowed, the production volumes of primary steel, by
 direct iron reduction (DRI) and electric arc furnace (EAF), and ammonia for
 fertilizers, by Haber-Bosch synthesis, are spatially-fixed. This results in
 exogenous hydrogen demand per region. Total production volumes are based on
@@ -211,7 +211,7 @@ listed in Global Energy Monitor's Global Steel Plant Tracker
 \cite{globalenergymonitorGlobalSteelPlant2024} and manually collected data on
 the location and size of ammonia plants in Europe.
 
-With industry relocation allowed, the model endogenously chooses the regional
+With relocation of steel and ammonia production allowed, the model endogenously chooses the regional
 production volumes of primary steel, HBI and ammonia, subject to the
 availability of cheap hydrogen. Thereby, the regional capacities and operation
 of Haber-Bosch, DRI and EAF plants are co-optimised with the rest of the system,
@@ -226,7 +226,7 @@ due to lack of data.
 
 For both cases, we assume a rise in the steel recycling rate from 40\% today to
 70\% in our carbon-neutral
-scenarios.\cite{materialeconomicsIndustrialTransformation2019} We assume that
+scenarios.\cite{materialeconomicsIndustrialTransformation20502019} We assume that
 the electric arc furnaces for secondary steel remain, in proportion, at current
 locations and do not relocate.
 
@@ -244,7 +244,7 @@ pipeline and liquid by ship, methane as liquid by ship, liquid ammonia, steel
 and HBI, methanol and Fischer-Tropsch fuels by ship. Liquid organic hydrogen
 carriers (LOHC) are not considered as export vector due to their lower
 technology readiness level (TRL) compared to other
-vectors.\cite{irenaGlobalHydrogen2022}
+vectors.\cite{irenaGlobalHydrogenTrade2022}
 
 Our selection of 53 potential exporting regions broadly comprises countries with
 favourable wind and solar resources and large enough potentials for substantial
@@ -412,7 +412,7 @@ factor time series as illustrated in \cref{fig:options:europe}. Europe's
 connection options with exporting regions are confined to the 4\% nearest
 regions, with additional ultra-long distance connection options to Ireland,
 Cornwall and Brittany following the vision of the Xlinks project between Morocco
-and the United Kingdom.\cite{xlinksMoroccoUKPower2023} Connections through
+and the United Kingdom.\cite{xlinksMoroccoUKPowerProject2023} Connections through
 Russia or Belarus are excluded, and in addition to excluded entry points, some
 connections from Central Asia are affected by additional detours beyond the
 regularly applied detour factor of 125\% of the as-the-crow-flies distance.

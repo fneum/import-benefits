@@ -124,11 +124,15 @@ options remains largely consistent
     \fullwidthfigure{
     \includegraphics[width=0.58\linewidth]{../workflow/pypsa-eur/results/20240826-z1/graphics/import_shares/s_115_lvopt__imp_2050.pdf}
     \includegraphics[width=0.42\linewidth]{../workflow/pypsa-eur/results/20240826-z1/graphics/import_sankey/s_115_lvopt__imp_2050.pdf}
-    \caption{\textbf{Shares of imports and domestic production by carrier and optimised import carrier mix for import scenario with flexible carrier choice.}
-        The figure also shows total supply for each carrier. Import shares for
-        further import scenarios are included in the supplementary material.
-        Steel is included in energy terms applying 2.1 kWh~kg$^{-1}$ as released by the
-        oxidation of iron. }
+    \caption{\textbf{Shares of imports and domestic production by carrier, optimised import mix and trade flows.}
+        The figure also shows the total supply for each carrier for import
+        scenario with flexible carrier choice. The Sankey diagram aggregates
+        trade flows to broader regions to emphasize that alternative
+        origin-destination pairs could often yield similar results.  
+        Import shares for further import
+        scenarios are included in the supplementary material. Steel is included
+        in energy terms applying 2.1 kWh~kg$^{-1}$ as released by the oxidation
+        of iron. }
     \label{fig:import-shares}
     }
 \end{figure}
@@ -178,12 +182,14 @@ vector and volume can be flexibly chosen (``all imports allowed'' in
 around 45\% carbonaceous fuels, 35\% hydrogen, and less than 10\% electricity.
 Noticeably, all primary crude steel and ammonia for fertilizers is imported,
 whereby imports of steel are preferred over HBI. Around half of the total
-hydrogen supply is imported, matching the ratio of the 2030 REPowerEU targets.
-Hydrogen is imported so that it can be processed into derivative products
-domestically rather than used for direct applications for hydrogen. Smaller
-import shares are observed for electricity, which is largely supplied from
-domestic resources, and for methane, which is supplied from domestic fossil and
-biogenic sources (\sfigref{fig:si:balances-a}).
+hydrogen supply is imported, matching the ratio of the 2030 REPowerEU
+targets.\cite{europeancommissionRepowerEUPlan} Hydrogen is imported so that it
+can be processed into derivative products domestically rather than used for
+direct applications for hydrogen. Smaller import shares are observed for
+electricity, which is largely supplied from domestic resources, because of
+higher costs and losses in electricity transmission than other import vectors,
+and for methane, which is supplied from domestic fossil and biogenic sources
+(\sfigref{fig:si:balances-a}).
 
 %%% trade flows from origin to destination %%%
 
@@ -192,8 +198,9 @@ imports by ship from South America -- leveraging low transport costs of dense
 liquid fuels -- as well as ammonia, steel and hydrogen imports from the Maghreb
 region. Hydrogen is mostly received by pipeline in Spain. Moreover, due to its
 proximity to Italy, some electricity imports are received by HVDC connections
-from Tunisia. While the model suggests these specific trade routes, it should be
-noted that alternative origin-destination pairs could yield similar results
+from Tunisia. While the model suggests trade routes from particular regions, we
+aggregate these to broader regions to emphasize that alternative
+origin-destination pairs within the regions could often yield similar results
 (\sfigref{fig:si:isc-h2,fig:si:isc-ch4-nh3,fig:si:isc-meoh-ft,fig:si:isc-hbi-St}).
 
 %%% explanation through market values %%%
@@ -233,26 +240,26 @@ retained.
 \begin{figure}
     \fullwidthfigure{
     \begin{subfigure}[t]{0.49\linewidth}
-        \caption{cost variations applied to all carriers}
+        \caption{import cost variations applied to all carriers}
         \label{fig:sensitivity-costs:A}
         \includegraphics[width=\linewidth]{../workflow/notebooks/20240826-z1/sensitivity-bars-all-wAC.pdf}
     \end{subfigure}
     \begin{subfigure}[t]{0.49\linewidth}
-        \caption{cost variations applied to all carriers but electricity}
+        \caption{import cost variations applied to all carriers but electricity}
         \label{fig:sensitivity-costs:B}
         \includegraphics[width=\linewidth]{../workflow/notebooks/20240826-z1/sensitivity-bars-all.pdf}
     \end{subfigure}
     \begin{subfigure}[t]{0.49\linewidth}
-        \caption{cost variations only applied to carbonaceous fuels}
+        \caption{import cost variations only applied to carbonaceous fuels}
         \label{fig:sensitivity-costs:C}
         \includegraphics[width=\linewidth]{../workflow/notebooks/20240826-z1/sensitivity-bars-all-C.pdf}
     \end{subfigure}
-    \caption{\textbf{Effect of import cost variations on cost savings and import shares with all vectors allowed.}
-    In panel (a), indicated relative cost changes are applied uniformly to all
-    vectors. In panel (b), cost changes are applied uniformly to all vectors but
-    electricity imports. In panel (c), cost changes are only applied to
-    carbonaceous fuels (methane, methanol and Fischer-Tropsch). Top subpanels
-    show potential cost savings compared to the scenario without imports. Bottom
+    \caption{\textbf{Effect of import cost variations on system cost savings and import shares with all vectors allowed.}
+    In panel (a), indicated relative import cost changes are applied uniformly
+    to all vectors. In panel (b), cost changes are applied uniformly to all
+    vectors but electricity imports. In panel (c), cost changes are only applied
+    to carbonaceous fuels (methane, methanol and Fischer-Tropsch). Top subpanels
+    show potential system cost savings compared to the scenario without imports. Bottom
     subpanels show the share and composition of different import vectors in
     relation to total energy system costs. The information is shown both in
     absolute terms and relative terms compared to the scenario without imports.
@@ -299,7 +306,7 @@ exporting regions, would lower costs of carbonaceous fuel imports
 When the relative cost variation is only applied to carbon-based fuels
 (\cref{fig:sensitivity-costs:C}), reflecting cost uncertainty in carbon
 provision, hydrogen imports are quickly displaced by Fischer-Tropsch and
-methanol imports with falling costs. Only when costs rise by 20\% do
+methanol imports with falling costs. Only when import costs rise by 20\% do
 domestically produced liquid hydrocarbons -- derived mainly from imported
 hydrogen -- become more cost-effective than direct imports. In all three cases
 of import cost variations, methane imports become relevant only with strong cost
@@ -350,7 +357,7 @@ As we explore the effect of increasing import volumes on system costs, we find
 that already 56\% (48-80\% within $\pm$20\% import costs) of the 4.4\%
 (1.3-9.0\%) total cost benefit can be achieved with the first 500 TWh of
 imports. This corresponds to 31\% (25-49\%) of the cost-optimal import volumes,
-highlighting the diminishing return of large amounts of energy imports in
+highlighting the diminishing returns of large amounts of energy imports in
 Europe. The initial 1000 TWh realise 90\% (80-100\%) of the highest cost
 savings, for which primary crude steel and liquid carbonaceous fuel imports are
 prioritised, followed by ammonia and hydrogen and, subsequently, larger volumes
@@ -439,13 +446,14 @@ transport\cite{} and assuming low CO$_2$ transport costs from point sources to
 low-cost hydrogen sites,\cite{hofmannH2CO2Network2024} one reason is the
 considered relocation of steel and ammonia production to where hydrogen is cheap
 and abundant, reducing the need to transport hydrogen
-(\sfigref{fig:si:relocation}). Not considering industry relocation would result
-in a slightly larger hydrogen network of 69~TWkm (\sfigref{fig:si:infra-b}),
-while increasing system costs by \bneuro{22} (2.7\%) in the no-imports scenario.
-With relocation permitted, primary steel production shifts to the British Isles
-and Spain while ammonia production moves to the Nordic-Baltic region. Both
-sectors become more strongly localized, with individual regions capturing a
-market share surpassing 30\%.
+(\sfigref{fig:si:relocation}). Not considering relocation of primary steel and
+ammonia production would result in a slightly larger hydrogen network of 69~TWkm
+(\sfigref{fig:si:infra-b}), while increasing system costs by \bneuro{22} (2.7\%)
+in the no-imports scenario. With permitted relocation of ammonia and steel
+production, primary steel production shifts to the British Isles and Spain while
+ammonia production moves to the Nordic-Baltic region. Both sectors become more
+strongly localized, with individual regions capturing a market share surpassing
+30\%.
 
 %%% flexible imports %%%
 
@@ -466,7 +474,7 @@ While the broad regions of domestic power grid reinforcements are not
 significantly affected by the import of electricity and other fuels, the volume
 of power grid expansion reduces by 20\%. The reduction in network infrastructure
 is even more pronounced with the hydrogen network; the hydrogen network size is
-reduced by 70\% with many of the North and East European connections omitted.
+reduced by 70\% with many of the North and East European connections omitted. 
 Compared to the self-sufficiency scenario, the cost-benefit of the hydrogen
 network shrinks from \bneuro{3} (0.4\%) to less than \bneuro{1} (0.1\%). This is
 caused by substantial amounts of hydrogen derivative imports or direct
@@ -478,24 +486,27 @@ cheaper carbonaceous fuel imports, the hydrogen network would then shrink to
 %%% backup power and power-to-X flexibility value %%%
 
 Changes in the magnitude of domestic PtX production also affect Europe's backup
-capacity needs. Next to energy storage and demand-side management of electric
-vehicles and heat pumps, the operational flexibility of electrolysers and
-derivative fuel production yields significant benefits for integrating variable
-wind and solar feed-in and reduces reserve capacity requriements. In a
-theoretical scenario without imports where all PtX processes must run inflexibly
-at full capacity, system costs rise by 8.8\%. Between scenarios with and without
-imports, we observe that as some flexible domestic power-to-X is displaced by
-imported fuels, domestic thermal backup capacities increase from
-129~GW$_\text{el.}$ (no imports allowed) to 276~GW$_\text{el.}$ (all imports
-allowed).  Instead of curtailing the domestic production of electrofuels, backup
-power plants need to be dispatched. Most of these power plants are gas CHPs
-providing backup heat alongside backup power when electricity prices are high
-during winter months (\sfigref{fig:si:backup-power}). Spatially, these are
-distributed across Central Europe, while batteries provide backup power in
-Southern Europe (\sfigref{fig:si:backup-power-map}). The model leverages
-Europe's extensive power grid to widely distribute centralised backup power,
-even though in reality individual nations may prefer maintaining their own
-reserve capacities.
+capacity needs. Less PtX production means lower wind and solar capacities, which
+reduces available generation in dark wind lulls. Next to energy storage and
+demand-side management of electric vehicles and heat pumps, the operational
+flexibility of electrolysers and derivative fuel production yields significant
+benefits for integrating variable wind and solar feed-in and reduces reserve
+capacity requirements. In a theoretical scenario without imports where all PtX
+processes must run inflexibly at full capacity, system costs rise by 8.8\%.
+Between the main scenarios with and without imports, we observe that as some
+flexible domestic power-to-X is displaced by imported fuels, domestic thermal
+backup capacities increase from 129~GW$_\text{el.}$ (no imports allowed) to
+276~GW$_\text{el.}$ (all imports allowed).  Instead of curtailing the domestic
+production of electrofuels, backup power plants need to be dispatched. Most of
+these power plants are CHPs fuelled by fossil gas providing backup heat
+alongside backup power when electricity prices are high during winter months
+(\sfigref{fig:si:backup-power}). The resulting emissions are then compensated
+elsewhere in the system through biogenic carbon dioxide removal
+(\sfigref{fig:si:balances-b}). Spatially, these are distributed across Central
+Europe, while batteries provide backup power in Southern Europe
+(\sfigref{fig:si:backup-power-map}). The model leverages Europe's extensive
+power grid to widely distribute centralised backup power, even though in reality
+individual nations may prefer maintaining their own reserve capacities.
 
 %%% waste heat usage potential %%%
 
@@ -603,7 +614,7 @@ largely cycled between use and synthesis and, hence, not emitted to the
 atmosphere -- can reduce the levelised fuel cost by 16\% if it can be provided
 for 50~\euro{}~t$^{-1}$.
 
-By default, we assume islanded fuel synthesis sites which causes high
+By default, we assume islanded fuel synthesis sites which causes
 curtailment rates of 8\%. If surplus electricity production could be sold and
 absorbed by the local power grid in exporting regions, additional cost
 reductions could be achieved. Furthermore, process integration with waste heat
@@ -611,8 +622,7 @@ usage and flexible operation can also reduce fuel cost by 3-6\%. Import costs
 are also reduced by 4\% where geological hydrogen storage is available, by
 reducing the need for flexible \mbox{power-to-X} operation.
 
-In contrast, cost rises when the most competitive exporting regions would not
-offer to export green energy would be limited. Within a cost premium of 10\% in
-relation to the lowest cost eporting region, Chile, ten other regions could
-step in if these regions were unavailable for exports
-(\sfigref{fig:si:isc-meoh-ft}).
+In contrast, the cost impact is low if the cheapest exporting region withdraws
+from the market. Within a cost premium of 10\% in relation to the lowest cost
+eporting region, Chile, ten other regions could step in if these regions were
+unavailable for exports (\sfigref{fig:si:isc-meoh-ft}).
