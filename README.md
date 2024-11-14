@@ -4,7 +4,7 @@ Code for preprint article [2404.03927](https://arxiv.org/abs/2404.03927) current
 
 **Abstract:**
 
-> Importing renewable energy to Europe offers many potential benefits, including reduced energy costs, lower pressure on infrastructure development, and less land-use within Europe. However, there remain many open questions: on the achievable cost reductions, how much should be imported, whether the energy vector should be electricity, hydrogen or hydrogen derivatives like ammonia or steel, and their impact on Europe's domestic energy infrastructure needs. This study integrates the TRACE global energy supply chain model with the sector-coupled energy system model for Europe PyPSA-Eur to explore scenarios with varying import volumes, costs, and vectors. We find system cost reductions of 1-14%, depending on assumed import costs, with diminishing returns for larger import volumes and a preference for methanol, steel and hydrogen imports. Keeping some domestic power-to-X production is beneficial for integrating variable renewables, utilising waste heat from fuel synthesis and leveraging local sustainable carbon sources. Our findings highlight the need for coordinating import strategies with infrastructure policy and reveal maneuvering space for incorporating non-cost decision factors.
+> Importing renewable energy to Europe may offer many potential benefits, including reduced energy costs, lower pressure on infrastructure development, and less land-use within Europe. However, there remain many open questions: on the achievable cost reductions, how much should be imported, whether the energy vector should be electricity, hydrogen or hydrogen derivatives like ammonia or steel, and their impact on Europe's domestic energy infrastructure needs. This study integrates the TRACE global energy supply chain model with the sector-coupled energy system model for Europe, PyPSA-Eur, to explore net-zero emission scenarios with varying import volumes, costs, and vectors. We find system cost reductions of 1-10%, within import cost variations of +-20% around our central estimate, with diminishing returns for larger import volumes and a preference for methanol, steel and hydrogen imports. Keeping some domestic power-to-X production is beneficial for integrating variable renewables, leveraging local sustainable carbon sources and utilising some waste heat from fuel synthesis. Across scenarios, power grid reinforcements are more stable than hydrogen pipeline expansion. Our findings highlight the need for coordinating import strategies with infrastructure policy and reveal maneuvering space for incorporating non-cost decision factors. 
 
 ## Installation
 
@@ -35,19 +35,15 @@ conda activate pypsa-eur-imports
 conda install -c gurobi gurobi
 ```
 
-For an environment specification with fixed versions, use `workflow/pypsa-eur/envs/environment.yaml`:
-
-```sh
-conda env create -f workflow/pypsa-eur/envs/environment.fixed.yaml -n pypsa-eur-imports-fixed
-```
-
 Finally, there is a data requirement that is not included in the repository and not downloaded automatically.
 
-Download the following `zip` folder and unpack it into the `data` directory.
+Download the following two files into the `./workflow/pypsa-eur/data/imports` directory.
 
 ```sh
-wget https://tubcloud.tu-berlin.de/s/Sfbd38DZTpTYpkb/download/import-benefits-data.zip
-unzip import-benefits-data.zip -d workflow/pypsa-eur/data
+cd workflow/pypsa-eur/data
+mkdir imports
+wget https://tubcloud.tu-berlin.de/s/Zpntz6kB7HDdP7m/download/combined_weighted_generator_timeseries.nc
+wget https://tubcloud.tu-berlin.de/s/T4CfYwfWZX8Xa7E/download/results.parquet
 ```
 
 The workflow can be executed on Linux, Mac or Windows. There are no futher specific non-standard hardware requirements.
@@ -61,6 +57,7 @@ Apart from solving the optimisation problem of a high-resolution model configura
 To run a test workflow resulting in a model with reduced temporal resolution with a runtime limited to around 2 hours so that it is suitable for local execution, execute the following commands from the `root` directory of the project:
 
 ```sh
+cd workflow/pypsa-eur
 conda activate pypsa-eur-imports
 snakemake -call --configfile=config/config.small.yaml
 ```
@@ -68,11 +65,12 @@ snakemake -call --configfile=config/config.small.yaml
 To reproduce the model runs presented in the paper, execute the following commands from the `root` directory of the project:
 
 ```sh
+cd workflow/pypsa-eur
 conda activate pypsa-eur-imports
-snakemake -call --configfile=config/config.20231025-zecm.yaml
+snakemake -call --configfile=config/config.20240826-z1.yaml
 ```
 
-These larger runs with higher temporal resolution require a high-performance computing setup with at least 128 GB RAM available and access to multiple cores is beneficial for runtime improvements but not strictly necessary. However, the runtime for a single scenario can exceed 48 hours. As there are around 200 scenarios, it is recommended to use the [`snakemake` cluster integration](https://snakemake.readthedocs.io/en/v7.19.1/executing/cluster.html) to parallelize scenarios.
+These larger runs with higher temporal resolution require a high-performance computing setup with at least 125-150 GB RAM available and access to multiple cores is beneficial for runtime improvements but not strictly necessary. However, the runtime for a single scenario can exceed 48-72 hours. As there are around 250 scenarios, it is recommended to use the [`snakemake` cluster integration](https://snakemake.readthedocs.io/en/v7.19.1/executing/cluster.html) to parallelize scenarios.
 
 The `yaml` files referenced above can be used to edit and configure the scenarios, e.g. by adding additional cases or changing some assumptions.
 
@@ -89,7 +87,7 @@ PyPSA networks can be read and inspected with Python in the following way:
 
 ```py
 import pypsa
-fn = "workflow/pypsa-eur/results/small/postnetworks/elec_s_110_lvopt__Co2L0-365H-T-H-B-I-S-A-imp_2050.nc"
+fn = "workflow/pypsa-eur/results/small/postnetworks/elec_s_110_lvopt__imp_2050.nc"
 n = pypsa.Network(fn)
 n.statistics()
 n.statistics.energy_balance()
