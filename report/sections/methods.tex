@@ -7,31 +7,31 @@ system model PyPSA-Eur\cite{horschPyPSAEurOpen2018a} based on the open-source
 modelling framework PyPSA\cite{brownPyPSAPython2018} (Python for Power System
 Analysis), covering the energy demands of all sectors including electricity,
 heat, transport, industry, agriculture, as well as non-energy feedstock demands,
-international shipping and aviation. An overview of considered supply,
-consumption and balancing technologies per carrier is shown in
+international shipping, and aviation. An overview of considered supply,
+consumption, and balancing technologies per carrier is shown in
 \sfigref{fig:si:supply-consumption-options}.
 
-The model simultaneously optimises spatially explicit investments and the 
-operation of generation, storage, conversion and transmission assets to minimise
-total system costs in a single linear optimisation problem, which assumes
-perfect operational foresight and is solved with \textit{Gurobi 
+The model simultaneously optimises spatially explicit investments and the
+operation of generation, storage, conversion, and transmission assets to
+minimise total system costs in a single linear optimisation problem, which
+assumes perfect operational foresight and is solved with \textit{Gurobi
 v11}.\cite{gurobi} To manage computational complexity, no pathways with multiple
-investment periods are calculated but overnights scenarios targeting net-zero
+investment periods are calculated, but overnight scenarios targeting net-zero
 CO$_2$ emissions. The capacity expansion is based on technology cost and
-efficiency projections for the year 2040 (see `Data availability'),
-acknowledging that much of the required infrastructure must be constructed well
-in advance of reaching net-zero emissions.
+efficiency projections for 2040 (see `Data availability'), acknowledging that
+much of the required infrastructure must be constructed well before reaching
+net-zero emissions.
 
 Existing hydro-electric power plants\cite{gotzensPerformingEnergy2019} are
-included as well as nuclear power plants built before 1990 or currently under
-construction from Global Energy Monitor's Global Nuclear Plant Tracker (52~GW
-total of 106~GW in current
+included, as well as nuclear power plants built before 1990 or currently under
+construction according to Global Energy Monitor's Global Nuclear Plant Tracker
+(52~GW total of 106~GW in current
 operation).\cite{globalenergymonitorGlobalNuclearPower2024} While
-hydro-electricity is assumed to be non-extendable due to geographic constraints,
+hydroelectricity is assumed to be non-extendable due to geographic constraints,
 additional nuclear capacities can be expanded where cost-effective. We assume
-that the existing nuclear fleet is operated inflexibly and apply
-country-specific historical availability factors from the 2021-2023
-period.\cite{internationalatomicenergyagencyPowerReactorInformation2024}
+the existing nuclear fleet is operated inflexibly and apply country-specific
+historical availability factors from 2021 to
+2023.\cite{internationalatomicenergyagencyPowerReactorInformation2024}
 
 Temporally, the model is solved with an uninterrupted 4-hourly equivalent
 resolution for a single year, using a segmentation clustering approach
@@ -41,28 +41,29 @@ years are not considered for computational reasons, the chosen weather year 2013
 is representative in terms of wind and solar
 availability.\cite{gotskeDesigningSectorcoupledEuropean2024}
 
-Spatially, the model resolves 115 regions in
-Europe,\cite{frysztackiStrongEffect2021} covering the European Union, the United
-Kingdom, Norway, Switzerland and the Balkan countries without Malta and Cyprus.
-For computational reasons, only electricity, heat and hydrogen are modelled at
-high spatial resolution, while oil, methanol, methane, ammonia and carbon
-dioxide are treated as easily transportable without spatial constraints. Of the
-total final energy and non-energy demand (\sfigref{fig:si:demand_totals}), only
-some demands are spatially fixed (\sfigref{fig:si:demands}). These include
-electricity for residential, industry, services, agriculture; heat; electric
-vehicles; solid biomass for industry; and naphtha/methanol feedstocks. Hydrogen
-demand for steel and ammonia production is also spatially fixed, unless these
-industries can relocate, in which case regionally fixed hydrogen demand becomes
-negligible. Since the model optimizes the siting and operation of most fuel
-synthesis units, many demands are spatially variable (e.g.~electricity demand
-for electrolysers or hydrogen demand for methanolisation).
+Spatially, the model resolves 115 European
+regions,\cite{frysztackiStrongEffect2021} covering the European Union, the
+United Kingdom, Norway, Switzerland, and the Balkan countries without Malta and
+Cyprus. For computational reasons, only electricity, heat, and hydrogen are
+modelled at high spatial resolution, while oil, methanol, methane, ammonia, and
+carbon dioxide are treated as easily transportable without spatial constraints.
+Of the total final energy and non-energy demand
+(\sfigref{fig:si:demand_totals}), only some demands are spatially fixed
+(\sfigref{fig:si:demands}). These include electricity for residential, industry,
+services, and agriculture; heat; electric vehicles; solid biomass for industry;
+and naphtha/methanol feedstocks. Hydrogen demand for steel and ammonia
+production is also spatially fixed unless these industries can relocate. In this
+case, regionally fixed hydrogen demand becomes negligible. Since the model
+optimizes the siting and operation of most fuel synthesis units, many demands
+are spatially variable (e.g.~electricity demand for electrolysers or hydrogen
+demand for methanolisation).
 
-A mathematical description of PyPSA-Eur can be found in
-Section S12 in Neumann et al.\cite{neumannPotentialRoleHydrogen2023}
+A mathematical description of PyPSA-Eur can be found in Section S12 in Neumann
+et al.\cite{neumannPotentialRoleHydrogen2023}
 
 \subsection*{Gas and electricity network modelling}
 
-Networks are considered for electricity, methane and hydrogen transport.
+Networks are considered for electricity, methane, and hydrogen transport.
 Existing gas pipelines taken from SciGRID\_gas,\cite{plutaSciGRIDGas2022a} can
 be repurposed to hydrogen in addition to new hydrogen
 pipelines.\cite{neumannPotentialRoleHydrogen2023} Data on the gas transmission
@@ -73,17 +74,18 @@ construction from Global Energy Monitor's Europe Gas
 Tracker.\cite{globalenergymonitorEuropeGasTracker2024} Geological potentials for
 hydrogen storage are taken from Caglayan et
 al.,\cite{caglayanTechnicalPotentialSalt2020} restricting where this low-cost
-storage options is available. In modelling gas and hydrogen flows, we
-incorporate electricity demands for compression of 1\% and 2\% per 1000km of the
-transported energy, respectively.\cite{gasforclimateEuropeanHydrogen2021}
-Existing high-voltage grid data is taken from
+storage option is available. In modelling gas and hydrogen flows, we incorporate
+electricity demands for compression of 1\% and 2\% per 1000km of the transported
+energy, respectively.\cite{gasforclimateEuropeanHydrogen2021} Existing
+high-voltage grid data is taken from
 OpenStreetMap.\cite{xiongModellingHighVoltageGrid2024} For HVDC transmission
 lines, we assume 2\% static losses at the substations and additional losses of
 3\% per 1000km. The losses of high-voltage AC transmission lines are estimated
 using the piecewise linear approximation from Neumann et
-al.,\cite{neumannAssessmentsLinear2022} in addition to linearised power flow
-equations.\cite{horschLinearOptimal2018} Up to a maximum capacity increase of
-30\%, we consider dynamic line rating (DLR), leveraging the cooling effect of
+al.,\cite{neumannAssessmentsLinear2022} in addition to applying linearised power
+flow equations.\cite{horschLinearOptimal2018} Up to a maximum capacity increase
+of 30\%
+%, we consider dynamic line rating (DLR), leveraging the cooling effect of
 wind and low ambient temperatures to exploit existing transmission assets
 fully.\cite{glaumLeveragingExisting2023} To approximate $N-1$ resilience,
 transmission lines may only be used up to 70\% of their rated dynamic
@@ -114,17 +116,17 @@ combination with standard solar panel and wind turbine models provided by
 
 Biomass potentials are restricted to residues from agriculture and forestry, as
 well as waste and manure, based on the regional medium potentials specified for
-2050 in the JRC-ENSPRESO database.\cite{ruizENSPRESOOpen2019} The finite biomass
-resource can be employed for low-temperature heat provision in industrial
-applications, biomass boilers and CHPs, and (electro-)biofuel production for use
-in aviation, shipping and the chemicals industry. Additionally, we allow biogas
-upgrading, including the capture of the CO$_2$ contained in biogas, which
-unlocks all considered uses of regular methane
+2050 in the JRC-ENSPRESO database.\cite{ruizENSPRESOOpen2019} The finite
+sustainable biomass resource can be employed for low-temperature heat provision
+in industrial applications, biomass boilers, and CHPs, and (electro-)biofuel
+production for use in aviation, shipping, and the chemicals industry.
+Additionally, we allow biogas upgrading, including capturing the CO$_2$
+contained in biogas, which unlocks all considered uses of regular methane
 (\sfigref{fig:si:supply-consumption-options}). The total assumed bioenergy
 potentials are 1730~TWh, which splits into 358~TWh/a for biogas and 1,014~TWh/a
 for solid biomass. The total carbon content corresponds to
 605~Mt$_{\text{CO}_2}$~a$^{-1}$, which is not fully available as a feedstock for
-fuel synthesis or seuqestration for negative emissions due to imperfect capture
+fuel synthesis or sequestration for negative emissions due to imperfect capture
 rates of up to 90\%.
 
 \subsection*{Carbon management}
@@ -132,7 +134,7 @@ rates of up to 90\%.
 The carbon management features of the model trace the carbon cycles through
 various conversion stages: industrial emissions, biomass and gas combustion,
 carbon capture in numerous applications, direct air capture, intermediate
-storage, electrofuels, recycling, landfill or  long-term sequestration. The
+storage, electrofuels, recycling, landfill or long-term sequestration. The
 overall annual sequestration of CO$_2$ is limited to
 200~Mt$_{\text{CO}_2}$~a$^{-1}$, similar to the 250~Mt$_{\text{CO}_2}$~a$^{-1}$
 highlighted in the European Commission's carbon management
@@ -143,8 +145,7 @@ carbon dioxide network topology is not co-optimised since CO$_2$ is not
 spatially resolved. This means that the location of biogenic or industrial point
 sources of CO$_2$ is not a siting factor that this model version considers for
 PtX processes, implicitly assuming that the CO$_2$ would be transported there at
-low cost.
-\cite{hofmannDesigningCO22023,hofmannH2CO2Network2024}
+low cost. \cite{hofmannDesigningCO22023,hofmannH2CO2Network2024}
 
 \subsection*{Transport sector fuel assumptions}
 
@@ -152,97 +153,96 @@ While the shipping sector is assumed to use methanol as fuel given its high
 technology-readiness level compared to hydrogen or
 ammonia,\cite{ieaETPCleanEnergy2024} land-based transport, including heavy-duty
 vehicles, is fully electrified in the presented
-scenarios.\cite{linkRapidlyDecliningCosts2024} Aviation can decide to use green
-kerosene derived from Fischer-Tropsch fuels or methanol, owing to lower
-technology readiness levels of fuel cell or battery-electric
-aircrafts.\cite{ieaETPCleanEnergy2024} Alternative uses for methanol and
+scenarios.\cite{linkRapidlyDecliningCosts2024} Aviation can use green kerosene
+derived from Fischer-Tropsch fuels or methanol, owing to lower technology
+readiness levels of fuel cell or battery-electric
+aircraft.\cite{ieaETPCleanEnergy2024} Alternative uses for methanol and
 Fischer-Tropsch fuels extend beyond transport, including
 power-to-methanol,\cite{brownUltralongdurationEnergyStorage2023} diesel for
 agriculture machinery and as feedstock for high-value chemicals.
 
 \subsection*{Technical constraints of synthetic fuel production}
 
-To obtain more realistic operational patterns of green electrofuel synthesis
-plants, we consider potential flexibility restrictions in the synthesis
-processes. We apply a minimum part load of 20\% for methanolisation and 50\% for
+We consider potential flexibility restrictions in the synthesis processes to
+obtain more realistic operational patterns of green electrofuel synthesis
+plants. We apply a minimum part load of 20\% for methanolisation and 50\% for
 methanation and Fischer-Tropsch
 synthesis.\cite{mucciPowerXProcessesBased2023,wentrupDynamicOperationFischerTropsch2022,dieterichPowerliquidSynthesisMethanol2020,mbathaPowermethanolProcessReview2021}
 These `green' options then compete with `blue' and `grey' options, such as steam
 methane reforming of fossil gas with or without carbon capture for hydrogen
 (\sfigref{fig:si:supply-consumption-options}). Some carriers also feature a
-biogenic production route (e.g. methane and oil).
+biogenic production route (e.g., methane and oil).
 
 \subsection*{Heating sector modelling and PtX waste heat}
-
 
 Heating supply technologies like heat pumps, electric boilers, gas boilers, and
 combined heat and power (CHP) plants are endogenously optimised separately for
 decentral use and central district heating. District heating shares of demand
-are exogenously set to a maximum  of 60\% of the total urban heat demand with
+are exogenously set to a maximum of 60\% of the total urban heat demand with
 sufficiently high population density. Besides the options for long-duration
 thermal energy storage, district heating networks can further be supplemented
-with waste heat from various power-to-X processes; electrolysis, methanation,
-ammonia synthesis, Fischer-Tropsch fuel synthesis. Because the thermal discharge
-from the methanol synthesis is primarily used for the distillation of the
+with waste heat from various power-to-X processes: electrolysis, methanation,
+ammonia synthesis, and Fischer-Tropsch fuel synthesis. Because the thermal
+discharge from the methanol synthesis is primarily used to distillate the
 methanol-water output mix,\cite{brownUltralongdurationEnergyStorage2023} its
 waste heat potential is not considered for district heat. Here, we assume a
-utilizable share of waste heat of 25\% considering that within the 115 regions
+utilizable share of waste heat of 25\%, considering that within the 115 regions,
 only a fraction of fuel synthesis plants might be connected to district heating
-systems. In sensitivity analyses, we explore the effect of no or full waste heat
-utilisation.
+systems. In further sensitivity analyses, we explore the effect of no or full
+waste heat utilisation.
 
 
 \subsection*{Industry relocation modelling for steel and ammonia production}
 
-In some scenarios, we also allow the model to endogenously relocate the steel
-and ammonia industry within Europe. This is to allow the best sites within
-Europe to compete with outsourced production abroad. While this captures some of
-the most energy-intensive industry sectors, other sectors like concrete and
-alumina production is not considered for relocation.
+In some scenarios, we also allow the model to relocate the steel and ammonia
+industry within Europe endogenously. This allows the best sites within Europe to
+compete with outsourced production abroad. While this captures some of the most
+energy-intensive industry sectors, other sectors, like concrete and alumina
+production, are not considered for relocation.
 
-Without relocation of steel and ammonia production allowed, the production volumes of primary steel, by
-direct iron reduction (DRI) and electric arc furnace (EAF), and ammonia for
-fertilizers, by Haber-Bosch synthesis, are spatially-fixed. This results in
-exogenous hydrogen demand per region. Total production volumes are based on
-current
+Without relocation of steel and ammonia production allowed, the production
+volumes of primary steel, by direct iron reduction (DRI) and electric arc
+furnace (EAF), and ammonia for fertilizers, by Haber-Bosch synthesis, are
+spatially fixed. This results in exogenous hydrogen demand per region. Total
+production volumes are based on current
 levels.\cite{unitedstatesgeologicalsurveyAmmoniaProductionCountry2022,europeancommission.jointresearchcentre.JRCIDEES2021IntegratedDatabase2024}
 For the spatial distribution, we use data on the existing integrated steelworks
 listed in Global Energy Monitor's Global Steel Plant Tracker
 \cite{globalenergymonitorGlobalSteelPlant2024} and manually collected data on
 the location and size of ammonia plants in Europe.
 
-With relocation of steel and ammonia production allowed, the model endogenously chooses the regional
-production volumes of primary steel, HBI and ammonia, subject to the
-availability of cheap hydrogen. Thereby, the regional capacities and operation
-of Haber-Bosch, DRI and EAF plants are co-optimised with the rest of the system,
-similar to the siting of Fischer-Tropsch or methanolisation plants. For DRI and
-EAF, investment costs and specific requirements for fuels and iron ore are taken
-from the Steel Sector Transition Strategy Model (ST-STSM) of the Mission
-Possible
+With the relocation of steel and ammonia production allowed, the model
+endogenously chooses the regional production volumes of primary steel, HBI, and
+ammonia, subject to the availability of cheap hydrogen. Thereby, the regional
+capacities and operation of Haber-Bosch, DRI, and EAF plants are co-optimised
+with the rest of the system, similar to the siting of Fischer-Tropsch or
+methanolisation plants. For DRI and EAF, investment costs and specific
+requirements for fuels and iron ore are taken from the Steel Sector Transition
+Strategy Model (ST-STSM) of the Mission Possible
 Partnership.\cite{missionpossiblepartnershipSteelSectorTransition2022,missionpossiblepartnershipMakingNetZeroSteel2022}.
 and assume steel can be stored and transported without constraints within
 Europe. Relocation costs and local job impacts are excluded from the analysis
-due to lack of data.
+due to a lack of data.
 
 For both cases, we assume a rise in the steel recycling rate from 40\% today to
 70\% in our carbon-neutral
-scenarios.\cite{materialeconomicsIndustrialTransformation20502019} We assume that
-the electric arc furnaces for secondary steel remain, in proportion, at current
-locations and do not relocate.
+scenarios.\cite{materialeconomicsIndustrialTransformation20502019} We assume
+that the electric arc furnaces for secondary steel remain, in proportion, at
+current locations and do not relocate.
 
 \subsection*{TRACE: Import supply chain modelling}
 
 The European energy system model is extended with data from the TRACE model used
 in Hampp et al.\cite{hamppImportOptions2023} to assess the unit costs of
-different vectors for importing green energy and material to entry-points in
+different vectors for importing green energy and material to entry points in
 Europe from various world regions. For consistency with the European model, the
-techno-economic assumptions were aligned, using the same projections for the
-year 2040 (see `Data availability`) and a uniform weighted average cost of
-capital (WACC) of 7\%.\cite{lonerganImprovingRepresentationCost2023} As possible
-import vectors, we consider electricity by transmission line, hydrogen as gas by
-pipeline and liquid by ship, methane as liquid by ship, liquid ammonia, steel
-and HBI, methanol and Fischer-Tropsch fuels by ship. Liquid organic hydrogen
-carriers (LOHC) are not considered as export vector due to their lower
+techno-economic assumptions were aligned, using the same projections for 2040
+(see `Data availability`) and a uniform weighted average cost of capital (WACC)
+of 7\%.\cite{lonerganImprovingRepresentationCost2023} As possible import
+vectors, we consider electricity by transmission lines, hydrogen as gas by
+pipelines and as a liquid by ship, methane as a liquid by ship, liquid ammonia,
+steel and HBI, methanol and Fischer-Tropsch fuels by ship. Liquid organic
+hydrogen carriers (LOHC) are not considered as export vectors due to their lower
 technology readiness level (TRL) compared to other
 vectors.\cite{irenaGlobalHydrogenTrade2022}
 
@@ -250,43 +250,45 @@ Our selection of 53 potential exporting regions broadly comprises countries with
 favourable wind and solar resources and large enough potentials for substantial
 exports above 500~TWh~a$^{-1}$ in addition to domestic consumption. We exclude
 some countries due to political instability (e.g.~Sudan, Somalia, Yemen), using
-a Fragile States Index\cite{thefundforpeaceffpFragileStatesIndex2023} value of 100 as a threshold, or due
-to severe imposed sanctions (e.g.~Russia, Iran, Iraq), following the EU
-Sanctions Map.\cite{estonianpresidencyofthecounciloftheeuEUSanctionsMap2024}
-Landlocked countries outside the reach of realistic pipeline transport are also
-excluded due to lack of access to ports. For landlocked regions within pipeline
-reach, we only exclude ship-bourne vectors. Some large countries are split into
-multiple subregions for a more differentiated view (e.g.~USA, Argentina, Brazil
-and China). The resulting regions are marked in \cref{fig:options:global}.
+a Fragile States Index\cite{thefundforpeaceffpFragileStatesIndex2023} value of
+100 as a threshold, or due to severe imposed sanctions (e.g.~Russia, Iran,
+Iraq), following the EU Sanctions
+Map.\cite{estonianpresidencyofthecounciloftheeuEUSanctionsMap2024} Landlocked
+countries without access to seaports or realistic pipeline connections are
+excluded. For landlocked regions within pipeline reach, we only exclude
+shipborne vectors. Some large countries are split into multiple subregions for
+a more differentiated view (e.g.~USA, Argentina, Brazil, and China). The
+resulting regions are marked in \cref{fig:options:global}.
 
 % renewable potentials minus domestic demand
 
 To determine the levelised cost of energy for exports, the methodology first
-assesses the regional potentials for solar, onshore and offshore wind energy.
+assesses the regional potentials for solar, onshore, and offshore wind energy.
 These potentials and time series are calculated using
-\textit{atlite}\cite{hofmannAtliteLightweight2021}, applying similar land
-eligibility constraints as in PyPSA-Eur, albeit using other datasets with global
-coverage, and the same wind turbine and solar panel models to ERA5\cite{ecmwf}
-weather data for 2013 in eligible regions. Since TRACE evaluates whole regions
-without further network resolution, the renewable potentials and profiles are
-split into different resources classes to reduce smoothing effects. We consider
-30 classes each for onshore wind and solar, and 10 classes for offshore wind
-where applicable. Based on these calculations, levelised cost of electricity
-(LCOE) curves can be determined for each region. A selection of LCOE curves is
-shown in \sfigref{fig:si:cost-supply-curves}.
+\textit{atlite},\cite{hofmannAtliteLightweight2021} applying similar land
+eligibility constraints as in PyPSA-Eur (but using other datasets with global
+coverage) and applying the same wind turbine and solar panel models to
+ERA5\cite{ecmwf} weather data for 2013 in eligible regions. Since TRACE
+evaluates whole regions without further transmission network resolution, the
+renewable potentials and profiles within a region are split into different
+resource classes to reduce smoothing effects. We consider 30 classes each for
+onshore wind and solar and 10 for offshore wind where applicable. Based on these
+calculations, levelised cost of electricity (LCOE) curves can be determined for
+each region. A selection of LCOE curves is shown in
+\sfigref{fig:si:cost-supply-curves}.
 
 % deducted domestic demand
 
 In the next step, potentials are reduced by the projected future local energy
 demand, starting with the lowest LCOE resource classes. With this approach,
 domestic consumption is prioritised and supplied by the regions' best renewable
-resources even though we do not model the energy transition in exporting regions
-in detail. To create the demand projections, we use the
+resources, even though we do not model the energy transition in exporting
+regions in detail. To create the demand projections, we use the
 GEGIS\cite{mattssonAutopilotEnergyModels2021} tool, which utilises machine
-learning on historic time-series, weather data and marco-economic factors to
-create artificial electricity demand time-series based on population and GDP
+learning on historical time series, weather data, and macro-economic factors to
+create artificial electricity demand time series based on population and GDP
 growth scenarios following the SSP2 scenario of the Shared Socioeconomic
-Pathways.\cite{riahiSharedSocioeconomicPathways2017} From these time-series we
+Pathways.\cite{riahiSharedSocioeconomicPathways2017} From these time series we
 take the annual total and increase it by a factor of two to account for further
 electrification of other sectors, which the GEGIS tool does not consider.
 
@@ -302,9 +304,9 @@ iron with subsequent processing to green steel in electric arc furnaces (EAF)
 from iron ore priced at
 97.7~\euro{}~t$^{-1}$.\cite{missionpossiblepartnershipSteelSectorTransition2022}
 Other CO$_2$ sources than DAC are not considered in the exporting regions.
-Furthermore, while batteries and hydrogen storage in steel tanks is considered,
-underground hydrogen storage is excluded due to uncertain availability of salt
-caverns in many of the potential exporting
+Furthermore, while batteries and hydrogen storage in steel tanks are considered,
+underground hydrogen storage is excluded due to the uncertain availability of
+salt caverns in many potential exporting
 regions.\cite{hevinUndergroundStorageHydrogen2019,hydrogentcp-task42UndergroundHydrogenStorage2023}
 We also assume that the energy supply chains dedicated to exports will be
 islanded from the rest of the local energy system, i.e.~that curtailed
@@ -313,49 +315,52 @@ electricity or waste heat could not be used locally.
 For each vector, an annual reference export demand of 500~TWh$_\text{LHV}$ or
 100~Mt of steel and HBI is assumed, mirroring large-scale energy and material
 infrastructures and export volumes, corresponding to approximately 40\% of
-current LNG
+current European LNG
 imports\cite{instituteforenergyeconomicsandfinancialanalysisEuropeanLNG2023} and
 66\% of European steel
 production.\cite{eurofer-theeuropeansteelassociationEuropeanSteel2023} Transport
 distances are calculated between the exporting regions and the twelve
-representative European import locations using the \textit{searoute} Python tool
-for ship-bourne vectors or crow-fly distances for pipeline or HVDC connections.
-The representative import locations are large ports and LNG terminals in the
-United Kingdom, the Netherlands, Poland, Greece, Italy, Spain and Portugal and
-pipeline entry-points in Slovakia, Greece, Italy and Spain. All energy supply
-chains are assumed to consume their energy vector as fuel for transport to
-Europe, except for steel, which uses externally bought methanol as shipping
-fuel.
+representative European import locations using the \textit{searoute} Python
+tool\cite{haliliSeaRoutePython2024} for shipborne vectors or crow-fly distances
+for pipeline or HVDC connections, and modified by a mode-specific detour factor.
+The chosen representative import locations are based on large ports and LNG
+terminals in the United Kingdom, the Netherlands, Poland, Greece, Italy, Spain,
+and Portugal, as well as pipeline entry points in Slovakia, Greece, Italy, and
+Spain. All energy supply chains are assumed to consume their energy vector as
+fuel for transport to Europe, except for HBI and steel, which use externally
+bought methanol as shipping fuel.
 
 %%% capacity expansion %%%
 
-For each combination of carrier, exporter and importer, a linear capacity
+For each combination of carrier, exporter, and importer, a linear capacity
 expansion optimisation is performed to determine cost-optimal investments and
-the operation of generation, conversion, storage and transport capacities for
+the operation of generation, conversion, storage, and transport capacities for
 all intermediary products to deliver 500~TWh~a$^{-1}$ (or 100~Mt~a$^{-1}$ for
 materials) of the final carrier to Europe. Dividing the total annual system
 costs by the targeted annual export volume yields the levelised cost of energy
-as seen by the European entry point. To match the multi-hourly resolution used
-for the European model, the TRACE model was configured to use a 3-hourly
-resolution for the year 2013, resulting in similar balancing requirements. The
-resulting levelised cost curves of energy imports for different import vectors
-and exporting regions are presented for the respective lowest-cost entry point
-to Europe in
-\sfigref{fig:si:isc-h2,fig:si:isc-ch4-nh3,fig:si:isc-meoh-ft,fig:si:isc-hbi-St}
-with assumed step width of 500~TWh~a$^{-1}$ (or 100~Mt~a$^{-1}$ for materials).
-The curves show the varying cost composition of the country-carrier pairs.
+or material as seen by the European entry point. To match the multi-hourly
+resolution used for the European model, the TRACE model was configured to use a
+3-hourly resolution for 2013, resulting in similar balancing requirements.
+Considering the reference export volume of 500~TWh~a$^{-1}$ (or 100~Mt~a$^{-1}$
+for materials), the resulting levelised cost curves of imports for different
+import vectors and exporting regions are presented for the respective
+lowest-cost entry point to Europe in
+\sfigref{fig:si:isc-h2,fig:si:isc-ch4-nh3,fig:si:isc-meoh-ft,fig:si:isc-hbi-St}.
+The curves show the varying cost composition of the country-carrier pairs. In
+this step, each import vector combination of carrier, exporter, and importer is
+optimised separately. Further constraints, like constraints on total export
+volumes per country, are imposed in the coupling to the European model.
 
-A mathematical description of TRACE can be found in Section
-S3 in Hampp et al.\cite{hamppImportOptions2023}
-
-% - electrolysis costs \cite{ieaGlobalHydrogenReview2024}
+A mathematical description of TRACE can be found in Section S3 in Hampp et
+al.\cite{hamppImportOptions2023}
 
 \subsection*{Coupling of import options to European model}
 
-The resulting levelised unit cost for each combination of carrier, exporter and
+The resulting levelised unit cost for each combination of carrier, exporter, and
 reference importer is then used as an exogenous input to the European model. For
-each candidate entry point, we match the closest reference import location from
-TRACE and add the corresponding import cost curve as supply option
+each candidate entry point in the 115 European model regions, we match the
+closest reference import location from TRACE and add the corresponding import
+cost curve as a supply option
 (\sfigref{fig:si:isc-h2,fig:si:isc-ch4-nh3,fig:si:isc-meoh-ft,fig:si:isc-hbi-St}).
 Moreover, we limit energy exports from any one exporting region to Europe for
 the sum of all carriers to 500~TWh~a$^{-1}$. This is to both prevent a single
@@ -366,13 +371,14 @@ PyPSA-Eur.
 
 %%% entry points %%%
 
-However, imports may be further restricted by the level of domestic import
-infrastructure expansion. For each vector, we identify locations where the
-respective carrier may enter the European energy system by considering where LNG
-terminals and cross-continental pipelines are located
-(\cref{fig:options:europe}). For hydrogen imports by pipeline, imports have to
-be near-constant, varying between 90-100\% of peak imports. For methane imports
-by ship, existing LNG terminals reported in Global Energy Monitor's Europe Gas
+However, imports may be further restricted by the expansion of domestic import
+infrastructure. For each vector, we identify locations where the respective
+carrier may enter the European energy system by considering where LNG terminals
+and cross-continental pipelines are located (\cref{fig:options:europe}). For
+hydrogen imports by pipeline, imports must be near-constant, varying between
+90-100\% of peak imports, aligning with the high pipeline utilisation rates
+observed in the TRACE model. For methane imports by ship, existing LNG terminals
+reported in Global Energy Monitor's Europe Gas
 Tracker\cite{globalenergymonitorEuropeGasTracker2024} can be used. For hydrogen
 by ship, new terminals can be built in regions where LNG terminals exist. To
 ensure regional diversity in potential gas and hydrogen imports and avoid
@@ -402,22 +408,22 @@ or electricity.
 The supply chain of electricity imports is endogenously optimised with the rest
 of the European system rather than using a constant levelised cost of
 electricity for each export region. This is because, owing to the greater
-challenge to store electricity, the hourly variability of wind and solar
-electricity leads to higher price variability compared to hydrogen and its
-derivatives and the intake needs to be more closely coordinated with the
-European power grid. The endogenous optimisation comprises wind and solar
-capacities, batteries and hydrogen storage in steel tanks, and the size and
-operation of HVDC link connections to Europe based on the renewable capacity
-factor time series as illustrated in \cref{fig:options:europe}. Europe's
-connection options with exporting regions are confined to the 4\% nearest
-regions, with additional ultra-long distance connection options to Ireland,
-Cornwall and Brittany following the vision of the Xlinks project between Morocco
-and the United Kingdom.\cite{xlinksMoroccoUKPowerProject2023} Connections through
-Russia or Belarus are excluded, and in addition to excluded entry points, some
-connections from Central Asia are affected by additional detours beyond the
-regularly applied detour factor of 125\% of the as-the-crow-flies distance.
-Similar to intra-European HVDC transmission, a 3\% loss per 1000km and a 2\%
-converter station loss are assumed.
+challenge of storing electricity, the hourly variability of wind and solar
+electricity leads to higher price variability than hydrogen and its derivatives,
+and the intake needs to be more closely coordinated with the European power
+grid. The endogenous optimisation comprises wind and solar capacities, batteries
+and hydrogen storage in steel tanks, and the size and operation of HVDC link
+connections to Europe based on the renewable capacity factor time series as
+illustrated in \cref{fig:options:europe}. Europe's connection options with
+exporting regions are confined to the 4\% nearest regions, with additional
+ultra-long distance connection options to Ireland, Cornwall, and Brittany
+following the vision of the Xlinks project between Morocco and the United
+Kingdom.\cite{xlinksMoroccoUKPowerProject2023} Connections through Russia or
+Belarus are excluded. In addition to excluded entry points, some connections
+from Central Asia are affected by additional detours beyond the regularly
+applied detour factor of 125\% of the as-the-crow-flies distance. Similar to
+intra-European HVDC transmission, a 3\% loss per 1000km and a 2\% converter
+station loss are assumed.
 
 \vspace{1em}
 

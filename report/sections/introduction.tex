@@ -33,7 +33,7 @@ brownSynergiesSector2018} To support such scenarios without energy imports into
 Europe, reinforcing the European power grid or building a hydrogen network was
 often identified as beneficial.\cite{neumannPotentialRoleHydrogen2023,
 victoriaSpeedTechnological2022} However, depending on the volumes and vectors of
-imports (electricity, hydrogen or hydrogen derivatives) and levels of industry
+imports (electricity, hydrogen, or hydrogen derivatives) and levels of industry
 migration, Europe might not need to expand its hydrogen pipeline infrastructure.
 Most hydrogen is used to make derivative products (e.g.~, ammonia for
 fertilisers, sponge iron for steel, or Fischer-Tropsch fuels for aviation and
@@ -42,7 +42,7 @@ products at scale, much of the hydrogen demand would fall away. In consequence,
 this would reduce the need for hydrogen transport. However, if hydrogen itself
 were imported and to be transported to today's industry clusters, this would
 require a pipeline topology tailored to connecting these to the hydrogen
-arriving from North Africa or maritime entry-points across Europe.
+arriving from North Africa or maritime entry points across Europe.
 
 %%% review of policy strategies %%%
 
@@ -53,12 +53,12 @@ plans of the European Commission\cite{europeancommissionRepowerEUPlan} to import
 instruments, like the European Hydrogen
 Bank\cite{europeancommissionEuropeanHydrogenBank2024} or
 H2Global\cite{h2globalfoundationH2Global2024} are set up to support the scale-up
-of green hydrogen imports, and desire to import hydrogen and derivative products
+of green hydrogen imports. Desire to import hydrogen and derivative products
 is also present in various national
 strategies.\cite{corbeauNationalHydrogenStrategies2024} In particular, Germany's
 new import strategy plans to cover up to 70\% of its demand for hydrogen and its
 derivatives through imports by 2030 and highlights bilateral partnerships as
-well as the expansion of import infrastructure as means to accomplish
+well as the expansion of import infrastructure as a means to accomplish
 this.\cite{germanfederalministryofeconomicaffairsandclimateactionbmwkNationalHydrogenStrategy2023,germanfederalministryofeconomicaffairsandclimateactionbmwkImportStrategyHydrogen2024}
 Conversely, hydrogen roadmaps of
 Denmark,\cite{danishministryofclimateenergyandutilitiesRegeringensStrategiPowertoX2021}
@@ -71,7 +71,7 @@ energy, whereas France's strategy focuses on local hydrogen production to meet
 domestic needs.\cite{frenchgovernmentStrategieNationalePour2023} Beyond direct
 energy imports, the Draghi report\cite{draghiFutureEuropeanCompetitiveness2024}
 also raises broader concerns about European industrial competitiveness and
-discusses the benefits of relocating energy-intensive industry to renewable-rich
+discusses the benefits of relocating energy-intensive industries to renewable-rich
 regions inside Europe. Additionally, European grid development
 plans\cite{entso-eTYNDP2024Project2024} reveal renewed enthusiasm for
 electricity imports via ultra-long HVDC cables, evolving from early
@@ -148,7 +148,7 @@ vectors, in order to identify the cost-effective maneuvering space.
         \centering
         \includegraphics[width=\linewidth]{../workflow/pypsa-eur/results/20240826-z1/graphics/import_options_s_115_lvopt__imp_2050-distribution.pdf}
     \end{subfigure}
-    \caption{\textbf{Overview of considered import options.}
+    \caption{\textbf{Overview of considered import options into Europe.}
         \textit{Panel (a)} shows the regional differences in the cost to deliver
         green methanol to Europe (choropleth layer), the cost composition of
         different import vectors (bar charts), an illustration of the wind and
@@ -167,8 +167,8 @@ vectors, in order to identify the cost-effective maneuvering space.
         due to regional differences in the transport costs to alternative
         entrypoints. These are more variable for liquid hydrogen as transport
         distance is a more substantial cost factor for this import vector.
-        Supplementary Fig.~3 shows the world map for lowest \textit{direct}
-        hydrogen import costs into Europe.}
+        Supplementary Fig.~3 shows the world map for lowest 
+        hydrogen import costs by pipeline or ship into Europe.}
     \label{fig:options}
     }
 \end{figure}
@@ -179,7 +179,7 @@ As possible import options, we consider electricity by transmission line,
 hydrogen as gas by pipeline and liquid by ship, methane as liquid by ship,
 liquid ammonia, steel and its precursor hot briquetted iron (HBI), methanol and
 Fischer-Tropsch fuels by ship. Each energy vector has unique characteristics
-with regards to its production, transport and consumption. Electricity offers
+with regards to its production, storage, transport and consumption. Electricity offers
 the most flexible usage but is challenging to store and requires variability
 management if sourced from wind or solar energy. Hydrogen is easier to store and
 transport in large quantities but at the expense of conversion losses and less
@@ -206,7 +206,7 @@ The PyPSA-Eur\cite{PyPSAEurSecSectorCoupledOpen} model co-optimises the investme
 and operation of generation, storage, conversion and transmission
 infrastructures in a single linear optimisation problem. The model is further
 given the opportunity to relocate ammonia and primary steel production within
-Europe capturing potential renewables pull effects within Europe and
+Europe, capturing potential renewables pull effects within Europe and
 abroad.\cite{verpoortImpactGlobalHeterogeneity2024,
 samadiRenewablesPullEffect2023,egererIndustryTransformationFossil2024} We
 resolve 115 regions comprising the European Union without Cyprus and Malta as
