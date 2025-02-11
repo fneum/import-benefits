@@ -1,9 +1,10 @@
 
 
 \subsection*{PyPSA-Eur: Overview of European energy system model}
+\label{sec:methods-overview}
 
 For our analysis, we use the European sector-coupled high-resolution energy
-system model PyPSA-Eur\cite{horschPyPSAEurOpen2018a} based on the open-source
+system model PyPSA-Eur\cite{horschPyPSAEurOpen2018a} (derivative of v0.13.0) based on the open-source
 modelling framework PyPSA\cite{brownPyPSAPython2018} (Python for Power System
 Analysis), covering the energy demands of all sectors including electricity,
 heat, transport, industry, agriculture, as well as non-energy feedstock demands,
@@ -20,10 +21,12 @@ investment periods are calculated, but overnight scenarios targeting net-zero
 CO$_2$ emissions. The capacity expansion is based on technology cost and
 efficiency projections for 2040 (see `Data availability'), acknowledging that
 much of the required infrastructure must be constructed well before reaching
-net-zero emissions.
+net-zero emissions. \cref{fig:sensitivity-bars,fig:sensitivity-costs} and
+\sfigref{fig:si:infra-e} feature additional scenarios using technology
+projections for 2030 and 2050.
 
 Existing hydro-electric power plants\cite{gotzensPerformingEnergy2019} are
-included, as well as nuclear power plants built before 1990 or currently under
+included, as well as nuclear power plants built after 1990 or currently under
 construction according to Global Energy Monitor's Global Nuclear Plant Tracker
 (52~GW total of 106~GW in current
 operation).\cite{globalenergymonitorGlobalNuclearPower2024} While
@@ -38,8 +41,12 @@ resolution for a single year, using a segmentation clustering approach
 implemented in the \textit{tsam} toolbox on all time-varying
 data.\cite{hoffmannParetooptimalTemporal2022} While weather variations between
 years are not considered for computational reasons, the chosen weather year 2013
-is representative in terms of wind and solar
-availability.\cite{gotskeDesigningSectorcoupledEuropean2024}
+is representative in terms of wind and solar availability and heat
+demand.\cite{gotskeDesigningSectorcoupledEuropean2024} Some demands are
+associated with a time-varying profiles (e.g.~residential/services electricity,
+electric vehicles, and heating demand) based on travel patterns or ambient weather
+con ditions, while the other exogenous demands are assumed to be time-constant
+(e.g.~kerosene, naphtha, methanol, ammonia, and industry electricity). 
 
 Spatially, the model resolves 115 European
 regions,\cite{frysztackiStrongEffect2021} covering the European Union, the
@@ -56,12 +63,13 @@ production is also spatially fixed unless these industries can relocate. In this
 case, regionally fixed hydrogen demand becomes negligible. Since the model
 optimizes the siting and operation of most fuel synthesis units, many demands
 are spatially variable (e.g.~electricity demand for electrolysers or hydrogen
-demand for methanolisation).
+demand for methanolisation; see model formulation in \snoteref{sec:si:math}).
 
 A mathematical description of PyPSA-Eur can be found in Section S12 in Neumann
 et al.\cite{neumannPotentialRoleHydrogen2023}
 
 \subsection*{Gas and electricity network modelling}
+\label{sec:methods-networks}
 
 Networks are considered for electricity, methane, and hydrogen transport.
 Existing gas pipelines taken from SciGRID\_gas,\cite{plutaSciGRIDGas2022a} can
@@ -96,6 +104,7 @@ placed on hydrogen pipelines, which corresponds to three 48-inch
 pipelines.\cite{gasforclimateEuropeanHydrogen2021}
 
 \subsection*{Wind and solar potentials}
+\label{sec:methods-wind-solar}
 
 Renewable potentials and time series for wind and solar electricity generation
 are calculated with \textit{atlite},\cite{hofmannAtliteLightweight2021}
@@ -113,23 +122,28 @@ combination with standard solar panel and wind turbine models provided by
 \textit{atlite}.
 
 \subsection*{Biomass potentials}
+\label{sec:methods-biomass}
 
 Biomass potentials are restricted to residues from agriculture and forestry, as
 well as waste and manure, based on the regional medium potentials specified for
-2050 in the JRC-ENSPRESO database.\cite{ruizENSPRESOOpen2019} The finite
-sustainable biomass resource can be employed for low-temperature heat provision
-in industrial applications, biomass boilers, and CHPs, and (electro-)biofuel
+2050 in the JRC-ENSPRESO database.\cite{ruizENSPRESOOpen2019} Continued use of
+energy crops or biomass imports are not considered. The finite sustainable
+biomass resource can be employed for low-temperature heat provision in
+industrial applications, biomass boilers, and CHPs, and (electro-)biofuel
 production for use in aviation, shipping, and the chemicals industry.
 Additionally, we allow biogas upgrading, including capturing the CO$_2$
 contained in biogas, which unlocks all considered uses of regular methane
 (\sfigref{fig:si:supply-consumption-options}). The total assumed bioenergy
-potentials are 1730~TWh, which splits into 358~TWh/a for biogas and 1,014~TWh/a
+potentials are 1,372~TWh, which splits into 358~TWh/a for biogas and 1,014~TWh/a
 for solid biomass. The total carbon content corresponds to
 605~Mt$_{\text{CO}_2}$~a$^{-1}$, which is not fully available as a feedstock for
 fuel synthesis or sequestration for negative emissions due to imperfect capture
-rates of up to 90\%.
+rates of up to 90\%. Biogenic CO$_2$ can be captured from biogas upgrading,
+biomass CHPs and biomass-based low-temperature heat provision in industrial use,
+if the added cost of carbon capture is economically viable.
 
 \subsection*{Carbon management}
+\label{sec:methods-carbon}
 
 The carbon management features of the model trace the carbon cycles through
 various conversion stages: industrial emissions, biomass and gas combustion,
@@ -148,6 +162,7 @@ PtX processes, implicitly assuming that the CO$_2$ would be transported there at
 low cost. \cite{hofmannDesigningCO22023,hofmannH2CO2Network2024}
 
 \subsection*{Transport sector fuel assumptions}
+\label{sec:methods-transport}
 
 While the shipping sector is assumed to use methanol as fuel given its high
 technology-readiness level compared to hydrogen or
@@ -162,18 +177,22 @@ power-to-methanol,\cite{brownUltralongdurationEnergyStorage2023} diesel for
 agriculture machinery and as feedstock for high-value chemicals.
 
 \subsection*{Technical constraints of synthetic fuel production}
+\label{sec:methods-efuels}
 
 We consider potential flexibility restrictions in the synthesis processes to
 obtain more realistic operational patterns of green electrofuel synthesis
 plants. We apply a minimum part load of 20\% for methanolisation and 50\% for
 methanation and Fischer-Tropsch
 synthesis.\cite{mucciPowerXProcessesBased2023,wentrupDynamicOperationFischerTropsch2022,dieterichPowerliquidSynthesisMethanol2020,mbathaPowermethanolProcessReview2021}
-These `green' options then compete with `blue' and `grey' options, such as steam
+The assumed lower operational flexibility is a potential disadvantage of
+Fischer-Tropsch over methanol synthesis, where theses fuels compete. These
+`green' options then compete with `blue' and `grey' options, such as steam
 methane reforming of fossil gas with or without carbon capture for hydrogen
 (\sfigref{fig:si:supply-consumption-options}). Some carriers also feature a
 biogenic production route (e.g., methane and oil).
 
 \subsection*{Heating sector modelling and PtX waste heat}
+\label{sec:methods-heating}
 
 Heating supply technologies like heat pumps, electric boilers, gas boilers, and
 combined heat and power (CHP) plants are endogenously optimised separately for
@@ -191,14 +210,26 @@ only a fraction of fuel synthesis plants might be connected to district heating
 systems. In further sensitivity analyses, we explore the effect of no or full
 waste heat utilisation.
 
+\subsection*{Backup heat and power options}
+\label{sec:methods-backup}
+
+The model includes a variety of options for providing backup power and heating
+in periods of low renewable generation and high demand
+(\sfigref{fig:si:supply-consumption-options}). Backup power options include
+hydrogen, gas and methanol turbines. Backup heat options include gas boilers and
+resistive heaters. For combined backup heat and power, we consider biomass,
+hydrogen, and gas CHPs. Furthermore, flexible demands like electric vehicles,
+heat pumps and fuel synthesis units, as well as batteries and thermal storage in
+district heating, can be utilised to reduce the need for backup capacities. 
 
 \subsection*{Industry relocation modelling for steel and ammonia production}
+\label{sec:methods-industry}
 
-In some scenarios, we also allow the model to relocate the steel and ammonia
-industry within Europe endogenously. This allows the best sites within Europe to
-compete with outsourced production abroad. While this captures some of the most
-energy-intensive industry sectors, other sectors, like concrete and alumina
-production, are not considered for relocation.
+Unless indicated otherwise, all scenarios also allow the model to relocate the
+steel and ammonia industry within Europe endogenously. This allows the best
+sites within Europe to compete with outsourced production abroad. While this
+captures some of the most energy-intensive industry sectors, other sectors, like
+concrete and alumina production, are not considered for relocation.
 
 Without relocation of steel and ammonia production allowed, the production
 volumes of primary steel, by direct iron reduction (DRI) and electric arc
@@ -221,8 +252,7 @@ requirements for fuels and iron ore are taken from the Steel Sector Transition
 Strategy Model (ST-STSM) of the Mission Possible
 Partnership.\cite{missionpossiblepartnershipSteelSectorTransition2022,missionpossiblepartnershipMakingNetZeroSteel2022}.
 and assume steel can be stored and transported without constraints within
-Europe. Relocation costs and local job impacts are excluded from the analysis
-due to a lack of data.
+Europe. 
 
 For both cases, we assume a rise in the steel recycling rate from 40\% today to
 70\% in our carbon-neutral
@@ -230,20 +260,33 @@ scenarios.\cite{materialeconomicsIndustrialTransformation20502019} We assume
 that the electric arc furnaces for secondary steel remain, in proportion, at
 current locations and do not relocate.
 
-\subsection*{TRACE: Import supply chain modelling}
+A limitation of the relocation modelling of steel and ammonia production is that
+it only considers the cost of energy in the siting of these industries. Other
+factors, such as impacts on regional economies and local jobs, integration with
+other production processes, or availability of existing infrastructure are not
+considered, largely due to a lack of data. The resulting relocation patterns
+should therefore be interpreted with caution as they might underestimate total
+relocation costs and frictions. we allow domestic relocation nevertheless in
+most scenarios, as it would be inconsistent to allow steel and ammonia imports
+from abroad while preventing relocation within Europe.
 
-The European energy system model is extended with data from the TRACE model used
-in Hampp et al.\cite{hamppImportOptions2023} to assess the unit costs of
-different vectors for importing green energy and material to entry points in
-Europe from various world regions. For consistency with the European model, the
-techno-economic assumptions were aligned, using the same projections for 2040
-(see `Data availability`) and a uniform weighted average cost of capital (WACC)
-of 7\%.\cite{lonerganImprovingRepresentationCost2023} As possible import
-vectors, we consider electricity by transmission lines, hydrogen as gas by
-pipelines and as a liquid by ship, methane as a liquid by ship, liquid ammonia,
-steel and HBI, methanol and Fischer-Tropsch fuels by ship. Liquid organic
-hydrogen carriers (LOHC) are not considered as export vectors due to their lower
-technology readiness level (TRL) compared to other
+\subsection*{TRACE: Import supply chain modelling}
+\label{sec:methods-trace}
+
+The European energy system model is extended with data from the TRACE model
+(derivative of v1.1) used in Hampp et al.\cite{hamppImportOptions2023} to assess
+the unit costs of different vectors for importing green energy and material to
+entry points in Europe from various world regions. For consistency with the
+European model, the techno-economic assumptions were aligned, using the same
+projections for 2040 (plus 2030 / 2050 in
+\cref{fig:sensitivity-bars,fig:sensitivity-costs} and \sfigref{fig:si:infra-e})
+and a uniform weighted average cost of capital (WACC) of
+7\%.\cite{lonerganImprovingRepresentationCost2023} As possible import vectors,
+we consider electricity by transmission lines, hydrogen as gas by pipelines and
+as a liquid by ship, methane as a liquid by ship, liquid ammonia, steel and HBI,
+methanol and Fischer-Tropsch fuels by ship. Liquid organic hydrogen carriers
+(LOHC) are not considered as export vectors due to their lower technology
+readiness level (TRL) compared to other
 vectors.\cite{irenaGlobalHydrogenTrade2022}
 
 Our selection of 53 potential exporting regions broadly comprises countries with
@@ -328,7 +371,9 @@ terminals in the United Kingdom, the Netherlands, Poland, Greece, Italy, Spain,
 and Portugal, as well as pipeline entry points in Slovakia, Greece, Italy, and
 Spain. All energy supply chains are assumed to consume their energy vector as
 fuel for transport to Europe, except for HBI and steel, which use externally
-bought methanol as shipping fuel.
+bought green methanol as shipping fuel. The capital costs of the ships and
+pipelines are also included, following the metholodogy of Hampp et
+al.~\cite{hamppImportOptions2023}.
 
 %%% capacity expansion %%%
 
@@ -355,13 +400,14 @@ A mathematical description of TRACE can be found in Section S3 in Hampp et
 al.\cite{hamppImportOptions2023}
 
 \subsection*{Coupling of import options to European model}
+\label{sec:methods-coupling}
 
 The resulting levelised unit cost for each combination of carrier, exporter, and
 reference importer is then used as an exogenous input to the European model. For
 each candidate entry point in the 115 European model regions, we match the
 closest reference import location from TRACE and add the corresponding import
 cost curve as a supply option
-(\sfigref{fig:si:isc-h2,fig:si:isc-ch4-nh3,fig:si:isc-meoh-ft,fig:si:isc-hbi-St}).
+(\sfigref{fig:si:isc-h2,fig:si:isc-ch4-nh3,fig:si:isc-meoh-ft,fig:si:isc-hbi-St}).  
 Moreover, we limit energy exports from any one exporting region to Europe for
 the sum of all carriers to 500~TWh~a$^{-1}$. This is to both prevent a single
 country from dominating the import mix and be consistent with the target export

@@ -1,5 +1,229 @@
 
-\newpage
+\section{Supplementary Notes}
+
+\subsection{Mathematical Model Formulation}
+\label{sec:si:math}
+
+This section describes the mathematical formulation of the energy system
+optimisation model PyPSA-Eur used in this study. This section is a reprint of a
+previous model description in Neumann et al.
+\cite{neumannPotentialRoleHydrogen2023}, which was updated and amended to
+explain how steel and ammonia industry relocation and endogenous siting of
+hydrogen consumers for fuel synthesis and other applications are modelled. In
+the configuration used in this study, the model does not consider pathway
+optimisation (i.e.~no sequences of investments), but searches for a cost-optimal
+layout corresponding to a given \co emission reduction level and assumes perfect
+operational foresight for the reference year based on which capacities are
+optimised (`overnight scenario').
+
+The objective is to minimise the total annual energy system costs of the energy
+system that comprises both investment costs and operational expenditures of
+generation, storage, transmission and conversion infrastructure. To express both
+as annual costs, we use the annuity factor $(1-(1+\tau)^{-n}) / \tau$ that, like
+a mortgage, converts the upfront investment of an asset to annual payments
+considering its lifetime $n$ and cost of capital $\tau$. Thus, the objective
+includes on one hand the annualised capital costs $c_*$ for investments at bus
+$i$ in generator capacity $G_{i,r}\in\R^+$ of technology $r$ (e.g. primary
+energy supply of gas, oil, nuclear, biomass), storage energy capacity
+$E_{i,s}\in\R^+$ of technology $s$ (e.g.~battery, heat, or hydrogen storage),
+electricity transmission line capacities $P_{\ell}\in\R^+$, and energy
+conversion (e.g.~power-to-heat, electrolysis, Fischer-Tropsch synthesis) and
+transport (e.g.~hydrogen/gas pipelines) capacities $F_k\in\R^+$ (`links'), as
+well as the variable operating costs $o_*$ for generator dispatch
+$g_{i,r,t}\in\R^+$ and link dispatch $f_{k,t}\in\R^+$ on the other:
+\begin{align}
+  \label{eq:objective}
+  \min_{G,E,P,F,g} \quad &\left[\sum_{i,r} c_{i,r}\cdot G_{i,r} + \sum_{i,s} c_{i,s}\cdot E_{i,s} + \sum_{\ell}c_{\ell}\cdot P_{\ell}+ \sum_{k}c_{k}\cdot F_k +\right. \\
+  & \left.  \sum_{t} w_t \cdot \left( \sum_{i,r} o_{i,r} \cdot g_{i,r,t} + \sum_k o_k \cdot f_{k,t} \right) \right].
+\end{align}
+Thereby, the representative time snapshots $t$ are weighted by the time span
+$w_t$ such that their total duration adds up to one year; \mbox{$\sum_{t}
+w_t=365\cdot 24\text{h}=8760\text{h}$}. A bus $i$ represents both a regional
+scope and an energy carrier. Represented carriers include electricity, heat
+(various subdivisions), hydrogen, ammonia, methane, methanol, oil, hot
+briquetted iron, steel, and carbon dioxide. Spatially resolved carriers are
+electricity, heat, hydrogen and methane (e.g.~\mbox{$i=$`region\_id methanol'}).
+For all other carriers, assuming negligible transport costs of the respective
+fuels, the model aggregates the regions to a single bus per carrier
+(e.g.~$i=$`Europe methanol').
+
+
+% constraints
+
+In addition to the cost-minimising objective function, we further impose a set
+of linear constraints that define limits on (i) the capacities of generation,
+storage, conversion and transmission infrastructure from geographical and
+technical potentials, (ii) the availability of variable renewable energy sources
+for each location and point in time (iii) the limit for \co emissions or transmission expansion, (iv)
+storage consistency equations, and (v) a multi-period linearised optimal power
+flow (LOPF) formulation. Overall, this results in a large linear problem (LP).
+
+The capacities of generation, storage, conversion and transmission
+infrastructure are constrained from above by their installable potentials and
+from below by any existing components:
+\begin{align}
+  \underline{G}_{i,r}  &  & \leq &  & G_{i,r}  &  & \leq &  & \overline{G}_{i,r}  & \qquad\forall i, r \label{eq:genlimit} \\
+  \underline{E}_{i,s}  &  & \leq &  & E_{i,s}  &  & \leq &  & \overline{E}_{i,s}  & \qquad\forall i, s \\
+  \underline{P}_{\ell} &  & \leq &  & P_{\ell} &  & \leq &  & \overline{P}_{\ell} & \qquad\forall \ell \\
+  \underline{F}_{k} &  & \leq &  & F_{k} &  & \leq &  & \overline{F}_{k} & \qquad\forall k
+\end{align}
+
+Moreover, the dispatch of generators and links may not only be constrained by
+their rated capacity but also by the weather-dependent availability of variable
+renewable energy or must-run conditions. This can be expressed as a time- and
+location-dependent availability factor
+$\overline{g}_{i,r,t}$/$\overline{f}_{k,t}$  and must-run factor
+$\underline{g}_{i,r,t}$/$\underline{f}_{k,t}$ (e.g. for certain power-to-X processes),
+given per unit of the nominal capacity:
+\begin{align}
+    \underline{g}_{i,r,t}  G_{i,r} &  & \leq &  & g_{i,r,t} &  & \leq &  & \overline{g}_{i,r,t} G_{i,r} & \qquad\forall i, r, t \\
+    \underline{f}_{k,t}  F_{k} &  & \leq &  & f_{k,t} &  & \leq &  & \overline{f}_{k,t} F_{i,r} & \qquad\forall k, t
+\end{align}
+The parameter $\underline{f}_{k,t}$ can also be used to define whether a link is
+bidirectional or unidirectional. For instance, for HVDC links
+$\underline{f}_{k,t}=-1$ would allow lossless power flows in either direction.
+On the other hand, a heat resistor has $\underline{f}_{k,t}=0$ since it can only
+convert electricity to heat, not the other way around.
+
+The energy levels $e_{i,s,t}$ of all stores are constrained by their energy capacity
+\begin{align}
+  0 &  & \leq &  & e_{i,s,t} &  & \leq &  & E_{i,s} & \qquad\forall i, s, t,
+\end{align}
+and have to be consistent with the dispatch variable $h_{i,s,t}\in\R$ in all
+hours
+\begin{align}
+  e_{i,s,t} =\: & \eta_{i,s,0}^{w_t} \cdot e_{i,s,t-1} + w_t \cdot h_{i,s,t}, \label{eq:stoe}
+\end{align}
+where $\eta_{i,s,0}$ denotes the standing loss. Furthermore, the storage energy
+levels are either assumed to be cyclic or given an initial state of charge,
+\begin{align}
+  e_{i,s,0} = e_{i,s,T} \qquad\forall i, s,\\
+  \text{or} \qquad e_{i,s,0} = e_{i,s,\text{initial}} \qquad\forall i, s.
+\end{align}
+
+The modelling of hydroelectricity storage deviates from regular storage to
+additionally account for natural inflow and spillage of water. We also assume
+fixed power ratings $H_{i,s}$ for hydroelectricity storage. The dispatch of
+hydroelectricity storage units is split into two positive variables; one each
+for charging $h_{i,s,t}^+$ and discharging $h_{i,s,t}^-$, and limited by
+$H_{i,s}$.
+\begin{align}
+  0 &  & \leq &  & h_{i,s,t}^+ &  & \leq &  & H_{i,s} & \qquad\forall i, s, t \label{eq:sto1} \\
+  0 &  & \leq &  & h_{i,s,t}^- &  & \leq &  & H_{i,s} & \qquad\forall i, s, t \label{eq:sto2}
+\end{align}
+The energy levels $e_{i,s,t}$ of all hydroelectric storage also have to match
+the dispatch across all hours
+\begin{align}
+  e_{i,s,t} =\: & \eta_{i,s,0}^{w_t} \cdot e_{i,s,t-1} + w_t \cdot h_{i,s,t}^\text{inflow} - w_t \cdot h_{i,s,t}^\text{spillage} & \quad\forall i, s, t \nonumber \\
+                & + \eta_{i,s,+} \cdot w_t \cdot h_{i,s,t}^+ - \eta_{i,s,-}^{-1} \cdot w_t \cdot h_{i,s,t}^-, \label{eq:stoe-2}
+\end{align}
+whereby hydropower storage units can additionally have a charging efficiency
+$\eta_{i,s,+}$, a discharging efficiency $\eta_{i,s,-}$, natural inflow
+$h_{i,s,t}^\text{inflow}$ and spillage $h_{i,s,t}^\text{spillage}$, besides the
+standing loss $\eta_{i,s,0}$.
+
+The nodal balance constraint for supply and demand (Kirchoff's current law for
+electricity buses, or simply energy balance for all other carriers) requires
+local generators and storage units, incoming or outgoing energy flows
+$p_{\ell,t}$ of incident transmission lines $\ell$, and incoming or outgoing
+energy flows $f_{k,t}$ of converters $k$ (e.g. electrolysis, heat pumps,
+Fischer-Tropsch synthesis, hydrogen turbines, electric arc furnace) to balance the
+perfectly inelastic, exogenously given demand $d_{i,t}$ at each location $i$ and
+snapshot $t$
+\begin{align}
+    \sum_r g_{i,r,t} + \sum_s \left(h_{i,s,t}^- - h_{i,s,t}^+ \right) + \sum_s h_{i,s,t} + \sum_\ell K_{i\ell} p_{\ell,t} + \sum_k L_{ikt} f_{k,t} = d_{i,t}\quad \forall i,t, \label{eq:balance}
+\end{align}
+where $K_{i\ell}$ is the incidence matrix of the electricity network with
+non-zero values $-1$ if line $\ell$ starts at node $i$ and $1$ if it ends at
+node $i$. $L_{ikt}$ is the conversion incidence matrix of the network with non-zero
+values $-1$ if link $k$ starts at node $i$ and $\eta_{i,k,t}$ if one of its
+terminal buses is node $i$. For a link with more than two outputs (e.g. CHP
+converts gas to heat and electricity in a fixed ratio), the respective column of
+the conversion incidence matrix has more than two non-zero entries. These entries may
+also be negative to denote additional inputs rather than multiple outputs. For
+instance, modelling Fischer-Tropsch synthesis requires hydrogen and carbon
+dioxide as inputs to produce liquid hydrocarbons (`oil'). The operational
+decision variable $f_{k,t}$ is always associated with one input; additional
+inputs would be modelled as outputs with a negative entry for $\eta_{i,k,t}$.
+These entries may also contain unit conversions (e.g. for Fischer-Tropsch
+synthesis from carbon dioxide input in tonnes to oil output in MWh). Moreover,
+the factor $\eta_{i,k,t}$ can also be time-dependent and greater than one for
+certain technologies (e.g. for heat pumps converting electricity and ambient
+heat to hot water), which can result in additional primary energy input to the
+model scope (ambient heat).
+
+By modelling the conversion between different energy carriers in this way, i.e.
+as links with capacity $F_k$, dispatch $f_{k,t}$ and conversion incidence matrix
+$L_{ikt}$, the model can endogenously decide some consumption patterns at bus
+$i$ in addition to the exogenously given demands $d_{i,t}$. Noting that bus $i$
+represents a region/carrier combination (e.g.~`region\_id~hydrogen' or
+`Europe~methanol'), $k$ would conversely represent a region/technology combination
+(e.g.~`region\_id electrolyser'). While the positive terms of $\sum_k L_{ikt}
+f_{k,t}$ in the nodal balance constraints, \cref{eq:balance}, represent
+endogenous supply at bus $i$, the negative terms represent endogenous
+consumption (e.g.~consumption of electricity for electrolysis, or hydrogen for
+methanolisation in a region). What consumption and supply patterns are possible,
+then depends on where the model decides to build capacity $F_k$ (e.g.~of
+electrolysis in a region). For our relocation modelling of steel and ammonia
+production, we keep $F_k$ as free variables for Haber-Bosch, direct iron
+reduction and electric arc furnace links for each region, effectively allowing
+greenfield siting of these industries. In scenarios without relocation, we fix
+$F_k$ to the current regional capacities of these technologies such that no new
+sites for steel ad ammonia production can be developed.
+
+% \todo[inline]{relocation and hydrogen demand modelling}
+
+The effective power flows $p_{\ell,t}$ are limited by their nominal capacities $P_\ell$ minus losses $\psi_\ell$.
+\begin{align}
+	|p_{\ell,t}| \leq \overline{p}_{\ell} P_{\ell} - \psi_\ell & \qquad\forall \ell, t,
+	\label{eq:cap}
+\end{align}
+where $\overline{p}_\ell$ acts as an additional per-unit security margin on the line capacity
+to allow a buffer for the failure of single circuits ($N-1$ criterion) and reactive power flows.
+
+Kirchoff's voltage law (KVL) imposes further constraints on the flow of AC
+transmission lines and there are several ways to formulate KVL with large
+impacts on performance. Here, we use linearised load flow assumptions, where the
+voltage angle difference around every closed cycle in the electricity
+transmission network must add up to zero. Using a cycle basis $C_{\ell c}$ of
+the network graph where the independent cycles $c$ are expressed as directed
+linear combinations of lines $\ell$, we can write
+KVL as
+\begin{align}
+    \sum_\ell C_{\ell c} \cdot x_\ell \cdot p_{\ell,t} = 0 \qquad\forall c,t
+    \label{eq:kvl}
+\end{align}
+where $x_\ell$ is the series inductive reactance of line $\ell$.
+
+The AC transmission losses $\psi_\ell$ are approximated as a tangent-based linear approximation
+of the loss parabola $\psi_\ell = r_\ell p_\ell^2$, where $r_\ell$ is the
+resistance, following Neumann et al.~\cite{neumannAssessmentsLinear2022}:
+\begin{align}
+    0 \leq \psi_\ell \leq r_\ell (\overline{p}_\ell \overline{P}_\ell)^2 & \qquad\forall \ell \\
+    \psi_\ell \geq   m_k\cdot p_\ell + a_k & \qquad\forall \ell, k=1,\dots,n \\
+	\psi_\ell \geq - m_k\cdot p_\ell + a_k & \qquad\forall \ell, k=1,\dots,n
+\end{align}
+For each segment $k$ of the total $n$ segments, we derive the slope $m_k$ and
+offset $a_k$ in the following way:
+\begin{align}
+	\psi_\ell(k) &= r_\ell \left(\frac{k}{n}\cdot \overline{p}_\ell \overline{P}_\ell\right)^2 \\
+	m_k &= \frac{\text{d} \psi_\ell(k) }{\text{d}k} = 2 r_\ell \left(\frac{k}{n}\cdot \overline{p}_\ell \overline{P}_\ell\right) \\
+	a_k &= \psi_\ell(k) - m_k \left(\frac{k}{n}\cdot\overline{p}_\ell \overline{P}_\ell\right).
+\end{align}
+The losses also extend the left-hand side of the nodal balance constraints in
+\cref{eq:balance} by the term $-0.5 \cdot |K_{i\ell}| \cdot \psi_\ell$, splitting
+the losses equally between both connection points.
+
+Finally, we add a constraint so that the total CO$_2$ emissions net out to zero
+over the year. The emissions are determined from the difference between final
+and initial `filling level' of the store used to represent CO$_2$ in the
+atmosphere.
+\begin{align}
+	e_{\text{CO}_2,\text{atmosphere},t=T} - e_{\text{CO}_2,\text{atmosphere},t=0}  \leq 0.
+\end{align}
+
+\clearpage
+\section{Supplementary Figures}
 
 \begin{figure*}[!htb]
     \centering
@@ -19,6 +243,37 @@
     investment option for each of the 115 regions).}
     \label{fig:si:supply-consumption-options}
 \end{figure}
+
+\begin{table}[!htb]
+    \footnotesize
+    \setlength{\extrarowheight}{4pt}
+    \caption{\textbf{Overview of scenarios.} Overall, 352 scenario runs have
+    been computed. The estimate for a single re-run of all scenarios is in the
+    order of 50,000 CPU-hours. Figure numbers with the prefix `S' denote
+    supplementary figures. $^*$ Some combinations of import carriers and volumes
+    have been omitted in case they exceeded the model's ability to absorb
+    these.}
+    \label{tab:scenarios}
+    \begin{tabular}{>{\raggedright\arraybackslash}p{3cm}>{\raggedright\arraybackslash}p{4cm}>{\raggedright\arraybackslash}p{1.8cm}>{\raggedright\arraybackslash}p{2cm}>{\raggedright\arraybackslash}p{1.5cm}>{\raggedright\arraybackslash}p{1.3cm}>{\raggedright\arraybackslash}p{1cm}p{0.5cm}}
+    \toprule
+    Scenario group & Import carriers & Import volume [TWh] & Import costs & Technology projection year & St. / NH$_3$ relocation & Figures & Runs \\
+    \midrule
+    \textbf{Subsets of import carriers} & none, all, methane, electricity, ammonia, HBI/steel, hydrogen, methanol, FT, methanol/FT, only carbonaceous fuels, hydrogen derivatives, hydrogen derivatives and steel, all but electricity and steel, all but electricity & any & default ($\pm$0\%) & 2030, 2040, 2050 & yes, no (for 2040) & \ref{fig:sensitivity-bars}, \ref{fig:import-shares}, \ref{fig:market-values}, \ref{fig:import-infrastructure}, S\ref{fig:si:relocation}, S\ref{fig:si:technology-projection}, S\ref{fig:si:import-shares-a}, S\ref{fig:si:cost-supply-curves}, S\ref{fig:si:market-value-ts}, S\ref{fig:si:balances-a}, S\ref{fig:si:balances-b}, S\ref{fig:si:infra-b}, S\ref{fig:si:infra-d}, S\ref{fig:si:infra-e}ff. & 60 \\
+    \textbf{Subsets of import carriers (import cost variation)} & all, methane, electricity, ammonia, HBI/steel, hydrogen, methanol, FT, methanol/FT, only carbonaceous fuels, hydrogen derivatives, hydrogen derivatives and steel, all but electricity and steel, all but electricity & any & -20\%, -10\%, +10\%, +20\% & 2040 & yes & S\ref{fig:si:subsets-higher}, S\ref{fig:si:subsets-lower}, S\ref{fig:si:import-shares-b}, S\ref{fig:si:infra-c} & 56 \\
+    \textbf{Import cost variation (all import carriers)} & all & any & -50\%, -40\%, -30\%, -20\%, -10\%, +10\%, +20\%, +30\%, +50\% & 2030, 2040, 2050 & yes & \ref{fig:sensitivity-costs} & 27 \\
+    \textbf{Import cost variation (all import carriers but electricity)} & all & any & -50\%, -40\%, -30\%, -20\%, -10\%, +10\%, +20\%, +30\%, +50\% & 2030, 2040, 2050 & yes & \ref{fig:sensitivity-costs} & 27 \\
+    \textbf{Import cost variation (only carbonaceous import carriers)} & all & any & -50\%, -40\%, -30\%, -20\%, -10\%, +10\%, +20\%, +30\%, +50\% & 2030, 2040, 2050 & yes & \ref{fig:sensitivity-costs}, S\ref{fig:si:infra-c} & 27 \\
+    \textbf{Import cost variation (only electricity)} & all & any & -30\%, -20\%, -10\% & 2040 & yes & -- & 3 \\
+    \textbf{Import volumes (subsets of import carriers)} & all, electricity, hydrogen, methane, ammonia, methanol/FT, all but electricity & 500, 1000, 1500, 2000, 3000, 4000, 5000, 6000, 7000, 8000, 9000, 10000* & default ($\pm$0\%) & 2040 & Yes & \ref{fig:sensitivity-volume}, S\ref{fig:si:volume-subsets} & 47 \\
+    \textbf{Import volumes (import cost variation)} & all & 500, 1000, 1500, 2000, 3000, 4000, 5000, 6000, 7000, 8000, 9000, 10000 & -50\%, -30\%, -20\%, -10\%, +10\%, +20\%, +30\%, +50\% & 2040 & yes & \ref{fig:sensitivity-volume}, S\ref{fig:si:volume-higher-2}, S\ref{fig:si:volume-higher-1}, S\ref{fig:si:volume-lower-1}, S\ref{fig:si:volume-lower-2},  & 96 \\
+    \textbf{Sensitivity: No hydrogen network} & none, all, all but hydrogen & any & default ($\pm$0\%) & 2040 & yes & S\ref{fig:si:infra-d} & 3 \\
+    \textbf{Sensitivity: no PtX waste heat} & none, all & any & default  ($\pm$0\%)& 2040 & yes & -- & 2 \\
+    \textbf{Sensitivity: all PtX waste heat} & none, all & any & default ($\pm$0\%) & 2040 & yes & S\ref{fig:si:infra-b} & 2 \\
+    \textbf{Sensitivity: PtX flexibility} & none, all & any & default ($\pm$0\%) & 2040 & yes & S\ref{fig:si:infra-d} & 2 \\
+    \bottomrule
+    \end{tabular}
+\end{table}
+
 
 \begin{figure}[!htb]
     \includegraphics[width=\textwidth]{../workflow/pypsa-eur/resources/20240826-z1/graphics/import_world_map_hydrogen.pdf} \\
@@ -134,6 +389,16 @@
     exporting regions.} Shows potential and levelised cost of electricity for
     each resource class of onshore wind (blue), offshore wind (light blue), and solar (yellow) in ascending order.}
     \label{fig:si:lcoe-curve}
+\end{figure}
+
+\begin{figure}[!htb]
+    \includegraphics[width=\textwidth]{../workflow/notebooks/20240826-z1/technology-year-sensitivity.pdf} \\
+    \caption{\textbf{Impact of technology projection year on total energy system
+    cost with and without imports.} Left colums show total system cost.
+    Right columns show difference in total system cost compared to technology
+    projection year 2040. Black lines show net cost difference in absolute and
+    relative terms.}
+    \label{fig:si:technology-projection}
 \end{figure}
 
 \begin{figure}[!htb]
@@ -364,6 +629,24 @@
     in TWkm, which is the sum product of the capacity and length of individual
     connections. }
     \label{fig:si:infra-d}
+\end{figure*}
+
+
+\begin{figure*}
+    \includegraphics[width=\textwidth]{../workflow/notebooks/20240826-z1/infrastructure-map-2x3-E.pdf}
+    \caption{\textbf{Layout of European energy infrastructure for different
+    import scenarios.}  Infrastructure build-out with technology projection for
+    2050 and no imports (first row), with technology projection for 2030 and no
+    imports (second row), with technology projection for 2050 and all imports
+    allowed (third row). Left column shows the regional electricity supply mix
+    (pies), added HVDC and HVAC transmission capacity (lines), and the siting of
+    battery storage (choropleth). Right column shows the hydrogen supply (top
+    half of pies) and consumption (bottom half of pies), net flow and direction
+    of hydrogen in newly built and retrofitted pipelines (lines), and the siting
+    of hydrogen storage subject to geological potentials (choropleth). Total
+    volumes of transmission expansion are given in TWkm, which is the sum
+    product of the capacity and length of individual connections. }
+    \label{fig:si:infra-e}
 \end{figure*}
 
 \begin{figure*}
