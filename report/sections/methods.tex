@@ -15,8 +15,8 @@ consumption, and balancing technologies per carrier is shown in
 The model simultaneously optimises spatially explicit investments and the
 operation of generation, storage, conversion, and transmission assets to
 minimise total system costs in a single linear optimisation problem, which
-assumes perfect operational foresight and is solved with \textit{Gurobi
-v11}.\cite{gurobi} To manage computational complexity, no pathways with multiple
+assumes perfect operational foresight and is solved with Gurobi
+(v11.0.1).\cite{gurobi} To manage computational complexity, no pathways with multiple
 investment periods are calculated, but overnight scenarios targeting net-zero
 CO$_2$ emissions. The capacity expansion is based on technology cost and
 efficiency projections for 2040 (see `Data availability'), acknowledging that
@@ -37,16 +37,17 @@ historical availability factors from 2021 to
 2023.\cite{internationalatomicenergyagencyPowerReactorInformation2024}
 
 Temporally, the model is solved with an uninterrupted 4-hourly equivalent
-resolution for a single year, using a segmentation clustering approach
-implemented in the \textit{tsam} toolbox on all time-varying
+resolution for a single year (2190 time steps), using a segmentation clustering
+approach implemented in the \textit{tsam} toolbox on all time-varying
 data.\cite{hoffmannParetooptimalTemporal2022} While weather variations between
 years are not considered for computational reasons, the chosen weather year 2013
 is representative in terms of wind and solar availability and heat
 demand.\cite{gotskeDesigningSectorcoupledEuropean2024} Some demands are
 associated with a time-varying profiles (e.g.~residential/services electricity,
-electric vehicles, and heating demand) based on travel patterns or ambient weather
-con ditions, while the other exogenous demands are assumed to be time-constant
-(e.g.~kerosene, naphtha, methanol, ammonia, and industry electricity). 
+electric vehicles, and heating demand) based on travel patterns or ambient
+weather con ditions, while the other exogenous demands are assumed to be
+time-constant (e.g.~kerosene, naphtha, methanol, ammonia, and industry
+electricity).
 
 Spatially, the model resolves 115 European
 regions,\cite{frysztackiStrongEffect2021} covering the European Union, the
@@ -58,15 +59,26 @@ Of the total final energy and non-energy demand
 (\sfigref{fig:si:demand_totals}), only some demands are spatially fixed
 (\sfigref{fig:si:demands}). These include electricity for residential, industry,
 services, and agriculture; heat; electric vehicles; solid biomass for industry;
-and naphtha/methanol feedstocks. Hydrogen demand for steel and ammonia
-production is also spatially fixed unless these industries can relocate. In this
-case, regionally fixed hydrogen demand becomes negligible. Since the model
-optimizes the siting and operation of most fuel synthesis units, many demands
-are spatially variable (e.g.~electricity demand for electrolysers or hydrogen
-demand for methanolisation; see model formulation in \snoteref{sec:si:math}).
+naphtha/methanol feedstocks; and hydrogen for crude steel and ammonia
+production unless these industries can relocate.
 
-A mathematical description of PyPSA-Eur can be found in Section S12 in Neumann
-et al.\cite{neumannPotentialRoleHydrogen2023}
+Most other hydrogen demands are spatially variable. Only a small demand of
+5~TWh~a$^{-1}$ in the chemicals industry (excluding liquid feedstocks) remains,
+which is offset by spatially fixed hydrogen production of around 10~TWh~a$^{-1}$
+from chlor-alkali electrolysis for chlorine production. High-temperature
+industrial heat is supplied by methane, shipping and aviation use carbonaceous
+fuels, and land transport is fully electrified. In district heating and the
+power sector, backup hydrogen capacities are endogenously sized and sited just
+as the production capacities of hydrogen derivatives (Fischer-Tropsch, methane,
+methanol), which account for more than 80\% of the hydrogen consumption. Since
+the model optimizes the siting and operation of these fuel synthesis plants and
+electrolysers, many demands are spatially variable (e.g.~electricity demand for
+electrolysers or hydrogen demand for methanolisation). Existing hydrogen
+production capacities from fossil gas reforming and coal gasification are not
+considered, as they are expected to reach end of life over the model horizon.
+
+A mathematical description of PyPSA-Eur can be found in \snoteref{sec:si:math},
+adapted from Neumann et al.\cite{neumannPotentialRoleHydrogen2023}
 
 \subsection*{Gas and electricity network modelling}
 \label{sec:methods-networks}
@@ -92,8 +104,7 @@ lines, we assume 2\% static losses at the substations and additional losses of
 using the piecewise linear approximation from Neumann et
 al.,\cite{neumannAssessmentsLinear2022} in addition to applying linearised power
 flow equations.\cite{horschLinearOptimal2018} Up to a maximum capacity increase
-of 30\%
-%, we consider dynamic line rating (DLR), leveraging the cooling effect of
+of 30\%, we consider dynamic line rating (DLR), leveraging the cooling effect of
 wind and low ambient temperatures to exploit existing transmission assets
 fully.\cite{glaumLeveragingExisting2023} To approximate $N-1$ resilience,
 transmission lines may only be used up to 70\% of their rated dynamic
@@ -220,19 +231,19 @@ hydrogen, gas and methanol turbines. Backup heat options include gas boilers and
 resistive heaters. For combined backup heat and power, we consider biomass,
 hydrogen, and gas CHPs. Furthermore, flexible demands like electric vehicles,
 heat pumps and fuel synthesis units, as well as batteries and thermal storage in
-district heating, can be utilised to reduce the need for backup capacities. 
+district heating, can be utilised to reduce the need for backup capacities.
 
-\subsection*{Industry relocation modelling for steel and ammonia production}
+\subsection*{Industry relocation modelling for crude steel and ammonia production}
 \label{sec:methods-industry}
 
 Unless indicated otherwise, all scenarios also allow the model to relocate the
-steel and ammonia industry within Europe endogenously. This allows the best
+crude steel and ammonia industry within Europe endogenously. This allows the best
 sites within Europe to compete with outsourced production abroad. While this
 captures some of the most energy-intensive industry sectors, other sectors, like
 concrete and alumina production, are not considered for relocation.
 
-Without relocation of steel and ammonia production allowed, the production
-volumes of primary steel, by direct iron reduction (DRI) and electric arc
+Without relocation of crude steel and ammonia production allowed, the production
+volumes of primary crude steel, by direct iron reduction (DRI) and electric arc
 furnace (EAF), and ammonia for fertilizers, by Haber-Bosch synthesis, are
 spatially fixed. This results in exogenous hydrogen demand per region. Total
 production volumes are based on current
@@ -242,8 +253,8 @@ listed in Global Energy Monitor's Global Steel Plant Tracker
 \cite{globalenergymonitorGlobalSteelPlant2024} and manually collected data on
 the location and size of ammonia plants in Europe.
 
-With the relocation of steel and ammonia production allowed, the model
-endogenously chooses the regional production volumes of primary steel, HBI, and
+With the relocation of crude steel and ammonia production allowed, the model
+endogenously chooses the regional production volumes of primary crude steel, HBI, and
 ammonia, subject to the availability of cheap hydrogen. Thereby, the regional
 capacities and operation of Haber-Bosch, DRI, and EAF plants are co-optimised
 with the rest of the system, similar to the siting of Fischer-Tropsch or
@@ -252,7 +263,7 @@ requirements for fuels and iron ore are taken from the Steel Sector Transition
 Strategy Model (ST-STSM) of the Mission Possible
 Partnership.\cite{missionpossiblepartnershipSteelSectorTransition2022,missionpossiblepartnershipMakingNetZeroSteel2022}.
 and assume steel can be stored and transported without constraints within
-Europe. 
+Europe.
 
 For both cases, we assume a rise in the steel recycling rate from 40\% today to
 70\% in our carbon-neutral
@@ -260,15 +271,15 @@ scenarios.\cite{materialeconomicsIndustrialTransformation20502019} We assume
 that the electric arc furnaces for secondary steel remain, in proportion, at
 current locations and do not relocate.
 
-A limitation of the relocation modelling of steel and ammonia production is that
-it only considers the cost of energy in the siting of these industries. Other
-factors, such as impacts on regional economies and local jobs, integration with
-other production processes, or availability of existing infrastructure are not
-considered, largely due to a lack of data. The resulting relocation patterns
+A limitation of the relocation modelling of crude steel and ammonia production
+is that it only considers the cost of energy in the siting of these industries.
+Other factors, such as impacts on regional economies and local jobs, integration
+with other production processes, or availability of other existing infrastructure are
+not considered, largely due to a lack of data. The resulting relocation patterns
 should therefore be interpreted with caution as they might underestimate total
 relocation costs and frictions. we allow domestic relocation nevertheless in
-most scenarios, as it would be inconsistent to allow steel and ammonia imports
-from abroad while preventing relocation within Europe.
+most scenarios, as it would be inconsistent to allow crude steel and ammonia
+imports from abroad while preventing relocation within Europe.
 
 \subsection*{TRACE: Import supply chain modelling}
 \label{sec:methods-trace}
@@ -283,7 +294,7 @@ projections for 2040 (plus 2030 / 2050 in
 and a uniform weighted average cost of capital (WACC) of
 7\%.\cite{lonerganImprovingRepresentationCost2023} As possible import vectors,
 we consider electricity by transmission lines, hydrogen as gas by pipelines and
-as a liquid by ship, methane as a liquid by ship, liquid ammonia, steel and HBI,
+as a liquid by ship, methane as a liquid by ship, liquid ammonia, crude steel and HBI,
 methanol and Fischer-Tropsch fuels by ship. Liquid organic hydrogen carriers
 (LOHC) are not considered as export vectors due to their lower technology
 readiness level (TRL) compared to other
@@ -356,7 +367,7 @@ islanded from the rest of the local energy system, i.e.~that curtailed
 electricity or waste heat could not be used locally.
 
 For each vector, an annual reference export demand of 500~TWh$_\text{LHV}$ or
-100~Mt of steel and HBI is assumed, mirroring large-scale energy and material
+100~Mt of crude steel and HBI is assumed, mirroring large-scale energy and material
 infrastructures and export volumes, corresponding to approximately 40\% of
 current European LNG
 imports\cite{instituteforenergyeconomicsandfinancialanalysisEuropeanLNG2023} and
@@ -370,7 +381,7 @@ The chosen representative import locations are based on large ports and LNG
 terminals in the United Kingdom, the Netherlands, Poland, Greece, Italy, Spain,
 and Portugal, as well as pipeline entry points in Slovakia, Greece, Italy, and
 Spain. All energy supply chains are assumed to consume their energy vector as
-fuel for transport to Europe, except for HBI and steel, which use externally
+fuel for transport to Europe, except for HBI and crude steel, which use externally
 bought green methanol as shipping fuel. The capital costs of the ships and
 pipelines are also included, following the metholodogy of Hampp et
 al.~\cite{hamppImportOptions2023}.
@@ -407,7 +418,7 @@ reference importer is then used as an exogenous input to the European model. For
 each candidate entry point in the 115 European model regions, we match the
 closest reference import location from TRACE and add the corresponding import
 cost curve as a supply option
-(\sfigref{fig:si:isc-h2,fig:si:isc-ch4-nh3,fig:si:isc-meoh-ft,fig:si:isc-hbi-St}).  
+(\sfigref{fig:si:isc-h2,fig:si:isc-ch4-nh3,fig:si:isc-meoh-ft,fig:si:isc-hbi-St}).
 Moreover, we limit energy exports from any one exporting region to Europe for
 the sum of all carriers to 500~TWh~a$^{-1}$. This is to both prevent a single
 country from dominating the import mix and be consistent with the target export

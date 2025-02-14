@@ -1,0 +1,2246 @@
+%DIF 1-13c1
+%DIF LATEXDIFF DIFFERENCE FILE
+%DIF DEL submitted/report/import-benefits.tex   Thu Nov 14 15:40:35 2024
+%DIF ADD report/import-benefits.tex             Thu Nov 14 13:09:35 2024
+%DIF < \documentclass[5p,9pt]{elsarticle}
+%DIF < 
+%DIF < \journal{Nature Energy}
+%DIF < 
+%DIF < % Length – up to 3,000 words, excluding abstract, Methods, references and figure legends.
+%DIF < % Abstract – up to 150 words, unreferenced.
+%DIF < % Display items – up to 8 items (figures and/or tables).
+%DIF < % Article should be divided as follows:
+%DIF < %     Introduction (without heading)
+%DIF < %     Main text
+%DIF < %     Discussion/Conclusions
+%DIF < %     Methods. ​
+%DIF < % Main text and Methods should be divided by topical subheadings; the Discussion/Conclusions does not contain subheadings.
+%DIF -------
+\documentclass[1p,11pt]{elsarticle} %DIF > 
+%DIF -------
+
+%DIF 15c3
+%DIF < % https://twitter.com/mwclimatesci/status/1111773593656918016?s=46&t=p6Kals2l9yy3e5W8zExYbQ
+%DIF -------
+\journal{Nature Communications} %DIF > 
+%DIF -------
+
+% \usepackage{natbib}
+%DIF 18c6
+%DIF < \bibliographystyle{elsarticle-num}
+%DIF -------
+\bibliographystyle{naturemag} %DIF > 
+%DIF -------
+\biboptions{numbers,sort&compress,super}
+
+% format hacks
+\usepackage{libertine}
+\usepackage{libertinust1math}
+\usepackage{geometry}
+\geometry{
+%DIF 26c14
+%DIF <     top=10mm,
+%DIF -------
+    top=12mm,  %DIF > 
+%DIF -------
+    bottom=15mm,
+%DIF 28-29c16-27
+%DIF < 	left=10mm,
+%DIF < 	right=10mm,
+%DIF -------
+	% left=10mm, %DIF > 
+	% right=10mm, %DIF > 
+} %DIF > 
+ %DIF > 
+\usepackage{afterpage} %DIF > 
+\usepackage{changepage} %DIF > 
+ %DIF > 
+% Command for full width figures %DIF > 
+\newcommand{\fullwidthfigure}[1]{% %DIF > 
+  \begin{adjustwidth}{-\dimexpr\marginparwidth+\marginparsep\relax}{-\dimexpr\marginparwidth+\marginparsep\relax} %DIF > 
+    #1 %DIF > 
+  \end{adjustwidth} %DIF > 
+%DIF -------
+}
+
+% \usepackage[final]{microtype}
+\usepackage{amsmath}
+\usepackage{bbold}
+\usepackage{graphicx}
+\usepackage{eurosym}
+\usepackage{mathtools}
+\usepackage{url}
+\usepackage{booktabs}
+\usepackage{epstopdf}
+\usepackage{xfrac}
+\usepackage{tabularx}
+\usepackage{bm}
+\usepackage{subcaption}
+\usepackage{longtable}
+\usepackage{multirow}
+\usepackage{threeparttable}
+\usepackage[export]{adjustbox}
+\usepackage[version=4]{mhchem}
+\usepackage[colorlinks]{hyperref}
+% \usepackage[parfill]{parskip}
+\usepackage[nameinlink,sort&compress,capitalise]{cleveref}
+\usepackage[leftcaption,raggedright]{sidecap}
+\usepackage[prependcaption,textsize=footnotesize]{todonotes}
+\usepackage{blindtext}
+% \usepackage{pdflscape}
+
+%DIF 58a56-59
+% \usepackage[pagewise]{lineno} %DIF > 
+% \usepackage{lineno} %DIF > 
+% \linenumbers %DIF > 
+ %DIF > 
+%DIF -------
+\usepackage{xr}
+\externaldocument{import-benefits-si}
+
+\urlstyle{sf}
+
+% Adjust the hyphenation penalty
+\hyphenpenalty=1000
+
+% Adjust the line breaking tolerance
+\tolerance=5000
+
+\renewcommand{\thefootnote}{\Alph{footnote}}
+
+\usepackage{lipsum}
+
+%DIF 73-77c75-79
+%DIF < \graphicspath{
+%DIF <     {../workflow/notebooks/},
+%DIF <     {../workflow/pypsa-eur/resources/},
+%DIF <     {../workflow/pypsa-eur/results/},
+%DIF < }
+%DIF -------
+% \graphicspath{ %DIF > 
+%     {../workflow/notebooks/}, %DIF > 
+%     {../workflow/pypsa-eur/resources/}, %DIF > 
+%     {../workflow/pypsa-eur/results/}, %DIF > 
+% } %DIF > 
+%DIF -------
+
+% \usepackage[
+% 	type={CC},
+% 	modifier={by},
+% 	version={4.0},
+% ]{doclicense}
+
+\usepackage{siunitx}
+\sisetup{range-units=single, per-mode=symbol}
+\DeclareSIUnit\year{a}
+\DeclareSIUnit{\tco}{t_{\ce{CO2}}}
+\DeclareSIUnit{\sieuro}{\mbox{\euro}}
+\DeclareSIUnit{\twh}{{\tera\watt\hour}}
+\DeclareSIUnit{\mwh}{{\mega\watt\hour}}
+\DeclareSIUnit{\kwh}{{\kilo\watt\hour}}
+\newcommand{\co}{\ce{CO2}~}
+\def\el{${}_{\textrm{el}}$}
+\def\th{${}_{\textrm{th}}$}
+
+%DIF 97c99
+%DIF < \newcommand{\bneuro}[1]{#1\,bn\euro{}/a}
+%DIF -------
+\newcommand{\bneuro}[1]{#1\,bn\euro{}$_\text{2020}$~a$^{-1}$} %DIF > 
+%DIF -------
+
+\renewcommand{\ttdefault}{\sfdefault}
+
+\newcommand{\sfigref}[1]{%
+    \begingroup%
+    \crefname{figure}{Supplementary Fig.}{Supplementary Figs.}%
+    \cref{#1}%
+    \endgroup%
+}
+
+\newcommand{\Sfigref}[1]{%
+    \begingroup%
+    \Crefname{figure}{Supplementary Fig.}{Supplementary Figs.}%
+    \Cref{#1}%
+    \endgroup%
+}
+
+\newcommand{\stabref}[1]{%
+    \begingroup%
+    \crefname{table}{Supplementary Table}{Supplementary Tables}%
+    \cref{#1}%
+    \endgroup%
+}
+
+\newcommand{\Stabref}[1]{%
+    \begingroup%
+    \Crefname{table}{Supplementary Table}{Supplementary Tables}%
+    \Cref{#1}%
+    \endgroup%
+}
+%DIF PREAMBLE EXTENSION ADDED BY LATEXDIFF
+%DIF UNDERLINE PREAMBLE %DIF PREAMBLE
+\RequirePackage[normalem]{ulem} %DIF PREAMBLE
+\RequirePackage{color}\definecolor{RED}{rgb}{1,0,0}\definecolor{BLUE}{rgb}{0,0,1} %DIF PREAMBLE
+\providecommand{\DIFaddtex}[1]{{\protect\color{blue}\uwave{#1}}} %DIF PREAMBLE
+\providecommand{\DIFdeltex}[1]{{\protect\color{red}\sout{#1}}}                      %DIF PREAMBLE
+%DIF SAFE PREAMBLE %DIF PREAMBLE
+\providecommand{\DIFaddbegin}{} %DIF PREAMBLE
+\providecommand{\DIFaddend}{} %DIF PREAMBLE
+\providecommand{\DIFdelbegin}{} %DIF PREAMBLE
+\providecommand{\DIFdelend}{} %DIF PREAMBLE
+\providecommand{\DIFmodbegin}{} %DIF PREAMBLE
+\providecommand{\DIFmodend}{} %DIF PREAMBLE
+%DIF FLOATSAFE PREAMBLE %DIF PREAMBLE
+\providecommand{\DIFaddFL}[1]{\DIFadd{#1}} %DIF PREAMBLE
+\providecommand{\DIFdelFL}[1]{\DIFdel{#1}} %DIF PREAMBLE
+\providecommand{\DIFaddbeginFL}{} %DIF PREAMBLE
+\providecommand{\DIFaddendFL}{} %DIF PREAMBLE
+\providecommand{\DIFdelbeginFL}{} %DIF PREAMBLE
+\providecommand{\DIFdelendFL}{} %DIF PREAMBLE
+%DIF HYPERREF PREAMBLE %DIF PREAMBLE
+\providecommand{\DIFadd}[1]{\texorpdfstring{\DIFaddtex{#1}}{#1}} %DIF PREAMBLE
+\providecommand{\DIFdel}[1]{\texorpdfstring{\DIFdeltex{#1}}{}} %DIF PREAMBLE
+\newcommand{\DIFscaledelfig}{0.5}
+%DIF HIGHLIGHTGRAPHICS PREAMBLE %DIF PREAMBLE
+\RequirePackage{settobox} %DIF PREAMBLE
+\RequirePackage{letltxmacro} %DIF PREAMBLE
+\newsavebox{\DIFdelgraphicsbox} %DIF PREAMBLE
+\newlength{\DIFdelgraphicswidth} %DIF PREAMBLE
+\newlength{\DIFdelgraphicsheight} %DIF PREAMBLE
+% store original definition of \includegraphics %DIF PREAMBLE
+\LetLtxMacro{\DIFOincludegraphics}{\includegraphics} %DIF PREAMBLE
+\newcommand{\DIFaddincludegraphics}[2][]{{\color{blue}\fbox{\DIFOincludegraphics[#1]{#2}}}} %DIF PREAMBLE
+\newcommand{\DIFdelincludegraphics}[2][]{% %DIF PREAMBLE
+\sbox{\DIFdelgraphicsbox}{\DIFOincludegraphics[#1]{#2}}% %DIF PREAMBLE
+\settoboxwidth{\DIFdelgraphicswidth}{\DIFdelgraphicsbox} %DIF PREAMBLE
+\settoboxtotalheight{\DIFdelgraphicsheight}{\DIFdelgraphicsbox} %DIF PREAMBLE
+\scalebox{\DIFscaledelfig}{% %DIF PREAMBLE
+\parbox[b]{\DIFdelgraphicswidth}{\usebox{\DIFdelgraphicsbox}\\[-\baselineskip] \rule{\DIFdelgraphicswidth}{0em}}\llap{\resizebox{\DIFdelgraphicswidth}{\DIFdelgraphicsheight}{% %DIF PREAMBLE
+\setlength{\unitlength}{\DIFdelgraphicswidth}% %DIF PREAMBLE
+\begin{picture}(1,1)% %DIF PREAMBLE
+\thicklines\linethickness{2pt} %DIF PREAMBLE
+{\color[rgb]{1,0,0}\put(0,0){\framebox(1,1){}}}% %DIF PREAMBLE
+{\color[rgb]{1,0,0}\put(0,0){\line( 1,1){1}}}% %DIF PREAMBLE
+{\color[rgb]{1,0,0}\put(0,1){\line(1,-1){1}}}% %DIF PREAMBLE
+\end{picture}% %DIF PREAMBLE
+}\hspace*{3pt}}} %DIF PREAMBLE
+} %DIF PREAMBLE
+\LetLtxMacro{\DIFOaddbegin}{\DIFaddbegin} %DIF PREAMBLE
+\LetLtxMacro{\DIFOaddend}{\DIFaddend} %DIF PREAMBLE
+\LetLtxMacro{\DIFOdelbegin}{\DIFdelbegin} %DIF PREAMBLE
+\LetLtxMacro{\DIFOdelend}{\DIFdelend} %DIF PREAMBLE
+\DeclareRobustCommand{\DIFaddbegin}{\DIFOaddbegin \let\includegraphics\DIFaddincludegraphics} %DIF PREAMBLE
+\DeclareRobustCommand{\DIFaddend}{\DIFOaddend \let\includegraphics\DIFOincludegraphics} %DIF PREAMBLE
+\DeclareRobustCommand{\DIFdelbegin}{\DIFOdelbegin \let\includegraphics\DIFdelincludegraphics} %DIF PREAMBLE
+\DeclareRobustCommand{\DIFdelend}{\DIFOaddend \let\includegraphics\DIFOincludegraphics} %DIF PREAMBLE
+\LetLtxMacro{\DIFOaddbeginFL}{\DIFaddbeginFL} %DIF PREAMBLE
+\LetLtxMacro{\DIFOaddendFL}{\DIFaddendFL} %DIF PREAMBLE
+\LetLtxMacro{\DIFOdelbeginFL}{\DIFdelbeginFL} %DIF PREAMBLE
+\LetLtxMacro{\DIFOdelendFL}{\DIFdelendFL} %DIF PREAMBLE
+\DeclareRobustCommand{\DIFaddbeginFL}{\DIFOaddbeginFL \let\includegraphics\DIFaddincludegraphics} %DIF PREAMBLE
+\DeclareRobustCommand{\DIFaddendFL}{\DIFOaddendFL \let\includegraphics\DIFOincludegraphics} %DIF PREAMBLE
+\DeclareRobustCommand{\DIFdelbeginFL}{\DIFOdelbeginFL \let\includegraphics\DIFdelincludegraphics} %DIF PREAMBLE
+\DeclareRobustCommand{\DIFdelendFL}{\DIFOaddendFL \let\includegraphics\DIFOincludegraphics} %DIF PREAMBLE
+%DIF COLORLISTINGS PREAMBLE %DIF PREAMBLE
+\RequirePackage{listings} %DIF PREAMBLE
+\RequirePackage{color} %DIF PREAMBLE
+\lstdefinelanguage{DIFcode}{ %DIF PREAMBLE
+%DIF DIFCODE_UNDERLINE %DIF PREAMBLE
+  moredelim=[il][\color{red}\sout]{\%DIF\ <\ }, %DIF PREAMBLE
+  moredelim=[il][\color{blue}\uwave]{\%DIF\ >\ } %DIF PREAMBLE
+} %DIF PREAMBLE
+\lstdefinestyle{DIFverbatimstyle}{ %DIF PREAMBLE
+	language=DIFcode, %DIF PREAMBLE
+	basicstyle=\ttfamily, %DIF PREAMBLE
+	columns=fullflexible, %DIF PREAMBLE
+	keepspaces=true %DIF PREAMBLE
+} %DIF PREAMBLE
+\lstnewenvironment{DIFverbatim}{\lstset{style=DIFverbatimstyle}}{} %DIF PREAMBLE
+\lstnewenvironment{DIFverbatim*}{\lstset{style=DIFverbatimstyle,showspaces=true}}{} %DIF PREAMBLE
+%DIF END PREAMBLE EXTENSION ADDED BY LATEXDIFF
+
+\begin{document}
+
+
+\begin{frontmatter}
+
+	\title{Energy Imports and Infrastructure in a\DIFaddbegin \\\DIFaddend Carbon-Neutral European Energy System}
+
+	\author[tub]{Fabian Neumann\corref{correspondingauthor}}
+	\ead{f.neumann@tu-berlin.de}
+	\author[pik]{Johannes Hampp}
+	\author[tub]{Tom Brown}
+
+	\address[tub]{Department of Digital Transformation in Energy Systems, Institute of Energy Technology,\\Technische Universität Berlin, Fakultät III, Einsteinufer 25 (TA 8), 10587 Berlin, Germany}
+	\address[pik]{Potsdam Institute for Climate Impact Research (PIK), Member of the Leibniz Association, P.O.~Box 60 12 03, 14412 Potsdam, Germany}
+
+	\begin{abstract}
+		% 150 words
+% 5 things a good abstract needs:
+
+% 1. Introduce the topic,
+Importing renewable energy to Europe \DIFdelbegin \DIFdel{offers }\DIFdelend \DIFaddbegin \DIFadd{may offer }\DIFaddend many potential benefits,
+including reduced energy costs, lower pressure on infrastructure development,
+and less land-use within Europe.
+% 2. State the unknown,
+However, there remain many open questions: on the achievable cost reductions,
+how much should be imported, whether the energy vector should be electricity,
+hydrogen or hydrogen derivatives like ammonia or steel, and their impact on
+Europe's domestic energy infrastructure needs.
+% 3. Outline the method used to answer the question,
+This study integrates the TRACE global energy supply chain model with the
+sector-coupled energy system model for Europe\DIFaddbegin \DIFadd{, }\DIFaddend PyPSA-Eur\DIFdelbegin \DIFdel{to explore }\DIFdelend \DIFaddbegin \DIFadd{, to explore net-zero
+emission }\DIFaddend scenarios with varying import volumes, costs, and vectors.
+% 4. Preview the findings, and
+We find system cost reductions of \DIFdelbegin \DIFdel{1-14\%, depending on assumed import costs}\DIFdelend \DIFaddbegin \DIFadd{1-10\%, within import cost variations of
+$\pm20\%$ around our central estimate}\DIFaddend , with diminishing returns for larger
+import volumes and a preference for methanol, steel and hydrogen imports.
+Keeping some domestic power-to-X production is beneficial for integrating
+variable renewables, \DIFdelbegin \DIFdel{utilising }\DIFdelend \DIFaddbegin \DIFadd{leveraging local sustainable carbon sources and utilising
+some }\DIFaddend waste heat from fuel synthesis\DIFdelbegin \DIFdel{and leveraging local sustainable carbon sources}\DIFdelend \DIFaddbegin \DIFadd{. Across scenarios, power grid reinforcements
+are more stable than hydrogen pipeline expansion}\DIFaddend .
+% 5. Tell us what your work teaches us.
+Our findings highlight the need for coordinating import strategies with
+infrastructure policy and reveal maneuvering space for incorporating non-cost
+decision factors.
+
+	\end{abstract}
+
+	% \begin{keyword}
+	% 	TODO
+	% \end{keyword}
+
+	% \begin{graphicalabstract}
+	% \end{graphicalabstract}
+
+	% \begin{highlights}
+	% 	\item A
+	% 	\item B
+	% 	\item C
+	% \end{highlights}
+
+\end{frontmatter}
+
+% \listoftodos[TODOs]
+
+% \tableofcontents
+
+% \section*{Introduction}
+% \label{sec:intro}
+
+%%% promise of imports %%%
+
+Importing renewable energy to Europe \DIFdelbegin \DIFdel{promises }\DIFdelend \DIFaddbegin \DIFadd{may offer }\DIFaddend several advantages for achieving
+a swift energy transition. It \DIFdelbegin \DIFdel{could }\DIFdelend \DIFaddbegin \DIFadd{might }\DIFaddend lower costs, help circumvent the slow
+domestic deployment of renewable energy infrastructure and reduce pressure on
+land usage in Europe. Many parts of the world have cheap and abundant renewable
+energy supply potentials that they could offer to existing or emerging global
+energy markets.\DIFdelbegin %DIFDELCMD < \cite{irenaGlobalHydrogen2022,luxSupplyCurves2021,vanderzwaanTimmermansDream2021,fasihiLongTermHydrocarbon2017,reichenbergDeepDecarbonization2022,galvanExportingSunshine2022,armijoFlexibleProduction2020,pfennigGlobalGISbasedPotential2023}
+%DIFDELCMD < %%%
+\DIFdelend \DIFaddbegin \cite{irenaGlobalHydrogenTrade2022, luxSupplyCurves2021,
+vanderzwaanTimmermansDream2021, fasihiLongTermHydrocarbon2017,
+reichenbergDeepDecarbonization2022, galvanExportingSunshine2022,
+armijoFlexibleProduction2020, pfennigGlobalGISbasedPotential2023} \DIFaddend Partnering
+with these regions could help Europe reach its carbon neutrality goals while
+stimulating economic development in exporting \DIFdelbegin \DIFdel{countries}\DIFdelend \DIFaddbegin \DIFadd{regions}\DIFaddend .
+
+%%% dangers of imports %%%
+
+However, even if energy imports are economically attractive for Europe, a strong
+reliance may not be desirable because of energy security concerns. Awareness of
+energy security has risen since Russia \DIFdelbegin \DIFdel{throttled }\DIFdelend \DIFaddbegin \DIFadd{constrained }\DIFaddend fossil gas supplies to Europe
+in 2022,\cite{pedersenLongtermImplications2022} at a time when the EU27 imported
+around two-thirds of its fossil energy needs.\DIFdelbegin %DIFDELCMD < \cite{eurostatCompleteEnergy2023}
+%DIFDELCMD < %%%
+\DIFdelend \DIFaddbegin \cite{eurostatCompleteEnergyBalances2023}
+\DIFaddend Europe must take care to avoid repeating the mistakes of previous decades when
+it became dependent on a small number of exporters with market power and reliant
+on rigid pipeline infrastructure.
+
+%%% dependence of energy imports on energy infrastructure %%%
+
+Europe's strategy for clean energy imports will also strongly affect the
+requirements for domestic energy infrastructure. Previous research found many
+ways to develop a self-sufficient energy
+system.\DIFdelbegin %DIFDELCMD < \cite{pickeringDiversityOptions2022,trondleHomemadeImported2019,brownSynergiesSector2018}
+%DIFDELCMD < %%%
+\DIFdelend \DIFaddbegin \cite{pickeringDiversityOptions2022, trondleHomemadeImported2019,
+brownSynergiesSector2018} \DIFaddend To support such scenarios without energy imports into
+Europe, reinforcing the European power grid or building a hydrogen network was
+often identified as beneficial.\DIFdelbegin %DIFDELCMD < \cite{neumannPotentialRole2023,victoriaSpeedTechnological2022}
+%DIFDELCMD < %%%
+\DIFdelend \DIFaddbegin \cite{neumannPotentialRoleHydrogen2023,
+victoriaSpeedTechnological2022} \DIFaddend However, depending on the volumes \DIFdelbegin \DIFdel{of imports and the energy vectors }\DIFdelend \DIFaddbegin \DIFadd{and vectors of
+imports }\DIFaddend (electricity, hydrogen\DIFaddbegin \DIFadd{, }\DIFaddend or hydrogen derivatives) \DIFaddbegin \DIFadd{and levels of industry
+migration}\DIFaddend , Europe might not need to expand its hydrogen \DIFdelbegin \DIFdel{transport }\DIFdelend \DIFaddbegin \DIFadd{pipeline }\DIFaddend infrastructure.
+Most hydrogen is used to make derivative products (e.g.~, ammonia for
+fertilisers\DIFaddbegin \DIFadd{, sponge iron for steel, }\DIFaddend or Fischer-Tropsch fuels for aviation and
+shipping).\DIFdelbegin %DIFDELCMD < \cite{neumannPotentialRole2023} %%%
+\DIFdelend \DIFaddbegin \cite{neumannPotentialRoleHydrogen2023} \DIFaddend If Europe imported these
+products at scale, much of the hydrogen demand would fall away. In consequence,
+this would reduce the need for hydrogen transport. However, if hydrogen itself
+\DIFdelbegin \DIFdel{is
+imported }\DIFdelend \DIFaddbegin \DIFadd{were imported and to be transported to today's industry clusters}\DIFaddend , this would
+require a pipeline topology tailored to \DIFdelbegin \DIFdel{accommodate
+}\DIFdelend \DIFaddbegin \DIFadd{connecting these to the }\DIFaddend hydrogen
+arriving from North Africa or maritime \DIFdelbegin \DIFdel{shipping routes to Northern
+}\DIFdelend \DIFaddbegin \DIFadd{entry points across }\DIFaddend Europe.
+
+%%% review of policy strategies %%%
+
+Policy has reflected these different visions for imports in various ways. In
+particular, hydrogen imports have recently attracted considerable interest, with
+plans of the European Commission\cite{europeancommissionRepowerEUPlan} to import
+10~Mt (333~TWh\DIFdelbegin \footnote{\DIFdel{All mass-energy conversion is based on the lower heating
+value (LHV). Steel is included in energy terms applying 2.1 kWh/kg as released
+by the oxidation of iron.}}%DIFAUXCMD
+\addtocounter{footnote}{-1}%DIFAUXCMD
+\DIFdelend \DIFaddbegin \DIFadd{$_\text{LHV}$}\DIFaddend ) hydrogen and derivatives by 2030. \DIFaddbegin \DIFadd{New financing
+instruments, like the European Hydrogen
+Bank}\cite{europeancommissionEuropeanHydrogenBank2024} \DIFadd{or
+H2Global}\cite{h2globalfoundationH2Global2024} \DIFadd{are set up to support the scale-up
+of green hydrogen imports. }\DIFaddend Desire to import hydrogen and derivative products
+is also present in various national
+strategies.\cite{corbeauNationalHydrogenStrategies2024} In particular, Germany\DIFdelbegin \DIFdel{seeks }\DIFdelend \DIFaddbegin \DIFadd{'s
+new import strategy plans }\DIFaddend to cover up to 70\% of its \DIFdelbegin \DIFdel{hydrogen consumption }\DIFdelend \DIFaddbegin \DIFadd{demand for hydrogen and its
+derivatives }\DIFaddend through imports by 2030 and \DIFdelbegin \DIFdel{pursues bilateral partnerships }\DIFdelend \DIFaddbegin \DIFadd{highlights bilateral partnerships as
+well as the expansion of import infrastructure as a means }\DIFaddend to accomplish
+this.\DIFdelbegin %DIFDELCMD < \cite{bundesministeriumfuerwirtschaftundklimaschutzFortschreibungNationalenWasserstoffstrategie2023}
+%DIFDELCMD < %%%
+\DIFdelend \DIFaddbegin \cite{germanfederalministryofeconomicaffairsandclimateactionbmwkNationalHydrogenStrategy2023,germanfederalministryofeconomicaffairsandclimateactionbmwkImportStrategyHydrogen2024}
+\DIFaddend Conversely, hydrogen roadmaps of
+Denmark,\cite{danishministryofclimateenergyandutilitiesRegeringensStrategiPowertoX2021}
+Ireland,\cite{departmentoftheenvironmentclimateandcommunicationsgovernmentofirelandNationalHydrogenStrategy2023} 
+Spain,\cite{marcoestrategicodeenergiayclimaRutaHidrogenoApuesta2020} and the
+United
+Kingdom,\cite{ukdepartmentforenergysecurity&netzeroHydrogenStrategyUpdate2023}
+recognise these countries' potential to become major exporters of renewable
+energy, whereas France's strategy focuses on local hydrogen production to meet
+domestic needs.\cite{frenchgovernmentStrategieNationalePour2023} \DIFdelbegin \DIFdel{Additionally, in recent plans by transmission system
+operators, }%DIFDELCMD < \cite{entso-eTYNDP2024Project2024}  %%%
+\DIFdelend \DIFaddbegin \DIFadd{Beyond direct
+energy imports, the Draghi report}\cite{draghiFutureEuropeanCompetitiveness2024}
+\DIFadd{also raises broader concerns about European industrial competitiveness and
+discusses the benefits of relocating energy-intensive industries to renewable-rich
+regions inside Europe. Additionally, }\DIFaddend European grid development
+plans\DIFaddbegin \cite{entso-eTYNDP2024Project2024} \DIFaddend reveal renewed enthusiasm for
+electricity imports via ultra-long HVDC cables, evolving from early
+DESERTEC\cite{desertecfoundationDESERTECSustainableWealth2024} ideas to
+contemporary proposals like the Morocco-UK Xlinks
+project.\DIFdelbegin %DIFDELCMD < \cite{xlinksMoroccoUKPower2023}
+%DIFDELCMD < %%%
+\DIFdelend \DIFaddbegin \cite{xlinksMoroccoUKPowerProject2023}
+\DIFaddend 
+
+%%% literature review %%%
+
+While many previous academic studies have evaluated the cost of `green'
+renewable energy and \DIFaddbegin \DIFadd{energy-intensive }\DIFaddend material imports in the form of
+electricity,\cite{lilliestamEnergySecurity2011,triebSolarElectricity2012,lilliestamVulnerabilityTerrorist2014,bogdanovNorthEastAsian2016,benaslaTransitionSustainable2019,reichenbergDeepDecarbonization2022}% (some with reference to the DESERTEC idea),
+hydrogen,\DIFdelbegin %DIFDELCMD < \cite{timmerbergHydrogenRenewables2019,ishimotoLargescaleProduction2020,brandleEstimatingLongterm2021,luxSupplyCurves2021,galvanExportingSunshine2022,collisDeterminingProduction2022,galimovaImpactInternational2023,schmitzImplicationsHydrogenImport2024}
+%DIFDELCMD < %%%
+\DIFdel{ammonia,}%DIFDELCMD < \cite{nayak-lukeTechnoeconomicViability2020,armijoFlexibleProduction2020,galimovaFeasibilityGreen2023}
+%DIFDELCMD < %%%
+\DIFdel{methane,}%DIFDELCMD < \cite{luxSupplyCurves2021,agoraenergiewendeHydrogenImport2022}
+%DIFDELCMD < %%%
+\DIFdelend \DIFaddbegin \cite{timmerbergHydrogenRenewables2019,ishimotoLargescaleProduction2020,brandleEstimatingLongterm2021,luxSupplyCurves2021,galvanExportingSunshine2022,collisDeterminingProduction2022,galimovaImpactInternational2023,franzmannGreenHydrogenCostpotentials2023,schmitzImplicationsHydrogenImport2024}
+\DIFadd{ammonia,}\cite{nayak-lukeTechnoeconomicViability2020,armijoFlexibleProduction2020,galimovaFeasibilityGreen2023,egererEconomicsGlobalGreen2023}
+\DIFadd{methane,}\cite{luxSupplyCurves2021,agoraenergiewendeHydrogenImport2022,carelsSyntheticNaturalGas2024}
+\DIFaddend steel,\cite{trollipHowGreen2022a,devlinRegionalSupply2022,lopezDefossilisedSteel2023}
+carbon-based
+fuels,\cite{fasihiLongTermHydrocarbon2017,sherwinElectrofuelSynthesis2021} or a
+broader variety of power-to-X
+fuels,\DIFdelbegin %DIFDELCMD < \cite{vanderzwaanTimmermansDream2021,pfennigGlobalGISbased2022,irenaGlobalHydrogen2022,solerEFuelsTechno2022,hamppImportOptions2023,gengeSupplyCosts2023,galimovaGlobalTrading2023a}
+%DIFDELCMD < %%%
+\DIFdelend \DIFaddbegin \cite{vanderzwaanTimmermansDream2021,pfennigGlobalGISbasedPotential2023,irenaGlobalHydrogenTrade2022,solerEFuelsTechno2022,hamppImportOptions2023,gengeSupplyCostsGreen2023,galimovaGlobalTrading2023a}
+\DIFaddend these do not address the interactions of imports with European energy
+infrastructure requirements. On the other hand, among studies dealing with the
+detailed planning of net-zero energy systems in Europe, some do not consider
+energy
+imports,\cite{pickeringDiversityOptions2022,brownSynergiesSector2018,victoriaSpeedTechnological2022}
+while others only consider hydrogen imports or a limited set of alternative
+\DIFaddbegin \DIFadd{endogenously optimised }\DIFaddend import
+vectors.\DIFdelbegin %DIFDELCMD < \cite{gilsInteractionHydrogen2021,seckHydrogenDecarbonization2022,wetzelGreenEnergy2023,kountourisUnifiedEuropean2023,neumannPotentialRole2023}
+%DIFDELCMD < %%%
+\DIFdelend \DIFaddbegin \cite{gilsInteractionHydrogen2021,seckHydrogenDecarbonization2022,wetzelGreenEnergy2023a,neumannPotentialRoleHydrogen2023,fleiterHydrogenInfrastructureFuture2024,kountourisUnifiedEuropeanHydrogen2024}
+\DIFaddend Only a few consider at least elementary cost
+uncertainties,\cite{frischmuthHydrogenSourcing2022,schmitzImplicationsHydrogenImport2024}
+and none investigate a larger range of potential import volumes across subsets
+of available import vectors.
+
+
+%%% main paper idea - scenarios %%%
+
+In this study, we explore the full range between the two poles of complete
+self-sufficiency and wide-ranging renewable energy imports into Europe in
+scenarios with high shares of wind and solar electricity and net-zero carbon
+emissions. We investigate how the infrastructure requirements of a
+self-sufficient European energy system that exclusively leverages domestic
+resources from the continent may differ from a system that relies on energy
+imports from outside of Europe. For our analysis, we integrate an open
+\DIFaddbegin \DIFadd{optimisation }\DIFaddend model of global energy supply chains,
+TRACE,\cite{hamppImportOptions2023} with a spatially and temporally resolved
+sector-coupled open-source energy system \DIFaddbegin \DIFadd{optimisation }\DIFaddend model for Europe,
+PyPSA-Eur,\DIFdelbegin %DIFDELCMD < \cite{PyPSAEurSecSectorCoupled} %%%
+\DIFdelend \DIFaddbegin \cite{PyPSAEurSecSectorCoupledOpen} \DIFaddend to investigate the impact of imports
+on European energy infrastructure needs. We evaluate potential import locations
+and costs for different supply vectors, by how much system costs can be reduced
+through imports, and how their inclusion affects deployed transport networks\DIFdelbegin \DIFdel{and storage }\DIFdelend \DIFaddbegin \DIFadd{,
+storage and backup capacities}\DIFaddend . For this purpose, we perform sensitivity analyses
+interpolating between very high levels of imports and no imports at all,
+exploring low and high costs for imports to account for associated
+uncertainties, and system responses to the exclusion of subsets of import
+vectors, in order to \DIFdelbegin \DIFdel{probe the flatness of the solution space.
+This allows us to
+draw robust policy conclusions from our results.
+}
+%DIF <  JH Draw connections such that they intersect less, e.g. MA-IE around ES, not
+%DIF <  through ES and PT.
+\DIFaddbegin \begin{figure}
+    \caption{\textbf{Overview of considered import options into Europe.}
+        \textit{Panel (a)} shows the regional differences in the cost to deliver
+        green methanol to Europe (choropleth layer), the cost composition of
+        different import vectors (bar charts), an illustration of the wind and
+        solar availability in Morocco, and an illustration of the land
+        eligibility analysis for wind turbine placement in the region of Buenos
+        Aires in Argentina. \textit{Panel (b)} depicts considered potential
+        entry points for energy imports into Europe like the location of
+        existing and planned LNG terminals and gas pipeline entry points, the
+        lowest costs of hydrogen imports in different European regions
+        (choropleth layer), and the considered connections for long-distance
+        HVDC import links and hydrogen pipelines from the MENA region, Turkey,
+        Ukraine and Central Asia. \textit{Panel (c)} displays the distribution
+        and range of import costs for different energy carriers and entry points
+        with indications for selected origins from the TRACE model
+        (violin charts), i.e.~differences in identically coloured markers are
+        due to regional differences in the transport costs to alternative
+        entrypoints. These are more variable for liquid hydrogen as transport
+        distance is a more substantial cost factor for this import vector.
+        Supplementary Fig.~3 shows the world map for lowest 
+        hydrogen import costs by pipeline or ship into Europe.}
+    \label{fig:options}
+\end{figure}
+\DIFaddend 
+
+%%% technical discussion of import vectors %%%
+
+As possible import options, we consider electricity by transmission line,
+hydrogen as gas by pipeline and liquid by ship, methane as \DIFdelbegin \DIFdel{gas by pipeline and
+}\DIFdelend liquid by ship,
+liquid ammonia, steel \DIFaddbegin \DIFadd{and its precursor hot briquetted iron (HBI)}\DIFaddend , methanol and
+Fischer-Tropsch fuels by ship. Each energy vector has unique characteristics
+with regards to its production, \DIFaddbegin \DIFadd{storage, }\DIFaddend transport and consumption\DIFdelbegin \DIFdel{(}%DIFDELCMD < \sfigref{fig:si:balances-a,fig:si:balances-b}%%%
+\DIFdel{)}\DIFdelend . Electricity offers
+the most flexible usage but is challenging to store and requires variability
+management if sourced from wind or solar energy. Hydrogen is easier to store and
+transport in large quantities but at the expense of conversion losses and less
+versatile applications. Large quantities could be used for backup power and
+heat, steel production, \DIFaddbegin \DIFadd{industry feedstocks }\DIFaddend and the domestic synthesis of
+shipping and aviation fuels. On the other hand, imported synthetic carbonaceous
+fuels like methane, methanol and Fischer-Tropsch fuels could largely substitute
+the need for domestic synthesis. There is \DIFdelbegin \DIFdel{much }\DIFdelend more experience with storing and
+transporting these fuels and part of the existing infrastructure could
+potentially be \DIFdelbegin \DIFdel{leveraged}\DIFdelend \DIFaddbegin \DIFadd{reused or repurposed}\DIFaddend . However, they require a sustainable carbon
+source and, particularly for methane, effective carbon management and leakage
+prevention.\cite{shirizadehImpactMethaneLeakage2023} Ammonia is similarly easier
+to handle than hydrogen but does not require a carbon source. However, it faces
+safety and acceptance concerns due to its toxicity and potentially adverse
+effects on the global nitrogen
+cycle.\cite{bertagniMinimizingImpactsAmmonia2023,wolframUsingAmmoniaShipping2022}
+Its demand in Europe is mostly driven by fertiliser usage. Steel \DIFdelbegin \DIFdel{represents }\DIFdelend \DIFaddbegin \DIFadd{and HBI
+represent }\DIFaddend the import of energy-intensive materials and \DIFdelbegin \DIFdel{offers low }\DIFdelend \DIFaddbegin \DIFadd{offer low long-distance
+}\DIFaddend transport costs.
+
+\DIFdelbegin \DIFdel{Further conversion of imported fuels is also possible once they have arrived in
+Europe, e.g.~hydrogen could be used to synthesise carbon-based fuels, ammonia
+could be cracked to hydrogen, methane and methanol could be reformed to hydrogen
+or combusted for power generation with or without carbon capture. However,
+conversion losses can make it less attractive economically to use a high-value
+hydrogen derivative merely as a transport and storage vessel only to reconvert
+it back to hydrogen or electricity.
+}%DIFDELCMD < 
+
+%DIFDELCMD < %%%
+\DIFdelend %%% brief methodology PyPSA-Eur %%%
+
+The PyPSA-Eur\DIFdelbegin %DIFDELCMD < \cite{PyPSAEurSecSectorCoupled} %%%
+\DIFdelend \DIFaddbegin \cite{PyPSAEurSecSectorCoupledOpen} \DIFaddend model co-optimises the investment
+and operation of generation, storage, conversion and transmission
+infrastructures in a single linear optimisation problem. The model is further
+given the opportunity to relocate \DIFdelbegin \DIFdel{some energy-intensive industries within
+Europecapturing a }\DIFdelend \DIFaddbegin \DIFadd{ammonia and primary steel production within
+Europe, capturing }\DIFaddend potential renewables pull \DIFdelbegin \DIFdel{effect.}%DIFDELCMD < \cite{verpoortEstimatingRenewables2023,samadiRenewablesPull2023} %%%
+\DIFdel{We
+resolve 110 }\DIFdelend \DIFaddbegin \DIFadd{effects within Europe and
+abroad.}\cite{verpoortImpactGlobalHeterogeneity2024,
+samadiRenewablesPullEffect2023,egererIndustryTransformationFossil2024} \DIFadd{We
+resolve 115 }\DIFaddend regions comprising the European Union without Cyprus and Malta as
+well as the United Kingdom, Norway, Switzerland, Albania, Bosnia and
+Herzegovina, Montenegro, North Macedonia, Serbia, and Kosovo. In combination
+with a \DIFdelbegin \DIFdel{4-hourly equivalent }\DIFdelend \DIFaddbegin \DIFadd{4-hourly-equivalent }\DIFaddend time resolution for \DIFdelbegin \DIFdel{one year }\DIFdelend \DIFaddbegin \DIFadd{the weather year of 2013}\DIFaddend , grid
+bottlenecks, renewable variability, and seasonal storage requirements are
+\DIFdelbegin \DIFdel{efficiently
+captured. Weather variations between years are not considered for computational
+reasons. }\DIFdelend \DIFaddbegin \DIFadd{sufficiently captured. }\DIFaddend The  model includes regional demands from the
+electricity, industry, buildings, agriculture and transport sectors,
+international shipping and aviation, and non-energy feedstock demands in the
+chemicals industry. Transmission infrastructure for electricity, gas and
+hydrogen, and candidate entry points like existing and prospective LNG terminals
+\DIFdelbegin \DIFdel{and }\DIFdelend \DIFaddbegin \DIFadd{as well as }\DIFaddend cross-continental pipelines are also represented.  \DIFaddbegin \DIFadd{However, no
+pathways are modelled in this overnight scenario and the model has perfect
+operational foresight. }\DIFaddend We utilize techno-economic assumptions for \DIFdelbegin \DIFdel{2030}%DIFDELCMD < \cite{dea2019}%%%
+\DIFdel{, reflecting that infrastructure required for achieving carbon
+neutrality must be built well in advance of reaching this goal. While enforcing
+}\DIFdelend \DIFaddbegin \DIFadd{2040 and
+enforce }\DIFaddend net-zero \DIFdelbegin \DIFdel{emissions for carbon dioxide, we also }\DIFdelend \DIFaddbegin \DIFadd{CO$_2$ emissions and }\DIFaddend limit the annual carbon sequestration \DIFdelbegin \DIFdel{potential }\DIFdelend to
+200~Mt$_{\text{CO}_2}$\DIFdelbegin \DIFdel{/a. }\DIFdelend \DIFaddbegin \DIFadd{~a$^{-1}$, similar to the 250~Mt$_{\text{CO}_2}$~a$^{-1}$
+highlighted in the EU carbon management
+strategy.}\cite{europeancommissionAmbitiousIndustrialCarbon2024} \DIFaddend This suffices to
+offset \DIFdelbegin \DIFdel{unabatable }\DIFdelend \DIFaddbegin \DIFadd{unabated }\DIFaddend industrial process emissions \DIFdelbegin \DIFdel{of around 140~Mt$_{\text{CO}_2}$/a and limited }\DIFdelend \DIFaddbegin \DIFadd{and limits the }\DIFaddend use of fossil fuels
+beyond that, whose emissions are compensated either through capturing emissions
+at source \DIFdelbegin \DIFdel{with a capture rate of 90\% or via }\DIFdelend \DIFaddbegin \DIFadd{or by }\DIFaddend carbon dioxide removal. \DIFdelbegin %DIFDELCMD < 
+
+%DIFDELCMD < %%%
+\DIFdelend More details are included in the
+\nameref{sec:methods} section.
+
+
+% \section*{Results}
+% \label{sec:results}
+
+
+\section*{\DIFdelbegin \DIFdel{Cost assessment of energy and material import vectors}\DIFdelend \DIFaddbegin \DIFadd{Results}\DIFaddend }
+
+\DIFaddbegin \subsection*{\DIFadd{Assessment of energy and material import unit costs}}
+
+\DIFaddend %%% brief methodology TRACE %%%
+
+
+Green fuel and steel import costs seen by the model are based on an extension of
+recent research by Hampp et al.,\cite{hamppImportOptions2023} who assessed the
+levelised cost of energy exports for different green energy and material supply
+chains \DIFdelbegin \DIFdel{in }\DIFdelend \DIFaddbegin \DIFadd{from }\DIFaddend various world regions \DIFdelbegin \DIFdel{(\mbox{%DIFAUXCMD
+\cref{fig:options:global}}\hskip0pt%DIFAUXCMD
+)}\DIFdelend \DIFaddbegin \DIFadd{to Europe}\DIFaddend . Our selection of exporting \DIFdelbegin \DIFdel{countries comprises Australia, Argentina, Chile, Kazakhstan, Namibia,
+Turkey, Ukraine, the
+Eastern United States and Canada, mainland China,and the
+MENA region. Regional supply cost curves for these countries are developed based on renewable resources, land
+availability and prioritised }\DIFdelend \DIFaddbegin \DIFadd{regions
+comprises all 53 coloured or dotted regions in \mbox{%DIFAUXCMD
+\cref{fig:options:global}}\hskip0pt%DIFAUXCMD
+. In the
+TRACE optimisation model,}\cite{hamppImportOptions2023} \DIFadd{regional wind and solar
+potentials are assessed based on prevailing weather conditions and land
+availability while prioritising projected }\DIFaddend domestic demand. \DIFaddbegin \DIFadd{In combination with
+the techno-economic modelling of the various fuel-specific supply chains stages
+(}\sfigref{fig:si:import-esc-scheme}\DIFadd{), the lowest levelised supply cost for each
+carrier, exporter and importer combination are determined for a reference volume
+of 500~TWh~a$^{-1}$ (or 100~Mt~a$^{-1}$ of steel/HBI), thus incorporating the
+trade-off between import cost and import location (\mbox{%DIFAUXCMD
+\cref{fig:options:europe}}\hskip0pt%DIFAUXCMD
+).
+}\DIFaddend Unlike domestic electrofuel synthesis in Europe, which could use captured CO$_2$
+from point sources, direct air capture is assumed to be the only carbon source
+of imported fuels. Concepts involving the shipment of captured CO$_2$ from
+Europe to exporting \DIFdelbegin \DIFdel{countries }\DIFdelend \DIFaddbegin \DIFadd{regions }\DIFaddend for carbonaceous fuel synthesis \DIFaddbegin \DIFadd{or permanent
+sequestration of CO$_2$ captured by direct air capture abroad }\DIFaddend are not
+considered.\cite{treeenergysolutionsGreenCycle2024,fonderSyntheticMethaneClosing2024}
+
+%DIF < %% brief methodology TRACE-PyPSA-Eur scoupling %%%
+%DIF > %% brief methodology TRACE-PyPSA-Eur coupling %%%
+
+\DIFdelbegin \DIFdel{We use these supply curves to determine the region-specific lowest import cost
+for each carrier, thus incorporating the potential trade-off between import cost
+and import location (\mbox{%DIFAUXCMD
+\cref{fig:options:europe}}\hskip0pt%DIFAUXCMD
+). For hydrogen derivatives, the
+lowest-cost suppliers are Argentina and Chile for all entry points into Europe. Electricity }\DIFdelend \DIFaddbegin \DIFadd{The import costs for each combination of carrier, exporter and importer are then
+included as supply options in the PyPSA-Eur model. Hydrogen and methane can be
+imported where there are LNG terminals in operation or under construction or
+where pipeline entry points exist (except for entry points from Russia). Due to
+higher volatility, electricity }\DIFaddend imports are endogenously optimised, meaning that
+the capacities and operation of wind and solar generation\DIFaddbegin \DIFadd{, }\DIFaddend as well as storage in
+the respective exporting \DIFdelbegin \DIFdel{countries }\DIFdelend \DIFaddbegin \DIFadd{regions }\DIFaddend and the HVDC transmission lines, are co-planned
+with the rest of the \DIFdelbegin \DIFdel{system. Hydrogen and methane can be imported where there are
+existing or planned LNG terminals or pipeline entry-points (excluding
+connections through Russia). This results in lower hydrogen import costs, where
+it can be imported by pipeline. }\DIFdelend \DIFaddbegin \DIFadd{European system. }\DIFaddend Ammonia, carbonaceous fuels\DIFdelbegin \DIFdel{and steel }\DIFdelend \DIFaddbegin \DIFadd{, and ferrous
+materials }\DIFaddend are not spatially resolved in the model, assuming they can be
+transported within Europe at negligible \DIFdelbegin \DIFdel{additional cost. }\DIFdelend \DIFaddbegin \DIFadd{cost. Thus, their specific import
+location is not determined. An import limit of 500~TWh per region for the sum of
+all exports is imposed to prevent over-reliance on single exporters.
+}\DIFaddend 
+\DIFaddbegin \begin{figure}
+    \caption{\textbf{Potential for cost reductions with reduced sets of import options.}
+        Subsets of available import options are sorted by ascending cost
+        reduction potential. Top panel shows profile of total system cost
+        savings. Bottom panel shows composition and extent of imports in
+        relation to total energy system costs. Percentage numbers in bar plot
+        indicate the share of total system costs spent on domestic energy
+        infrastructure. Alternative scenarios of this figure with higher and
+        lower import cost assumptions are shown in Supplementary Figs.~12 and
+        13. }
+    \label{fig:sensitivity-bars}
+\end{figure}
+
+\subsection*{\DIFadd{Cost savings for fuel and material import combinations}}
+\DIFaddend 
+
+In \cref{fig:sensitivity-bars}, we first explore the cost reduction potential of
+various energy and material import options. \DIFdelbegin \DIFdel{In the absence of }\DIFdelend \DIFaddbegin \DIFadd{Without }\DIFaddend energy imports, total energy
+system costs add up to \DIFdelbegin %DIFDELCMD < \bneuro{815}%%%
+\footnote{\DIFdel{All currency values
+are given in }%DIFDELCMD < \euro{}%%%
+\DIFdel{$_{2020}$.}}%DIFAUXCMD
+\addtocounter{footnote}{-1}%DIFAUXCMD
+\DIFdelend \DIFaddbegin \bneuro{836}\DIFaddend . By enabling imports from outside \DIFdelbegin \DIFdel{of }\DIFdelend Europe and
+considering all import vectors, we find a potential reduction of total energy
+system costs by up to \DIFdelbegin %DIFDELCMD < \bneuro{39}%%%
+\DIFdelend \DIFaddbegin \bneuro{37}\DIFaddend . This corresponds to a relative reduction of
+\DIFdelbegin \DIFdel{4.9}\DIFdelend \DIFaddbegin \DIFadd{4.4}\DIFaddend \%. For cost-optimal imports, around \DIFdelbegin \DIFdel{71}\DIFdelend \DIFaddbegin \DIFadd{77}\DIFaddend \% of these costs are used to develop
+domestic energy infrastructure. The remaining \DIFdelbegin \DIFdel{29}\DIFdelend \DIFaddbegin \DIFadd{23}\DIFaddend \% are spent on importing a
+volume of \DIFdelbegin \DIFdel{52}\DIFdelend \DIFaddbegin \DIFadd{50}\DIFaddend ~Mt of green steel and around \DIFdelbegin \DIFdel{2700 }\DIFdelend \DIFaddbegin \DIFadd{1498 }\DIFaddend TWh of green energy, which is
+\DIFdelbegin \DIFdel{almost a quarter }\DIFdelend \DIFaddbegin \DIFadd{around 13\% }\DIFaddend of the system's total energy supply (\cref{fig:import-shares}). \DIFaddbegin \DIFadd{Our
+results show a cost-effective import mix consisting primarily of liquid
+carbon-based fuels, hydrogen, and steel imports with small volumes of ammonia
+and electricity imports.
+}\DIFaddend 
+
+Next, we investigate the impact of restricting the available import options to
+subsets of import vectors. We find that if only hydrogen can be imported, cost
+savings are reduced to \DIFdelbegin %DIFDELCMD < \bneuro{22} %%%
+\DIFdel{(2.8\%). This is because by using }\DIFdelend \DIFaddbegin \bneuro{20} \DIFadd{(2.4\%), with pipeline-based hydrogen imports
+being preferred to imports as liquid by ship. By importing a larger volume of
+}\DIFaddend hydrogen as an intermediary carrier \DIFaddbegin \DIFadd{(1338~TWh instead of 576~TWh,
+}\sfigref{fig:si:import-shares-a}\DIFadd{)}\DIFaddend , low-cost renewable \DIFdelbegin \DIFdel{electricity }\DIFdelend \DIFaddbegin \DIFadd{energy }\DIFaddend from abroad can
+still be leveraged for the synthesis of derivative products in Europe. \DIFdelbegin \DIFdel{For this purpose,
+pipeline-based hydrogen imports are preferred to ship-based imports as liquid.
+When }\DIFdelend \DIFaddbegin \DIFadd{However,
+the benefit is reduced as domestic CO$_2$ feedstocks from industrial sources are
+depleted.
+}
+
+\DIFadd{Conversely, when }\DIFaddend direct hydrogen imports are excluded from the available import
+options, cost savings are \DIFdelbegin \DIFdel{similar with }%DIFDELCMD < \bneuro{24} %%%
+\DIFdel{(3}\DIFdelend \DIFaddbegin \DIFadd{close to the maximum with }\bneuro{34} \DIFadd{(4.1}\DIFaddend \%). \DIFaddbegin \DIFadd{This
+indicates that the benefit of using domestically captured biogenic or fossil
+CO$_2$ is similar to tapping into low-cost renewable resources abroad. }\DIFaddend Focusing
+imports exclusively on liquid carbonaceous fuels derived from hydrogen,
+i.e.~methanol or Fischer-Tropsch fuels, \DIFdelbegin \DIFdel{consistently achieves }\DIFdelend \DIFaddbegin \DIFadd{still achieves high }\DIFaddend cost savings of
+\DIFdelbegin %DIFDELCMD < \bneuro{13-20} %%%
+\DIFdel{(1.7-2.5\%).
+}%DIFDELCMD < 
+
+%DIFDELCMD < %%%
+\DIFdel{On the contrary, }\DIFdelend \DIFaddbegin \bneuro{31} \DIFadd{(3.7\%), which is due to the smaller demand or variety of
+applications for ammonia, methane, and steel compared to liquid carbonaceous
+fuels. Thus, excluding them has a small effect on cost savings. This aligns with
+the finding that }\DIFaddend restricting options to only \DIFdelbegin \DIFdel{ammonia or methane }\DIFdelend \DIFaddbegin \DIFadd{methane, ammonia, or ferrous
+material }\DIFaddend imports yields negligible \DIFdelbegin \DIFdel{cost savings. Small savings }\DIFdelend \DIFaddbegin \DIFadd{to small cost savings }\DIFaddend below \bneuro{5}
+(0.6\%)\DIFdelbegin \DIFdel{can be reached
+if only electricity or steel can be imported. This is due to the lower volume
+and variety of usage options for ammonia, methane and steel compared to
+hydrogen, methanol and Fischer-Tropsch fuels. Furthermore, }\DIFdelend \DIFaddbegin \DIFadd{. Negligible cost savings were also found for }\DIFaddend the direct import of
+electricity \DIFaddbegin \DIFadd{as it }\DIFaddend poses more challenges for \DIFdelbegin \DIFdel{system integration . Generally, our results
+indicate a preference for methanol, hydrogen and steel imports over electricity
+imports, with a mix emerging as the most cost-effective approach.
+}%DIFDELCMD < \sfigref{fig:si:subsets} %%%
+\DIFdel{show additional insights into how }\DIFdelend \DIFaddbegin \DIFadd{integration into the European
+system.
+}
+
+\DIFadd{Overall, while }\DIFaddend varying import costs \DIFdelbegin \DIFdel{affect these findings}\DIFdelend \DIFaddbegin \DIFadd{within $\pm 20\%$ affects the magnitude of
+attainable cost savings, the relative impact of restricting specific import
+options remains broadly consistent
+(}\sfigref{fig:si:subsets-higher,fig:si:subsets-lower}\DIFadd{)}\DIFaddend .
+
+\DIFaddbegin \begin{figure}
+    \caption{\textbf{Comparison of domestic synthetic production costs and import costs for varying import scenarios.}
+        The three panels (a), (b), and (c) refer to different import scenarios.
+        In each panel, the \textit{bar charts} show the production-weighted
+        average costs of domestic production of steel, hydrogen and its
+        derivatives split into its cost and revenue components. These have been
+        computed using the marginal prices of the respective inputs and outputs
+        for the production volume of each region and snapshot. Capital
+        expenditures are distributed to hours in proportion to the production
+        volume. Missing bars indicate that no domestic production occured in the
+        scenario, e.g.~for the case of methane where all demand is met by
+        biogenic and fossil methane and no synthetic production occured
+        (cf.~energy balances in supplementary material). All hydrogen is
+        produced from electrolysis; i.e.~the model did not choose to produce
+        hydrogen via steam methane reforming with or without carbon capture. For
+        each bar, the yellow errorbars show the range of time-averaged domestic
+        production costs across all regions. The black error bars show the range
+        of import costs across all regions. The \textit{maps} on the right
+        relate the hydrogen production volume to the weighted cost of domestic
+        hydrogen production (left colorbar). Confer Supplementary Fig.~21 for
+        information on the domestic cost supply curves.}
+    \label{fig:market-values}
+\end{figure}
+\DIFaddend 
+
+\DIFdelbegin \section*{\DIFdel{Import dynamics for different energy carriers}}
+%DIFAUXCMD
+\DIFdelend \DIFaddbegin \subsection*{\DIFadd{Import dynamics for different energy carriers}}
+\DIFaddend 
+
+%%% state results %%%
+
+\cref{fig:import-shares} outlines which carriers are imported in which
+quantities in relation to their total supply under default assumptions when the
+vector and volume can be flexibly chosen (\DIFdelbegin \DIFdel{``}\DIFdelend \DIFaddbegin \DIFadd{`}\DIFaddend all imports allowed\DIFdelbegin \DIFdel{'' }\DIFdelend \DIFaddbegin \DIFadd{' }\DIFaddend in
+\cref{fig:sensitivity-bars}). In energy terms, cost-optimal imports comprise
+around \DIFdelbegin \DIFdel{50\% hydrogen, more than 20\% electricity, and around 20\% of
+carbonaceous fuels}\DIFdelend \DIFaddbegin \DIFadd{45\% carbonaceous fuels, 35\% hydrogen, and less than 10\% electricity}\DIFaddend .
+Noticeably, all \DIFaddbegin \DIFadd{primary }\DIFaddend crude steel and \DIFdelbegin \DIFdel{methanol for shipping and
+industry is imported. Also,
+around three-quarters }\DIFdelend \DIFaddbegin \DIFadd{ammonia for fertilizers is imported,
+whereby steel imports are preferred over HBI imports. Around half }\DIFaddend of the total
+hydrogen supply is imported\DIFdelbegin \DIFdel{. }\DIFdelend \DIFaddbegin \DIFadd{, matching the ratio of the 2030 REPowerEU
+targets.}\cite{europeancommissionRepowerEUPlan} \DIFaddend Hydrogen is imported so that it
+can be processed into derivative products domestically rather than \DIFaddbegin \DIFadd{used for
+}\DIFaddend direct applications for hydrogen. Smaller import shares are observed for
+electricity, \DIFdelbegin \DIFdel{Fischer-Tropsch fuels, and ammonia, which are mostly domestically produced}\DIFdelend \DIFaddbegin \DIFadd{which is largely supplied from domestic resources, because of
+higher costs and losses in electricity transmission than other import vectors,
+and for methane, which is supplied from domestic fossil and biogenic sources
+(}\sfigref{fig:si:balances-a}\DIFadd{).
+}
+
+%DIF > %% trade flows from origin to destination %%%
+
+\DIFadd{In terms of trade flows (\mbox{%DIFAUXCMD
+\cref{fig:import-shares}}\hskip0pt%DIFAUXCMD
+), we observe carbonaceous fuel
+imports by ship from South America -- leveraging low transport costs of dense
+liquid fuels -- as well as ammonia, steel, and hydrogen imports from the Maghreb
+region. Hydrogen is mainly received by pipeline in Spain. Moreover, due to its
+proximity to Italy, some electricity imports are received by HVDC connections
+from Tunisia. While the model suggests trade routes from particular regions, we
+aggregate these to broader regions to emphasize that alternative
+origin-destination pairs within the regions could often yield similar results
+(}\sfigref{fig:si:isc-h2,fig:si:isc-ch4-nh3,fig:si:isc-meoh-ft,fig:si:isc-hbi-St}\DIFadd{)}\DIFaddend .
+
+%%% explanation through market values %%%
+
+To explain the import shares in \cref{fig:import-shares} in more detail, we
+compare import costs with average domestic production cost split by cost and
+revenue components in \cref{fig:market-values}. First, for the scenario without
+imports, imported \DIFdelbegin \DIFdel{fuel appear to be }\DIFdelend \DIFaddbegin \DIFadd{fuels appear }\DIFaddend substantially cheaper than domestic production.
+The high demand for hydrogen \DIFdelbegin \DIFdel{and derivative products
+(}%DIFDELCMD < \sfigref{fig:si:balances-a,fig:si:balances-b}%%%
+\DIFdelend \DIFaddbegin \DIFadd{derivatives (}\sfigref{fig:si:demands}\DIFaddend ) means that
+the most attractive domestic potentials for renewable electricity and \DIFaddbegin \DIFadd{captured
+}\DIFaddend carbon dioxide have been exhausted. \DIFdelbegin \DIFdel{Power }\DIFdelend \DIFaddbegin \DIFadd{Consequently, power }\DIFaddend from wind and solar
+needs to be produced in regions with worse capacity factors\DIFdelbegin \DIFdel{and direct air capture becomes the price-setting technology for
+\ce{CO2} as biogenic and industrial sources ($\approx$600~Mt$_\text{\ce{CO2}}$)
+are depleted}\DIFdelend .
+
+%%% hydrogen imports lower pressure on domestic supply chain %%%
+
+Part of this gap is closed when hydrogen imports are allowed. By sourcing
+cheaper hydrogen from outside Europe, the domestic costs of derivative fuel
+synthesis are reduced. \DIFdelbegin \DIFdel{This hybrid approach has the largest effect on
+Fischer-Tropsch production due to its higher hydrogen demand compared to
+methanolisation and the Haber-Bosch process. Hydrogen imports also decouple the
+synthesis from the seasonal variation of domestic hydrogen production costs.
+}%DIFDELCMD < 
+
+%DIFDELCMD < %%%
+%DIF < %% waste heat integration %%%
+%DIFDELCMD < 
+
+%DIFDELCMD < %%%
+\DIFdel{The potential for waste heat utilisation from fuel synthesis within Europe adds
+further appeal to this hybrid approach. By importing hydrogen rather than the
+derivative product, heat supply into district heating networks from synthesis
+processes can create an additional revenue stream of up to 10 }%DIFDELCMD < \euro{}%%%
+\DIFdel{/MWh, depending on the process. Taking ammonia as example, the levelised cost is 73
+}%DIFDELCMD < \euro{}%%%
+\DIFdel{/MWh for domestic production compared to 88 }%DIFDELCMD < \euro{}%%%
+\DIFdel{/MWh for imported
+ammonia.
+}%DIFDELCMD < 
+
+%DIFDELCMD < %%%
+\DIFdel{The waste heat integration is also the reason why in \mbox{%DIFAUXCMD
+\cref{fig:import-shares}}\hskip0pt%DIFAUXCMD
+,
+with all import vectors allowed, all methanol is imported, whereas
+Fischer-Tropsch fuels and ammonia are produced mainly domestically using high
+shares of imported hydrogen. Because the thermal discharge from the methanol
+synthesis is primarily used for the distillation of the methanol-water output
+mix, its waste heat potential is considered much lower compared to
+Fischer-Tropsch, Haber-Bosch and Sabatier processes.Therefore, it is less
+attractive to retain this part of the value chain within Europe}\DIFdelend \DIFaddbegin \DIFadd{However, the large remaining volume of CO$_2$ handled in
+the European system for use and sequestration (}\sfigref{fig:si:balances-b}\DIFadd{)
+means that direct air capture is still the price-setting technology for \ce{CO2}
+as economic applications for biogenic and industrial carbon capture (i.e.~those
+with high full load hours) are depleted}\DIFaddend .
+
+%%% explanations of low cost differences if all imports allowed %%%
+
+With all import vectors allowed, we see minimal cost differences between
+domestic production and imports as the supply curves reach equilibrium
+\DIFaddbegin \DIFadd{(}\sfigref{fig:si:cost-supply-curves}\DIFadd{)}\DIFaddend . This is because imports of hydrogen and
+derivative products lower the strain on the domestic supply \DIFdelbegin \DIFdel{chain}\DIFdelend \DIFaddbegin \DIFadd{curves for hydrogen
+and carbon dioxide}\DIFaddend . Thereby, domestic production would only \DIFdelbegin \DIFdel{be ramped }\DIFdelend \DIFaddbegin \DIFadd{ramp }\DIFaddend up where it
+competes with imports and associated infrastructure costs. \DIFdelbegin \DIFdel{Such regions
+exist in Southern Europe or }\DIFdelend \DIFaddbegin \DIFadd{This was the case for
+hydrogen, methanol, and Fischer-Tropsch fuels in }\DIFaddend the British Isles and \DIFdelbegin \DIFdel{, therefore}\DIFdelend \DIFaddbegin \DIFadd{parts of
+Southern Europe and Nordic countries (\mbox{%DIFAUXCMD
+\cref{fig:market-values}}\hskip0pt%DIFAUXCMD
+). Consequently}\DIFaddend ,
+not all hydrogen is imported\DIFdelbegin \DIFdel{(}%DIFDELCMD < \sfigref{fig:si:cost-supply-curves}%%%
+\DIFdel{)}\DIFdelend \DIFaddbegin \DIFadd{, but some domestic production is retained}\DIFaddend .
+\DIFaddbegin \begin{figure}
+    \caption{\textbf{Effect of import cost variations on system cost savings and import shares with all vectors allowed.}
+    In panel (a), indicated relative import cost changes are applied uniformly
+    to all vectors. In panel (b), cost changes are applied uniformly to all
+    vectors but electricity imports. In panel (c), cost changes are only applied
+    to carbonaceous fuels (methane, methanol and Fischer-Tropsch). Top subpanels
+    show potential system cost savings compared to the scenario without imports. Bottom
+    subpanels show the share and composition of different import vectors in
+    relation to total energy system costs. The information is shown both in
+    absolute terms and relative terms compared to the scenario without imports.
+    }
+    \label{fig:sensitivity-costs}
+\end{figure}
+\DIFaddend 
+
+\DIFdelbegin \section*{\DIFdel{Sensitivity of potential cost savings to import costs}}
+%DIFAUXCMD
+\DIFdelend \DIFaddbegin \subsection*{\DIFadd{Sensitivity of potential cost savings to import costs}}
+\DIFaddend 
+
+\DIFdelbegin \DIFdel{It should be noted, however, that }\DIFdelend \DIFaddbegin \DIFadd{Thus far, the presented findings originate from a central estimate for the
+import cost. However, }\DIFaddend the cost-optimal import mix \DIFdelbegin \DIFdel{also }\DIFdelend strongly depends on the
+assumed import costs. This uncertainty is addressed in
+\cref{fig:sensitivity-costs}. \cref{fig:sensitivity-costs:A} highlights the
+extensive range in potential cost reductions if higher or lower import costs
+could be attained and underlines the resulting variance in cost-effective import
+mixes. Within \DIFdelbegin \DIFdel{$\pm 20\%$ }\DIFdelend \DIFaddbegin \DIFadd{$\pm 30\%$ }\DIFaddend of the default import costs applied to all carriers\DIFdelbegin \DIFdel{but
+electricity}\DIFdelend ,
+total cost savings vary between \DIFdelbegin %DIFDELCMD < \bneuro{13} %%%
+\DIFdel{(1.6}\DIFdelend \DIFaddbegin \bneuro{2} \DIFadd{(0.3}\DIFaddend \%) and \DIFdelbegin %DIFDELCMD < \bneuro{83}
+%DIFDELCMD < %%%
+\DIFdel{(10.2}\DIFdelend \DIFaddbegin \bneuro{112} \DIFadd{(13.5}\DIFaddend \%).
+Within this range, import volumes vary between \DIFdelbegin \DIFdel{1700 and 3800}\DIFdelend \DIFaddbegin \DIFadd{500 and 2646}\DIFaddend ~TWh. Across most
+scenarios, there is a stable role for \DIFdelbegin \DIFdel{methanol, steel, electricity
+and hydrogen imports. One significant difference, however, are Fischer-Tropsch
+fuel imports starting from cost reductions of 10\% and their absence at cost
+increases beyond }\DIFdelend \DIFaddbegin \DIFadd{ammonia and liquid carbonaceous fuel
+imports. Within a narrower $\pm 20\%$ range, hydrogen imports also appear in
+larger quantities, while steel imports become less attractive with cost
+increases of }\DIFaddend 10\% \DIFaddbegin \DIFadd{or more. Electricity imports grow with declining costs}\DIFaddend .
+
+\DIFdelbegin \DIFdel{A breakdown of potential causes for such cost variationssuch as cost of
+capital, cost of carbon dioxide and investment costs are presented in
+}%DIFDELCMD < \stabref{tab:cost-uncertainty}%%%
+\DIFdel{. Some of these only
+affect }\DIFdelend \DIFaddbegin \DIFadd{However, not all carriers are equally affected by technology cost variations.
+Fuel synthesis technologies do not influence electricity imports, and only
+carbon-based fuels are subject to }\DIFaddend the cost of \DIFdelbegin \DIFdel{carbonaceous fuels.
+}\DIFdelend \DIFaddbegin \DIFadd{CO$_2$ supply. We find that when
+the relative cost variation is not applied to electricity imports
+(\mbox{%DIFAUXCMD
+\cref{fig:sensitivity-costs:B}}\hskip0pt%DIFAUXCMD
+), they remain less attractive than other
+vectors, even when those alternative vectors face a 20\% cost rise.
+}
+
+\DIFaddend One central assumption \DIFaddbegin \DIFadd{regarding costs }\DIFaddend for carbon-based fuels is that imported
+fuels rely \DIFdelbegin \DIFdel{exclusively }\DIFdelend on direct air capture (DAC) as a carbon source. Arguments for this
+assumption relate to the potential remoteness of the ideal locations for
+renewable fuel production or the absence of industrial point sources in the
+exporting \DIFdelbegin \DIFdel{country. On the other hand}\DIFdelend \DIFaddbegin \DIFadd{region. In contrast}\DIFaddend , domestic electrofuels can mostly use less
+expensive captured \DIFaddbegin \DIFadd{biogenic or fossil }\DIFaddend carbon dioxide from industrial \DIFdelbegin \DIFdel{point sources
+or biogenic origin}\DIFdelend \DIFaddbegin \DIFadd{processes}\DIFaddend .
+Therefore, the higher cost for DAC partially cancels out the savings from
+utilising better renewable resources abroad. This is one of the reasons why
+there is substantial power-to-X production in Europe, even with corresponding
+import options. \DIFdelbegin \DIFdel{The }\DIFdelend \DIFaddbegin \DIFadd{However, the }\DIFaddend availability of cheaper \DIFdelbegin \DIFdel{biogenic }\DIFdelend \DIFaddbegin \DIFadd{(biogenic) }\DIFaddend CO$_2$ in
+\DIFdelbegin \DIFdel{the
+exporting country, for instance, would make importing carbonaceous fuels more
+attractive }\DIFdelend \DIFaddbegin \DIFadd{exporting regions would lower costs of carbonaceous fuel imports
+}\DIFaddend (\stabref{tab:cost-uncertainty}).
+
+When the relative cost variation \DIFdelbegin \DIFdel{of $\pm 20\%$ }\DIFdelend is only applied to carbon-based fuels
+(\DIFdelbegin \DIFdel{\mbox{%DIFAUXCMD
+\cref{fig:sensitivity-costs:B}}\hskip0pt%DIFAUXCMD
+), }\DIFdelend \DIFaddbegin \DIFadd{\mbox{%DIFAUXCMD
+\cref{fig:sensitivity-costs:C}}\hskip0pt%DIFAUXCMD
+), reflecting cost uncertainty in carbon
+provision, }\DIFaddend hydrogen imports are \DIFdelbegin \DIFdel{increasingly
+displaced by methane and }\DIFdelend \DIFaddbegin \DIFadd{quickly displaced by }\DIFaddend Fischer-Tropsch \DIFaddbegin \DIFadd{and
+methanol }\DIFaddend imports with falling costs. \DIFdelbegin \DIFdel{However, it
+takes a cost increase of more than 10\% for domestic methanol production to
+}\DIFdelend \DIFaddbegin \DIFadd{Only when import costs rise by 20\% do
+domestically produced liquid hydrocarbons -- derived mainly from imported
+hydrogen -- }\DIFaddend become more cost-effective than \DIFdelbegin \DIFdel{methanol imports. This underlines the robust
+benefit of importing methanol}\DIFdelend \DIFaddbegin \DIFadd{direct imports. In all three cases
+of import cost variations, methane imports become relevant only with substantial
+cost reductions of 40\%, replacing biogas and residual fossil gas consumption}\DIFaddend .
+
+\DIFaddbegin \begin{figure}
+    \caption{\textbf{Sensitivity of import volume on total system cost and composition.}
+        \textit{Left panel:} Solid lines show the total system cost as a
+        function of enforced import volumes for higher (brown scale) or lower
+        (blue scale) import costs. The dashed lines indicate the corresponding
+        shares of the domestic system cost. The red markers denote the maximum
+        cost reductions and cost-optimal import volume for given import cost
+        levels (extreme points of the curves). The cost alterations are
+        uniformly applied to all imports options but direct electricity imports.
+        Steel is included in energy terms applying 2.1 kWh~kg$^{-1}$ as released by the
+        oxidation of iron. \textit{Right panel:} Shows the composition of the
+        total system cost as a function of enforced import volumes for the
+        central import cost estimate. The dashed line splits the system costs
+        into costs for imports and the domestic system. Cost compositions for
+        the alternative import cost scenarios are presented in Supplementary
+        Figs.~14-17.}
+    \label{fig:sensitivity-volume}
+\end{figure}
+\DIFaddend 
+
+\DIFdelbegin \section*{\DIFdel{Attainable cost savings for varying import volumes}}
+%DIFAUXCMD
+\DIFdelend \DIFaddbegin \subsection*{\DIFadd{Attainable cost savings for varying import volumes}}
+\DIFaddend 
+
+What is consistent \DIFdelbegin \DIFdel{across all import cost variations }\DIFdelend \DIFaddbegin \DIFadd{for many scenarios with higher or lower import costs }\DIFaddend is the
+flat solution space around the respective cost-optimal import volumes.
+Increasing or decreasing the total amount of imports \DIFaddbegin \DIFadd{from the optimum }\DIFaddend barely
+affects system costs within $\pm 1000$\DIFaddbegin \DIFadd{~}\DIFaddend TWh. This is illustrated in
+\cref{fig:sensitivity-volume} \DIFdelbegin \DIFdel{, which shows }\DIFdelend \DIFaddbegin \DIFadd{and extended
+}\sfigref{fig:si:volume-higher-1,fig:si:volume-higher-2,fig:si:volume-lower-1,fig:si:volume-lower-2}\DIFadd{,
+which show }\DIFaddend the system cost as a function of enforced import volumes and
+different import costs \DIFaddbegin \DIFadd{for hydrogen and its derivatives}\DIFaddend . A wide range \DIFaddbegin \DIFadd{of
+}\DIFaddend scenarios with import volumes below \DIFdelbegin \DIFdel{5600}\DIFdelend \DIFaddbegin \DIFadd{4100}\DIFaddend ~TWh (\DIFdelbegin \DIFdel{4000~TWh with +}\DIFdelend \DIFaddbegin \DIFadd{2300~TWh for }\DIFaddend 20\% \DIFdelbegin \DIFdel{and 7500~TWh with }\DIFdelend \DIFaddbegin \DIFadd{higher import
+costs, 5800~TWh for }\DIFaddend -20\% \DIFaddbegin \DIFadd{lower }\DIFaddend import costs) have lower total energy system
+costs than the \DIFdelbegin \DIFdel{scenario
+without any imports. These import volumes are roughly twice the }\DIFdelend \DIFaddbegin \DIFadd{no-imports scenario. These ranges of import values are two to
+three times as large as the corresponding }\DIFaddend cost-optimal import volumes, which are
+indicated by the \DIFdelbegin \DIFdel{black }\DIFdelend \DIFaddbegin \DIFadd{red }\DIFaddend markers in \cref{fig:sensitivity-volume} and correspond to
+the bars previously shown in \DIFdelbegin \DIFdel{\mbox{%DIFAUXCMD
+\cref{fig:sensitivity-costs:A}}\hskip0pt%DIFAUXCMD
+}\DIFdelend \DIFaddbegin \DIFadd{\mbox{%DIFAUXCMD
+\cref{fig:sensitivity-costs:B}}\hskip0pt%DIFAUXCMD
+}\DIFaddend . Naturally, the
+cost-optimal volume of imports increases as their costs decrease, but \DIFdelbegin \DIFdel{the response weakens with
+lower import
+costs}\DIFdelend \DIFaddbegin \DIFadd{with
+noticeably varying slopes for system cost savings per unit of additional
+imported energy}\DIFaddend .
+
+As we explore the effect of increasing import volumes on system costs, we find
+that already \DIFdelbegin \DIFdel{43\% (36-61}\DIFdelend \DIFaddbegin \DIFadd{56\% (48-80}\DIFaddend \% within $\pm$20\% import costs) of the \DIFdelbegin \DIFdel{4.9\%
+(1.6-10.2}\DIFdelend \DIFaddbegin \DIFadd{4.4\%
+(1.3-9.0}\DIFaddend \%) total cost benefit \DIFdelbegin \DIFdel{(}%DIFDELCMD < \bneuro{17}%%%
+\DIFdel{) }\DIFdelend can be achieved with the first 500 TWh of
+imports. This corresponds to \DIFdelbegin \DIFdel{only 18\% (15-29}\DIFdelend \DIFaddbegin \DIFadd{31\% (25-49}\DIFaddend \%) of the cost-optimal import volumes,
+highlighting the diminishing \DIFdelbegin \DIFdel{return }\DIFdelend \DIFaddbegin \DIFadd{returns }\DIFaddend of large amounts of energy imports in
+Europe. \DIFdelbegin \DIFdel{While importing }\DIFdelend \DIFaddbegin \DIFadd{The initial }\DIFaddend 1000 TWh \DIFdelbegin \DIFdel{already realises 70\%of the maximum
+cost
+savingswith our default assumptions, this maximum is only obtained for 2800~TWh of imports. For these initial 1000~TWh, }\DIFdelend \DIFaddbegin \DIFadd{realise 90\% (80-100\%) of the highest cost
+savings, for which }\DIFaddend primary crude steel and \DIFdelbegin \DIFdel{methanol }\DIFdelend \DIFaddbegin \DIFadd{liquid carbonaceous fuel }\DIFaddend imports are
+prioritised, followed by \DIFaddbegin \DIFadd{ammonia and }\DIFaddend hydrogen and, subsequently, \DIFdelbegin \DIFdel{electricity beyond 2000 TWh}\DIFdelend \DIFaddbegin \DIFadd{larger volumes
+of electricity beyond cost-optimal import levels}\DIFaddend . Once more than \DIFdelbegin \DIFdel{5000~TWh}\DIFdelend \DIFaddbegin \DIFadd{5500~TWh
+(5000-8200~TWh) }\DIFaddend are imported, less than half the total system cost would be
+spent on domestic energy infrastructure.
+
+As imports increase, there is a corresponding decrease in the need for domestic
+power-to-X (PtX) production and renewable capacities. A large share of the
+hydrogen, methanol\DIFdelbegin \DIFdel{and raw }\DIFdelend \DIFaddbegin \DIFadd{, and primary }\DIFaddend steel production is outsourced from Europe,
+reducing the need for domestic wind and solar capacities. This trend is further
+characterised by the displacement of biogas usage in favour of hydrogen imports
+around the \DIFdelbegin \DIFdel{2000}\DIFdelend \DIFaddbegin \DIFadd{4000}\DIFaddend ~TWh mark \DIFaddbegin \DIFadd{(3000-5000~TWh within $\pm$20\% import costs) }\DIFaddend as demand
+for domestic \ce{CO2} utilisation drops \DIFdelbegin \DIFdel{. An
+increase in the amount of hydrogen imported coincides with an increasing use of }\DIFdelend \DIFaddbegin \DIFadd{and methane use for power and heat
+provision is displaced by hydrogen. The increase in }\DIFaddend hydrogen \DIFdelbegin \DIFdel{fuel cells for electricity and central }\DIFdelend \DIFaddbegin \DIFadd{imports results in
+the build-out of more hydrogen fuel cell CHPs for power and }\DIFaddend heat supply in
+district heating networks\DIFdelbegin \DIFdel{, partially displacing the use of methane}\DIFdelend . Regarding electricity imports from the MENA region,
+\cref{fig:sensitivity-volume} reveals a mix of wind and solar power \DIFaddbegin \DIFadd{with some
+batteries }\DIFaddend to establish favourable feed-in profiles for the European system
+integration and higher utilisation rates for the long-distance HVDC links\DIFdelbegin \DIFdel{with a
+}\DIFdelend \DIFaddbegin \DIFadd{. For
+instance, for imports of 4000~TWh in \mbox{%DIFAUXCMD
+\cref{fig:sensitivity-volume}}\hskip0pt%DIFAUXCMD
+, the
+}\DIFaddend capacity-weighted average \DIFdelbegin \DIFdel{of 72\%. Utilisation rates are high }\DIFdelend \DIFaddbegin \DIFadd{utilisation rate was 85\%. This is }\DIFaddend because a
+considerable share of the \DIFdelbegin \DIFdel{import costs of electricity }\DIFdelend \DIFaddbegin \DIFadd{electricity import costs }\DIFaddend can be attributed to power
+transmission.
+
+%DIF <  FN LCOE for solar and wind in MENA are mostly similar potentials are not
+%DIF <  constraining DZ: solar 34 €/MWh, wind 32 €/MWh TN: solar 30 €/MWh, wind 38
+%DIF <  €/MWh LY: solar 24 €/MWh, wind 37 €/MWh
+\DIFdelbegin %DIFDELCMD < 
+
+%DIFDELCMD < %%%
+\DIFdelend As import costs are varied, the composition of the domestic system and import
+mix \DIFaddbegin \DIFadd{for different import volumes }\DIFaddend is primarily similar
+(\DIFdelbegin %DIFDELCMD < \sfigref{fig:si:volume}%%%
+\DIFdelend \DIFaddbegin \sfigref{fig:si:volume-higher-2,fig:si:volume-higher-1,fig:si:volume-lower-1,fig:si:volume-lower-2}\DIFaddend ).
+The main \DIFdelbegin \DIFdel{differences are a more }\DIFdelend \DIFaddbegin \DIFadd{difference is a less }\DIFaddend prominent role for \DIFdelbegin \DIFdel{Fischer-Tropsch fuel imports with lower import costsand
+green methane for high import volumes. It should also be noted that }\DIFdelend \DIFaddbegin \DIFadd{steel imports with higher
+import costs. What is furthermore noteworthy is that reducing import costs from
+\mbox{-30\%} to \mbox{-50\%} only marginally reduces domestic infrastructure costs, indicating
+largely saturated import potentials. Regarding available import options, }\DIFaddend the
+windows for cost savings are \DIFdelbegin \DIFdel{much smaller }\DIFdelend \DIFaddbegin \DIFadd{more limited }\DIFaddend if only subsets \DIFdelbegin \DIFdel{of import options }\DIFdelend are available
+(\sfigref{fig:si:volume-subsets}). However, up to an import volume of \DIFdelbegin \DIFdel{2000~TWh
+}\DIFdelend \DIFaddbegin \DIFadd{1500~TWh
+for the central cost estimate}\DIFaddend , excluding electricity imports \DIFdelbegin \DIFdel{would not }\DIFdelend \DIFaddbegin \DIFadd{or constraining
+imports to methanol and Fischer-Tropsch fuels only, would not substantially
+}\DIFaddend diminish the cost-saving potential\DIFdelbegin \DIFdel{substantially}\DIFdelend .
+
+\DIFaddbegin \begin{figure}
+    \caption{\textbf{Layout of European energy infrastructure for different import scenarios.}
+        Left column shows the regional electricity supply mix (pies), added HVDC
+        and HVAC transmission capacity (lines), and the siting of battery
+        storage (choropleth). Right column shows the hydrogen supply (top half
+        of pies) and consumption (bottom half of pies), net flow and direction
+        of hydrogen in newly built pipelines (lines), and the siting of hydrogen
+        storage subject to geological potentials (choropleth). Total volumes of
+        transmission expansion are given in TWkm, which is the sum product of
+        the capacity and length of individual connections. The half circle in
+        the Bay of Biscay indicates the imports of
+        hydrogen derivatives that are not spatially resolved: ammonia, steel, HBI, methanol,
+        Fischer-Tropsch fuels. Hydrogen imports are shown at the entry points.
+        Maps for more scenarios are included in Supplementary Figs.~25 to 27. }
+    \label{fig:import-infrastructure}
+\end{figure}
+\DIFaddend 
+
+\DIFdelbegin \section*{\DIFdel{Interactions of import strategy \& domestic infrastructure}}
+%DIFAUXCMD
+\DIFdelend \DIFaddbegin \subsection*{\DIFadd{Interactions of import strategy \& domestic infrastructure}}
+\DIFaddend 
+
+Across the range of import scenarios analysed, we find that the decision which
+import vectors are used strongly affects domestic energy infrastructure needs
+(\cref{fig:import-infrastructure}).
+
+%%% self-sufficiency %%%
+
+In the fully self-sufficient European energy supply scenario, we see large \DIFdelbegin \DIFdel{\mbox{power-to-X} }\DIFdelend \DIFaddbegin \DIFadd{PtX
+}\DIFaddend production within Europe to cover the demand for hydrogen and hydrogen
+derivatives in steelmaking, \DIFaddbegin \DIFadd{fertilizers, }\DIFaddend high-value chemicals, green shipping\DIFaddbegin \DIFadd{,
+}\DIFaddend and aviation fuels. Production sites are concentrated \DIFdelbegin \DIFdel{in Southern Europe for
+solar-based electrolysis and the broader North Sea region for }\DIFdelend \DIFaddbegin \DIFadd{mainly in and around the
+North and Baltic Seas using }\DIFaddend wind-based electrolysis \DIFdelbegin \DIFdel{. The steel and ammonia industries relocate to the periphery of
+Europe in
+Spain and Scotland, where hydrogen is cheap and abundant}\DIFdelend \DIFaddbegin \DIFadd{and some additional hubs in
+Southern Europe using solar-based electrolysis}\DIFaddend . Electricity grid reinforcements\DIFaddbegin \DIFadd{,
+representing around 50\% of the current transmission capacity, }\DIFaddend are focused in
+Northwestern Europe\DIFdelbegin \DIFdel{and }\DIFdelend \DIFaddbegin \DIFadd{, with numerous }\DIFaddend long-distance HVDC connections\DIFaddbegin \DIFadd{, }\DIFaddend but are
+broadly distributed overall.
+\DIFdelbegin \DIFdel{Hydrogen }\DIFdelend \DIFaddbegin 
+
+%DIF > %% industry relocation and hydrogen network %%%
+
+\DIFadd{With a total of 57~TWkm, the hydrogen }\DIFaddend pipeline build-out is \DIFdelbegin \DIFdel{strongest in Spain and France to transport hydrogen from the Southern production
+hubs to
+fuel synthesis sites. Most of these pipelines are used unidirectionally,with bidirectional usage where pipelines link hydrogen production and }\DIFdelend \DIFaddbegin \DIFadd{smaller, mostly
+serving regional connections. For several reasons, it is also considerably
+smaller than the 204-306~TWkm observed previously in Neumann et
+al.~}\cite{neumannPotentialRoleHydrogen2023} \DIFadd{or the European Hydrogen Backbone
+reports}\cite{gasforclimateEuropeanHydrogen2022} \DIFadd{which envisioned a similar order
+of magnitude. Besides assumed full electrification of heavy-duty road
+transport}\cite{} \DIFadd{and assuming low CO$_2$ transport costs from point sources to
+}\DIFaddend low-cost \DIFdelbegin \DIFdel{geological storage sites (for instance, between Greece and Italy and Southern
+Spain )}\DIFdelend \DIFaddbegin \DIFadd{hydrogen sites,}\cite{hofmannH2CO2Network2024} \DIFadd{one reason is the
+considered relocation of steel and ammonia production to where hydrogen is cheap
+and abundant, reducing the need to transport hydrogen
+(}\sfigref{fig:si:relocation}\DIFadd{). Not considering relocation of primary steel and
+ammonia production would result in a slightly larger hydrogen network of 69~TWkm
+(}\sfigref{fig:si:infra-b}\DIFadd{), while increasing system costs by }\bneuro{22} \DIFadd{(2.7\%)
+in the no-imports scenario. With permitted relocation of ammonia and steel
+production, primary steel production shifts to the British Isles and Spain while
+ammonia production moves to the Nordic-Baltic region. Both sectors become more
+strongly localized, with individual regions capturing a market share surpassing
+30\%}\DIFaddend .
+
+%%% flexible imports %%%
+
+Considering imports of renewable electricity, green hydrogen, and electrofuels
+substantially alters the \DIFdelbegin \DIFdel{infrastructure buildout }\DIFdelend \DIFaddbegin \DIFadd{magnitude of energy infrastructure }\DIFaddend in Europe. Imports
+displace much of the European power-to-X production capacities and,
+particularly, domestic solar energy generation in Southern Europe. \DIFaddbegin \DIFadd{Much of the
+remaining derivative fuel synthesis in Southern Spain uses imported hydrogen,
+assuming the delivery of captured CO$_2$ from other parts of Europe at low
+cost.}\cite{hofmannH2CO2Network2024} \DIFaddend In contrast, the British Isles retain some
+domestic electrolyser capacities to produce synthetic \DIFdelbegin \DIFdel{methane
+locally, also leveraging the Sabatier process's waste heat. The electricity
+imports are distributed evenly between the North African countries Algeria, Libya, and Tunisia and across multiple entry points in Spain, France, Italy and Greece. This }\DIFdelend \DIFaddbegin \DIFadd{fuels locally. Electricity
+imports of 131~TWh, compared to total imports of 1609~TWh, mainly enter from
+Tunisia at multiple nodes in Mallorca, Corsica, Sardinia, Sicily, and mainland
+Italy. This distribution }\DIFaddend facilitates grid integration without strong
+reinforcement needs \DIFdelbegin \DIFdel{.
+Electricity imports are also optimised to achieve higher utilisation rates above
+70\% for the HVDC import connections. This is realised by mixing wind and solar
+generation for seasonal balancing and using some batteries for short-term
+storage (}%DIFDELCMD < \sfigref{fig:si:import-operation}%%%
+\DIFdel{)}\DIFdelend \DIFaddbegin \DIFadd{in the Italian peninsula}\DIFaddend .
+
+While the \DIFdelbegin \DIFdel{amount and locations }\DIFdelend \DIFaddbegin \DIFadd{broad regions }\DIFaddend of domestic power grid reinforcements are not
+significantly affected by the import of electricity and other fuels, the \DIFdelbegin \DIFdel{extent
+of }\DIFdelend \DIFaddbegin \DIFadd{volume
+of power grid expansion is reduced by 20\%. The reduction in network
+infrastructure is even more pronounced with the hydrogen network; }\DIFaddend the hydrogen
+network \DIFdelbegin \DIFdel{is halved and its routing is significantly altered}\DIFdelend \DIFaddbegin \DIFadd{size is reduced by 70\% with many of the North and East European
+connections omitted}\DIFaddend . Compared to the self-sufficiency scenario, the cost-benefit
+of the hydrogen network shrinks from \DIFdelbegin %DIFDELCMD < \bneuro{11} %%%
+\DIFdel{(1.3}\DIFdelend \DIFaddbegin \bneuro{3} \DIFadd{(0.4}\DIFaddend \%) to \DIFdelbegin %DIFDELCMD < \bneuro{3} %%%
+\DIFdel{(0.4}\DIFdelend \DIFaddbegin \DIFadd{less than }\bneuro{1}
+\DIFadd{(0.1}\DIFaddend \%). This is caused by substantial amounts of \DIFdelbegin \DIFdel{methanol imports that diminish }\DIFdelend \DIFaddbegin \DIFadd{hydrogen derivative imports or
+direct processing of imported hydrogen at the entry points, which diminishes }\DIFaddend the
+demand for hydrogen in Europe and, hence, the need to transport it. \DIFdelbegin \DIFdel{In combination with the steel
+and ammonia industry relocation, longer hydrogen pipeline connections are then predominantly built to meet hydrogen CHP demands to bring electricity and heat to renewables-poor and grid-poor regions in Eastern Europe and Germany. Moreover, the hydrogen network helps absorb inbound hydrogen in South and Southeast Europe, transporting some hydrogen, which is not directly used for
+fuel synthesis at the entry points, to neighbouring regions}\DIFdelend \DIFaddbegin \DIFadd{With further
+10\% cheaper carbonaceous fuel imports, the hydrogen network would then shrink
+to 9~TWkm (}\sfigref{fig:si:infra-c}\DIFadd{).
+}
+
+%DIF > %% backup power and power-to-X flexibility value %%%
+
+\DIFadd{Changes in the magnitude of domestic PtX production also affect Europe's backup
+capacity needs. Less PtX production means lower wind and solar capacities, which
+reduces the amount of available generation in dark wind lulls. Next to energy
+storage and demand-side management of electric vehicles and heat pumps, the
+operational flexibility of electrolysers and derivative fuel production yields
+significant benefits for integrating variable wind and solar feed-in and reduces
+reserve capacity requirements. In a theoretical scenario without imports where
+all PtX processes must run inflexibly at full capacity, system costs rise by
+8.8\%. Between the main scenarios with and without imports, we observe that as
+imported fuels displace some flexible domestic power-to-X, domestic thermal
+backup capacities increase from 129~GW$_\text{el.}$ (no imports allowed) to
+276~GW$_\text{el.}$ (all imports allowed). Instead of curtailing the domestic
+production of electrofuels, backup power plants need to be dispatched. Most of
+these power plants are CHPs fuelled by fossil gas, providing backup heat
+alongside backup power when electricity prices are high during winter
+(}\sfigref{fig:si:backup-power}\DIFadd{). The resulting emissions are then compensated
+elsewhere in the system through biogenic carbon dioxide removal
+(}\sfigref{fig:si:balances-b}\DIFadd{). Spatially, these are distributed across Central
+Europe, while batteries provide backup power in Southern Europe
+(}\sfigref{fig:si:backup-power-map}\DIFadd{). The model leverages Europe's extensive
+power grid to widely distribute centralised backup power, even though, in
+reality, individual nations may prefer maintaining domestic reserve capacities}\DIFaddend .
+
+%DIF < %% overarching trends %%%
+%DIF > %% waste heat usage potential %%%
+
+A further observation is the high \DIFdelbegin \DIFdel{value of power-to-X production for system
+integration and the role of waste heat in the siting of }\DIFdelend \DIFaddbegin \DIFadd{potential value of PtX waste heat and
+its role in siting }\DIFaddend fuel synthesis plants (\sfigref{fig:si:infra-b}\DIFdelbegin \DIFdel{). Using the process waste heat }\DIFdelend \DIFaddbegin \DIFadd{,
+}\sfigref{fig:si:infra-d}\DIFadd{). Alongside the flexible operation of electrolysis to
+integrate variable wind and solar feed-in and the broad availability of
+industrial and biogenic carbon sources in Europe, waste heat usage }\DIFaddend in district
+heating networks \DIFdelbegin \DIFdel{with seasonal thermal storage generates notable }\DIFdelend \DIFaddbegin \DIFadd{is a potential revenue stream that could make electricity and
+hydrogen imports with subsequent domestic conversion more attractive relative to
+the direct import of derivative products. Our default assumption that only 25\%
+of the waste heat can be utilised stems from potential challenges in co-locating
+PtX plants with district heating networks within the 115 model regions. If all
+waste heat could be leveraged, notable system }\DIFaddend cost savings of \DIFdelbegin %DIFDELCMD < \bneuro{11-21} %%%
+\DIFdel{(1.3-2.6\%) . Consequently, savings are lower when imports
+displace domestic PtX infrastructure}\DIFdelend \DIFaddbegin \bneuro{20}
+\DIFadd{(2.4\%) could be achieved in the no-imports scenario compared to a scenario
+where waste heat is fully vented}\DIFaddend . To realise these benefits, \DIFdelbegin \DIFdel{PtX facilities
+}\DIFdelend \DIFaddbegin \DIFadd{Fischer-Tropsch and
+Haber-Bosch plants }\DIFaddend tend to be located \DIFdelbegin \DIFdel{in densely populated areas }\DIFdelend \DIFaddbegin \DIFadd{where space heating demand is high
+}\DIFaddend (e.g.~Paris or Hamburg) \DIFdelbegin \DIFdel{, which
+drives part of the the hydrogen
+network . Notably, because of the waste heat
+produced in Fischer-Tropsch and Sabatier plants, these tend to locate where
+space heating demand is high}\DIFdelend \DIFaddbegin \DIFadd{(}\sfigref{fig:si:infra-b}\DIFadd{), which increases hydrogen
+network build-out to 98~TWkm (+72\%) compared to the reference scenario with
+25\% waste heat utilisation}\DIFaddend . This is not the case for methanolisation plants,
+which have lower waste heat potential.
+\DIFdelbegin \DIFdel{Alongside the flexible operation of electrolysis to integrate variable wind and solar feed-in and the broad
+availability of industrial and
+biogenic carbon sources in Europe, waste heat
+usage is a key factor that makes electricity and hydrogen imports with
+subsequent domestic conversion more attractive relative to the direct import of derivative products.Infrastructure layouts for further import scenarios are presented in }%DIFDELCMD < \sfigref{fig:si:infra-b} %%%
+\DIFdel{to }%DIFDELCMD < \sfigref{fig:si:infra-d}%%%
+\DIFdelend \DIFaddbegin 
+
+\subsection*{\DIFadd{Causes of import cost variations and their effect}}
+
+
+\begin{table}
+    \fullwidthfigure{
+    \footnotesize
+    \centering
+    \begin{tabular}{lrrrr}
+        \toprule
+        Cost factor & Absolute change & Unit & Relative change & Unit\\
+        \midrule
+        Higher WACC of 12\% abroad (e.g.~high project risk) & +48.8 & \euro{}~MWh$^{-1}$  &
+        +38.0 & \% \\
+        Higher WACC of 10\% abroad (e.g.~high project risk) & +28.6 & \euro{}~MWh$^{-1}$  &
+        +22.3 & \% \\
+        Higher WACC of 8\% abroad (e.g.~high project risk) & +9.2 & \euro{}~MWh$^{-1}$  & +7.2
+        & \% \\
+        Higher direct air capture investment cost abroad (+200\%) & +44.3 & \euro{}~MWh$^{-1}$
+        & +34.5 & \% \\
+        Higher direct air capture investment cost abroad (+100\%) & +22.3 & \euro{}~MWh$^{-1}$
+        & +17.4 & \% \\
+        Higher direct air capture investment cost abroad (+50\%) & +11.2 & \euro{}~MWh$^{-1}$
+        & +8.7 & \% \\
+        Higher electrolysis investment cost abroad (+50\%) & +17.3 & \euro{}~MWh$^{-1}$  &
+        +13.5 & \% \\
+        % Argentina and Chile not available for export & +10.1 & \euro{}~MWh$^{-1}$  &
+        % +9.2 & \% \\
+        \midrule
+        Lower WACC of 3\% abroad (e.g.~government guarantees) & -33.4 & \euro{}~MWh$^{-1}$  &
+        -26.0 & \% \\
+        Lower WACC of 5\% abroad (e.g.~government guarantees) & -17.5 & \euro{}~MWh$^{-1}$  &
+        -13.6 & \% \\
+        Lower WACC of 6\% abroad (e.g.~government guarantees) & -8.9 & \euro{}~MWh$^{-1}$  &
+        -6.9 & \% \\
+        Lower electrolysis investment cost abroad (-50\%) & -18.4 & \euro{}~MWh$^{-1}$  &
+        -14.3 & \% \\
+        Sell excess curtailed electricity at 50 \euro{}~MWh$^{-1}$ abroad & -8.3 & \euro{}~MWh$^{-1}$  &
+        -6.5 & \% \\
+        Sell excess curtailed electricity at 30 \euro{}~MWh$^{-1}$ abroad & -4.6 & \euro{}~MWh$^{-1}$  &
+        -3.6 & \% \\
+        Sell excess curtailed electricity at 10 \euro{}~MWh$^{-1}$ abroad & -1.5 & \euro{}~MWh$^{-1}$  &
+        -1.2 & \% \\
+        Buy available biogenic or cycled \ce{CO2} for 50 \euro{}~t$^{-1}$ abroad & -20.1 &
+        \euro{}~MWh$^{-1}$  & -15.6 & \% \\
+        Buy available biogenic or cycled \ce{CO2} for 75 \euro{}~t$^{-1}$ abroad & -13.7 &
+        \euro{}~MWh$^{-1}$  & -10.7 & \% \\
+        Buy available biogenic or cycled \ce{CO2} for 100 \euro{}~t$^{-1}$ abroad & -7.2 &
+        \euro{}~MWh$^{-1}$  & -5.6 & \% \\
+        Availability of geological hydrogen storage at 2.1 \euro{}/kWh
+        (reduction by 95.5\%) & -5.1
+        & \euro{}~MWh$^{-1}$  & -4.0 & \% \\
+        Sell power-to-X waste heat at 10 \euro{}~MWh$^{-1}$ abroad  &
+        -7.8 & \euro{}~MWh$^{-1}$  & -6.1 & \% \\
+        Sell power-to-X waste heat at 5 \euro{}~MWh$^{-1}$ abroad &
+        -6.9 & \euro{}~MWh$^{-1}$  & -5.4 & \% \\
+        Highly flexible operation of Fischer-Tropsch synthesis (20\% minimum
+        part-load) & -3.6 & \euro{}~MWh$^{-1}$  & -2.8 & \% \\
+        \bottomrule
+    \end{tabular}
+    \caption{\textbf{Examples for potential import cost increases or decreases.}
+    The table presents cost sensitivities in absolute and relative terms based
+    on the supply chain for producing Fischer-Tropsch fuels in Southern
+    Argentina for export to Europe (Portugal). The reference fuel import cost
+    for this case is 128.5~\euro{}~MWh$^{-1}$.}
+    \label{tab:cost-uncertainty}
+    }
+\end{table}
+
+\DIFadd{In \mbox{%DIFAUXCMD
+\cref{tab:cost-uncertainty}}\hskip0pt%DIFAUXCMD
+, we present a breakdown of some potential causes
+for import cost variations compared to domestic supply chains relating to
+technology costs, financing costs, excess power and heat revenues, fuel
+synthesis flexibility, and the availability of geological hydrogen storage and
+alternative sources of CO$_2$.
+}
+
+\DIFadd{For example, we show that a higher weighted average cost of capital (WACC) than
+the uniformly applied 7\%, e.g.~due to higher project financing risks, and lower
+WACC, e.g.~due to the government-backing of projects, strongly affect import
+costs.}\cite{calcaterraReducingCostCapital2024} \DIFadd{An increase or decrease by just
+one percentage point already alters the unit costs by around $\pm$7\%. Likewise,
+technology cost variations abroad for electrolysers and DAC units have a strong
+influence. Biogenic CO$_2$ -- or fossil CO$_2$ from industrial processes that is
+largely cycled between use and synthesis and, hence, not emitted to the
+atmosphere -- can reduce the levelised fuel cost by 16\% if it can be provided
+for 50~}\euro{}\DIFadd{~t$^{-1}$.
+}
+
+\DIFadd{By default, we assume islanded fuel synthesis sites, which causes curtailment
+rates of 8\%. If surplus electricity production could be sold and absorbed by
+the local power grid in exporting regions, additional cost reductions could be
+achieved. Furthermore, process integration with waste heat usage and flexible
+operation can also reduce fuel cost by 3-6\%. Import costs are also reduced by
+4\% where geological hydrogen storage is available by reducing the need for
+flexible \mbox{power-to-X} operation.
+}
+
+\DIFadd{In contrast, the cost impact is low if the cheapest exporting region withdraws
+from the market. Within a cost premium of 10\% in relation to the lowest cost
+exporting region, Chile, ten other regions could step in if these regions were
+unavailable for exports (}\sfigref{fig:si:isc-meoh-ft}\DIFadd{)}\DIFaddend .
+
+
+\section*{Discussion\DIFdelbegin \DIFdel{and conclusions}\DIFdelend }
+\label{sec:discussion}
+
+Our analysis offers insights into how renewable energy imports might reduce
+overall systems costs and interact with European energy infrastructure. Our
+results show that imports of green energy reduce \DIFaddbegin \DIFadd{the }\DIFaddend costs of a carbon-neutral
+European energy system by \DIFdelbegin %DIFDELCMD < \bneuro{39} %%%
+\DIFdel{(5}\DIFdelend \DIFaddbegin \bneuro{37} \DIFadd{(4.4}\DIFaddend \%), noting, however, that the
+uncertainty range is considerable. While we find that some imports are
+\DIFdelbegin \DIFdel{robustly
+beneficial }\DIFdelend \DIFaddbegin \DIFadd{beneficial within a $\pm$20\% variation of import costs}\DIFaddend , system cost savings
+range between 1\% and \DIFdelbegin \DIFdel{14\%depending on the
+import costs. What is consistent , however, }\DIFdelend \DIFaddbegin \DIFadd{10\%. However, what is consistent within this range }\DIFaddend are
+the diminishing \DIFdelbegin \DIFdel{return }\DIFdelend \DIFaddbegin \DIFadd{returns }\DIFaddend of energy imports for larger quantities, with peak cost
+savings below imports of \DIFdelbegin \DIFdel{4000}\DIFdelend \DIFaddbegin \DIFadd{3000}\DIFaddend ~TWh/a \DIFaddbegin \DIFadd{(equivalent to 90~Mt of hydrogen)}\DIFaddend . We also find
+that there is value in pursuing some \mbox{power-to-X} production in Europe as a
+source of flexibility for wind and solar integration and as a \DIFaddbegin \DIFadd{potential }\DIFaddend source
+of waste heat for district heating networks. Another \DIFdelbegin \DIFdel{location
+factor in favour of }\DIFdelend \DIFaddbegin \DIFadd{siting factor favouring
+}\DIFaddend European \mbox{power-to-X} is the wide availability of sustainable biogenic and
+industrial carbon sources, which helps \DIFdelbegin \DIFdel{to }\DIFdelend reduce reliance on \DIFaddbegin \DIFadd{more }\DIFaddend costly direct air
+capture.
+
+\DIFaddbegin \DIFadd{In relation to other studies, our assumed import costs for different carriers
+mostly conform to the interquartile ranges for 2050 of the meta-study by Genge
+et al.~}\cite{gengeSupplyCostsGreen2023} \DIFadd{for imports to Europe. Some higher
+costs, e.g.~for ammonia, can be attributed to our updated electrolyser cost
+assumptions (950}\euro{}\DIFadd{~kW$_\text{el.}^{-1}$ in 2040), which reflect recent
+market developments.}\cite{ieaGlobalHydrogenReview2024} \DIFadd{Also for steel imports,
+our central cost estimate of 531~}\euro{}\DIFadd{~t$^{-1}$ for the lowest-cost exporter
+is positioned between studies with lower}\cite{lopezDefossilisedSteel2023} \DIFadd{and
+higher}\cite{verpoortImpactGlobalHeterogeneity2024} \DIFadd{cost estimates. Among other
+studies investigating the relationship between energy imports and the European
+energy system, several analyses report lower import shares in the range of
+10-20\% of total hydrogen
+supply.}\cite{seckHydrogenDecarbonization2022,frischmuthHydrogenSourcingStrategies2022,kountourisUnifiedEuropeanHydrogen2024}
+\DIFadd{For instance, Kountouris et al.~}\cite{kountourisUnifiedEuropeanHydrogen2024} \DIFadd{see
+limited hydrogen imports of 182~TWh~a$^{-1}$ from the Maghreb region and Ukraine
+despite favourable import costs of 33~}\euro{}\DIFadd{~MWh$_{H_2}^{-1}$. Conversely,
+Wetzel et al.~}\cite{wetzelGreenEnergy2023a} \DIFadd{find higher import shares of 53\%
+for methane and 43\% for hydrogen. The latter closely aligns with our 49\%
+import share for hydrogen. Wetzel et al.~}\cite{wetzelGreenEnergy2023a} \DIFadd{find that
+imports reduce system costs by 2.8\%, which is also comparable to our 2.4\%
+system cost reduction when only direct hydrogen imports are considered. The most
+pronounced import dependency we found in Schmitz et
+al.}\cite{schmitzImplicationsHydrogenImport2024a}\DIFadd{, with import shares beyond 90\%
+for Germany. Results in Kountouris et
+al.~}\cite{kountourisUnifiedEuropeanHydrogen2024} \DIFadd{further substantiate our
+finding that derivative imports and demand relocation could diminish hydrogen
+network benefits.
+}
+
+\DIFadd{Several limitations of our study should be noted. First, the optimization
+results represent a long-term equilibrium that disregards potential
+transition-related infrastructure lock-ins or mid-term ramp-up constraints of
+export capacities or domestic infrastructure development. A further limitation
+is that our cost-based analysis of imports, which best reflects long-term
+bilateral purchase agreements, neglects price impacts of intensifying global
+competition for green fuel imports and exports.}\cite{galimovaGlobalTrading2023a}
+\DIFadd{Besides unclear market developments, local challenges in exporting regions such
+as public acceptance for export-oriented energy
+projects}\cite{ishmamMappingLocalGreen2024} \DIFadd{and potential water
+scarcity}\cite{franzmannGreenHydrogenCostpotentials2023,terlouwFutureHydrogenEconomies2024}
+\DIFadd{to produce large amounts of hydrogen in renewable-rich but arid regions are not
+addressed. Furthermore, the model's lack of spatial resolution for CO$_2$ means
+that carbonaceous hydrogen derivatives are sited where H$_2$ is cheapest,
+implicitly assuming that the CO$_2$ from biogenic or industrial sources can be
+transported there. However, such required CO$_2$ pipelines could be built at
+relatively low additional system cost.}\cite{hofmannH2CO2Network2024} \DIFadd{In the
+context of carbon management, more lenient assumptions on sustainable biofuel
+potentials, allowed levels of geological carbon sequestration, or plastic
+landfill could alter the results, shifting the system away from synthetic
+electrofuels towards more fossil fuel use with carbon capture or carbon dioxide
+removal.}\cite{hofmannH2CO2Network2024,millingerDiversityBiomassUsage2023}
+
+\DIFaddend Overall, we find that the import vectors used strongly affect domestic
+infrastructure needs. For example, only a smaller hydrogen network would be
+required if hydrogen derivatives were largely imported \DIFdelbegin \DIFdel{. This underscores }\DIFdelend \DIFaddbegin \DIFadd{and the domestic ammonia
+and steel industry is allowed to relocate. We also identify higher electricity
+backup requirements in the absence of large power-to-X flexibilities. These
+findings underscore }\DIFaddend the importance of coordination between energy import
+strategies and infrastructure policy decisions. Our results present a
+quantitative basis for further discussions about the trade-offs between system
+cost, carbon neutrality, public acceptance, energy security, infrastructure
+buildout\DIFaddbegin \DIFadd{, }\DIFaddend and imports.
+
+The small differences in cost \DIFaddbegin \DIFadd{observed }\DIFaddend between some scenarios \DIFdelbegin \DIFdel{is }\DIFdelend \DIFaddbegin \DIFadd{are }\DIFaddend particularly
+relevant because factors other than pure costs might then drive the designs of
+import strategies. The relatively limited cost benefit of imports and \DIFdelbegin \DIFdel{value chain
+reordering, }\DIFdelend \DIFaddbegin \DIFadd{offshoring
+of industrial production }\DIFaddend may speak against \DIFdelbegin \DIFdel{pursuing this avenue. A desire for }\DIFdelend \DIFaddbegin \DIFadd{imports. Concerns about }\DIFaddend energy
+sovereignty would motivate more domestic supply and diversified imports. For
+instance, \DIFdelbegin \DIFdel{focusing on ship-bourne imports }\DIFdelend \DIFaddbegin \DIFadd{shipborne imports of hydrogen derivatives }\DIFaddend would reduce pipeline
+lock-in and mitigate the risks of sudden supply disruptions and abuse of market
+power. \DIFdelbegin \DIFdel{Focussing on carriers that are already a globally traded commodity }\DIFdelend \DIFaddbegin \DIFadd{From a practical perspective, it }\DIFaddend may also be more appealing \DIFdelbegin \DIFdel{. Producing renewable energy locally would bring value creation
+and jobs to Europe that are currently outsourced to fossil fuel producers
+abroad. For similar reasons, the import of intermediary raw products like sponge
+iron, which represents the most energy-intensive part of the steel value chain,
+could also be a relevant option.
+}\DIFdelend \DIFaddbegin \DIFadd{to focus on
+carriers that are already globally traded commodities and to prefer
+infrastructure offering quick deployment.
+}\DIFaddend 
+
+\DIFdelbegin \DIFdel{There is also a social dimension to the import strategy and the question of how
+fast the associated infrastructure can get built.
+Policymaking }\DIFdelend \DIFaddbegin \DIFadd{Policymakers }\DIFaddend in Europe might prefer \DIFaddbegin \DIFadd{such }\DIFaddend easy-to-implement systems featuring,
+for instance, lower domestic infrastructure requirements, reuse of existing
+infrastructure, lower technology risk, and reduced land usage for broader public
+support than the most cost-effective solution. \DIFaddbegin \DIFadd{Moreover, policies favoring local
+energy supply chains and importing intermediary products like sponge iron could
+preserve European jobs while outsourcing only the most energy-intensive
+processes. }\DIFaddend However, in \DIFdelbegin \DIFdel{outsourcing }\DIFdelend \DIFaddbegin \DIFadd{shifting }\DIFaddend potential land use and infrastructure conflicts
+to abroad, \DIFaddbegin \DIFadd{where population densities are often lower, }\DIFaddend potential exporting
+countries must weigh the prospect of economic development against internal
+social and environmental \DIFdelbegin \DIFdel{issues.}\DIFdelend \DIFaddbegin \DIFadd{concerns, particularly in countries with a history of
+colonial exploitation.}\cite{tunnGreenHydrogenTransitions2024} \DIFaddend Ultimately,
+Europe's energy strategy must balance cost savings from green energy and
+material imports with broader concerns like geopolitics, economic development,
+public opinion\DIFaddbegin \DIFadd{, }\DIFaddend and the willingness of potential exporting countries in order to
+ensure a swift, secure\DIFaddbegin \DIFadd{, }\DIFaddend and sustainable energy future. Our research shows that
+there is maneuvering space to accommodate such non-cost concerns.
+
+
+\section*{Methods}
+
+\label{sec:methods}
+
+
+
+\subsection*{\DIFdelbegin \DIFdel{Modelling }\DIFdelend \DIFaddbegin \DIFadd{PyPSA-Eur: Overview }\DIFaddend of \DIFdelbegin \DIFdel{the }\DIFdelend European energy system \DIFaddbegin \DIFadd{model}\DIFaddend }
+
+For our analysis, we use the European sector-coupled high-resolution energy
+system model PyPSA-Eur\cite{horschPyPSAEurOpen2018a} based on the open-source
+modelling framework PyPSA\cite{brownPyPSAPython2018} (Python for Power System
+Analysis)\DIFdelbegin \DIFdel{in a setup similar to Neumann et al.~}%DIFDELCMD < \cite{neumannPotentialRole2023}%%%
+\DIFdelend , covering the energy demands of all sectors including electricity,
+heat, transport, industry, agriculture, as well as \DIFdelbegin \DIFdel{international shipping }\DIFdelend \DIFaddbegin \DIFadd{non-energy feedstock demands,
+international shipping, }\DIFaddend and aviation. \DIFaddbegin \DIFadd{An overview of considered supply,
+consumption, and balancing technologies per carrier is shown in
+}\sfigref{fig:si:supply-consumption-options}\DIFadd{.
+}\DIFaddend 
+
+The model simultaneously optimises spatially explicit investments and the
+operation of generation, storage, conversion\DIFaddbegin \DIFadd{, }\DIFaddend and transmission assets to
+minimise total system costs in a \DIFaddbegin \DIFadd{single }\DIFaddend linear optimisation problem, which
+\DIFaddbegin \DIFadd{assumes perfect operational foresight and }\DIFaddend is solved with \textit{Gurobi
+\DIFaddbegin \DIFadd{v11}\DIFaddend }.\cite{gurobi} \DIFaddbegin \DIFadd{To manage computational complexity, no pathways with multiple
+investment periods are calculated, but overnight scenarios targeting net-zero
+CO$_2$ emissions. }\DIFaddend The capacity expansion is based on technology cost and
+efficiency projections for \DIFdelbegin \DIFdel{the year 2030, many of which are taken from the
+technology catalogue of the Danish Energy Agency.}%DIFDELCMD < \cite{DEA} %%%
+\DIFdel{Choosing projections
+for the year 2030 for a net-zero carbon emission scenarios more likely to be
+reached by mid-century acknowledges }\DIFdelend \DIFaddbegin \DIFadd{2040 (see `Data availability'), acknowledging }\DIFaddend that
+much of the required infrastructure must be constructed well \DIFdelbegin \DIFdel{in advance of reaching this goal.}\DIFdelend \DIFaddbegin \DIFadd{before reaching
+net-zero emissions.
+}
+
+\DIFadd{Existing hydro-electric power plants}\cite{gotzensPerformingEnergy2019} \DIFadd{are
+included, as well as nuclear power plants built before 1990 or currently under
+construction according to Global Energy Monitor's Global Nuclear Plant Tracker
+(52~GW total of 106~GW in current
+operation).}\cite{globalenergymonitorGlobalNuclearPower2024} \DIFadd{While
+hydroelectricity is assumed to be non-extendable due to geographic constraints,
+additional nuclear capacities can be expanded where cost-effective. We assume
+the existing nuclear fleet is operated inflexibly and apply country-specific
+historical availability factors from 2021 to
+2023.}\cite{internationalatomicenergyagencyPowerReactorInformation2024}
+
+\DIFadd{Temporally, the model is solved with an uninterrupted 4-hourly equivalent
+resolution for a single year, using a segmentation clustering approach
+implemented in the }\textit{\DIFadd{tsam}} \DIFadd{toolbox on all time-varying
+data.}\cite{hoffmannParetooptimalTemporal2022} \DIFadd{While weather variations between
+years are not considered for computational reasons, the chosen weather year 2013
+is representative in terms of wind and solar
+availability.}\cite{gotskeDesigningSectorcoupledEuropean2024}
+
+\DIFaddend Spatially, the model resolves \DIFdelbegin \DIFdel{110 regionsin Europe}\DIFdelend \DIFaddbegin \DIFadd{115 European
+regions}\DIFaddend ,\cite{frysztackiStrongEffect2021} covering the European Union, the
+United Kingdom, Norway, Switzerland\DIFaddbegin \DIFadd{, }\DIFaddend and the Balkan countries without Malta and
+Cyprus. \DIFdelbegin \DIFdel{Temporally, the model is solved with an uninterrupted
+4-hourly equivalent resolutionfor the weather year 2013, using a segmentation
+clustering approach implemented in the }\textit{\DIFdel{tsam}}
+%DIFAUXCMD
+\DIFdel{toolbox. }%DIFDELCMD < \cite{hoffmannParetooptimalTemporal2022} %%%
+\DIFdel{In terms of investment periods, no pathway optimisation is conducted,
+but a greenfield approach is pursued
+except for existing hydro-electricity and transmission infrastructure targeting
+net-zero CO$_2$ emissions. }\DIFdelend \DIFaddbegin \DIFadd{For computational reasons, only electricity, heat, and hydrogen are
+modelled at high spatial resolution, while oil, methanol, methane, ammonia, and
+carbon dioxide are treated as easily transportable without spatial constraints.
+Of the total final energy and non-energy demand
+(}\sfigref{fig:si:demand_totals}\DIFadd{), only some demands are spatially fixed
+(}\sfigref{fig:si:demands}\DIFadd{). These include electricity for residential, industry,
+services, and agriculture; heat; electric vehicles; solid biomass for industry;
+and naphtha/methanol feedstocks. Hydrogen demand for steel and ammonia
+production is also spatially fixed unless these industries can relocate. In this
+case, regionally fixed hydrogen demand becomes negligible. Since the model
+optimizes the siting and operation of most fuel synthesis units, many demands
+are spatially variable (e.g.~electricity demand for electrolysers or hydrogen
+demand for methanolisation).
+}
+
+\DIFadd{A mathematical description of PyPSA-Eur can be found in Section S12 in Neumann
+et al.}\cite{neumannPotentialRoleHydrogen2023}
+
+\subsection*{\DIFadd{Gas and electricity network modelling}}
+\DIFaddend 
+
+Networks are considered for electricity, methane\DIFaddbegin \DIFadd{, }\DIFaddend and hydrogen transport.
+\DIFdelbegin %DIFDELCMD < \cite{ENTSOE,plutaSciGRIDGas2022a} %%%
+\DIFdel{However, different to Neumann et
+al.,}%DIFDELCMD < \cite{neumannPotentialRole2023} %%%
+\DIFdel{pipeline retrofitting to hydrogen is
+disabled for computational reasons such that all hydrogen
+pipelinesare assumed
+to be newly built.}\DIFdelend \DIFaddbegin \DIFadd{Existing gas pipelines taken from SciGRID\_gas,}\cite{plutaSciGRIDGas2022a} \DIFadd{can
+be repurposed to hydrogen in addition to new hydrogen
+pipelines.}\cite{neumannPotentialRoleHydrogen2023} \DIFaddend Data on the gas transmission
+\DIFdelbegin \DIFdel{system }\DIFdelend \DIFaddbegin \DIFadd{network }\DIFaddend is further supplemented by the locations of fossil gas extraction sites
+and gas storage facilities based on SciGRID\_gas,\cite{plutaSciGRIDGas2022a} as
+well as investment costs and capacities of \DIFdelbegin \DIFdel{existing and planned LNG terminals }%DIFDELCMD < \cite{instituteforenergyeconomicsandfinancialanalysisEuropeanLNG2023}
+%DIFDELCMD < %%%
+\DIFdel{Moreover, a carbon dioxide network is not explicitly co-optimised since CO$_2$
+is not spatially resolved in this model version.}%DIFDELCMD < \cite{hofmannDesigningCO22023}
+%DIFDELCMD < %%%
+\DIFdelend \DIFaddbegin \DIFadd{LNG terminals in operation or under
+construction from Global Energy Monitor's Europe Gas
+Tracker.}\cite{globalenergymonitorEuropeGasTracker2024} \DIFadd{Geological potentials for
+hydrogen storage are taken from Caglayan et
+al.,}\cite{caglayanTechnicalPotentialSalt2020} \DIFadd{restricting where this low-cost
+storage option is available. In modelling gas and hydrogen flows, we incorporate
+electricity demands for compression of 1\% and 2\% per 1000km of the transported
+energy, respectively.}\cite{gasforclimateEuropeanHydrogen2021} \DIFadd{Existing
+high-voltage grid data is taken from
+OpenStreetMap.}\cite{xiongModellingHighVoltageGrid2024} \DIFadd{For HVDC transmission
+lines, we assume 2\% static losses at the substations and additional losses of
+3\% per 1000km. The losses of high-voltage AC transmission lines are estimated
+using the piecewise linear approximation from Neumann et
+al.,}\cite{neumannAssessmentsLinear2022} \DIFadd{in addition to applying linearised power
+flow equations.}\cite{horschLinearOptimal2018} \DIFadd{Up to a maximum capacity increase
+of 30\%
+%DIF > , we consider dynamic line rating (DLR), leveraging the cooling effect of
+wind and low ambient temperatures to exploit existing transmission assets
+fully.}\cite{glaumLeveragingExisting2023} \DIFadd{To approximate $N-1$ resilience,
+transmission lines may only be used up to 70\% of their rated dynamic
+capacity.}\cite{shokrigazafroudiTopologybasedApproximations12022} \DIFadd{To prevent
+excessive expansion of single connections, power transmission reinforcements
+between two regions are limited to 15 GW, while an upper limit of 50.7 GW is
+placed on hydrogen pipelines, which corresponds to three 48-inch
+pipelines.}\cite{gasforclimateEuropeanHydrogen2021}
+\DIFaddend 
+
+\DIFdelbegin \DIFdel{The overall annual sequestration of CO$_2$ is limited to 200
+Mt$_{\text{CO}_2}$/a. This number allows for sequestering the industry's
+unabated fossil emissions (e.g.in the cement industry) while minimising
+reliance on carbon removal technologies. The carbon management features of the
+model trace the carbon cycles through various conversion stages: industrial
+emissions,biomass and gas combustion, carbon capture, storage or long-term
+sequestration,
+direct air capture, electrofuels, recycling, and waste-to-energy
+plants.}\DIFdelend \DIFaddbegin \subsection*{\DIFadd{Wind and solar potentials}}
+\DIFaddend 
+
+Renewable potentials and time series for wind and solar electricity generation
+are calculated with \textit{atlite},\cite{hofmannAtliteLightweight2021}
+considering land eligibility constraints like nature reserves\DIFdelbegin \DIFdel{or }\DIFdelend \DIFaddbegin \DIFadd{, excluded land use
+types, topography, bathymetry, and }\DIFaddend distance criteria to settlements. Given low
+onshore wind expansion in many European countries in recent
+years,\cite{ourworldindataInstalledWind2023} \DIFdelbegin \DIFdel{restrictive
+onshore wind expansion potentials are applied, using a }\DIFdelend \DIFaddbegin \DIFadd{a deployment density of }\DIFaddend 1.5
+MW\DIFdelbegin \DIFdel{/km$^2$ factor for the eligible land area.Geological potentials for hydrogen storage are taken
+from Caglayan et al. }%DIFDELCMD < \cite{caglayanTechnicalPotential2020} %%%
+\DIFdelend \DIFaddbegin \DIFadd{~km$^{-2}$ is assumed for eligible land for onshore wind
+expansion.}\cite{turkovskaLanduseRequirementsSolar2023a} \DIFadd{For reference, this
+assumption leads to an onshore wind potential for Germany of 244~GW. The
+temporal renewable generation potential for the available area is then assessed
+based on reanalysis weather data, ERA5,}\cite{ecmwf} \DIFadd{and satellite observations
+for solar irradiation, SARAH-3,}\cite{pfeifrothSurfaceRadiationData2023} \DIFadd{in
+combination with standard solar panel and wind turbine models provided by
+}\textit{\DIFadd{atlite}}\DIFadd{.
+}
+
+\subsection*{\DIFadd{Biomass potentials}}
+
+\DIFaddend Biomass potentials are restricted to residues from agriculture and forestry, as
+well as waste and manure, based on the \DIFaddbegin \DIFadd{regional }\DIFaddend medium potentials specified for
+\DIFdelbegin \DIFdel{2030 }\DIFdelend \DIFaddbegin \DIFadd{2050 }\DIFaddend in the JRC-ENSPRESO database.\cite{ruizENSPRESOOpen2019} The finite
+\DIFaddbegin \DIFadd{sustainable }\DIFaddend biomass resource can be employed for low-temperature heat provision
+in industrial applications, biomass boilers\DIFaddbegin \DIFadd{, }\DIFaddend and CHPs, and \DIFaddbegin \DIFadd{(electro-)}\DIFaddend biofuel
+production for use in aviation, shipping\DIFaddbegin \DIFadd{, }\DIFaddend and the chemicals industry.
+Additionally, we allow biogas upgrading, including \DIFdelbegin \DIFdel{the capture of }\DIFdelend \DIFaddbegin \DIFadd{capturing }\DIFaddend the CO$_2$
+contained in biogas\DIFaddbegin \DIFadd{, which unlocks all considered uses of regular methane
+(}\sfigref{fig:si:supply-consumption-options}\DIFadd{)}\DIFaddend . The total assumed bioenergy
+potentials are \DIFdelbegin \DIFdel{1569~TWhwith a
+carbon content corresponding to
+546}\DIFdelend \DIFaddbegin \DIFadd{1730~TWh, which splits into 358~TWh/a for biogas and 1,014~TWh/a
+for solid biomass. The total carbon content corresponds to
+605}\DIFaddend ~Mt$_{\text{CO}_2}$\DIFdelbegin \DIFdel{/a}\DIFdelend \DIFaddbegin \DIFadd{~a$^{-1}$}\DIFaddend , which is not fully available as a feedstock for
+fuel synthesis \DIFaddbegin \DIFadd{or sequestration for negative emissions }\DIFaddend due to imperfect capture
+rates of up to 90\%.
+
+\DIFdelbegin \DIFdel{Heating supply technologies like heat pumps, electric boilers, gas boilers,
+and
+combined heat and power (CHP) plants are endogenously optimised separately for
+decentral use and central district heating. District heating networks can
+further be supplemented with waste heat from various power-to-X processes
+(electrolysis, methanation, methanolisation, ammonia synthesis, Fischer-Tropsch
+fuel synthesis) .
+}\DIFdelend \DIFaddbegin \subsection*{\DIFadd{Carbon management}}
+
+\DIFadd{The carbon management features of the model trace the carbon cycles through
+various conversion stages: industrial emissions, biomass and gas combustion,
+carbon capture in numerous applications, direct air capture, intermediate
+storage, electrofuels, recycling, landfill or long-term sequestration. The
+overall annual sequestration of CO$_2$ is limited to
+200~Mt$_{\text{CO}_2}$~a$^{-1}$, similar to the 250~Mt$_{\text{CO}_2}$~a$^{-1}$
+highlighted in the European Commission's carbon management
+strategy.}\cite{europeancommissionAmbitiousIndustrialCarbon2024} \DIFadd{This number
+allows for sequestering the industry's unabated fossil emissions (e.g.~in the
+cement industry) while minimising reliance on carbon removal technologies. A
+carbon dioxide network topology is not co-optimised since CO$_2$ is not
+spatially resolved. This means that the location of biogenic or industrial point
+sources of CO$_2$ is not a siting factor that this model version considers for
+PtX processes, implicitly assuming that the CO$_2$ would be transported there at
+low cost. }\cite{hofmannDesigningCO22023,hofmannH2CO2Network2024}
+
+\subsection*{\DIFadd{Transport sector fuel assumptions}}
+\DIFaddend 
+
+While the shipping sector is assumed to use methanol as fuel \DIFdelbegin \DIFdel{, }\DIFdelend \DIFaddbegin \DIFadd{given its high
+technology-readiness level compared to hydrogen or
+ammonia,}\cite{ieaETPCleanEnergy2024} \DIFaddend land-based transport, including heavy-duty
+vehicles, is \DIFdelbegin \DIFdel{deemed }\DIFdelend fully electrified in the presented
+scenarios.\DIFdelbegin \DIFdel{Aviation can decide to }\DIFdelend \DIFaddbegin \cite{linkRapidlyDecliningCosts2024} \DIFadd{Aviation can }\DIFaddend use green kerosene
+derived from Fischer-Tropsch fuels or methanol\DIFdelbegin \DIFdel{. Besides methanol-to-kerosene, further
+usage options for methanol have been added.These include
+methanol-to-olefins/aromatics for the production of green plastics, methanol-to-power}\DIFdelend \DIFaddbegin \DIFadd{, owing to lower technology
+readiness levels of fuel cell or battery-electric
+aircraft.}\cite{ieaETPCleanEnergy2024} \DIFadd{Alternative uses for methanol and
+Fischer-Tropsch fuels extend beyond transport, including
+power-to-methanol,}\DIFaddend \cite{brownUltralongdurationEnergyStorage2023} \DIFdelbegin \DIFdel{in open-cycle gas
+turbines or Allam cycle turbines,and steam reforming of methanol with or
+without carbon capture.
+For the synthesis of electrofuels, we also account for
+potential operational restrictions by considering }\DIFdelend \DIFaddbegin \DIFadd{diesel for
+agriculture machinery and as feedstock for high-value chemicals.
+}
+
+\subsection*{\DIFadd{Technical constraints of synthetic fuel production}}
+
+\DIFadd{We consider potential flexibility restrictions in the synthesis processes to
+obtain more realistic operational patterns of green electrofuel synthesis
+plants. We apply }\DIFaddend a minimum part load of \DIFdelbegin \DIFdel{30}\DIFdelend \DIFaddbegin \DIFadd{20}\DIFaddend \% for methanolisation and \DIFdelbegin \DIFdel{methanation compared to 70\% for
+}\DIFdelend \DIFaddbegin \DIFadd{50\% for
+methanation and }\DIFaddend Fischer-Tropsch
+synthesis\DIFdelbegin \DIFdel{, both within Europe and abroad.}\DIFdelend \DIFaddbegin \DIFadd{.}\cite{mucciPowerXProcessesBased2023,wentrupDynamicOperationFischerTropsch2022,dieterichPowerliquidSynthesisMethanol2020,mbathaPowermethanolProcessReview2021}
+\DIFadd{These `green' options then compete with `blue' and `grey' options, such as steam
+methane reforming of fossil gas with or without carbon capture for hydrogen
+(}\sfigref{fig:si:supply-consumption-options}\DIFadd{). Some carriers also feature a
+biogenic production route (e.g., methane and oil).
+}\DIFaddend 
+
+\DIFdelbegin \DIFdel{A further core improvement of the model regards the physical representation of energy transport over long distances. For gas and hydrogen
+pipelines, we
+incorporate electricity demands for compression of 1\% and 2\% per 1000km
+of the transported energy, respectively.
+}%DIFDELCMD < \cite{gasforclimateEuropeanHydrogen2021}
+%DIFDELCMD < %%%
+\DIFdel{For HVDC transmission lines, we assume 2\% static losses at the substations and
+additional losses of 3\% per 1000km. The losses of high-voltage AC transmission
+lines are estimated using a piecewise linear approximation as proposed in
+Neumann et al.,}%DIFDELCMD < \cite{neumannAssessmentsLinear2022} %%%
+\DIFdel{in addition to the linearised
+power flow equations.}%DIFDELCMD < \cite{horschLinearOptimal2018} %%%
+\DIFdel{Up }\DIFdelend \DIFaddbegin \subsection*{\DIFadd{Heating sector modelling and PtX waste heat}}
+
+\DIFadd{Heating supply technologies like heat pumps, electric boilers, gas boilers, and
+combined heat and power (CHP) plants are endogenously optimised separately for
+decentral use and central district heating. District heating shares of demand
+are exogenously set }\DIFaddend to a maximum \DIFdelbegin \DIFdel{capacity
+increase of 30\% , we consider dynamic line rating (DLR), leveraging the cooling
+effect of wind and low ambient temperatures to exploit existing transmission
+assets fully. }%DIFDELCMD < \cite{glaumLeveragingExisting2023} %%%
+\DIFdel{To approximate N-1 resilience, transmission lines may only be used up to 70\% of their rated dynamic capacity. To prevent excessive expansion of single connections, the expansion of power
+transmission lines between two regionsis limited to 15 GW for HVAC and }\DIFdelend \DIFaddbegin \DIFadd{of 60\% of the total urban heat demand with
+sufficiently high population density. Besides the options for long-duration
+thermal energy storage, district heating networks can further be supplemented
+with waste heat from various power-to-X processes: electrolysis, methanation,
+ammonia synthesis, and Fischer-Tropsch fuel synthesis. Because the thermal
+discharge from the methanol synthesis is primarily used to distillate the
+methanol-water output mix,}\cite{brownUltralongdurationEnergyStorage2023} \DIFadd{its
+waste heat potential is not considered for district heat. Here, we assume a
+utilizable share of waste heat of }\DIFaddend 25\DIFdelbegin \DIFdel{GW
+for HVDC lines,
+while a similar constraint of 50.7 GW is placed on hydrogen
+pipelines, which corresponds to three parallel 48-inch
+pipelines.
+}%DIFDELCMD < \cite{gasforclimateEuropeanHydrogen2021}
+%DIFDELCMD < %%%
+\DIFdelend \DIFaddbegin \DIFadd{\%, considering that within the 115 regions,
+only a fraction of fuel synthesis plants might be connected to district heating
+systems. In further sensitivity analyses, we explore the effect of no or full
+waste heat utilisation.
+}\DIFaddend 
+
+
+\DIFdelbegin \DIFdel{Finally}\DIFdelend \DIFaddbegin \subsection*{\DIFadd{Industry relocation modelling for steel and ammonia production}}
+
+\DIFadd{In some scenarios}\DIFaddend , we also \DIFdelbegin \DIFdel{developed the possibility for }\DIFdelend \DIFaddbegin \DIFadd{allow }\DIFaddend the model to relocate the steel and ammonia
+industry within Europe \DIFdelbegin \DIFdel{, mainly to level the playing field between
+non-European green steel imports and domestic production . This is achieved by
+explicitly modelling the cost, efficiency and operation of hydrogen }\DIFdelend \DIFaddbegin \DIFadd{endogenously. This allows the best sites within Europe to
+compete with outsourced production abroad. While this captures some of the most
+energy-intensive industry sectors, other sectors, like concrete and alumina
+production, are not considered for relocation.
+}
+
+\DIFadd{Without relocation of steel and ammonia production allowed, the production
+volumes of primary steel, by }\DIFaddend direct iron reduction (\DIFdelbegin \DIFdel{H2-DRI}\DIFdelend \DIFaddbegin \DIFadd{DRI}\DIFaddend ) and electric arc
+\DIFdelbegin \DIFdel{furnaces }\DIFdelend \DIFaddbegin \DIFadd{furnace }\DIFaddend (EAF), \DIFdelbegin \DIFdel{which can be sited all over
+Europe, and the cost to procure iron ore . We further allow the oversizing of steelmaking plants to allow flexible production in response to
+the renewables
+supply conditions}\DIFdelend \DIFaddbegin \DIFadd{and ammonia for fertilizers, by Haber-Bosch synthesis, are
+spatially fixed. This results in exogenous hydrogen demand per region. Total
+production volumes are based on current
+levels.}\cite{unitedstatesgeologicalsurveyAmmoniaProductionCountry2022,europeancommission.jointresearchcentre.JRCIDEES2021IntegratedDatabase2024}
+\DIFadd{For the spatial distribution, we use data on the existing integrated steelworks
+listed in Global Energy Monitor's Global Steel Plant Tracker
+}\cite{globalenergymonitorGlobalSteelPlant2024} \DIFadd{and manually collected data on
+the location and size of ammonia plants in Europe.
+}
+
+\DIFadd{With the relocation of steel and ammonia production allowed, the model
+endogenously chooses the regional production volumes of primary steel, HBI, and
+ammonia, subject to the availability of cheap hydrogen. Thereby, the regional
+capacities and operation of Haber-Bosch, DRI, and EAF plants are co-optimised
+with the rest of the system, similar to the siting of Fischer-Tropsch or
+methanolisation plants. For DRI and EAF, investment costs and specific
+requirements for fuels and iron ore are taken from the Steel Sector Transition
+Strategy Model (ST-STSM) of the Mission Possible
+Partnership.}\cite{missionpossiblepartnershipSteelSectorTransition2022,missionpossiblepartnershipMakingNetZeroSteel2022}\DIFadd{.
+and assume steel can be stored and transported without constraints within
+Europe. Relocation costs and local job impacts are excluded from the analysis
+due to a lack of data.
+}
+
+\DIFadd{For both cases, we assume a rise in the steel recycling rate from 40\% today to
+70\% in our carbon-neutral
+scenarios.}\cite{materialeconomicsIndustrialTransformation20502019} \DIFadd{We assume
+that the electric arc furnaces for secondary steel remain, in proportion, at
+current locations and do not relocate}\DIFaddend .
+
+\subsection*{\DIFdelbegin \DIFdel{Modelling of import }\DIFdelend \DIFaddbegin \DIFadd{TRACE: Import }\DIFaddend supply \DIFdelbegin \DIFdel{chains and costs}\DIFdelend \DIFaddbegin \DIFadd{chain modelling}\DIFaddend }
+
+\DIFdelbegin %DIFDELCMD < \begin{figure*}
+%DIFDELCMD <     \centering
+%DIFDELCMD <     \includegraphics[width=.82\textwidth]{static/graphics/sketch2.drawio-2.pdf}
+%DIFDELCMD <     %%%
+%DIFDELCMD < \caption{%
+{%DIFAUXCMD
+\textbf{\DIFdelFL{Schematic overview of the import supply chains.}} %DIFAUXCMD
+\DIFdelFL{The
+    illustration includes key input-output ratios of the different conversion
+    processes and the transport efficiencies for the different import vectors.}}
+    %DIFAUXCMD
+%DIFDELCMD < \label{fig:import-esc-scheme}
+%DIFDELCMD < \end{figure*}
+%DIFDELCMD < 
+
+%DIFDELCMD < %%%
+\DIFdelend The European energy system model is extended with data from the TRACE model \DIFaddbegin \DIFadd{used
+in Hampp et al.}\DIFaddend \cite{hamppImportOptions2023} to assess the \DIFaddbegin \DIFadd{unit }\DIFaddend costs of
+different vectors for importing green energy and material \DIFdelbegin \DIFdel{into }\DIFdelend \DIFaddbegin \DIFadd{to entry points in
+}\DIFaddend Europe from various world regions. For \DIFdelbegin \DIFdel{each vector, we identify locations with existing or planned import
+infrastructure where the respective carrier may enter the European energy
+system.
+}%DIFDELCMD < 
+
+%DIFDELCMD < %%%
+\DIFdel{Starting from the methodology by Hampp et al.}%DIFDELCMD < \cite{hamppImportOptions2023}%%%
+\DIFdel{, some
+adjustments were made to the
+original TRACE model. Namely, land availabilityand
+wind and solar time-series are determined using
+}\textit{\DIFdel{atlite}}%DIFAUXCMD
+%DIFDELCMD < \cite{hofmannAtliteLightweight2021} %%%
+\DIFdel{instead of }\textit{\DIFdel{GEGIS}}%DIFAUXCMD
+\DIFdel{.}%DIFDELCMD < \cite{mattssonAutopilotEnergy2021} %%%
+\DIFdel{Techno-economic assumptions
+were aligned with those used in the European model, and steel was included as an
+energy-intensive material import vector.The exporting countries comprise
+Australia, Argentina, Chile, Kazakhstan, Namibia, Turkey,
+Ukraine, }\DIFdelend \DIFaddbegin \DIFadd{consistency with }\DIFaddend the \DIFdelbegin \DIFdel{Eastern
+United States and Canada, mainland China, and counties in the MENA region}\DIFdelend \DIFaddbegin \DIFadd{European model, the
+techno-economic assumptions were aligned, using the same projections for 2040
+(see `Data availability`) and a uniform weighted average cost of capital (WACC)
+of 7\%.}\cite{lonerganImprovingRepresentationCost2023} \DIFadd{As possible import
+vectors, we consider electricity by transmission lines, hydrogen as gas by
+pipelines and as a liquid by ship, methane as a liquid by ship, liquid ammonia,
+steel and HBI, methanol and Fischer-Tropsch fuels by ship. Liquid organic
+hydrogen carriers (LOHC) are not considered as export vectors due to their lower
+technology readiness level (TRL) compared to other
+vectors.}\cite{irenaGlobalHydrogenTrade2022}
+
+\DIFadd{Our selection of 53 potential exporting regions broadly comprises countries with
+favourable wind and solar resources and large enough potentials for substantial
+exports above 500~TWh~a$^{-1}$ in addition to domestic consumption. We exclude
+some countries due to political instability (e.g.~Sudan, Somalia, Yemen), using
+a Fragile States Index}\cite{thefundforpeaceffpFragileStatesIndex2023} \DIFadd{value of
+100 as a threshold, or due to severe imposed sanctions (e.g.~Russia, Iran,
+Iraq), following the EU Sanctions
+Map.}\cite{estonianpresidencyofthecounciloftheeuEUSanctionsMap2024} \DIFadd{Landlocked
+countries without access to seaports or realistic pipeline connections are
+excluded. For landlocked regions within pipeline reach, we only exclude
+shipborne vectors. Some large countries are split into multiple subregions for
+a more differentiated view (e.g.~USA, Argentina, Brazil, and China). The
+resulting regions are marked in \mbox{%DIFAUXCMD
+\cref{fig:options:global}}\hskip0pt%DIFAUXCMD
+}\DIFaddend .
+
+%DIF >  renewable potentials minus domestic demand
+\DIFaddbegin 
+
+\DIFaddend To determine the levelised cost of energy for exports, the methodology first
+assesses the regional potentials for \DIFdelbegin \DIFdel{wind and solar energy. A regional
+electricity cost supply curve is determined }\DIFdelend \DIFaddbegin \DIFadd{solar, onshore, and offshore wind energy.
+These potentials and time series are calculated using
+}\textit{\DIFadd{atlite}}\DIFaddend ,\DIFdelbegin \DIFdel{from which }\DIFdelend \DIFaddbegin \cite{hofmannAtliteLightweight2021} \DIFadd{applying similar land
+eligibility constraints as in PyPSA-Eur (but using other datasets with global
+coverage) and applying the same wind turbine and solar panel models to
+ERA5}\cite{ecmwf} \DIFadd{weather data for 2013 in eligible regions. Since TRACE
+evaluates whole regions without further transmission network resolution, the
+renewable potentials and profiles within a region are split into different
+resource classes to reduce smoothing effects. We consider 30 classes each for
+onshore wind and solar and 10 for offshore wind where applicable. Based on these
+calculations, levelised cost of electricity (LCOE) curves can be determined for
+each region. A selection of LCOE curves is shown in
+}\sfigref{fig:si:cost-supply-curves}\DIFadd{.
+}
+
+%DIF >  deducted domestic demand
+
+\DIFadd{In the next step, potentials are reduced by the }\DIFaddend projected future local energy
+demand\DIFdelbegin \DIFdel{is subtracted. Thereby}\DIFdelend \DIFaddbegin \DIFadd{, starting with the lowest LCOE resource classes. With this approach}\DIFaddend ,
+domestic consumption is prioritised and supplied by the \DIFdelbegin \DIFdel{countries}\DIFdelend \DIFaddbegin \DIFadd{regions}\DIFaddend ' best renewable
+resources\DIFaddbegin \DIFadd{, }\DIFaddend even though we do not model the energy transition in exporting
+\DIFdelbegin \DIFdel{countries }\DIFdelend \DIFaddbegin \DIFadd{regions }\DIFaddend in detail. \DIFaddbegin \DIFadd{To create the demand projections, we use the
+GEGIS}\cite{mattssonAutopilotEnergyModels2021} \DIFadd{tool, which utilises machine
+learning on historical time series, weather data, and macro-economic factors to
+create artificial electricity demand time series based on population and GDP
+growth scenarios following the SSP2 scenario of the Shared Socioeconomic
+Pathways.}\cite{riahiSharedSocioeconomicPathways2017} \DIFadd{From these time series we
+take the annual total and increase it by a factor of two to account for further
+electrification of other sectors, which the GEGIS tool does not consider.
+}
+
+%DIF >  conversion pathways and scale
+
+\DIFaddend The remaining wind and solar electricity supply can then be used to produce the
+specific energy or material vector \DIFdelbegin \DIFdel{using }\DIFdelend \DIFaddbegin \DIFadd{according to the flow chart of conversion
+pathways shown in }\sfigref{fig:si:import-esc-scheme}\DIFadd{. Considered technologies
+include }\DIFaddend water electrolysis for \ce{H2}, direct air capture (DAC) for \ce{CO2},
+\DIFdelbegin \DIFdel{air separation units (ASU) for \ce{N2}, }\DIFdelend synthesis of methane, methanol, ammonia or Fischer-Tropsch fuels from \ce{H2}
+with \ce{CO2} or \ce{N2}, and \ce{H2} direct iron reduction (DRI) \DIFaddbegin \DIFadd{for sponge
+iron }\DIFaddend with subsequent processing \DIFaddbegin \DIFadd{to green steel }\DIFaddend in electric arc furnaces (EAF)
+\DIFdelbegin \DIFdel{for the processing of iron ore (103.7 }\DIFdelend \DIFaddbegin \DIFadd{from iron ore priced at
+97.7~}\DIFaddend \euro{}\DIFdelbegin \DIFdel{/t)
+into green steel.}\DIFdelend \DIFaddbegin \DIFadd{~t$^{-1}$.}\cite{missionpossiblepartnershipSteelSectorTransition2022}
+\DIFaddend Other CO$_2$ sources than DAC are not considered in the exporting \DIFdelbegin \DIFdel{countries, a notable difference from the European model.
+Liquid
+organic hydrogen carriers (LOHC) are not consideredas export vector due to their lower technology readiness level (TRL) compared to other
+vectors.}%DIFDELCMD < \cite{irenaGlobalHydrogen2022} %%%
+\DIFdel{Further details on the energy and
+feedstock flow and process efficiencies are outlined in
+\mbox{%DIFAUXCMD
+\cref{fig:import-esc-scheme}}\hskip0pt%DIFAUXCMD
+}\DIFdelend \DIFaddbegin \DIFadd{regions.
+Furthermore, while batteries and hydrogen storage in steel tanks are considered,
+underground hydrogen storage is excluded due to the uncertain availability of
+salt caverns in many potential exporting
+regions.}\cite{hevinUndergroundStorageHydrogen2019,hydrogentcp-task42UndergroundHydrogenStorage2023}
+\DIFadd{We also assume that the energy supply chains dedicated to exports will be
+islanded from the rest of the local energy system, i.e.~that curtailed
+electricity or waste heat could not be used locally}\DIFaddend .
+
+For each vector, an annual reference export demand of 500~TWh\DIFdelbegin \DIFdel{(lower heating
+value, LHV) }\DIFdelend \DIFaddbegin \DIFadd{$_\text{LHV}$ }\DIFaddend or
+100~Mt of steel \DIFaddbegin \DIFadd{and HBI }\DIFaddend is assumed, mirroring large-scale energy and material
+infrastructures and export volumes, corresponding to approximately 40\% of
+current \DIFaddbegin \DIFadd{European }\DIFaddend LNG
+imports\cite{instituteforenergyeconomicsandfinancialanalysisEuropeanLNG2023} and
+66\% of European steel
+production.\cite{eurofer-theeuropeansteelassociationEuropeanSteel2023} \DIFdelbegin %DIFDELCMD < 
+
+%DIFDELCMD < %%%
+%DIF < %% capacity expansion %%%
+%DIFDELCMD < 
+
+%DIFDELCMD < %%%
+\DIFdel{Based on these supply chain definitions, a capacity expansion optimisation is
+performed to determine the cost-optimal combination of infrastructure and
+process capacities for all intermediary products and delivering the final
+carrier either through pipelines (\ce{H2(g)}, \ce{CH4(g)}) or by ship
+(\ce{H2(l)}, \ce{CH4(l)}, \ce{NH3(l)}, \ce{MeOH}, Fischer-Tropsch fuel, and steel).
+Exports from each of the regions shown in \mbox{%DIFAUXCMD
+\cref{fig:options:global}
+}\hskip0pt%DIFAUXCMD
+are modelled to each of twelve European import locations }\DIFdelend \DIFaddbegin \DIFadd{Transport
+distances are calculated between the exporting regions and the twelve
+representative European import locations using the }\textit{\DIFadd{searoute}} \DIFadd{Python
+tool}\cite{haliliSeaRoutePython2024} \DIFadd{for shipborne vectors or crow-fly distances
+for pipeline or HVDC connections, and modified by a mode-specific detour factor.
+The chosen representative import locations are }\DIFaddend based on large \DIFdelbegin \DIFdel{port
+locations, determining the levelised costs of energy or steel the European entry point will see for each supply chain}\DIFdelend \DIFaddbegin \DIFadd{ports and LNG
+terminals in the United Kingdom, the Netherlands, Poland, Greece, Italy, Spain,
+and Portugal, as well as pipeline entry points in Slovakia, Greece, Italy, and
+Spain}\DIFaddend . All energy supply chains are assumed to consume their energy vector as
+fuel for transport to Europe, except for \DIFaddbegin \DIFadd{HBI and }\DIFaddend steel, which \DIFdelbegin \DIFdel{uses }\DIFdelend \DIFaddbegin \DIFadd{use }\DIFaddend externally
+bought methanol as shipping fuel.
+
+%DIF < %% import constraints in European model %%%
+%DIF > %% capacity expansion %%%
+
+\DIFdelbegin \DIFdel{The resulting }\DIFdelend \DIFaddbegin \DIFadd{For each combination of carrier, exporter, and importer, a linear capacity
+expansion optimisation is performed to determine cost-optimal investments and
+the operation of generation, conversion, storage, and transport capacities for
+all intermediary products to deliver 500~TWh~a$^{-1}$ (or 100~Mt~a$^{-1}$ for
+materials) of the final carrier to Europe. Dividing the total annual system
+costs by the targeted annual export volume yields the }\DIFaddend levelised cost of \DIFdelbegin \DIFdel{exported energy
+specific to the respective
+importing regions is added as a constant marginal import
+cost for all
+chemical energy carriers and steel. For the import of hydrogen and methane, candidate entry points are identified based on where existing and prospective
+}\DIFdelend \DIFaddbegin \DIFadd{energy
+or material as seen by the European entry point. To match the multi-hourly
+resolution used for the European model, the TRACE model was configured to use a
+3-hourly resolution for 2013, resulting in similar balancing requirements.
+Considering the reference export volume of 500~TWh~a$^{-1}$ (or 100~Mt~a$^{-1}$
+for materials), the resulting levelised cost curves of imports for different
+import vectors and exporting regions are presented for the respective
+lowest-cost entry point to Europe in
+}\sfigref{fig:si:isc-h2,fig:si:isc-ch4-nh3,fig:si:isc-meoh-ft,fig:si:isc-hbi-St}\DIFadd{.
+The curves show the varying cost composition of the country-carrier pairs. In
+this step, each import vector combination of carrier, exporter, and importer is
+optimised separately. Further constraints, like constraints on total export
+volumes per country, are imposed in the coupling to the European model.
+}
+
+\DIFadd{A mathematical description of TRACE can be found in Section S3 in Hampp et
+al.}\cite{hamppImportOptions2023}
+
+\subsection*{\DIFadd{Coupling of import options to European model}}
+
+\DIFadd{The resulting levelised unit cost for each combination of carrier, exporter, and
+reference importer is then used as an exogenous input to the European model. For
+each candidate entry point in the 115 European model regions, we match the
+closest reference import location from TRACE and add the corresponding import
+cost curve as a supply option
+(}\sfigref{fig:si:isc-h2,fig:si:isc-ch4-nh3,fig:si:isc-meoh-ft,fig:si:isc-hbi-St}\DIFadd{).
+Moreover, we limit energy exports from any one exporting region to Europe for
+the sum of all carriers to 500~TWh~a$^{-1}$. This is to both prevent a single
+country from dominating the import mix and be consistent with the target export
+volume assumed in TRACE. Beyond that, the decision about the origin,
+destination, vector, volume, and timing of imports is largely endogenous to
+PyPSA-Eur.
+}
+
+%DIF > %% entry points %%%
+
+\DIFadd{However, imports may be further restricted by the expansion of domestic import
+infrastructure. For each vector, we identify locations where the respective
+carrier may enter the European energy system by considering where }\DIFaddend LNG terminals
+and cross-continental pipelines are located \DIFdelbegin \DIFdel{. This includes new LNG import terminals
+in Europe in response to ambitions to phase out Russian gas
+supply in 2022.
+}%DIFDELCMD < \cite{instituteforenergyeconomicsandfinancialanalysisEuropeanLNG2023} %%%
+\DIFdel{To
+achieve
+}\DIFdelend \DIFaddbegin \DIFadd{(\mbox{%DIFAUXCMD
+\cref{fig:options:europe}}\hskip0pt%DIFAUXCMD
+). For
+hydrogen imports by pipeline, imports must be near-constant, varying between
+90-100\% of peak imports, aligning with the high pipeline utilisation rates
+observed in the TRACE model. For methane imports by ship, existing LNG terminals
+reported in Global Energy Monitor's Europe Gas
+Tracker}\cite{globalenergymonitorEuropeGasTracker2024} \DIFadd{can be used. For hydrogen
+by ship, new terminals can be built in regions where LNG terminals exist. To
+ensure }\DIFaddend regional diversity in potential gas and hydrogen imports and avoid
+vulnerable singular import locations, we allow the expansion beyond the reported
+capacities only up to a factor of 2.5, taking the median value of reported
+investment costs for LNG terminals.\cite{GlobalGas2022} A \DIFdelbegin \DIFdel{surcharge }\DIFdelend \DIFaddbegin \DIFadd{premium }\DIFaddend of 20\% is
+added for hydrogen import terminals due to the lack of practical experience \DIFdelbegin \DIFdel{. Carbonaceous }\DIFdelend \DIFaddbegin \DIFadd{with
+them. For electricity, the capacity and operational patterns of the HVDC links
+can be endogenously optimised. Imports for carbonaceous }\DIFaddend fuels, ammonia, \DIFdelbegin \DIFdel{and steel imports }\DIFdelend \DIFaddbegin \DIFadd{HBI, and
+steel }\DIFaddend are not spatially \DIFdelbegin \DIFdel{resolved due to }\DIFdelend \DIFaddbegin \DIFadd{allocated to specific ports, given }\DIFaddend their low transport
+costs \DIFdelbegin \DIFdel{and, therefore, are not constrained by the availability of suitable entry
+points.
+To present energy and material imports in a common unit, the embodied
+energy in steel is approximated with the 2.1 kWh/kg released in
+iron oxide
+reduction, i.e.~energy released by combustion. }%DIFDELCMD < \cite{kuhnIronRecyclable2022}
+%DIFDELCMD < %%%
+\DIFdelend \DIFaddbegin \DIFadd{relative to value. Port capacities are assumed unconstrained since these
+commodities, particularly carbonaceous fuels, are comparable to the large fossil
+oil volumes currently handled at European ports.
+}
+
+%DIF > %% reconversion %%%
+
+\DIFadd{Further conversion of imported fuels is also possible once they have arrived in
+Europe, e.g.~hydrogen could be used to synthesise carbon-based fuels, ammonia
+could be cracked to hydrogen, methane could be reformed to hydrogen, and methane
+or methanol could be combusted for power generation. However, conversion losses
+can make it less attractive economically to use a high-value hydrogen derivative
+merely as a transport and storage vessel only to reconvert it back to hydrogen
+or electricity.
+}\DIFaddend 
+
+%%% special handling of electricity imports %%%
+
+\DIFdelbegin \DIFdel{Owing to the variability of wind and solar electricity, the }\DIFdelend \DIFaddbegin \DIFadd{The }\DIFaddend supply chain of electricity imports is endogenously optimised with the rest
+of the European system rather than using a constant levelised cost of
+\DIFdelbegin \DIFdel{exported electricity . This
+comprises the optimisation }\DIFdelend \DIFaddbegin \DIFadd{electricity for each export region. This is because, owing to the greater
+challenge of storing electricity, the hourly variability }\DIFaddend of wind and solar
+\DIFaddbegin \DIFadd{electricity leads to higher price variability than hydrogen and its derivatives,
+and the intake needs to be more closely coordinated with the European power
+grid. The endogenous optimisation comprises wind and solar }\DIFaddend capacities, batteries
+and hydrogen storage in steel tanks, and the size and operation of HVDC link
+\DIFdelbegin \DIFdel{connection into
+}\DIFdelend \DIFaddbegin \DIFadd{connections to }\DIFaddend Europe based on the \DIFdelbegin \DIFdel{availability time series in neighbouring countries }\DIFdelend \DIFaddbegin \DIFadd{renewable capacity factor time series }\DIFaddend as
+illustrated in \cref{fig:options:europe}. \DIFdelbegin \DIFdel{Underground hydrogen storage options
+are not considered due to the limited availability of salt caverns in many of
+the best renewable resource regions in the countries that are considered
+exporting.}%DIFDELCMD < \cite{hevinUndergroundStorage2019} %%%
+\DIFdel{We also assume that the energy
+supply chains dedicated to exports will be islanded from the rest of the local
+energy system. }\DIFdelend Europe's connection options with
+exporting \DIFdelbegin \DIFdel{countries }\DIFdelend \DIFaddbegin \DIFadd{regions }\DIFaddend are confined to the \DIFdelbegin \DIFdel{5}\DIFdelend \DIFaddbegin \DIFadd{4}\DIFaddend \% nearest regions, with additional
+ultra-long distance connection options to Ireland, Cornwall\DIFaddbegin \DIFadd{, }\DIFaddend and Brittany
+following the vision of the Xlinks project between Morocco and the United
+Kingdom.\DIFdelbegin %DIFDELCMD < \cite{xlinksMoroccoUKPower2023}
+%DIFDELCMD < %%%
+\DIFdelend \DIFaddbegin \cite{xlinksMoroccoUKPowerProject2023} \DIFaddend Connections through Russia or
+Belarus are excluded\DIFdelbegin \DIFdel{, and thus}\DIFdelend \DIFaddbegin \DIFadd{. In addition to excluded entry points}\DIFaddend , some connections
+\DIFaddbegin \DIFadd{from Central Asia }\DIFaddend are affected by additional detours beyond the regularly
+applied detour factor of 125\% of the as-the-crow-flies distance. Similar to
+intra-European HVDC transmission, a 3\% loss per 1000km and a 2\% converter
+station loss are assumed.
+
+%DIF < %% more detailed results %%%
+\DIFaddbegin \vspace{1em}
+\DIFaddend 
+
+\DIFdelbegin \DIFdel{As illustrated in \mbox{%DIFAUXCMD
+\cref{fig:options}}\hskip0pt%DIFAUXCMD
+, for imports of hydrogen by pipeline, nearby countries like Algeria and Egypt emerged as lowest cost exporters (ca.~57
+}%DIFDELCMD < \euro{}%%%
+\DIFdel{/MWh). Importing hydrogen by ship is substantially more expensive due to
+liquefaction and evaporation losses. Algeria could offer supply through this
+vector at 84 }%DIFDELCMD < \euro{}%%%
+\DIFdel{/MWh. For all other hydrogen derivatives, Argentina and
+Chile offer the lowest cost imports between 88 }\DIFdelend \DIFaddbegin \DIFadd{Finally, we note that all mass-energy conversion is based on the lower heating
+value (LHV). To present energy }\DIFaddend and \DIFdelbegin \DIFdel{110~}%DIFDELCMD < \euro{}%%%
+\DIFdel{/MWh or
+501~}\DIFdelend \DIFaddbegin \DIFadd{material imports in a common unit, the
+embodied energy in steel is approximated with the 2.1 kWh~kg$^{-1}$ released in
+iron oxide reduction, i.e.~energy released by
+combustion.}\cite{kuhnIronRecyclable2022} \DIFadd{All currency values are given in
+}\DIFaddend \euro{}\DIFdelbegin \DIFdel{/t for steel. Methanol is found to be cheaper than the Fischer-Tropsch route because it is assumed to be more flexible (30\% minimum
+part load compared to 70\% for
+Fischer-Tropsch). }%DIFDELCMD < \cite{brownUltralongdurationEnergy2023} %%%
+\DIFdel{The lower process
+flexibility shifts the energy mix towards solar electricity and causes higher
+levels of curtailment, increasing costs. The transport costs of \ce{CH4(l)} are
+lower than for \ce{H2(l)} since the
+liquefaction consumes less energy and
+individual ships can carry more energy with \ce{CH4(l)}. Pipeline imports of
+\ce{CH4(g)} were also considered, but costs were higher than for \ce{CH4(l)}
+shipping under the assumption that new pipelines would have to be built.
+Consequently, the model preferred LNG imports over pipeline imports}\DIFdelend \DIFaddbegin \DIFadd{$_{2020}$}\DIFaddend .
+
+
+%DIF <  \section*{Acknowledgements}
+\DIFaddbegin \section*{\DIFadd{Acknowledgements}}
+\DIFaddend 
+
+%DIF <  XY gratefully acknowledge funding from XY under grant no. 00000.
+\DIFaddbegin \DIFadd{J.H. gratefully acknowledges funding from the Kopernikus-Ariadne project (FKZ
+03SFK5A and 03SFK5A0-2) by the German Federal Ministry of Education and
+Research (}\textit{\DIFadd{Bundesministerium für Bildung und Forschung, BMBF}}\DIFadd{).
+}\DIFaddend 
+
+% \section*{License}
+% \doclicenseLongText
+% \doclicenseIcon
+
+\section*{Author contributions}
+
+% following https://casrai.org/credit/
+
+\textbf{F.N.}:
+Conceptualization --
+Data curation --
+Formal Analysis --
+% Funding acquisition --
+Investigation --
+Methodology --
+% Project administration --
+% Resources --
+Software --
+% Supervision --
+Validation --
+Visualization --
+Writing - original draft --
+% Writing - review \& editing
+\textbf{J.H.}:
+Conceptualization --
+Data curation --
+Formal Analysis --
+% Funding acquisition --
+Investigation --
+Methodology --
+% Project administration --
+% Resources --
+Software --
+% Supervision --
+Validation --
+Visualization --
+% Writing - original draft --
+Writing - review \& editing
+\textbf{T.B.}:
+Conceptualization --
+% Data curation --
+Formal Analysis --
+Funding acquisition --
+Investigation --
+Methodology --
+Project administration --
+% Resources --
+Software --
+Supervision --
+Validation --
+% Visualization --
+% Writing - original draft --
+Writing - review \& editing
+
+\section*{Declaration of interests}
+
+The authors declare no competing interests.
+
+\section*{Data \DIFdelbegin \DIFdel{and code }\DIFdelend availability}
+
+A dataset of the model results \DIFdelbegin \DIFdel{will be made available on }%DIFDELCMD < \url{zenodo} %%%
+\DIFdel{after peer-review.
+}\DIFdelend \DIFaddbegin \DIFadd{is available on Zenodo under
+}\url{https://doi.org/10.5281/zenodo.14041768} \DIFadd{(released upon publication). Data
+on techno-economic assumptions can be found at
+}\url{https://github.com/PyPSA/technology-data/releases/tag/import-benefits-v2}\DIFadd{.
+}
+
+\section*{\DIFadd{Code availability}}
+
+\DIFaddend The code to reproduce the experiments is available at
+\url{https://github.com/fneum/import-benefits} \DIFaddbegin \DIFadd{(Version v2). We also refer to
+the documentation of PyPSA-Eur at }\url{https://pypsa-eur.readthedocs.io} \DIFadd{for
+more details}\DIFaddend .
+
+\renewcommand{\ttdefault}{\sfdefault}
+% \bibliography{import-benefits}
+\bibliography{/home/fneum/zotero-bibtex.bib}
+
+
+\newcounter{LastMainFigure} 
+\setcounter{LastMainFigure}{\value{figure}}
+
+\end{document}
