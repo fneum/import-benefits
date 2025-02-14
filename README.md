@@ -47,6 +47,8 @@ Both workflows can be executed on Linux, Mac or Windows (WSL). There are no futh
 
 TRACE uses the [`snakemake` workflow management tool](https://snakemake.readthedocs.io/en/stable/).
 
+Here, we use a derivative of TRACE v1.1.
+
 Running a limited number of scenarios is possible on a local machine.
 
 To run the workflow and reproduce the model runs presented in the paper, execute the following commands from the `root` directory of the project:
@@ -83,6 +85,8 @@ wget -P workflow/pypsa-eur/data/imports \
 ## Usage of PyPSA-Eur
 
 PyPSA-Eur also uses the [`snakemake` workflow management tool](https://snakemake.readthedocs.io/en/stable/).
+
+Here, we use a derivative of PyPSA-Eur v0.13.0.
 
 Apart from solving the optimisation problem of a high-resolution model configuration, the workflow can be executed on a local machine. The preprocessing can take 1-2 hours and may require 16-24 GB of RAM.
 
