@@ -2,7 +2,7 @@ cff-version: 1.2.0
 message: ""
 title: "Energy Imports and Infrastructure in a Carbon-Neutral European Energy System"
 repository: https://github.com/fneum/import-benefits
-version: 3
+version: 3.0.0
 license: MIT
 authors:
   - family-names: Neumann
