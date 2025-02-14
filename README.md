@@ -78,8 +78,8 @@ TRACE, download the following two files into the
 ```sh
 mkdir -p workflow/pypsa-eur/data/imports
 wget -P workflow/pypsa-eur/data/imports \
-  https://zenodo.org/records/14xxx/files/combined_weighted_generator_timeseries.nc \
-  https://zenodo.org/records/14xxx/files/results.parquet
+  https://zenodo.org/records/14872184/files/combined_weighted_generator_timeseries.nc \
+  https://zenodo.org/records/14872184/files/results.parquet
 ```
 
 ## Usage of PyPSA-Eur
@@ -116,7 +116,7 @@ PyPSA networks can be read and inspected with Python in the following way:
 
 ```py
 import pypsa
-fn = f"workflow/pypsa-eur/results/20240826-z1/postnetworks/elec_s_115_lvopt__imp_2050.nc"
+fn = f"workflow/pypsa-eur/results/20240826-z1/postnetworks/base_s_115_lvopt__imp_2050.nc"
 n = pypsa.Network(fn)
 n.statistics()
 n.statistics.capex() + n.statistics.opex()
