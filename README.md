@@ -104,7 +104,7 @@ These larger runs with higher temporal resolution require a high-performance com
 The `yaml` files referenced above can be used to edit and configure the scenarios, e.g. by adding additional cases, changing some assumptions or reducing complexity.
 
 More detailed usage instructions for the underlying PyPSA-Eur model can be found
-at https://pypsa-eur.readthedocs.io/en/v0.13.0/.
+at https://pypsa-eur.readthedocs.io/en/v0.13.0-docs-fix/.
 
 ## Outputs and Inspection
 

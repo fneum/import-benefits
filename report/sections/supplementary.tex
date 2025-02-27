@@ -8,12 +8,12 @@ This section describes the mathematical formulation of the energy system
 optimisation model PyPSA-Eur used in this study. This section is a reprint of a
 previous model description in Neumann et al.
 \cite{neumannPotentialRoleHydrogen2023}, which was updated and amended to
-explain how steel and ammonia industry relocation and endogenous siting of
+explain how steel and ammonia industry relocation and the endogenous siting of
 hydrogen consumers for fuel synthesis and other applications are modelled. In
 the configuration used in this study, the model does not consider pathway
 optimisation (i.e.~no sequences of investments), but searches for a cost-optimal
 layout corresponding to a given \co emission reduction level and assumes perfect
-operational foresight for the reference year based on which capacities are
+operational foresight for the weather year (2013) based on which capacities are
 optimised (`overnight scenario').
 
 The objective is to minimise the total annual energy system costs of the energy
@@ -42,7 +42,7 @@ w_t=365\cdot 24\text{h}=8760\text{h}$}. A bus $i$ represents both a regional
 scope and an energy carrier. Represented carriers include electricity, heat
 (various subdivisions), hydrogen, ammonia, methane, methanol, oil, hot
 briquetted iron, steel, and carbon dioxide. Spatially resolved carriers are
-electricity, heat, hydrogen and methane (e.g.~\mbox{$i=$`region\_id methanol'}).
+electricity, heat, hydrogen and methane (e.g.~\mbox{$i=$`region\_id hydrogen'}).
 For all other carriers, assuming negligible transport costs of the respective
 fuels, the model aggregates the regions to a single bus per carrier
 (e.g.~$i=$`Europe methanol').
@@ -53,10 +53,13 @@ fuels, the model aggregates the regions to a single bus per carrier
 In addition to the cost-minimising objective function, we further impose a set
 of linear constraints that define limits on (i) the capacities of generation,
 storage, conversion and transmission infrastructure from geographical and
-technical potentials, (ii) the availability of variable renewable energy sources
-for each location and point in time (iii) the limit for \co emissions or transmission expansion, (iv)
-storage consistency equations, and (v) a multi-period linearised optimal power
-flow (LOPF) formulation. Overall, this results in a large linear problem (LP).
+technical potentials, (ii) the availability of variable renewable energy
+sources, performance of heat pumps and carrier-specific demands for each
+location and time step (iii) the limit for \co emissions or transmission
+expansion, (iv) storage consistency equations, and (v) a multi-period linearised
+optimal power flow (LOPF) formulation and energy balance constraints for each
+region, carrier and time step. Overall, this results in a large linear problem
+(LP).
 
 The capacities of generation, storage, conversion and transmission
 infrastructure are constrained from above by their installable potentials and
@@ -123,10 +126,10 @@ $h_{i,s,t}^\text{inflow}$ and spillage $h_{i,s,t}^\text{spillage}$, besides the
 standing loss $\eta_{i,s,0}$.
 
 The nodal balance constraint for supply and demand (Kirchoff's current law for
-electricity buses, or simply energy balance for all other carriers) requires
+electricity buses, or simply energy balances for all other carriers) requires
 local generators and storage units, incoming or outgoing energy flows
 $p_{\ell,t}$ of incident transmission lines $\ell$, and incoming or outgoing
-energy flows $f_{k,t}$ of converters $k$ (e.g. electrolysis, heat pumps,
+energy flows $f_{k,t}$ of pipelines and converters $k$ (e.g. electrolysis, heat pumps,
 Fischer-Tropsch synthesis, hydrogen turbines, electric arc furnace) to balance the
 perfectly inelastic, exogenously given demand $d_{i,t}$ at each location $i$ and
 snapshot $t$
@@ -135,7 +138,7 @@ snapshot $t$
 \end{align}
 where $K_{i\ell}$ is the incidence matrix of the electricity network with
 non-zero values $-1$ if line $\ell$ starts at node $i$ and $1$ if it ends at
-node $i$. $L_{ikt}$ is the conversion incidence matrix of the network with non-zero
+node $i$. $L_{ikt}$ is the pipeline and conversion incidence matrix of the network with non-zero
 values $-1$ if link $k$ starts at node $i$ and $\eta_{i,k,t}$ if one of its
 terminal buses is node $i$. For a link with more than two outputs (e.g. CHP
 converts gas to heat and electricity in a fixed ratio), the respective column of
@@ -162,14 +165,14 @@ represents a region/carrier combination (e.g.~`region\_id~hydrogen' or
 f_{k,t}$ in the nodal balance constraints, \cref{eq:balance}, represent
 endogenous supply at bus $i$, the negative terms represent endogenous
 consumption (e.g.~consumption of electricity for electrolysis, or hydrogen for
-methanolisation in a region). What consumption and supply patterns are possible,
+methanolisation in a region). What consumption and supply patterns are possible
 then depends on where the model decides to build capacity $F_k$ (e.g.~of
 electrolysis in a region). For our relocation modelling of steel and ammonia
 production, we keep $F_k$ as free variables for Haber-Bosch, direct iron
 reduction and electric arc furnace links for each region, effectively allowing
 greenfield siting of these industries. In scenarios without relocation, we fix
 $F_k$ to the current regional capacities of these technologies such that no new
-sites for steel ad ammonia production can be developed.
+sites for steel and ammonia production can be developed.
 
 The effective power flows $p_{\ell,t}$ are limited by their nominal capacities $P_\ell$ minus losses $\psi_\ell$.
 \begin{align}
@@ -254,7 +257,7 @@ atmosphere.
     \label{tab:scenarios}
     \begin{tabular}{>{\raggedright\arraybackslash}p{3cm}>{\raggedright\arraybackslash}p{4cm}>{\raggedright\arraybackslash}p{1.8cm}>{\raggedright\arraybackslash}p{2cm}>{\raggedright\arraybackslash}p{1.5cm}>{\raggedright\arraybackslash}p{1.3cm}>{\raggedright\arraybackslash}p{1cm}p{0.5cm}}
     \toprule
-    Scenario group & Import carriers & Import volume [TWh] & Import costs & Technology projection year & St. / NH$_3$ relocation & Figures & Runs \\
+    Scenario group & Import carriers & Import volume [TWh] & Import costs & Technology assumptions year & St. / NH$_3$ relocation & Figures & Runs \\
     \midrule
     \textbf{Subsets of import carriers} & none, all, methane, electricity, ammonia, HBI/steel, hydrogen, methanol, FT, methanol/FT, only carbonaceous fuels, hydrogen derivatives, hydrogen derivatives and steel, all but electricity and steel, all but electricity & any & default ($\pm$0\%) & 2030, 2040, 2050 & yes, no (for 2040) & \ref{fig:sensitivity-bars}, \ref{fig:import-shares}, \ref{fig:market-values}, \ref{fig:import-infrastructure}, S\ref{fig:si:relocation}, S\ref{fig:si:technology-projection}, S\ref{fig:si:import-shares-a}, S\ref{fig:si:cost-supply-curves}, S\ref{fig:si:market-value-ts}, S\ref{fig:si:balances-a}, S\ref{fig:si:balances-b}, S\ref{fig:si:infra-b}, S\ref{fig:si:infra-d}, S\ref{fig:si:infra-e}ff. & 60 \\
     \textbf{Subsets of import carriers (import cost variation)} & all, methane, electricity, ammonia, HBI/steel, hydrogen, methanol, FT, methanol/FT, only carbonaceous fuels, hydrogen derivatives, hydrogen derivatives and steel, all but electricity and steel, all but electricity & any & -20\%, -10\%, +10\%, +20\% & 2040 & yes & S\ref{fig:si:subsets-higher}, S\ref{fig:si:subsets-lower}, S\ref{fig:si:import-shares-b}, S\ref{fig:si:infra-c} & 56 \\
@@ -278,7 +281,7 @@ atmosphere.
     \caption{\textbf{Overview of lowest direct hydrogen import costs into Europe
     per exporting country.} Supplement to Figure 1. Dotted areas indicate that
     hydrogen export from the respective region is cheaper by pipeline than by
-    ship.}
+    ship. Maps made with Natural Earth.}
     \label{fig:si:worlmap-h2}
 \end{figure}
 
@@ -287,7 +290,7 @@ atmosphere.
     \includegraphics[width=\textwidth]{../workflow/notebooks/20240826-z1/fixed-demand.pdf} \\
     \caption{\textbf{Overview of spatially fixed demands, when steel and ammonia
     industry can relocate.} In this scenario, there is virtually no spatially
-    fixed hydrogen demand.}
+    fixed hydrogen demand. Maps made with Natural Earth.}
     \label{fig:si:demands}
 \end{figure}
 
@@ -309,7 +312,7 @@ atmosphere.
     endogenously optimized allocation of steel and ammonia production. The right
     column shows the absolute change in the regions' total production share.
     Much of the steel production moves to Spain, Scotland and Ireland. A
-    substantial share of ammonia production relocates to Finland.}
+    substantial share of ammonia production relocates to Finland. Maps made with Natural Earth.}
     \label{fig:si:relocation}
 \end{figure}
 
@@ -391,10 +394,10 @@ atmosphere.
 
 \begin{figure}[!htb]
     \includegraphics[width=\textwidth]{../workflow/notebooks/20240826-z1/technology-year-sensitivity.pdf} \\
-    \caption{\textbf{Impact of technology projection year on total energy system
+    \caption{\textbf{Impact of technology development assumptions on total energy system
     cost with and without imports.} Left colums show total system cost.
     Right columns show difference in total system cost compared to technology
-    projection year 2040. Black lines show net cost difference in absolute and
+    assumptions for 2040. Black lines show net cost difference in absolute and
     relative terms.}
     \label{fig:si:technology-projection}
 \end{figure}
@@ -598,7 +601,7 @@ atmosphere.
     newly built and retrofitted pipelines (lines), and the siting of hydrogen
     storage subject to geological potentials (choropleth). Total volumes of
     transmission expansion are given in TWkm, which is the sum product of the
-    capacity and length of individual connections. }
+    capacity and length of individual connections.  Maps made with Natural Earth.}
     \label{fig:si:infra-b}
 \end{figure*}
 
@@ -608,6 +611,7 @@ atmosphere.
     Left column shows the regional electricity supply mix (pies), added HVDC and HVAC transmission capacity (lines), and the siting of battery storage (choropleth).
         Right column shows the hydrogen supply (top half of pies) and consumption (bottom half of pies), net flow and direction of hydrogen in newly built and retrofitted pipelines (lines), and the siting of hydrogen storage subject to geological potentials (choropleth).
         Total volumes of transmission expansion are given in TWkm, which is the sum product of the capacity and length of individual connections.
+        Maps made with Natural Earth.
     }
     \label{fig:si:infra-c}
 \end{figure*}
@@ -625,7 +629,7 @@ atmosphere.
     pipelines (lines), and the siting of hydrogen storage subject to geological
     potentials (choropleth). Total volumes of transmission expansion are given
     in TWkm, which is the sum product of the capacity and length of individual
-    connections. }
+    connections.  Maps made with Natural Earth.}
     \label{fig:si:infra-d}
 \end{figure*}
 
@@ -633,9 +637,9 @@ atmosphere.
 \begin{figure*}
     \includegraphics[width=\textwidth]{../workflow/notebooks/20240826-z1/infrastructure-map-2x3-E.pdf}
     \caption{\textbf{Layout of European energy infrastructure for different
-    import scenarios.}  Infrastructure build-out with technology projection for
-    2050 and no imports (first row), with technology projection for 2030 and no
-    imports (second row), with technology projection for 2050 and all imports
+    import scenarios.}  Infrastructure build-out with technology assumptions for
+    2050 and no imports (first row), with technology assumptions for 2030 and no
+    imports (second row), with technology assumptions for 2050 and all imports
     allowed (third row). Left column shows the regional electricity supply mix
     (pies), added HVDC and HVAC transmission capacity (lines), and the siting of
     battery storage (choropleth). Right column shows the hydrogen supply (top
@@ -643,7 +647,7 @@ atmosphere.
     of hydrogen in newly built and retrofitted pipelines (lines), and the siting
     of hydrogen storage subject to geological potentials (choropleth). Total
     volumes of transmission expansion are given in TWkm, which is the sum
-    product of the capacity and length of individual connections. }
+    product of the capacity and length of individual connections.  Maps made with Natural Earth.}
     \label{fig:si:infra-e}
 \end{figure*}
 
@@ -708,7 +712,7 @@ atmosphere.
     need for backup capacities. Instead of firing up reserve power plants, the
     production of power-to-X plants is curtailed. Power transmission
     infrastructure distributes backup capacities across Europe where there are none.
-    Blue lines represent HVAC lines, rosa lines represent HVDC links.}
+    Blue lines represent HVAC lines, rosa lines represent HVDC links.  Maps made with Natural Earth.}
     \label{fig:si:backup-power-map}
 \end{figure*}
 
@@ -770,16 +774,16 @@ atmosphere.
     \centering
     \footnotesize
     (a) gas transmission network \\
-    \includegraphics[width=.87\textwidth, trim=1cm 5cm 1.5cm 5cm, clip]{../workflow/pypsa-eur/resources/20240826-z1/graphics/gas-network-unclustered.pdf} \\
+    \includegraphics[width=.85\textwidth, trim=1cm 5cm 1.5cm 5cm, clip]{../workflow/pypsa-eur/resources/20240826-z1/graphics/gas-network-unclustered.pdf} \\
     (b) electricity transmission network \\
-    \includegraphics[width=.82\textwidth]{../workflow/pypsa-eur/resources/20240826-z1/graphics/power-network-unclustered.pdf}
+    \includegraphics[width=.8\textwidth]{../workflow/pypsa-eur/resources/20240826-z1/graphics/power-network-unclustered.pdf}
     \caption{\textbf{Gas and electricity transmission network data.} For gas
     transmission, the map shows pipelines sized and colored by rated capacity,
     fossil gas extraction sites, storage locations, pipeline entrypoints, and
     LNG terminals. The data comes from SciGRID\_gas and is supplemented with
     data from Global Energy Monitor. For power transmission, the map shows
     existing transmission lines at and above 220~kV taken from OpenStreetMap (\url{https://www.openstreetmap.org/}),
-    supplemented with planned TYNDP projects (\url{https://tyndp.entsoe.eu/}).}
+    supplemented with planned TYNDP projects (\url{https://tyndp.entsoe.eu/}). Maps made with Natural Earth.}
     \label{fig:si:networks-raw}
 \end{figure*}
 
@@ -793,9 +797,11 @@ atmosphere.
     \begin{center}
         \includegraphics[width=0.75\textwidth, trim=0cm 2cm 0cm 3cm, clip]{../workflow/pypsa-eur/resources/20240826-z1/graphics/salt-caverns-s-115-nearshore}
     \end{center}
-    \caption{\textbf{Locations considered for geologica hydrogen storage in salt
-    caverns.} Only near-shore caverns are considered to minimize environmental
-    impact of brine disposal.}
+    \caption{\textbf{Locations considered for geological hydrogen storage in
+    salt caverns.} Data based on Caglayan et
+    al.~\cite{caglayanTechnicalPotentialSalt2020}. Only near-shore caverns are
+    considered to minimize environmental impact of brine disposal. Maps made
+    with Natural Earth.}
     \label{fig:si:hydrogen-caverns}
 \end{figure*}
 
@@ -804,8 +810,11 @@ atmosphere.
     \centering
     \includegraphics[width=\textwidth]{../workflow/pypsa-eur/resources/20240826-z1/graphics/industrial-sites.pdf}
     \caption{\textbf{Considered locations of industrial production sites by
-    sector.} Marker size scales proportionally to the emissions of the
-    respective site. This data is used for the spatial distribution of
-    industrial energy and feedstock demands.}
+    sector.} Data based on Manz and
+    Fleiter (2018). Marker size scales
+    proportionally to the emissions of the respective site. This data is used
+    for the spatial distribution of industrial energy and feedstock demands.
+    Maps made with Natural Earth.}
     \label{fig:si:industrial-sites}
 \end{figure*}
+

@@ -11,7 +11,7 @@ Green fuel and steel import costs seen by the model are based on an extension of
 recent research by Hampp et al.,\cite{hamppImportOptions2023} who assessed the
 levelised cost of energy exports for different green energy and material supply
 chains from various world regions to Europe. Our selection of exporting regions
-comprises all 53 coloured or dotted regions in \cref{fig:options:global}. In the
+comprises all 53 coloured or dotted regions in \cref{fig:options}A. In the
 TRACE optimisation model,\cite{hamppImportOptions2023} regional wind and solar
 potentials are assessed based on prevailing weather conditions and land
 availability while prioritising projected domestic demand. In combination with
@@ -19,7 +19,7 @@ the techno-economic modelling of the various fuel-specific supply chains stages
 (\sfigref{fig:si:import-esc-scheme}), the lowest levelised supply cost for each
 carrier, exporter and importer combination are determined for a reference volume
 of 500~TWh~a$^{-1}$ (or 100~Mt~a$^{-1}$ of steel/HBI), thus incorporating the
-trade-off between import cost and import location (\cref{fig:options:europe}).
+trade-off between import cost and import location (\cref{fig:options}B).
 Unlike domestic electrofuel synthesis in Europe, which could use captured CO$_2$
 from point sources, direct air capture is assumed to be the only carbon source
 of imported fuels. Concepts involving the shipment of captured CO$_2$ from
@@ -67,12 +67,12 @@ the assumption that new pipelines would have to be built or renewed.
     \includegraphics[width=\linewidth]{../workflow/notebooks/20240826-z1/sensitivity-bars.pdf}
     \caption{\textbf{Potential for cost reductions with reduced sets of import options available.}
         Subsets of available import options are sorted by ascending cost
-        reduction potential. Top panel shows profile of total system cost
-        savings. Uncertainty ranges show cost savings (\%) for technology
-        projection years 2030 and 2050, in addition to the default projection
+        reduction potential. \textbf{A} shows profile of total system cost
+        savings. Shaded ranges show cost savings (\%) for technology
+        asummptions for 2030 and 2050, in addition to the default assumptions
         for 2040. Cost savings (\%) are also shown for scenarios without crude
         steel and ammonia relocation, in addition to the default case where
-        relocation is allowed. Bottom panel shows composition and extent of
+        relocation is allowed. \textbf{B} shows composition and extent of
         imports in relation to total energy system costs. Percentage numbers in
         bar plot indicate the share of total system costs spent on domestic
         energy infrastructure. Alternative scenarios of this figure with higher
@@ -89,12 +89,12 @@ In \cref{fig:sensitivity-bars}, we first explore the cost reduction potential of
 various energy and material import options. Without energy imports, total energy
 system costs add up to \bneuro{836}. By enabling imports from outside Europe and
 considering all import vectors, we find a potential reduction of total energy
-system costs by up to \bneuro{37}, using technology projections for 2040. This
+system costs by up to \bneuro{37}, using technology assumptions for 2040. This
 corresponds to a relative reduction of 4.4\%, which remains nearly unchanged
 regardless of the domestic crude steel and ammonia production relocation potential.
-With more long-term (2050) or near-term (2030) technology projections, the cost
+With more long-term (2050) or near-term (2030) technology assumptions, the cost
 savings range from 3.6\% to 5.4\%, with higher cost savings achieved with
-near-term technology projections (\cref{fig:si:technology-projection}).
+near-term technology assumptions (\cref{fig:si:technology-projection}).
 
 For cost-optimal imports, around 77\% of these costs are used to develop
 domestic energy infrastructure. The remaining 23\% are spent on importing a
@@ -133,7 +133,7 @@ Overall, while varying import costs within $\pm 20\%$ affects the magnitude of
 attainable cost savings, the relative impact of restricting specific import
 options remains broadly consistent
 (\sfigref{fig:si:subsets-higher,fig:si:subsets-lower}). Likewise, using more
-long-term (2050) or near-term (2030) technology projections, do not affect the
+long-term (2050) or near-term (2030) technology assumptions do not affect the
 dynamics substantially (\cref{fig:sensitivity-bars}).
 
 \begin{figure}
@@ -141,14 +141,16 @@ dynamics substantially (\cref{fig:sensitivity-bars}).
     \includegraphics[width=0.58\linewidth]{../workflow/pypsa-eur/results/20240826-z1/graphics/import_shares/s_115_lvopt__imp_2050.pdf}
     \includegraphics[width=0.42\linewidth]{../workflow/pypsa-eur/results/20240826-z1/graphics/import_sankey/s_115_lvopt__imp_2050.pdf}
     \caption{\textbf{Shares of imports and domestic production by carrier, optimised import mix and trade flows.}
-        The figure also shows the total supply for each carrier for the import
-        scenario with flexible carrier choice and volume. The Sankey diagram
-        shows the same scenario and aggregates trade flows to broader regions to
-        emphasize that alternative origin-destination pairs could often yield
-        similar results.
-        Import shares for further import scenarios are included in the
-        supplementary material. Steel is included in energy terms applying a
-        factor of 2.1 kWh~kg$^{-1}$ as released by the oxidation of iron. }
+        \textbf{A} shows the optimised import shares by carrier for the import
+        scenario with flexible carrier choice and volume, technology assumptions
+        for 2040, and allowed relocation of crude steel and ammonia production.
+        \textbf{B} shows the total supply for each carrier for the same
+        scenario. \textbf{C} shows trade flows for the same scenario as a Sankey
+        diagram. The flows are aggregated to broader regions to emphasize that
+        alternative origin-destination pairs could often yield similar results.
+        Import shares for further import scenarios are included in Supplementary
+        Figs.~20 to 21. Steel is included in energy terms applying a factor of
+        2.1 kWh~kg$^{-1}$ as released by the oxidation of iron. }
     \label{fig:import-shares}
     }
 \end{figure}
@@ -157,15 +159,12 @@ dynamics substantially (\cref{fig:sensitivity-bars}).
     \fullwidthfigure{
     \centering
     \footnotesize
-    (a) no imports allowed \\
     \includegraphics[width=\linewidth]{../workflow/notebooks/20240826-z1/market-values-noimp.pdf} \\
-    (b) only hydrogen imports allowed \\
     \includegraphics[width=\linewidth, trim=0cm 0cm 0cm 0cm,clip]{../workflow/notebooks/20240826-z1/market-values-imp+H2.pdf} \\
-    (c) all imports allowed \\
     \includegraphics[width=\linewidth, trim=0cm 0cm 0cm 0cm, clip]{../workflow/notebooks/20240826-z1/market-values-imp.pdf}
     \caption{\textbf{Comparison of domestic synthetic production costs and import costs for varying import scenarios.}
-        The three panels (a), (b), and (c) refer to different import scenarios.
-        In each panel, the \textit{bar charts} show the production-weighted
+        The three panels \textbf{A, B, C} refer to different import scenarios.
+        In each panel, the bar charts show the production-weighted
         average costs of domestic production of steel, hydrogen and its
         derivatives split into its cost and revenue components. These have been
         computed using the marginal prices of the respective inputs and outputs
@@ -174,17 +173,17 @@ dynamics substantially (\cref{fig:sensitivity-bars}).
         volume. Missing bars indicate that no domestic production occured in the
         scenario, e.g.~for the case of methane where all demand is met by
         biogenic and fossil methane and no synthetic production occured
-        (cf.~energy balances in supplementary material). All hydrogen is
+        (cf.~energy balances in Supplementary Figs.~24 to 25). All hydrogen is
         produced from electrolysis; i.e.~the model did not choose to produce
         hydrogen via steam methane reforming with or without carbon capture. For
         each bar, the yellow errorbars show the range of time-averaged domestic
         production costs across all regions. The black error bars show the range
-        of import costs across all regions. The \textit{maps} on the right
+        of import costs across all regions. The maps on the right of each panel
         relate the hydrogen production volume to the weighted cost of domestic
         hydrogen production (left colorbar). Shown scenarios use technology
-        projection year 2040, allow crude steel and ammonia relocation, and do
-        not constraint import volume in (b) and (c). Confer Supplementary
-        Fig.~22 for information on the domestic cost supply curves.}
+        assumptions for 2040, allow crude steel and ammonia relocation, and do
+        not constraint import volume in \textbf{B} and \textbf{C}. Confer Supplementary
+        Fig.~22 for information on the domestic cost supply curves. Maps made with Natural Earth.}
     \label{fig:market-values}
     }
 \end{figure}
@@ -194,7 +193,7 @@ dynamics substantially (\cref{fig:sensitivity-bars}).
 
 %%% state results %%%
 
-\cref{fig:import-shares} outlines which carriers are imported in which
+\cref{fig:import-shares}A and \cref{fig:import-shares}B outline which carriers are imported in which
 quantities in relation to their total supply under default assumptions when the
 vector and volume can be flexibly chosen (`all imports allowed' in
 \cref{fig:sensitivity-bars}). In energy terms, cost-optimal imports comprise
@@ -212,7 +211,7 @@ and for methane, which is supplied from domestic fossil and biogenic sources
 
 %%% trade flows from origin to destination %%%
 
-In terms of trade flows (\cref{fig:import-shares}), we observe carbonaceous fuel
+In terms of trade flows (\cref{fig:import-shares}C), we observe carbonaceous fuel
 imports by ship from South America -- leveraging low transport costs of dense
 liquid fuels -- as well as ammonia, steel, and hydrogen imports from the Maghreb
 region. Hydrogen is mainly received by pipeline in Spain. Moreover, due to its
@@ -224,14 +223,16 @@ origin-destination pairs within the regions could often yield similar results
 
 %%% explanation through market values %%%
 
-To explain the import shares in \cref{fig:import-shares} in more detail, we
+To explain the import shares in \cref{fig:import-shares}A in more detail, we
 compare import costs with average domestic production cost split by cost and
 revenue components in \cref{fig:market-values}. First, for the scenario without
-imports, imported fuels appear substantially cheaper than domestic production.
-The high demand for hydrogen derivatives (\sfigref{fig:si:demands}) means that
-the most attractive domestic potentials for renewable electricity and captured
-carbon dioxide have been exhausted. Consequently, power from wind and solar
-needs to be produced in regions with worse capacity factors.
+imports, imported fuels appear substantially cheaper than domestic production,
+which is mostly driven by levelised cost differences of wind and solar
+electricity supply. The high demand for hydrogen derivatives
+(\sfigref{fig:si:demands}) means that the most attractive domestic potentials
+for renewable electricity and captured carbon dioxide have been exhausted.
+Consequently, power from wind and solar needs to be produced in regions with
+worse capacity factors and higher levelised costs.
 
 %%% hydrogen imports lower pressure on domestic supply chain %%%
 
@@ -258,31 +259,28 @@ not all hydrogen is imported, but some domestic production is retained.
 \begin{figure}
     \fullwidthfigure{
     \begin{subfigure}[t]{\linewidth}
-        \caption{import cost variations applied to all carriers}
         \label{fig:sensitivity-costs:A}
         \includegraphics[width=\linewidth]{../workflow/notebooks/20240826-z1/sensitivity-bars-all-wAC.pdf}
     \end{subfigure}
     \begin{subfigure}[t]{\linewidth}
-        \caption{import cost variations applied to all carriers but electricity}
         \label{fig:sensitivity-costs:B}
         \includegraphics[trim=0cm 0cm 0cm 2cm, clip, width=\linewidth]{../workflow/notebooks/20240826-z1/sensitivity-bars-all.pdf}
     \end{subfigure}
     \begin{subfigure}[t]{\linewidth}
-        \caption{import cost variations only applied to carbonaceous fuels}
         \label{fig:sensitivity-costs:C}
         \includegraphics[trim=0cm 0cm 0cm 2cm, clip, width=\linewidth]{../workflow/notebooks/20240826-z1/sensitivity-bars-all-C.pdf}
     \end{subfigure}
     \caption{\textbf{Effect of import cost variations on system cost savings and import shares with all vectors allowed and unconstrained import volume.}
-    In panel (a), indicated relative import cost changes are applied uniformly
-    to all vectors. In panel (b), cost changes are applied uniformly to all
-    vectors but electricity imports. In panel (c), cost changes are only applied
+    In \textbf{A-B}, indicated relative import cost changes are applied uniformly
+    to all vectors. In \textbf{C-D}, cost changes are applied uniformly to all
+    vectors but electricity imports. In \textbf{E-F}, cost changes are only applied
     to carbonaceous fuels (methane, methanol and Fischer-Tropsch). Top subpanels
     show potential system cost savings compared to the scenario without imports.
     Bottom subpanels show the share and composition of different import vectors
     in relation to total energy system costs. The information is shown both in
     absolute terms and relative terms compared to the scenario without imports.
     Uncertainty ranges in the top subpanels show cost savings (\%) for
-    technology projection years 2030 and 2050, in addition to 2040. All shown
+    technology assumption years 2030 and 2050, in addition to 2040. All shown
     scenarios allow relocation of crude steel and ammonia production within
     Europe. }
     \label{fig:sensitivity-costs}
@@ -295,7 +293,7 @@ not all hydrogen is imported, but some domestic production is retained.
 Thus far, the presented findings originate from a central estimate for the
 import cost. However, the cost-optimal import mix strongly depends on the
 assumed import costs. This uncertainty is addressed in
-\cref{fig:sensitivity-costs}. \cref{fig:sensitivity-costs:A} highlights the
+\cref{fig:sensitivity-costs}. \cref{fig:sensitivity-costs}A highlights the
 extensive range in potential cost reductions if higher or lower import costs
 could be attained and underlines the resulting variance in cost-effective import
 mixes. Within $\pm 30\%$ of the default import costs applied to all carriers,
@@ -310,7 +308,7 @@ However, not all carriers are equally affected by technology cost variations.
 Fuel synthesis technologies do not influence electricity imports, and only
 carbon-based fuels are subject to the cost of CO$_2$ supply. We find that when
 the relative cost variation is not applied to electricity imports
-(\cref{fig:sensitivity-costs:B}), they remain less attractive than other
+(\cref{fig:sensitivity-costs}B), they remain less attractive than other
 vectors, even when those alternative vectors face a 20\% cost rise.
 
 One central assumption regarding costs for carbon-based fuels is that imported
@@ -327,7 +325,7 @@ exporting regions would lower costs of carbonaceous fuel imports
 (\stabref{tab:cost-uncertainty}).
 
 When the relative cost variation is only applied to carbon-based fuels
-(\cref{fig:sensitivity-costs:C}), reflecting cost uncertainty in carbon
+(\cref{fig:sensitivity-costs}C), reflecting cost uncertainty in carbon
 provision, hydrogen imports are quickly displaced by Fischer-Tropsch and
 methanol imports with falling costs. Only when import costs rise by 20\% do
 domestically produced liquid hydrocarbons -- derived mainly from imported
@@ -337,13 +335,13 @@ cost reductions of 40\%, replacing biogas and residual fossil gas consumption.
 
 Overall, \cref{fig:sensitivity-costs} also demonstrates that the impact of
 import cost variations on savings remains stable with more near-term (2030) and
-long-term (2050) projections.
+long-term (2050) technology assumptions.
 
 \begin{figure}
     \fullwidthfigure{
     \includegraphics[width=\linewidth]{../workflow/notebooks/20240826-z1/sensitivity-import-volume-any.pdf}
     \caption{\textbf{Sensitivity of import volume on total system cost and composition.}
-        \textit{Left panel:} Solid lines show the total system cost as a
+        \textbf{A} Solid lines show the total system cost as a
         function of enforced import volumes for higher (brown scale) or lower
         (blue scale) import costs. The dashed lines indicate the corresponding
         shares of the domestic system cost. The red markers denote the maximum
@@ -351,11 +349,11 @@ long-term (2050) projections.
         levels (extreme points of the curves). The cost alterations are
         uniformly applied to all imports options but direct electricity imports.
         Steel is included in energy terms applying 2.1 kWh~kg$^{-1}$ as released
-        by the oxidation of iron. \textit{Right panel:} Shows the composition of
+        by the oxidation of iron. \textbf{B} shows the composition of
         the total system cost as a function of enforced import volumes for the
         central import cost estimate. The dashed line splits the system costs
         into costs for imports and the domestic system. All shown scenarios use
-        the technology projection year 2040 and allow relocation of crude steel
+        technology assumptions for 2040 and allow relocation of crude steel
         and ammonia production within Europe. Cost compositions for the
         alternative import cost scenarios are presented in Supplementary
         Figs.~15-18.}
@@ -379,7 +377,7 @@ costs, 5800~TWh for -20\% lower import costs) have lower total energy system
 costs than the no-imports scenario. These ranges of import values are two to
 three times as large as the corresponding cost-optimal import volumes, which are
 indicated by the red markers in \cref{fig:sensitivity-volume} and correspond to
-the bars previously shown in \cref{fig:sensitivity-costs:B}. Naturally, the
+the bars previously shown in \cref{fig:sensitivity-costs}B. Naturally, the
 cost-optimal volume of imports increases as their costs decrease, but with
 noticeably varying slopes for system cost savings per unit of additional
 imported energy.
@@ -431,9 +429,9 @@ diminish the cost-saving potential.
     \fullwidthfigure{
     \includegraphics[width=\linewidth]{../workflow/notebooks/20240826-z1/infrastructure-map-2x3-A.pdf}
     \caption{\textbf{Layout of European energy infrastructure for different import scenarios.}
-        Left column shows the regional electricity supply mix (pies), added HVDC
+        Panels \textbf{A,C,E} show the regional electricity supply mix (pies), added HVDC
         and HVAC transmission capacity (lines), and the siting of battery
-        storage (choropleth). Right column shows the hydrogen supply (top half
+        storage (choropleth). Panels \textbf{B,D,F} show the hydrogen supply (top half
         of pies) and consumption (bottom half of pies), net flow and direction
         of hydrogen in newly built pipelines (lines), and the siting of hydrogen
         storage subject to geological potentials (choropleth). Total volumes of
@@ -442,10 +440,10 @@ diminish the cost-saving potential.
         the Bay of Biscay indicates the imports of hydrogen derivatives that are
         not spatially resolved: ammonia, steel, HBI, methanol, Fischer-Tropsch
         fuels. Hydrogen imports are shown at the entry points. All shown
-        scenarios use the technology projection year 2040, allow steel and
+        scenarios use technology assumptions for 2040, allow steel and
         ammonia relocation and have no import volume constraint (when
         available). Maps for more scenarios are included in Supplementary
-        Figs.~26-29. }
+        Figs.~26-29. Maps made with Natural Earth.}
     \label{fig:import-infrastructure}
     }
 \end{figure}
@@ -494,7 +492,7 @@ However, the main reason why hydrogen consumption is mainly concentrated in
 regions with low-cost production is that over 80\% of the hydrogen is used to
 produce electrofuels for aviation, shipping, and chemical feedstocks, compared
 to about 10\% for crude steel and ammonia production. These liquid fuels can be
-transported at lower cost to airports, ports, and industrial sites across Europe
+transported at a lower cost to airports, ports, and industrial sites across Europe
 than hydrogen. Consequently, there is low impetus for transporting hydrogen
 directly, resulting in a hydrogen network that is much smaller than envisioned
 in the European Hydrogen Backbone \cite{gasforclimateEuropeanHydrogen2022}.

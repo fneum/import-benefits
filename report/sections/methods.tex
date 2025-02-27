@@ -19,11 +19,11 @@ assumes perfect operational foresight and is solved with Gurobi
 (v11.0.1).\cite{gurobi} To manage computational complexity, no pathways with multiple
 investment periods are calculated, but overnight scenarios targeting net-zero
 CO$_2$ emissions. The capacity expansion is based on technology cost and
-efficiency projections for 2040 (see `Data availability'), acknowledging that
+efficiency assumptions for 2040 (see `Data availability'), acknowledging that
 much of the required infrastructure must be constructed well before reaching
 net-zero emissions. \cref{fig:sensitivity-bars,fig:sensitivity-costs} and
 \sfigref{fig:si:infra-e} feature additional scenarios using technology
-projections for 2030 and 2050.
+assumptions for 2030 and 2050.
 
 Existing hydro-electric power plants\cite{gotzensPerformingEnergy2019} are
 included, as well as nuclear power plants built after 1990 or currently under
@@ -74,7 +74,7 @@ methanol), which account for more than 80\% of the hydrogen consumption. Since
 the model optimizes the siting and operation of these fuel synthesis plants and
 electrolysers, many demands are spatially variable (e.g.~electricity demand for
 electrolysers or hydrogen demand for methanolisation). Existing hydrogen
-production capacities from fossil gas reforming and coal gasification are not
+production capacities from fossil gas reforming are not
 considered, as they are expected to reach end of life over the model horizon.
 
 A mathematical description of PyPSA-Eur can be found in \snoteref{sec:si:math},
@@ -277,7 +277,7 @@ Other factors, such as impacts on regional economies and local jobs, integration
 with other production processes, or availability of other existing infrastructure are
 not considered, largely due to a lack of data. The resulting relocation patterns
 should therefore be interpreted with caution as they might underestimate total
-relocation costs and frictions. we allow domestic relocation nevertheless in
+relocation costs and frictions. We allow domestic relocation nevertheless in
 most scenarios, as it would be inconsistent to allow crude steel and ammonia
 imports from abroad while preventing relocation within Europe.
 
@@ -289,7 +289,7 @@ The European energy system model is extended with data from the TRACE model
 the unit costs of different vectors for importing green energy and material to
 entry points in Europe from various world regions. For consistency with the
 European model, the techno-economic assumptions were aligned, using the same
-projections for 2040 (plus 2030 / 2050 in
+values for 2040 (plus 2030 / 2050 in
 \cref{fig:sensitivity-bars,fig:sensitivity-costs} and \sfigref{fig:si:infra-e})
 and a uniform weighted average cost of capital (WACC) of
 7\%.\cite{lonerganImprovingRepresentationCost2023} As possible import vectors,
@@ -312,7 +312,7 @@ countries without access to seaports or realistic pipeline connections are
 excluded. For landlocked regions within pipeline reach, we only exclude
 shipborne vectors. Some large countries are split into multiple subregions for
 a more differentiated view (e.g.~USA, Argentina, Brazil, and China). The
-resulting regions are marked in \cref{fig:options:global}.
+resulting regions are marked in \cref{fig:options}A.
 
 % renewable potentials minus domestic demand
 
@@ -431,7 +431,7 @@ PyPSA-Eur.
 However, imports may be further restricted by the expansion of domestic import
 infrastructure. For each vector, we identify locations where the respective
 carrier may enter the European energy system by considering where LNG terminals
-and cross-continental pipelines are located (\cref{fig:options:europe}). For
+and cross-continental pipelines are located (\cref{fig:options}B). For
 hydrogen imports by pipeline, imports must be near-constant, varying between
 90-100\% of peak imports, aligning with the high pipeline utilisation rates
 observed in the TRACE model. For methane imports by ship, existing LNG terminals
@@ -471,7 +471,7 @@ and the intake needs to be more closely coordinated with the European power
 grid. The endogenous optimisation comprises wind and solar capacities, batteries
 and hydrogen storage in steel tanks, and the size and operation of HVDC link
 connections to Europe based on the renewable capacity factor time series as
-illustrated in \cref{fig:options:europe}. Europe's connection options with
+illustrated in \cref{fig:options}B. Europe's connection options with
 exporting regions are confined to the 4\% nearest regions, with additional
 ultra-long distance connection options to Ireland, Cornwall, and Brittany
 following the vision of the Xlinks project between Morocco and the United
